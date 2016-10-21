@@ -1,0 +1,381 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>7.10.3077</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A7FB3EDA-981A-45C7-8FB8-37A08350C423}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon />
+    <AssemblyKeyContainerName />
+    <AssemblyName>Ecdev.Plugins.Payment</AssemblyName>
+    <AssemblyOriginatorKeyFile />
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Ecdev.Plugins.Payment</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject />
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>0.0</OldToolsVersion>
+    <PublishUrl>发布\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\..\EcShop.Website\plugins\payment\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile />
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile />
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn />
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>..\..\EcShop.Website\plugins\payment\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile />
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile />
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn />
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+      <HintPath>System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+      <HintPath>System.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web">
+      <Name>System.Web</Name>
+      <HintPath>System.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.Xml</Name>
+      <HintPath>System.Xml.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Com.HisunCmpay\GlobalParam.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Com.HisunCmpay\HiOrderNotifyRes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Com.HisunCmpay\HmacMD5.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Com.HisunCmpay\IPosMUtil.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Com.HisunCmpay\NotifyHttpHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Com.HisunCmpay\SignUtil.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AlipayAssure\AlipayAssureNotify.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AlipayAssure\AssureRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AlipayAssure\Globals.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AlipayDirect\AlipayDirectNotify.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AlipayDirect\DirectRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AlipayDirect\Globals.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AlipayQrCode\AlipayQrCodeNotify.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AlipayQrCode\Globals.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AlipayQrCode\QrCodeRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Alipay\AlipayNotify.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Alipay\Globals.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Alipay\StandardRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Alipay_Bank\AlipayBankNotify.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Alipay_Bank\AlipayMD5.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Alipay_Bank\BankRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Alipay_Bank\Config.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Alipay_Bank\Core.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Alipay_Bank\Globals.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Alipay_Bank\Notify.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Alipay_Bank\Submit.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Allbuy\AllbuyNotify.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Allbuy\AllbuyRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BankUnion\BankUnionNotify.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BankUnion\BankUnionRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BankUnion\QuickPayConf.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BankUnion\QuickPayUtils.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bill99\Bill99Notify.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bill99\Bill99Request.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Chinabank\ChinabankNotify.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Chinabank\ChinabankRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CMPay_D\CMPayDNotify.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CMPay_D\CMPayDRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Cncard\CncardNotify.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Cncard\CncardRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GoPay\Globals.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GoPay\GoPayNotify.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GoPay\GoPayRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Ipay\IpayNotify.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Ipay\IpayRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IPSExpress\IpsExpressNotify.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IPSExpress\IpsExpressRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IPS\Globals.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IPS\IpsNotify.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IPS\IpsRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Npay\NpayNotify.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Npay\NpayRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Paypal\PaypalNotify.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Paypal\PaypalRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ShengPayMobile\ShengPayMobileNotify.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ShengPayMobile\ShengPayMobileRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ShengPay\ShengPayNotify.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ShengPay\ShengPayRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TenpayAssure\Globals.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TenpayAssure\TenpayAssureNotify.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TenpayAssure\TenpayAssureRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tenpay\Globals.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tenpay\TenpayNotify.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tenpay\TenpayRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TenPay_Doub\ClientVerifly.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TenPay_Doub\Globals.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TenPay_Doub\ReturnHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TenPay_Doub\TenpayDoubNotify.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TenPay_Doub\TenpayDoubRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TenPay_Doub\VeriflyHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WS_WapPay\Function.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WS_WapPay\Service.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WS_WapPay\Submit.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WS_WapPay\WsWapPayNotify.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WS_WapPay\WsWapPayRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="YeePay\Buy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="YeePay\Digest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="YeePay\HmacMD5.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="YeePay\YeepayNotify.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="YeePay\YeepayRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AdvanceRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BankRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PODRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Ecdev.Plugins\Ecdev.Plugins.csproj">
+      <Project>{8f8ea901-b6dc-4747-9e69-53421816cb33}</Project>
+      <Name>Ecdev.Plugins</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent />
+    <PostBuildEvent />
+  </PropertyGroup>
+</Project>
