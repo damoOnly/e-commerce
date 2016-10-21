@@ -1,0 +1,755 @@
+﻿ <%<hi:common_header runat="server" skinname="/ascx/tags/Skin-Common_Header2.ascx" />%>
+<input type="hidden" runat="server" id="search_text" />
+<input type="hidden" runat="server" id="search_Subtext" />
+<script type="text/javascript">
+    $(function () {
+        $("#txt_Search_Keywords").val($("#SubCategory_search_text").val());
+        $("#txt_Search_SubKeywords").val($("#SubCategory_search_Subtext").val());
+    });
+</script>
+<style type="text/css">
+    #header {
+        background: none;
+    }
+    .search_text {
+        display: none;
+    }
+</style>
+<div class="main cate-main" id="main1">
+	<div class="category-select">
+                    <div class="selected-box" id="TempSelect">
+                        <!--<div class="selected-left">已选择：</div>
+                        <div class="selected-content">
+                            <ul class="selected-ul">
+                                <li>
+                                    <a href="javascript:;"><em>类目：</em>食品保健</a>
+                                    <span></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="selected-right">
+                            <a id="clear-select" href="javascript:;">清除筛选</a>
+                        </div>-->
+                    </div>
+                    <div class="limit-box" id="TempBrand">
+                        <!--<div class="limit-left" id="appear-brand">品牌：</div>
+                        <div class="limit-content">
+                            <ul class="limit-ul">
+                                <li><a href="javascript:;">康维他Comvita</a></li>
+                                <li><a href="javascript:;">康维他Comvita</a></li>
+                                <li><a href="javascript:;">康维他Comvita</a></li>
+                                <li><a href="javascript:;">康维他Comvita</a></li>
+                                <li><a href="javascript:;">康维他Comvita</a></li>
+                                <li><a href="javascript:;">康维他Comvita</a></li>
+                            </ul>
+                        </div>
+                        <div class="limit-right">
+                            <div>
+                                <a class="all-check" href="javascript:;">全部</a>
+                                <a class="multi-check" href="javascript:;">+&nbsp;多选</a>
+                            </div>
+                            <div style="display:none;">
+                                <a class="select-cancel" href="javascript:;">取消</a>
+                                <a class="select-confirm" href="javascript:;">确定</a>
+                            </div>
+                        </div>-->
+                    </div>
+                    <div class="limit-box" id="TempCategory">
+                        <!--<div class="limit-left" id="appear-sort">分类：</div>
+                        <div class="limit-content">
+                            <ul class="limit-ul">
+                                <li><a href="http://www.baidu.com/">酒水饮料（20）</a></li>
+                                <li><a href="javascript:;">酒水饮料（20）</a></li>
+                                <li><a href="javascript:;">酒水饮料（20）</a></li>
+                                <li><a href="javascript:;">酒水饮料（20）</a></li>
+                                <li><a href="javascript:;">酒水饮料（20）</a></li>
+                                <li><a href="javascript:;">酒水饮料（20）</a></li>
+                                <li><a href="javascript:;">酒水饮料（20）</a></li>
+                                <li><a href="javascript:;">酒水饮料（20）</a></li>
+                            </ul>
+                        </div>
+                        <div class="limit-right">
+                            <div>
+                                <a class="all-check" href="javascript:;">全部</a>
+                                <a class="multi-check" href="javascript:;">+&nbsp;多选</a>
+                            </div>
+                            <div style="display:none;">
+                                <a class="select-cancel" href="javascript:;">取消</a>
+                                <a class="select-confirm" href="javascript:;">确定</a>
+                            </div>
+                        </div>-->
+                    </div>
+                    <div class="limit-box" id="TempSource">
+                        <!--<div class="limit-left" id="appear-orign">产地：</div>
+                        <div class="limit-content">
+                            <ul class="limit-ul">
+                                <li><a href="javascript:;">美国</a></li>
+                                <li><a href="javascript:;">韩国</a></li>
+                                <li><a href="javascript:;">新加坡</a></li>
+                                <li><a href="javascript:;">美国</a></li>
+                                <li><a href="javascript:;">韩国</a></li>
+                                <li><a href="javascript:;">新加坡</a></li>
+                                <li><a href="javascript:;">美国</a></li>
+                                <li><a href="javascript:;">韩国</a></li>
+                                <li><a href="javascript:;">新加坡</a></li>
+                                <li><a href="javascript:;">美国</a></li>
+                                <li><a href="javascript:;">韩国</a></li>
+                                <li><a href="javascript:;">新加坡</a></li>
+                            </ul>
+                        </div>
+                        <div class="limit-right">
+                            <div>
+                                <a class="all-check" href="javascript:;">全部</a>
+                                <a class="multi-check" href="javascript:;">+&nbsp;多选</a>
+                            </div>
+                            <div style="display:none;">
+                                <a class="select-cancel" href="javascript:;">取消</a>
+                                <a class="select-confirm" href="javascript:;">确定</a>
+                            </div>
+                        </div>-->
+                    </div>
+                    <div class="limit-box" id="TempPrice">
+                        <!--<div class="limit-left" id="appear-price">价格：</div>
+                        <div class="limit-content">
+                            <ul class="limit-ul">
+                                <ul class="limit-ul price-select">
+                                    <li><a href="javascript:;">300以下</a></li>
+                                    <li><a href="javascript:;">301-800</a></li>
+                                    <li><a href="javascript:;">800-2000</a></li>
+                                    <li><a href="javascript:;">2001-5000</a></li>
+                                    <li><a href="javascript:;">5001-10000 </a></li>
+                                    <li><a href="javascript:;">10001-30000</a></li>
+                                    <li><a href="javascript:;">30001以上</a></li>
+                                </ul>
+                        </div>
+                        <div class="limit-right">
+                            <div>
+                                <a class="all-check" href="javascript:;">全部</a>
+                                <a class="multi-check" href="javascript:;">+&nbsp;多选</a>
+                            </div>
+                            <div style="display:none;">
+                                <a class="select-cancel" href="javascript:;">取消</a>
+                                <a class="select-confirm" href="javascript:;">确定</a>
+                            </div>
+                        </div>-->
+                    </div>
+                </div>
+    <div class="main-con fix">
+        <div class="main-conl hide-show">
+            <div class="sub-cate">
+
+                <!--<div class="sub-catecon">
+                    <ul>
+                        <%
+                        <hi:common_productcategorylist isshowsubcategory="true" runat="server" templatefile="/ascx/tags/Skin-Common_ProductSubCategories.ascx" />%>
+                    </ul>
+                </div>-->
+            </div>
+            <!--<div class="hot-good">
+                <div><a><img src="/images/subcate/t1.png" class="img-resp" /></a></div>                
+                <%<asp:Literal ID="litHotGood" runat="server" />%>
+            </div>-->
+            <div class="tde-wrap fix" style="margin-top:20px;">
+                <div class="tde-left">
+                    <div class="pro-wrap second-page">
+                        <h4>销量排行</h4>
+                        <div class="pro-list">
+                            <ul>
+                                <%
+                                <hi:common_goodslist_hotsale templatefile="/ascx/tags/Common_GoodsList/Skin-Common_GoodsList_HotSale.ascx" maxnum="10" runat="server" />%>
+
+
+                            </ul>
+                        </div>
+                    </div>
+                    <asp:Literal runat="server" id="litCategoryNotes3" />
+                </div>
+            </div>
+        </div>
+        <div class="main-conr">
+            <div class="category">
+                <div class="category_ad" style="display:none;"></div>
+                <div class="fix">
+                    <!--<a><img src="/images/subcate/h.png"/></a>-->
+                    <%<asp:Literal ID="litLeadBuy" runat="server" />%>
+                </div>
+
+                <div class="sub_category" style="display:none;">
+                    <h2>按子分类选择</h2>
+                    <ul id="ul_subcategory"></ul>
+                </div>
+                <p class="sub_shrink" id="sp_subcategory"><span>展开搜索</span></p>
+
+                <div class="sub_property">
+                    <!--<h2>按品牌/属性选择</h2>-->
+                    <hi:common_attributeslist id="common_attributeslist" runat="server" />
+                </div>
+                <p class="sub_shrink" id="sp_brand"><span>展开搜索</span></p>
+<script type="text/javascript">
+    $(function () {
+
+        //已选择参数
+        var tempsel = '';
+        tempsel += '<div class="selected-left">已选择：</div>';
+        tempsel += '<div class="selected-content">';
+        tempsel += '<ul class="selected-ul">';
+        if (getParam("pp") != '' && getParam("pp") != null)
+        {
+            tempsel += '<li>';
+            tempsel += '<a href="javascript:;"><em>品牌：</em>' + decodeURI(getParams("pp")) + '</a>';
+            tempsel += '<span></span>';
+        }
+        if (getParam("fl") != '' && getParam("fl") != null) {
+            tempsel += '<li>';
+            tempsel += '<a href="javascript:;"><em>分类：</em>' + decodeURI(getParams("fl")) + '</a>';
+            tempsel += '<span></span>';
+        }
+        if (getParam("cd") != '' && getParam("cd") != null) {
+            tempsel += '<li>';
+            tempsel += '<a href="javascript:;"><em>产地：</em>' + decodeURI(getParams("cd")) + '</a>';
+            tempsel += '<span></span>';
+        }
+        if (getParam("jg") != '' && getParam("jg") != null) {
+            tempsel += '<li>';
+            tempsel += '<a href="javascript:;"><em>价格：</em>' + decodeURI(getParams("jg")) + '</a>';
+            tempsel += '<span></span>';
+        }
+        tempsel += '</ul>';
+        tempsel += '</div>';                
+        tempsel += '<div class="selected-right">';   
+        tempsel += '<a id="clear-select" href="javascript:;">清除筛选</a>'; 
+        tempsel += '</div>';   
+        $("#TempSelect").html(tempsel);
+
+        // 获取查询参数
+        $.ajax({
+            url: "/Handler/MemberHandler.ashx?action=BindAreaList",
+            type: "post",
+            dataType: "json",
+            data: { categoryId: getParam("categoryId") },
+            async: false,
+            success: function (data) {
+                if (data.Success) {
+                    var strs = "";
+                    if (data.BrandList != "" && data.BrandList != undefined) {
+                        strs += ' <div class="limit-left" id="appear-brand">品牌：</div>';
+                        strs += '<div class="limit-content">';
+                        strs += '<ul class="limit-ul">';
+                        for (var i = 0; i < data.BrandList.length; i++) {
+                            strs += '<li><a title=' + data.BrandList[i]["BrandName"] + ' id=' + data.BrandList[i]["BrandId"] + ' href="/SubCategory.aspx?keywords=' + getParams("keywords") + '&categoryId=' + getParams("categoryId") + '&brand=' + data.BrandList[i]["BrandId"] + '&importsourceid=' + getParams("importsourceid") + '&minSalePrice=' + getParams("minSalePrice") + '&maxSalePrice=' + getParams("maxSalePrice") + '&pp=' + data.BrandList[i]["BrandName"] + '&fl=' + getParams("fl") + '&cd=' + getParams("cd") + '&jg=' + getParams("jg") + '">' + data.BrandList[i]["BrandName"] + '<img src="' + data.BrandList[i]["Logo"] + '"/></a></li>';
+                        }
+                        strs += '</ul>';
+                        strs += '</div>';
+                        strs += '<div class="limit-right">';
+                        strs += '<div>';
+                        strs += '<a class="all-check" href="javascript:;">全部</a>';
+                        strs += '<a class="multi-check" href="javascript:;">+多选</a>';
+                        strs += '</div>';
+                        strs += '<div style="display:none;">';
+                        strs += '<a class="select-cancel" href="javascript:;">取消</a>';
+                        strs += '<a class="select-confirm" href="javascript:;">确定</a>';
+                        strs += '</div>';
+                        strs += '</div>';
+                        $("#TempBrand").html(strs);
+                        strs = "";
+                    }
+                    if (data.CategorieList != "" && data.CategorieList != undefined) {
+                        strs += '<div class="limit-left" id="appear-sort">分类：</div>';
+                        strs += '<div class="limit-content">';
+                        strs += '<ul class="limit-ul">';
+                        for (var i = 0; i < data.CategorieList.length; i++) {
+                            strs += '<li><a id=' + data.CategorieList[i]["CategoryId"] + ' href="/SubCategory.aspx?keywords=' + getParams("keywords") + '&categoryId=' + data.CategorieList[i]["CategoryId"] + '&brand=' + getParams("brand") + '&importsourceid=' + getParams("importsourceid") + '&minSalePrice=' + getParams("minSalePrice") + '&maxSalePrice=' + getParams("maxSalePrice") + '&pp=' + getParams("pp") + '&fl=' + data.CategorieList[i]["Name"] + '&cd=' + getParams("cd") + '&jg=' + getParams("jg") + '">' + data.CategorieList[i]["Name"] + '</a></li>';
+                        }
+                        strs += '</ul>';
+                        strs += '</div>';
+                        strs += '<div class="limit-right">';
+                        strs += '<div>';
+                        strs += '<a class="all-check" href="javascript:;">全部</a>';
+                        strs += '<a class="multi-check" href="javascript:;">+多选</a>';
+                        strs += '</div>';
+                        strs += '<div style="display:none;">';
+                        strs += '<a class="select-cancel" href="javascript:;">取消</a>';
+                        strs += '<a class="select-confirm" href="javascript:;">确定</a>';
+                        strs += '</div>';
+                        strs += '</div>';
+                        $("#TempCategory").html(strs);
+                        strs = "";
+                    }
+                    if (data.SourceTypeList != "" && data.SourceTypeList != undefined) {
+                        strs += '<div class="limit-left" id="appear-orign">产地：</div>';
+                        strs += '<div class="limit-content">';
+                        strs += '<ul class="limit-ul">';
+                        for (var i = 0; i < data.SourceTypeList.length; i++) {
+                            strs += '<li><a id=' + data.SourceTypeList[i]["ImportSourceId"] + ' href="/SubCategory.aspx?keywords=' + getParams("keywords") + '&categoryId=' + getParams("categoryId") + '&brand=' + getParams("brand") + '&importsourceid=' + data.SourceTypeList[i]["ImportSourceId"] + '&minSalePrice=' + getParams("minSalePrice") + '&maxSalePrice=' + getParams("maxSalePrice") + '&pp=' + getParams("pp") + '&fl=' + getParams("fl") + '&cd=' + data.SourceTypeList[i]["CnArea"] + '&jg=' + getParams("jg") + '">' + data.SourceTypeList[i]["CnArea"] + '</a></li>';
+                        }
+                        strs += '</ul>';
+                        strs += '</div>';
+                        strs += '<div class="limit-right">';
+                        strs += '<div>';
+                        strs += '<a class="all-check" href="javascript:;">全部</a>';
+                        strs += '<a class="multi-check" href="javascript:;">+多选</a>';
+                        strs += '</div>';
+                        strs += '<div style="display:none;">';
+                        strs += '<a class="select-cancel" href="javascript:;">取消</a>';
+                        strs += '<a class="select-confirm" href="javascript:;">确定</a>';
+                        strs += '</div>';
+                        strs += '</div>';
+
+                        $("#TempSource").html(strs);
+                        strs = "";
+                    }
+                    strs += '<div class="limit-left" id="appear-price">价格：</div>';
+                    strs += '<div class="limit-content">';
+                    strs += '<ul class="limit-ul">';
+                    strs += '<li><a href="/SubCategory.aspx?keywords=' + getParams("keywords") + '&categoryId=' + getParam("categoryId") + '&brand=' + getParam("brand") + '&importsourceid=' + getParam("importsourceid") + '&minSalePrice=0&maxSalePrice=300&pp=' + getParams("pp") + '&fl=' + getParams("fl") + '&cd=' + getParams("cd") + '&jg=300以下">300以下</a></li>';
+                    strs += '<li><a href="/SubCategory.aspx?keywords=' + getParams("keywords") + '&categoryId=' + getParam("categoryId") + '&brand=' + getParam("brand") + '&importsourceid=' + getParam("importsourceid") + '&minSalePrice=301&maxSalePrice=800&pp=' + getParams("pp") + '&fl=' + getParams("fl") + '&cd=' + getParams("cd") + '&jg=301-800">301-800</a></li>';
+                    strs += '<li><a href="/SubCategory.aspx?keywords=' + getParams("keywords") + '&categoryId=' + getParam("categoryId") + '&brand=' + getParam("brand") + '&importsourceid=' + getParam("importsourceid") + '&minSalePrice=800&maxSalePrice=2000&pp=' + getParams("pp") + '&fl=' + getParams("fl") + '&cd=' + getParams("cd") + '&jg=800-2000">800-2000</a></li>';
+                    strs += '<li><a href="/SubCategory.aspx?keywords=' + getParams("keywords") + '&categoryId=' + getParam("categoryId") + '&brand=' + getParam("brand") + '&importsourceid=' + getParam("importsourceid") + '&minSalePrice=2001&maxSalePrice=5000&pp=' + getParams("pp") + '&fl=' + getParams("fl") + '&cd=' + getParams("cd") + '&jg=2001-5000">2001-5000</a></li>';
+                    strs += '<li><a href="/SubCategory.aspx?keywords=' + getParams("keywords") + '&categoryId=' + getParam("categoryId") + '&brand=' + getParam("brand") + '&importsourceid=' + getParam("importsourceid") + '&minSalePrice=5001&maxSalePrice=10000&pp=' + getParams("pp") + '&fl=' + getParams("fl") + '&cd=' + getParams("cd") + '&jg=5001-10000">5001-10000</a></li>';
+                    strs += '<li><a href="/SubCategory.aspx?keywords=' + getParams("keywords") + '&categoryId=' + getParam("categoryId") + '&brand=' + getParam("brand") + '&importsourceid=' + getParam("importsourceid") + '&minSalePrice=10001&maxSalePrice=30000&pp=' + getParams("pp") + '&fl=' + getParams("fl") + '&cd=' + getParams("cd") + '&jg=10001-30000">10001-30000</a></li>';
+                    strs += '<li><a href="/SubCategory.aspx?keywords=' + getParams("keywords") + '&categoryId=' + getParam("categoryId") + '&brand=' + getParam("brand") + '&importsourceid=' + getParam("importsourceid") + '&minSalePrice=30001&maxSalePrice=&pp=' + getParams("pp") + '&fl=' + getParams("fl") + '&cd=' + getParams("cd") + '&jg=30001以上">30001以上</a></li>';
+                    strs += '</ul>';
+                    strs += '</div>';
+                    $("#TempPrice").html(strs);
+                    strs = "";
+
+					$('.limit-left').each(function () {
+						$(this).css('line-height', $(this).siblings('.limit-content').height() + 36 + 'px');
+					});
+                }
+                else {
+
+                }
+            }
+        });
+    })
+
+    $(function () {
+		//整体slideDown
+		$('.category-select').show();
+		//控制高度
+		$('#clear-select').css('line-height', $('.selected-content').height() + 36 + 'px');
+		$('.selected-left').css('line-height', $('.selected-content').height() + 36 + 'px');
+		$('.limit-left').each(function () {
+			$(this).css('line-height', $(this).siblings('.limit-content').height() + 36 + 'px');
+		});
+		$('.limit-right').each(function () {
+			$(this).height($(this).siblings('.limit-content').height());
+		});
+    })
+</script>
+                
+                <script>
+                    //二级菜单筛选
+                    $(function () {
+						setTimeout(function(){
+							$('#TempSelect em').each(function(){
+								switch($(this).text()){
+									case '品牌：':
+										$('#appear-brand').parent().hide();
+										break;
+									case '分类：':
+										$('#appear-sort').parent().hide();
+										break;
+									case '产地：':
+										$('#appear-orign').parent().hide();
+										break;
+									case '价格：':
+										$('#appear-price').parent().hide();
+										break;
+									default:
+										break;
+								}
+							});
+						}, 10)
+
+						function getParam(paramName) {
+						    var reg = new RegExp("(^|&)" + paramName + "=([^&]*)(&|$)");
+						    var r = window.location.search.substr(1).match(reg);
+						    if (r != null) {
+						        return unescape(r[2]);
+						    }
+						    return '';
+						}
+						
+                        //点击全部
+                        $('.limit-box').delegate('.all-check', 'click', function () {
+                            $(this).parent().parent().siblings('.limit-content').find('a').addClass('checked');
+                            $(this).parent().parent().siblings('.limit-content').find('.limit-ul').css('max-height', 'inherit');
+                            $(this).parent('div').hide().siblings('div').show();
+                            //高度
+                            $('.limit-right').each(function () {
+                                $(this).height($(this).siblings('.limit-content').height());
+                            });
+                            $('.limit-left').each(function () {
+                                $(this).css('line-height', $(this).siblings('.limit-content').height() + 36 + 'px');
+                            });
+                        });
+
+                        //点击多选
+                        $('.limit-box').delegate('.multi-check', 'click', function () {
+                            $(this).parent().parent().siblings('.limit-content').find('a').addClass('no-check');
+                            $(this).parent().parent().siblings('.limit-content').find('.limit-ul').css('max-height', 'inherit');
+                            $(this).parent('div').hide().siblings('div').show();
+                            //高度
+                            $('.limit-right').each(function () {
+                                $(this).height($(this).siblings('.limit-content').height());
+                            });
+                            $('.limit-left').each(function () {
+                                $(this).css('line-height', $(this).siblings('.limit-content').height() + 36 + 'px');
+                            });
+                        })
+
+                        //点击每个选项
+                        $('.limit-box').delegate('li a', 'click', function () {
+                            if ($(this).hasClass('no-check') || $(this).hasClass('checked')) {
+                                $(this).addClass('no-check').toggleClass('checked');
+                            }
+                            if ($(this).hasClass('checked') || $(this).hasClass('no-check')) {
+                                return false;
+                            } else {
+                                //点击某个选项，这一行消失
+                                //$(this).parents('.limit-box').hide();
+                                //已选择部分出现的内容
+                                var str_title = $(this).parents('.limit-content').siblings('.limit-left').text();
+                                var str_text = $(this).text();
+                                /*var str = '<li><a href="javascript:;"><em>' + str_title + '</em>' + str_text + '</a><span></span></li>'
+                                $('.selected-content').find('ul').append(str);*/
+                                //高度调整
+                                $('#clear-select').css('line-height', $('.selected-content').height() + 36 + 'px');
+                                $('.selected-left').css('line-height', $('.selected-content').height() + 36 + 'px');
+                            }
+                        });
+
+                        //点击已选择的关闭按钮
+                        $('.selected-box').delegate('li span', 'click', function () {
+                            //$(this).parent('li').remove();
+                            //$('#clear-select').css('line-height', $('.selected-content').height() + 36 + 'px');
+                            //$('.selected-left').css('line-height', $('.selected-content').height() + 36 + 'px');
+                            var sort_title = $(this).siblings('a').find('em').text();
+                            var url = "";
+                            switch (sort_title) {
+                                case '品牌：':
+                                    //$('#appear-brand').parent('.limit-box').show();
+                                    url = applicationPath + "/SubCategory.aspx?keywords=" + getParams("keywords") + "&categoryId=" + getParam("categoryId") + "&brand=&importsourceid=" + getParam("importsourceid") + "&minSalePrice=" + getParam("minSalePrice") + "&maxSalePrice=" + getParam("maxSalePrice") + "&pp=&fl=" + getParams("fl") + "&cd=" + getParams("cd") + "&jg=" + getParams("jg");
+                                    break;
+                                case '分类：':
+                                    //$('#appear-sort').parent('.limit-box').show();
+                                    url = applicationPath + "/SubCategory.aspx?keywords=" + getParams("keywords") + "&categoryId=&brand=" + getParam("brand") + "&importsourceid=" + getParam("importsourceid") + "&minSalePrice=" + getParam("minSalePrice") + "&maxSalePrice=" + getParam("maxSalePrice") + "&pp=" + getParams("pp") + "&fl=&cd=" + getParams("cd") + "&jg=" + getParams("jg");
+                                    break;
+                                case '产地：':
+                                    //$('#appear-orign').parent('.limit-box').show();
+                                    url = applicationPath + "/SubCategory.aspx?keywords=" + getParams("keywords") + "&categoryId=" + getParam("categoryId") + "&brand=" + getParam("brand") + "&importsourceid=&minSalePrice=" + getParam("minSalePrice") + "&maxSalePrice=" + getParam("maxSalePrice") + "&pp=" + getParams("pp") + "&fl=" + getParams("fl") + "&cd=&jg=" + getParams("jg");
+                                    break;
+                                case '价格：':
+                                    //$('#appear-price').parent('.limit-box').show();
+                                    url = applicationPath + "/SubCategory.aspx?keywords=" + getParams("keywords") + "&categoryId=" + getParam("categoryId") + "&brand=" + getParam("brand") + "&importsourceid=" + getParam("importsourceid") + "&pp=" + getParams("pp") + "&fl=" + getParams("fl") + "&cd=" + getParams("cd") + "&jg=";
+                                    break;
+                                default:
+                                    break;
+                            }
+                           
+                            window.location.href = url;
+                        })
+
+                        //清除筛选
+                        $('.selected-box').delegate('#clear-select','click',function () {
+							//alert($(this).parent().siblings('.selected-content').find('li').length);
+							if($(this).parent().siblings('.selected-content').find('li').length){
+								window.location.href = applicationPath + "/SubCategory.aspx?keywords=" + getParams("keywords") + "&categoryId=&brand=&importsourceid=&minSalePrice=&maxSalePrice=&pp=&fl=&cd=&jg=";
+							}
+                            /*$('.selected-ul li').remove();
+                            $('#clear-select').css('line-height', $('.selected-content').height() + 36 + 'px');
+                            $('.selected-left').css('line-height', $('.selected-content').height() + 36 + 'px');
+                            $('#TempBrand').show();
+                            $('#TempCategory').show();
+                            $('#TempSource').show();
+                            $('#TempPrice').show();*/
+                        });
+
+                        //点击取消
+                        $('.limit-box').delegate('.select-cancel', 'click', function () {
+                            $(this).parent('div').hide().siblings('div').show();
+                            $(this).parent().parent().siblings('.limit-content').find('a').removeClass('no-check checked');
+                            $(this).parent().parent().siblings('.limit-content').find('.limit-ul').css('max-height', '64px');
+							$('#TempBrand').find('.limit-ul').css('max-height', '57px');
+                            //高度
+                            $('.limit-right').each(function () {
+                                $(this).height($(this).siblings('.limit-content').height());
+                            });
+                            $('.limit-left').each(function () {
+                                $(this).css('line-height', $(this).siblings('.limit-content').height() + 36 + 'px');
+                            });						
+							
+                        });
+
+                       
+
+                        //点击确认
+                        $('.limit-box').delegate('.select-confirm', 'click', function () {
+                            //已选择部分出现的内容
+                            var str_text = '';
+                            var str_id = [];
+                            var str_name = [];
+                            var str_title = $(this).parents('.limit-right').siblings('.limit-left').text();
+                            $(this).parent().parent().siblings('.limit-content').find('a').each(function () {
+                                if ($(this).hasClass('checked')) {
+                                    str_text += $(this).text() + ' ';
+                                    str_id.push($(this).attr("id"));
+                                    str_name.push($(this).text());
+                                }
+                            })
+                            if (str_text == '') {
+                                alert('请选择条件进行筛选！')
+                            } else {
+                                /*var str = '<li><a href="javascript:;"><em>' + str_title + '</em>' + str_text + '</a><span></span></li>'
+                                $('.selected-content').find('ul').append(str);*/
+                                //点击某个选项，这一行消失
+                                //$(this).parents('.limit-box').hide();
+                                var url = "";
+                                if (str_title == "品牌：") {
+                                    url = applicationPath + "/SubCategory.aspx?keywords=" + getParams("keywords") + "&categoryId=" + getParam("categoryId") + "&brand=" + str_id.join(',') + "&importsourceid=" + getParam("importsourceid") + "&minSalePrice=" + getParam("minSalePrice") + "&maxSalePrice=" + getParam("maxSalePrice") + "&pp=" + str_name.join(',') + "&fl=" + getParams("fl") + "&cd=" + getParams("cd") + "&jg=" + getParams("jg");
+                                } else if (str_title == "分类：") {
+                                    url = applicationPath + "/SubCategory.aspx?keywords=" + getParams("keywords") + "&categoryId=" + str_id.join(',') + "&brand=" + getParam("brand") + "&importsourceid=" + getParam("importsourceid") + "&minSalePrice=" + getParam("minSalePrice") + "&maxSalePrice=" + getParam("maxSalePrice") + "&pp=" + getParams("pp") + "&fl=" + str_name.join(',') + "&cd=" + getParams("sourcename") + "&jg=" + getParams("jg");
+                                } else if (str_title == "产地：") {
+                                    url = applicationPath + "/SubCategory.aspx?keywords=" + getParams("keywords") + "&categoryId=" + getParam("categoryId") + "&brand=" + getParam("brand") + "&importsourceid=" + str_id.join(',') + "&minSalePrice=" + getParam("minSalePrice") + "&maxSalePrice=" + getParam("maxSalePrice") + "&pp=" + getParams("pp") + "&fl=" + getParams("fl") + "&cd=" + str_name.join(',') + "&jg=" + getParams("jg");
+                                }
+                                window.location.href = url;
+                            }
+
+                        });
+                    })
+                </script>
+                <form runat="server">
+                    <div class="category_search">
+                        <!--<%<hi:common_cutdownsearch runat="server" />%>-->
+
+                        <div class="category_sequence">
+                            <!--<em>排序方式：</em>
+                               <ul>
+                                  <li class="c_sel"><span><%<Hi:Common_Search_SortPrice ID="Common_Search_SortPrice1" DefaultImageUrl="/images/fixed/SortByPriceUpStop.gif" AscImageUrl="/images/fixed/SortByPriceUp.gif" DescImageUrl="/images/fixed/SortByPriceDown.gif" runat="server"  Alt="按价格排序" />%></span></li>
+                                  <li><span><%<Hi:Common_Search_SortSaleCounts ID="Common_Search_SortSaleCounts1" DefaultImageUrl="/images/fixed/xiao1.gif" AscImageUrl="/images/fixed/xiao2.gif" DescImageUrl="/images/fixed/xiao3.gif" runat="server" Alt="按销量排序"  />%></span></li>
+                                  <li><span><%<Hi:Common_Search_SortPopularity ID="Common_Search_SortPopularity1" DefaultImageUrl="/images/fixed/ren1.gif" AscImageUrl="/images/fixed/ren2.gif" DescImageUrl="/images/fixed/ren3.gif" runat="server" Alt="按人气排序"  />%></span></li>
+                                  <li><span><%<Hi:Common_Search_SortTime ID="Common_Search_SortTime1" DefaultImageUrl="/images/fixed/SortByTimeUpStop.gif" AscImageUrl="/images/fixed/SortByTimeUp.gif" DescImageUrl="/images/fixed/SortByTimeDown.gif" runat="server" Alt="按时间排序"  />%></span></li>
+                               </ul>
+
+                               -->
+                            <!--<ul>
+                                <li><a>默认</a></li>
+                                <li class="sel"><a class="up">价格<span></span></a></li>
+                                <li><a>销量<span></span></a></li>
+                                <li><a>最新上架</a></li>
+                                <li><label><input type="checkbox" class="checkbox"/>有货</label></li>
+                            </ul>-->
+                            <%<hi:common_searchlist runat="server" />%>              <!-------过滤条件价格、销量、最新上架--------->
+                            <!--<div class="pager-wrap"><span class="fb">共<span class="total-count">51</span>件商品</span><span class="pager"><span class="cur-page">1</span>/<span class="total-page">3页</span><a class="prev-page disabled">上一页</a><a class="next-page">下一页</a></span></div>-->
+
+                            <div class="pager-wrap"><%<asp:Literal ID="litSearchResultPage" runat="server" />%></div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="category_pro_list cp-list">
+                    <ul>
+                        <%
+                        <Hi:ThemedTemplatedRepeater ID="rptProducts" TemplateFile="/ascx/Tags/Common_GoodsList/Skin-Common_GoodsList_SubClass.ascx" runat="server" />%>
+
+                    </ul>
+                </div>
+                <script>
+                    $(function () {
+
+                        var $input = $(".num-wrap input");
+                        if ($input != null && $input != undefined && $input != "") {
+                            $input.each(function (i, elem) {
+                                var theme = "disabled";
+                                var elem = $(elem);
+                                if (elem.hasClass(theme)) {
+                                    elem.attr("disabled", "disabled");
+                                } else {
+                                    elem.removeAttr("disabled");
+                                }
+                            });
+                        }
+
+                        $(".category_pro_list li").hover(function () {
+                            if ($(".category_pro_list").index(this) != 0) {
+                                $(".category_pro_list li:first").removeClass("listhover");
+                            }
+                            $(this).addClass("listhover");
+                        }, function () {
+                            $(this).removeClass("listhover");
+                        });
+                        $(".category_pro_list li:first").addClass("listhover");
+
+                        /*
+                        //点击 分类菜单 标题
+                        $(".sub-cate h3 a").bind("click",function(){
+                            $(this).parents(".sub-cate").toggleClass("expand");
+                        })
+                        //点击 分类菜单 展开 图标
+                        $(".sub-cate a.arrow").bind("click",function(){
+                            $(this).closest("li").toggleClass("show");
+                        })*/
+                        //点击 刷选 更多
+                        $("a.more-attr").bind("click", function () {
+                            $(this).closest(".attribute_val").toggleClass("show");
+                        })
+                        //购物车 输入框 失去焦点
+                        $(".num-wrap input").blur(function () {
+                            var theme = "disabled";
+                            if ($(this).hasClass(theme)) {
+                                $(this).attr("disabled", "disabled");
+                                return;
+                            }
+                            var $ele = $(this);
+                            var val = $ele.val();
+                            var oldV = $ele.attr("old-v");
+                            var $btnReduce = $(this).parents(".num-wrap").find(".btn-reduce");
+                            if (isNaN(val)) {
+                                $ele.val(oldV);
+                                if (oldV <= 1) {
+                                    $btnReduce.addClass("disabled");
+                                } else {
+                                    $btnReduce.removeClass("disabled");
+                                }
+                                return;
+                            }
+                            if (val <= 1) {
+                                val = 1;
+                                $ele.val(val);
+                                $btnReduce.addClass("disabled");
+                            } else {
+                                $btnReduce.removeClass("disabled");
+                            }
+                            $ele.attr("old-v", val);
+                        })
+                        //购物车 数量 添加
+                        $(".num-wrap .btn-add").unbind("click").bind("click", function () {
+                            var theme = "disabled";
+                            if ($(this).hasClass(theme)) {
+                                return;
+                            }
+                            var $ele = $(this).parents(".num-wrap").find("input");
+                            var val = $ele.val();
+                            var sku_id = $(this).parent().parent().siblings('a').attr('fastbuy_skuid');
+
+                            if (isNaN(val) || val == "") {
+                                val = $ele.attr("old-v");
+                                if (!val) {
+                                    val = 1;
+                                }
+                            }
+                            val = parseInt(val);
+                            val += 1;
+                            if (val > 1) {
+                                $(this).parents(".num-wrap").find(".btn-reduce").removeClass("disabled");
+                            }
+                            $ele.val(val).attr("old-v", val);
+                        })
+                        //购物车 数量 添加
+                        $(".num-wrap .btn-reduce").unbind("click").bind("click", function () {
+                            var theme = "disabled";
+                            if ($(this).hasClass(theme)) {
+                                return;
+                            }
+                            var $ele = $(this).parents(".num-wrap").find("input");
+                            var val = $ele.val();
+                            if (isNaN(val) || val == "") {
+                                val = $ele.attr("old-v");
+                                if (!val) {
+                                    val = 1;
+                                }
+                            }
+                            val = parseInt(val);
+                            val -= 1;
+                            if (val <= 1) {
+                                val = 1;
+                                $(this).addClass(theme);
+                            }
+                            $ele.val(val).attr("old-v", val);
+                        })
+                    });
+                </script>
+                <div class="page">
+                    <%<UI:Pager runat="server" ShowTotalPages="true" DefaultPageSize="18" ID="pager" />%>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bars success-tip" id="success-tip">+1</div>
+<script language="javascript">
+	setTimeout(function(){
+		y = $(".category_search").offset().top;
+	},30);
+	var m = $('.side_nav').clone();
+	var n = $('.main-conl .sub-cate').clone();
+	var newSearchBtn = $('.top_buycart>a').clone();
+	$('.nav1').append(m);
+	$('.main-con .main-conl').prepend(n);
+	m.hide();
+	n.hide();
+	newSearchBtn.hide();
+	$(window).scroll(function () {
+		if ($(window).scrollTop() >= y+500) {
+			$(".pager-wrap").hide();
+			//m.show();
+			n.show();
+			m.addClass('fix-nav');
+			n.addClass('fix-nav-con');
+			$('.search_tab').addClass('new-search-content');
+			$(".category_search").addClass('new-category-search');
+			$(".top_buycart>a").addClass('new-cart-a');
+		} else {
+			$(".pager-wrap").show();
+			m.hide();
+			n.hide();
+			$('.search_tab').removeClass('new-search-content');
+			$(".category_search").removeClass('new-category-search');
+			$(".top_buycart>a").removeClass('new-cart-a');
+		}
+	});
+/*
+	$(function () {
+		var sumwidth = 0;
+		var li_index = 0;
+		$("#ul_subcategory li").each(function (suo, liitem) {
+			sumwidth += parseInt($(this).width()) + 20;
+			if (sumwidth > $("#ul_subcategory").width()) {
+				return false;
+			}
+			li_index = suo;
+		});
+		if ($("#ul_subcategory li").size() <= (li_index - 0 + 1)) {
+			$("#sp_subcategory").hide();
+		} else {
+			$("#ul_subcategory li:gt(" + li_index + ")").hide();
+		}
+
+		$("#sp_subcategory").toggle(function () {
+			$("#ul_subcategory li:gt(" + li_index + ")").show();
+			$(this).find("span").text('收缩');
+		}, function () {
+			$("#ul_subcategory li:gt(" + li_index + ")").hide();
+			$(this).find("span").text('展开搜索');
+		});
+
+		if ($(".sub_property dl").size() <= 3) {
+			$("#sp_brand").hide();
+		} else {
+			$(".sub_property dl:gt(2)").hide();
+		}
+
+		$("#sp_brand").toggle(function () {
+			$(".sub_property dl:gt(2)").show();
+			$(this).find("span").text('收缩');
+		}, function () {
+			$(".sub_property dl:gt(2)").hide();
+			$(this).find("span").text('展开搜索');
+		});
+	});*/
+</script>
+<script src="/Utility/productlist.helper.js?v=20150825" type="text/javascript"></script>
+    <%<hi:common_footer runat="server" />%>

@@ -1,0 +1,136 @@
+﻿<hi:common_vheader runat="server" />
+<div class="page gray-page pt-page">
+    <header>
+        <div class="swtab-head favtab-header" id="favtab-header">
+            <ul class="fix">
+                <li class="selected"><a href="/Vshop/MyFavorites.aspx">商品收藏<span class="fav-num"><asp:Literal runat="server" ID="litProFavCount" /></span></a></li>
+                <li><a href="/Vshop/MySupFavorites.aspx">店铺收藏<span class="fav-num"><asp:Literal runat="server" ID="litSuppFavCount" /></span></a></li>
+            </ul>
+        </div>
+    </header>
+    <section>
+        <div class="swtab-con pt10" id="swtab-con">
+            <div class="swtab-item selected">
+                <div class="ct-list fix" id="ct-list">
+                    <div class="no-data pl10 pr10">
+                        <p>您没有收藏商品！</p>
+                        <a class="red-btn mt10" href="/vShop/default.aspx">去逛逛</a>
+                        <input type="hidden" clientidmode="Static" value="" runat="server" id="txtTotal" />
+                    </div>
+                    <div class="fav-pdlist" id="fav-pdlist">
+                        <ul class="goods-list-grid clearfix" id="goodslist">
+                            <Hi:VshopTemplatedRepeater ID="rptProducts" TemplateFile="/Tags/skin-Common_MyFavorites.ascx" runat="server" />
+                        </ul>
+                    </div>
+                    <div class="more-tip" id="more-tip">正在加载更多商品或点击分类搜索...</div> 
+                </div>
+            </div>
+            <!--<div class="swtab-item">
+                <div class="supp-list fix" id="supp-list">
+                    <div class="no-data pl10 pr10">
+                        <p>您没有收藏店铺！</p>
+                        <a class="red-btn mt10" href="/vShop/default.aspx">去逛逛</a>
+                    </div>
+                    <div class="supp-list fix" id="supp-list">
+                        <ul class="fix">
+                            <li>
+                                <a>
+                                    <div class="supp-wrap fix">
+                                        <div class="fr"> <span class="supp-fav">123456</span> </div>
+                                        <div class="supp-img"><img src="/templates/vshop/haimei/resource/default/image/temp/shop.png" class="img-responsive" /></div>
+                                        <div class="supp-con">
+                                            <div class="supp-name">爱他美旗舰奶粉店</div>
+                                            <p>店主：gudknguk<span class="ml20">北京</span></p>
+                                            <p>开店：2015-09-25 18：26：32</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="del-btn"></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <div class="supp-wrap fix">
+                                        <div class="fr"> <span class="supp-fav">123456</span> </div>
+                                        <div class="supp-img"><img src="/templates/vshop/haimei/resource/default/image/temp/shop.png" class="img-responsive" /></div>
+                                        <div class="supp-con">
+                                            <div class="supp-name">爱他美旗舰奶粉店</div>
+                                            <p>店主：gudknguk<span class="ml20">北京</span></p>
+                                            <p>开店：2015-09-25 18：26：32</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="del-btn"></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <div class="supp-wrap fix">
+                                        <div class="fr"> <span class="supp-fav">123456</span> </div>
+                                        <div class="supp-img"><img src="/templates/vshop/haimei/resource/default/image/temp/shop.png" class="img-responsive" /></div>
+                                        <div class="supp-con">
+                                            <div class="supp-name">爱他美旗舰奶粉店</div>
+                                            <p>店主：gudknguk<span class="ml20">北京</span></p>
+                                            <p>开店：2015-09-25 18：26：32</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="del-btn"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+        <!--<div class="pl10 pr10">
+            <div id="pager"></div>
+        </div>-->
+    </section>
+</div>
+<script src="/Utility/common.js" type="text/javascript"></script>
+<!--<script src="/Utility/pager.js" type="text/javascript"></script>-->
+<script src="/script/myfavproductlist.js" type="text/javascript"></script>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        //切换
+        //$("#favtab-header li").on("click", function () {
+        //    var theme = "selected";
+        //    var index = $(this).index();
+        //    var $curItem = $("#swtab-con .swtab-item").eq(index);
+
+        //    //没有数据
+        //    if (!$curItem.find("li").length) {
+        //        $curItem.find(".no-data").show();
+        //    }
+        //    $(this).addClass(theme).siblings().removeClass(theme);
+        //    $curItem.addClass(theme).siblings().removeClass(theme);
+        //}).eq(0).click();
+        //vshopPager('pager', $('#txtTotal').val(), 1, 10);
+    });
+
+
+    function Submit(id) {
+        var data = {};
+        data.favoriteId = id;
+        $.post("/api/VshopProcess.ashx?action=DelFavorite", data, function (json) {
+            if (json.success === true) {
+                alert_h("取消成功");
+                location.reload();
+            }
+            else {
+                alert_h(json.msg);
+            }
+        });
+    }
+
+
+
+
+</script>
+
+<hi:common_vfooter runat="server" />

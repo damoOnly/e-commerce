@@ -1,0 +1,83 @@
+﻿<!---->
+<hi:common_vheader runat="server" />
+<div class="home-head">
+    <img src="/images/home-head.jpg" class="img-responsive">
+    <div class="info">
+        <div class="title" style="width: 220px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">【<asp:literal runat="server" id="litMemberGrade" />】<asp:literal runat="server" id="litUserName" /></div>
+        <div class="presentExp font-m">
+            <!--<span style=" display: inline-block;min-width: 10px; padding: 3px 7px; font-size: 12px;font-weight: 700; color: #FFF;line-height: 1;vertical-align: baseline; white-space: nowrap;text-align: center; border-radius: 10px; border-color: #8CC152; background-color: #8CC152;">
+                积分：<asp:literal runat="server" id="litPoints" />
+            </span>-->
+            <span style=" display: inline-block;min-width: 10px; padding: 3px 7px; font-size: 12px;font-weight: 700; color: #FFF;line-height: 1;vertical-align: baseline; white-space: nowrap;text-align: center; border-radius: 10px; border-color: #8CC152; background-color: #8CC152;">
+                余额：¥<asp:literal runat="server" id="litPaymentBalance" />
+            </span>
+            <span style=" display: inline-block;min-width: 10px; padding: 3px 7px; font-size: 12px;font-weight: 700; color: #FFF;line-height: 1;vertical-align: baseline; white-space: nowrap;text-align: center; border-radius: 10px;  border-color: #DA4453;background-color: #DA4453;">
+                消费：¥<asp:literal runat="server" id="litExpenditure" />
+            </span>
+            <!--<span style=" display: inline-block;min-width: 10px; padding: 3px 7px; font-size: 12px;font-weight: 700; color: #FFF;line-height: 1;vertical-align: baseline; white-space: nowrap;text-align: center; border-radius: 10px; border-color: #FF006E;background-color: #FF006E;">
+                <a href="logout.aspx">退出登录</a>
+            </span>-->
+
+        </div>
+    </div>
+    <div class="pbox">
+        <div class="list-group">
+            <a href="MemberOrders.aspx?status=1" class="list-group-item">
+                待付款
+                <span class="badge-h"><asp:literal runat="server" id="litWaitForPayCount" /></span>
+            </a>
+            <a href="MemberOrders.aspx?status=3" class="list-group-item">
+                待收货
+                <span class="badge-h"><asp:literal runat="server" id="litWaitForRecieveCount" /></span>
+            </a>
+            <a href="MemberOrders.aspx" class="list-group-item">
+                全部订单
+                <span class="badge-h"><asp:literal runat="server" id="litAllOrderCount" /></span>
+            </a>
+            <a href="MemberRefundApply.aspx" class="list-group-item">
+                退款单
+                <span class="badge-h"><asp:literal runat="server" id="litRefundCount" /></span>
+            </a>
+            <a href="MemberReturnsApply.aspx" class="list-group-item">
+                退货单
+                <span class="badge-h"><asp:literal runat="server" id="litReturnCount" /></span>
+            </a>
+            <a href="MemberReplaceApply.aspx" class="list-group-item">
+                换货单
+                <span class="badge-h"><asp:literal runat="server" id="litReplaceCount" /></span>
+            </a>
+        </div>
+
+        <div class="list-group">
+            <a href="MyFavorites.aspx" class="list-group-item">
+                我的收藏
+            </a>
+            <a href="MemberCoupons.aspx?usedType=1" class="list-group-item">
+                我的优惠券
+            </a>
+            <a href="MyConsultations.aspx" class="list-group-item">
+                我的咨询
+            </a>
+        </div>
+
+        <div class="list-group">
+            <a href="EditShippingAddress.aspx" class="list-group-item">
+                我的收货地址
+            </a>
+            <a href="UserInfo.aspx?edit=true" class="list-group-item">
+                个人资料
+            </a>
+            <asp:hyperlink id="referralLink" runat="server" clientidmode="Static">推广员</asp:hyperlink>
+            <asp:hyperlink id="bindAccountLink" runat="server" clientidmode="Static">绑定PC端会员帐号</asp:hyperlink>
+			<asp:hyperlink id="switchAccountLink" runat="server" clientidmode="Static"></asp:hyperlink>
+        </div>
+        <a href="logout.aspx" class="btn btn-danger btn-block">退出登录</a>
+    </div>
+    <input type="hidden" id="txt_referralStatus" runat="server" clientidmode="Static" />
+    <script>
+        //禁用右上角菜单
+        document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+            WeixinJSBridge.call('hideOptionMenu');
+        });
+    </script>
+    <hi:common_vfooter runat="server" />

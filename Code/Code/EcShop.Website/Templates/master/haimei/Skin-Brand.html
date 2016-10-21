@@ -1,0 +1,282 @@
+﻿<%<Hi:Common_Header runat="server"  />%>
+<style>
+    .brand-ad{
+        background-color: #ededed;
+        text-align: center;
+    }
+    .brand-title{
+        text-align: center;
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+    .hot-images{
+        overflow: hidden;
+        margin-left: -15px;
+    }
+    .hot-images li{
+        float: left;
+        margin-left: 15px;
+    }
+    .hot-images li img{
+        width: 285px;
+    }
+    .logo-box{
+        margin-top: 1px;
+    }
+    .brand-head{
+        overflow: hidden;
+    }
+    .brand-head li{
+        float: left;
+        font-size: 20px;
+        color: #000;
+        width: 120px;
+        text-align: center;
+        line-height: 40px;
+        cursor: pointer;
+    }
+    .brand-head li.cur{
+        color: #d31477;
+        border-bottom: 2px solid #d31477;
+        position: relative;
+    }
+    .brand-head li.cur:after{
+        content: '';
+        border:6px solid transparent;
+        border-bottom: 6px solid #d31477;
+        position: absolute;
+        left: 50%;
+        margin-left: -6px;
+        bottom: 0;
+    }
+    .logos-img{
+        overflow: hidden;
+    }
+    .logos-img li{
+        float: left;
+        border: 1px solid transparent;
+        width: 131px;
+        height: 78px;
+        overflow: hidden;
+    }
+    .logos-img li a:hover{
+        text-decoration: none;
+    }
+    .logos-img li span{
+        display: none;
+        width: 100%;
+        height: 100%;
+        font-size: 14px;
+        line-height: 78px;
+        background-color: #fff;
+        text-align: center;
+        color: #2090bf;
+    }
+    .logos-img li a{
+        display: block;
+        width: 100%;
+        text-align: center;
+        height: 100%;
+        line-height:78px;
+        background-color: #fff;
+        font-size: 14px;
+        color: #2090bf;
+    }
+    .logos-img li:hover{
+        border: 1px solid #2090bf;
+    }
+    .logos-img li img{
+        width: 131px;
+        height: 78px;
+    }
+    .line-2{
+        height: 2px;
+        background-color: #000;
+        margin-top: -2px;
+    }
+</style>
+<div class="brand-ad">
+    <img src="/images/brand_ad.jpg" alt="">
+</div>
+<div class="main" id="main1">
+    <div class="hot-brand-box">
+        <div class="brand-title">
+            <img src="/images/hot_brand.png">
+        </div>
+        <ul class="hot-images">
+            <hi:common_hotbrandlist id="rpHotBrandlist" MaxNum="4" brandTagId="5" runat="server" />
+            <!--<li>
+                <a href="#">
+                    <img src="/images/hot_09.png" alt="">
+                </a>
+            </li>-->
+            <!--<li>
+                <a href="#">
+                    <img src="/images/hot_03.png" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="/images/hot_05.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="/images/hot_07.png" alt="">
+                </a>
+            </li>-->
+        </ul>
+    </div>
+
+    <div class="all-brand-box">
+        <div class="brand-title">
+            <img src="/images/all_brand.png">
+        </div>
+        <div class="brands-logo-box">
+            <div class="all-brand-head">
+                <ul class="brand-head">
+                    <Hi:Common_AllBrandType ID="CommonAllBrandType" runat="server" />
+                    <!--<li class="cur">食品保健</li>
+                    <li>美妆洗护</li>
+                    <li>母婴用品</li>
+                    <li>家居清洁</li>-->
+                </ul>
+                
+                <div class="line-2"></div>
+            </div>
+            <div class="logo-box">
+                <ul class="logos-img">
+                    <!--<li><a href="" ><img src="/images/brand_logo.jpg" alt="">花王</a></li>
+                    <li><a href=""><img src="/images/brand_logo.jpg" data-brand="花王" alt="">花王</a></li>
+                    <li><a href=""><img src="/images/brand_logo.jpg" data-brand="花王" alt="">花王</a></li>
+                    <li><a href=""><img src="/images/brand_logo.jpg" data-brand="花王" alt="">花王</a></li>
+                    <li><a href=""><img src="/images/brand_logo.jpg" data-brand="花王" alt="">花王</a></li>-->
+
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+
+    <div class="nav_info">
+        &nbsp;<%<Hi:Common_Location runat="server" />%></div>
+    <div class="category" style="display: none;">
+            <div class="sub_property">
+                <h2>
+                    按品牌选择</h2>
+                <Hi:Common_SubjectBrand runat="server" commentid="19" />
+            </div>
+            <p class="sub_shrink" id="sp_showbrand">
+                <span>展开搜索</span></p>
+            <script language="javascript">
+                function ShowAllBrandsByType(categoryId)
+                {
+                    // 获取查询参数
+                    $.ajax({
+                        url: "/Handler/MemberHandler.ashx?action=GetBinList",
+                        type: "post",dataType: "json",
+                        data: { categoryId: categoryId },
+                        success: function (data) {
+                            if (data.Success) {
+                                $(".logos-img").html("");
+                                var strs = "";
+                                if (data.BrandList != "" && data.BrandList != undefined) {
+                                    for (var i = 0; i < data.BrandList.length; i++) {
+                                        strs += ' <li><a href="brand/brand_detail-' + data.BrandList[i]["BrandId"] + '.aspx" target="_blank"><img src=' + data.BrandList[i]["Logo"] + ' >' + data.BrandList[i]["BrandName"] + '</a></li>';
+                                    }
+                                    $(".logos-img").html(strs);
+                                    strs = "";
+                                }
+                            }
+                            else {
+
+                            }
+                        }
+                    });
+                }
+                $(function () {
+                    if ($(".sub_property li").size() <= 21) {
+                        $(".sub_shrink").hide();
+                    } else {
+                        $(".sub_property li:gt(20)").hide();
+                    }
+
+                    $("#sp_showbrand").toggle(function () {
+                        $(".sub_property li:gt(20)").show();
+                        $(this).find("span").text('收缩');
+                    }, function () {
+                        $(".sub_property li:gt(20)").hide();
+                        $(this).find("span").text('展开搜索');
+                    });
+                    ShowAllBrandsByType(1000000);
+                    $('.brand-head li').click(function(){
+                        $(this).addClass('cur').siblings('li').removeClass('cur');
+                        //var index = $(this).index();
+                        ShowAllBrandsByType($(this).attr('categoryid'));
+                        //$('.logo-box ul').eq(index).show().siblings('ul').hide();
+                    });
+
+                    /*$('.logos-img li').hover(function(){
+                        var title = $(this).find('img').attr('data-brand');
+                        $(this).find('img').hide();
+                        $(this).find('span').text(title).css('display','block');
+                    },function(){
+                        $(this).find('img').show();
+                        $(this).find('span').hide();
+                    });*/
+                    $('.logos-img').delegate('li','mouseover',function(){
+                        $(this).find('img').hide();
+                    });
+                    $('.logos-img').delegate('li','mouseout',function(){
+                        $(this).find('img').show();
+                    });
+                });
+            </script>
+            <form runat="server">
+                <div class="category_search">
+                    <%<Hi:Common_CutDownSearch runat="server" />%>
+                    <div class="category_sequence">
+                    <em>排序方式：</em>
+                        <ul>
+                            <li class="c_sel"><span>
+                                <%<Hi:Common_Search_SortPrice ID="Common_Search_SortPrice1" DefaultImageUrl="/images/fixed/SortByPriceUpStop.gif" AscImageUrl="/images/fixed/SortByPriceUp.gif" DescImageUrl="/images/fixed/SortByPriceDown.gif" runat="server"  Alt="按价格排序" />%></span></li>
+                            <li><span>
+                                <%<Hi:Common_Search_SortSaleCounts ID="Common_Search_SortSaleCounts1" DefaultImageUrl="/images/fixed/xiao1.gif" AscImageUrl="/images/fixed/xiao2.gif" DescImageUrl="/images/fixed/xiao3.gif" runat="server" Alt="按销量排序"  />%></span></li>
+                            <li><span>
+                                <%<Hi:Common_Search_SortPopularity ID="Common_Search_SortPopularity1" DefaultImageUrl="/images/fixed/ren1.gif" AscImageUrl="/images/fixed/ren2.gif" DescImageUrl="/images/fixed/ren3.gif" runat="server" Alt="按人气排序"  />%></span></li>
+                            <li><span>
+                                <%<Hi:Common_Search_SortTime ID="Common_Search_SortTime1" DefaultImageUrl="/images/fixed/SortByTimeUpStop.gif" AscImageUrl="/images/fixed/SortByTimeUp.gif" DescImageUrl="/images/fixed/SortByTimeDown.gif" runat="server" Alt="按时间排序"  />%></span></li>
+                        </ul>
+                        <p>
+                            <%<asp:Literal ID="litBrandProductResult" runat="server"  />%></p>
+                    </div>
+                </div>
+            </form>
+            <div class="category_pro_list">
+                <ul>
+                    <%<Hi:ThemedTemplatedRepeater ID="rptProduct" runat="server" TemplateFile="/ascx/Tags/Common_GoodsList/Skin-Common_GoodsList_Brand.ascx" />%>
+                </ul>
+            </div>
+            
+            <script>
+                $(function () {
+                    $(".category_pro_list li").hover(function () {
+                        if ($(".category_pro_list").index(this) != 0) {
+                            $(".category_pro_list li:first").removeClass("listhover");
+                        }
+                        $(this).addClass("listhover");
+                    }, function () {
+                        $(this).removeClass("listhover");
+                    });
+                    $(".category_pro_list li:first").addClass("listhover");
+                });
+            </script>
+            
+            <div class="page">
+                <%<UI:Pager runat="server" ShowTotalPages="true" ID="pager" DefaultPageSize="20" />%>
+            </div>
+        </div>
+    </div>
+
+<%<Hi:Common_Footer runat="server"   />%>

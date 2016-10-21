@@ -1,0 +1,97 @@
+﻿<hi:common_vheader runat="server" />
+<div class="page">
+    <section>
+        <div class="no-data pl10 pr10" id="no-data">
+            <p>还没有收货地址?添加一个</p>
+        </div>
+        <div id="addre-wrap">
+            <div class="addre-list">
+            	<ul class="fix">
+                	<hi:vshoptemplatedrepeater id="rptvShipping" templatefile="/Tags/skin-Common_ShippingAddresses.ascx" runat="server" />
+                </ul>                
+            </div>           
+        </div>
+        <div class="p10 mb10"> <a id="aLinkToAdd" runat="server" class="red-btn">新增收货地址</a> </div>
+    </section>
+</div>
+    
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+
+<script type="text/javascript">
+
+    function SetDefault(obj,target) {     
+        $.ajax({
+            url: "/API/VshopProcess.ashx",
+            type: 'post', dataType: 'json', timeout: 10000,
+            data: {
+                shippingid: obj,
+                action: "SetDefaultShippingAddress"
+            },
+            success: function (resultData) {
+                if (resultData.success) {
+                    var returnURL = window.location.search.substr(window.location.search.indexOf("returnUrl=") + 10);
+                    if (returnURL != undefined) {
+                        location.href=decodeURIComponent(returnURL);
+                    }
+                    $("li").removeClass("active");
+                    $("li").has($(target)).addClass("active");
+                }
+                else {
+                    alert_h("设置失败");
+                }
+            }
+        });
+    }
+
+    function UpdateShipping(shippingId){          
+        if (window.location.search.indexOf("returnUrl=") == -1) {
+            location.href = "EditShippingAddress.aspx?ShippingId=" + shippingId;
+            return false;
+        }          
+        var returnURL = window.location.search.substr(window.location.search.indexOf("returnUrl=") + 10);
+        if (returnURL == undefined) {
+            location.href = "EditShippingAddress.aspx?ShippingId=" + shippingId;
+            return false;
+            
+        }
+        location.href="EditShippingAddress.aspx?ShippingId=" + shippingId + "&returnUrl=" + returnURL;                 
+    }
+
+    function DeleteShippingAddress(obj,target) { 
+        if ($("li").has($(target)).hasClass("active"))
+       {
+        alert_h("不能删除默认地址，请先默认其它地址！");
+        return;
+        }
+        $.ajax({
+            url: "/API/VshopProcess.ashx",
+            type: 'post', dataType: 'json', timeout: 10000,
+            data: {
+                shippingid: obj,
+                action: "DelShippingAddress",
+            },
+            success: function (resultData) {
+                if (resultData.success) {
+                    //$("div[name=addressItem]").has($(target)).remove();
+                    location.reload();
+                }
+                else {
+                    alert_h("删除失败");
+                }
+            }
+        });
+    }
+	$(function(){
+		//表示 还没有 收货地址
+		if(!$("#addre-wrap li").length){
+			$("#no-data").show();
+			$("#addre-wrap").hide();
+		}
+	})
+</script>
+<hi:common_vfooter runat="server" />

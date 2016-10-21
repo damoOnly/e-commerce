@@ -1,0 +1,68 @@
+﻿<hi:common_vheader runat="server" />
+<div class="page gray-page">
+    <section>
+        <div class="mb-head fix">
+            <div class="mb-pers fix">
+                <div class="port"><img id="vMemberCenter_HeadImg" src="/templates/vshop/haimei/resource/default/image/mb.png"></div>
+                <div class="mb-info">
+                    <p><span class="mb-name"><asp:Literal runat="server" id="litUserName" /></span><span class="ml10">【普通会员】</span></p>
+                    <p><label>余额：<span class="mb-money">￥<span><asp:Literal runat="server" id="litPaymentBalance" /></span></span></label></p>
+                    <p><label>消费：<span class="mb-money">￥<span><asp:Literal runat="server" id="litExpenditure" /></span></span></label></p>
+                </div>
+            </div>
+            <div class="swtab-head">
+                <ul class="fix">
+                    <li style="width:50%"><a href="MemberOrders.aspx?status=1">待付款<span class="num"><asp:Literal runat="server" id="litWaitForPayCount" /></span></a></li>
+                    <li style="width:50%"><a href="MemberOrders.aspx?status=3">待收货<span class="num"><asp:Literal runat="server" id="litWaitForRecieveCount" /></span></a></li>
+                    <!--<li><a href="MemberRefundApply.aspx">退款单<span class="num"><asp:Literal runat="server" id="litRefundCount" /></span></a></li>
+                    <li><a href="MemberReturnsApply.aspx">退货单<span class="num"><asp:Literal runat="server" id="litReturnCount" /></span></a></li>-->
+                </ul>
+            </div>
+        </div>
+        <div class="mb-panel">
+            <a href="MemberOrders.aspx" class="fix"><span class="num"><asp:Literal runat="server" id="litAllOrderCount" /></span>全部订单</a>
+            <a href="MemberReplaceApply.aspx" class="fix"><span class="num"><asp:Literal runat="server" id="litReplaceCount" /></span>换货单</a>
+        </div>
+        <div class="mb-panel">
+            <a href="UserInfo.aspx?edit=true" class="fix">个人资料</a>
+            <a href="MemberCoupons.aspx?usedType=1" class="fix"><span class="num"><asp:Literal runat="server" id="litCoupons" /></span>我的优惠券</a>
+            <a href="userinfo/usercode.aspx" class="fix">邀请好友，赢取万元大奖<img src="/images/hoticon.png" style="width:22px;margin-left:10px;margin-top:-10px;"/></a>
+            <a href="EditShippingAddress.aspx" class="fix">我的收货地址</a>    
+            <a href="MyFavorites.aspx" class="fix">我的收藏</a>
+            <!--<a href="MyConsultations.aspx" class="fix">我的咨询</a>--> 
+            <!--<a href="MyUserPoints.aspx" class="fix" style="display:none">积分记录</a>-->
+            <!--<a href="IdentityVerifi.aspx" class="fix">身份验证</a>-->
+           
+            <!--<a id="referralLink" href="/VShop/ReferralRegisterAgreement.aspx">申请成为推广员</a>-->
+            <!--<asp:HyperLink id="bindAccountLink" runat="server" clientidmode="Static" CssClass="fix">绑定PC端会员帐号</asp:HyperLink>-->
+        </div>
+        <div class="mb-panel">
+            <a href="/VShop/HelpItem.aspx?HelpId=63" class="fix">关于海美生活</a>
+            <a href="/VShop/HelpItem.aspx?HelpId=76" class="fix">联系我们</a>
+            <a href="Helps.aspx" class="fix">帮助与反馈</a>  
+            <a runat="server" id="litBindPhone" href="/Vshop/BindPhoneNumber.aspx" class="fix">绑定手机号码</a>          
+            <!--<asp:HyperLink id="switchAccountLink" runat="server" clientidmode="Static"></asp:HyperLink>-->
+        </div>
+        <input type="hidden" id="txt_referralStatus" runat="server" clientidmode="Static" />
+        <!--<div class="pt20 pl10 pr10 mb20 fix">
+            <a class="red-btn" href="Logout.aspx">退出</a>
+        </div>-->
+    </section>
+</div>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+    $(function () {
+        //若数量 大于等于1 则显示
+        $("span.num").each(function (index, element) {
+            var txt = parseInt($(this).text());
+            if (txt) {
+                $(this).show();
+            }
+        });
+        
+    });
+</script>
+<hi:common_vfooter runat="server" />

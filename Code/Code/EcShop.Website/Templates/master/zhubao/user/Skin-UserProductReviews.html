@@ -1,0 +1,23 @@
+﻿<%<Hi:Common_Header runat="server" SkinName="/ascx/tags/Common_UserCenter/Skin-Common_User_Header.ascx" />%>
+<form runat="server">
+<div class="hyzxmain">
+    <div class="hyzxconty">
+        当前位置><span><a href="url:home">首页</a></span>><span><a href="url:user_UserDefault">会员中心</a></span>><span><a
+            href="#">我参与的评论</a></span></div>
+    <div class="hyzxconter">
+        <%<Hi:Common_User_Menu runat="server" />%>
+        <div class="hyzxconterr">
+            <div class="dingdanxx">
+                <div class="dingdan_box1">
+                    我参与的评论<span style="color: #666;">（共<%<asp:Literal ID="litReviewCount"  runat="server" />%>条）</span></div>
+                    <div class="xgmima">
+                        <%<Hi:ThemedTemplatedList ID="dlstPts" TemplateFile="/ascx/tags/Common_Comment/Skin-Common_Comment_CommentList.ascx" runat="server" />%>
+                    </div>
+                    <div class="page">
+                        <%<UI:Pager runat="server" ShowTotalPages="true" ID="pager" />%>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>

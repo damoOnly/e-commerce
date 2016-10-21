@@ -1,0 +1,196 @@
+﻿<%<hi:common_header runat="server" skinname="/ascx/tags/Skin-Common_loginHeader.ascx" />%>
+<style>
+.error{
+    display: inline-block;
+}
+</style>
+<form runat="server" clientidmode="Static" id="aspnetForm">
+    <%<hi:common_token runat="server" skinname="/ascx/tags/Skin-Common_Token.ascx" />%>
+	<div class="layout">
+    <div class="rg-main">
+        
+        <div class="rg-left">
+            <div class="rg-tab">
+                <div class="rg-tabhead">
+                    <ul class="fix" style="display:none">
+                        <li class="selected" regtype="1"><span class="lg-phone">手机注册</span><span class="lg-tab"></span></li>
+                        <li regtype="2"><span class="lg-email">邮箱注册</span><span class="lg-tab"></span></li>
+                    </ul>
+                </div>
+                <div class="rg-tabmain">
+                    <div class="rg-tabitem selected">
+                        <dl class="dl bd fix">
+                            <dt>手机号：</dt>
+                            <dd>
+                                <span><%<asp:TextBox ID="txtCellPhone" name="txtCellPhone" CssClass="input" runat="server" clientidmode="Static" tabindex="3" placeholder="请输入手机号码"/>%></span>
+                                <span id="txtCellPhone_succeed" class="zc_tishi">该手机号码可以使用</span>
+                                <span class="zc_tishi2" id="txtCellPhone_error"></span>
+                            </dd>
+                        </dl>
+                        <dl class="dl bd fix">
+                            <dt>验证码：</dt>
+                            <dd>
+                                <span><%<asp:TextBox ID="txtTelphoneVerifyCode" name="txtTelphoneVerifyCode" CssClass="input code-input" runat="server" clientidmode="Static" placeholder="4位验证码" />%></span>
+                                <input type="button" id="btnGetTelCode" value="获取验证码" class="code-btn" onclick="GetTelCode();" disabled="disabled">
+                                <span id="txtTelphoneVerifyCode_succeed" class="zc_tishi">验证成功</span>
+                                <span class="zc_tishi2" id="txtTelphoneVerifyCode_error"></span>
+                            </dd>
+                        </dl>
+                    </div>
+
+                    <div class="rg-tabitem">
+                        <dl class="dl bd fix">
+                            <dt>邮箱：</dt>
+                            <dd>
+                                <span><%<asp:TextBox ID="txtEmail" name="txtEmail" CssClass="input" runat="server" clientidmode="Static" tabindex="3" placeholder="请输入邮箱地址" />%></span>
+                                <span id="txtEmail_succeed" class="zc_tishi">一旦注册成功不能修改</span>
+                                <span class="zc_tishi2" id="txtEmail_error"></span>
+                            </dd>
+                        </dl>
+                    </div>
+                    <dl class="dl bd bd2 fix">
+                        <dt>设置密码：</dt>
+                        <dd>
+                            <span><%<asp:TextBox ID="txtPassword" name="txtPassword" runat="server" clientidmode="Static" CssClass="input" TextMode="Password" tabindex="4" placeholder="请再次输入密码"/>%></span>
+                            <span id="txtPassword_succeed" class="zc_tishi">密码可用</span>
+                            <span class="zc_tishi2" id="txtPassword_error"></span>
+                        </dd>
+                    </dl>
+                    <dl class="dl bd bd2 fix">
+                        <dt>确认密码：</dt>
+                        <dd>
+                            <span><%<asp:TextBox ID="txtPassword2" name="txtPassword2" clientidmode="Static" CssClass="input" runat="server" TextMode="Password" tabindex="5" placeholder="请再次输入密码" />%></span>
+                            <span id="txtPassword2_succeed" class="zc_tishi">密码输入正确</span>
+                            <span class="zc_tishi2" id="txtPassword2_error"></span>
+                        </dd>
+                    </dl>
+
+                    <div class="divNumber">
+                        <dl class="dl bd fix">
+                            <dt>验证码：</dt>
+                            <dd>
+                                <span><%<asp:TextBox ID="txtNumber" clientidmode="Static" CssClass="input code-input" runat="server" MaxLength="4" autocomplete="off" tabindex="6" placeholder="请输入右图验证码"/>%></span>
+                                <span class="yanzheng_input3"><img id="imgVerifyCode" onclick="javascript: refreshCode();" src='' style="vertical-align: middle; border-style: none;" alt="" /></span>
+                                <span class="yanzheng_input4">看不清？<a href="javascript:refreshCode();">换一张</a></span>
+                                <span id="txtNumber_succeed" class="zc_tishi">验证码输入正确</span>
+                                <span class="zc_tishi2" id="txtNumber_error"></span>
+                                
+                            </dd>
+                        </dl>
+                    </div>
+
+                    <%<asp:TextBox ID="regType" name="regType" clientidmode="Static" CssClass="input" runat="server" style="display:none" />
+                    <dl class="dl bd fix">
+                        <dt>邀请码：</dt>
+                        <dd>
+                            <span><%<asp:TextBox ID="txtRecommendCode" name="txtRecommendCode" CssClass="input" runat="server" clientidmode="Static" tabindex="3" placeholder="请输入邀请码(非必填)" />%></span>
+                            <span id="txtRecommendCode_succeed" class="zc_tishi">邀请码可以使用</span>
+                            <span class="zc_tishi2" id="txtRecommendCode_error"></span>
+                            <%<asp:TextBox ID="hiduseredId" name="hiduseredId" clientidmode="Static" CssClass="input" runat="server" style="display:none" />
+                            <%<asp:TextBox ID="hidRecemmendCode" name="hidRecemmendCode" clientidmode="Static" CssClass="input" runat="server" style="display:none" />
+                        </dd>
+                    </dl>
+                    <dl class="dl fix">                        
+                        <dd>
+                            <div class="agreen">
+                                <label><%<asp:CheckBox ID="chkAgree" name="chkAgree" CssClass="xy_xuanze dis-none" clientidmode="Static" runat="server" Checked="true" tabindex="7" />%>点击注册，表示您同意海美生活</label><a href="RegisterAgreement.aspx" target="_blank">《服务协议》</a>
+                            </div>
+                        </dd>
+                    </dl>
+
+                    <dl class="dl fix">                        
+                        <dd>
+                            <input type="submit" ID="btnRegister" name="btnRegister" runat="server" class="blue-btn rg-btn" value="立即注册" />
+                        </dd>
+                    </dl>
+
+                </div>
+            </div>
+            <div class="rg-right">
+                <p>已是海美生活会员，<a href="/login.aspx">请登录</a></p>
+            </div>
+        </div>
+        <div class="register fr">
+            <a href="/ActivityShowFour.aspx" target="_blank"><img src="/images/chanpin4.jpg?t=0326" /></a>
+        </div>
+    </div>
+    </div>
+    <script type="text/javascript" language="javascript">
+        document.getElementById('imgVerifyCode').src = applicationPath + "/VerifyCodeImage.aspx";
+        function refreshCode() {
+            var img = document.getElementById("imgVerifyCode");
+
+            if (img != null) {
+                var currentDate = new Date();
+                img.src = applicationPath + "/VerifyCodeImage.aspx?t=" + currentDate.getTime();
+            }
+        }
+        $(function () {
+            $(".rg-main .rg-tab .rg-tabhead li").bind("click", function () {
+                var theme = "selected";
+                var index = $(this).index();
+                var $curItem = $(".rg-main .rg-tabitem").eq(index);
+                $(this).addClass(theme).siblings().removeClass(theme);
+                $curItem.addClass(theme).siblings().removeClass(theme);
+
+                var rgType = Number($(".rg-main .rg-tab .rg-tabhead li.selected").attr("regType"));
+                if (rgType == 1) {
+                    $(".divNumber").css("display", "none");
+                    $("#regType").val(rgType);
+                }
+                else if (rgType == 2) {
+                    $(".divNumber").css("display", "");
+                    $("#regType").val(rgType);
+                }
+            })
+        })
+
+        function GetTelCode() {
+            var token = document.querySelector("input[name=__RequestVerificationToken]").getAttribute("value");
+            var telphone = $("#txtCellPhone").val();
+            GetTelCodeTime();
+
+            $.ajax({
+                type: "POST",
+                url: "Handler/MemberHandler.ashx?action=SendRegisterTel",
+                contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                data: { token: token, cellphone: telphone },
+                success: function (result) {
+                    if (result.success) {
+                        //document.getElementById("btnGetTelCode")
+                    }
+                    else {
+                        //不显示错误，可以记录到日志中
+                        //alert(result.msg);
+                    }
+                },
+                error: function (a, b, c) {
+                    alert("errot:"+a+":"+b+":"+c);
+                }
+            });
+        }
+
+
+        var wait = 60;
+
+        function GetTelCodeTime() {
+            if (wait == 0) {
+                $("#btnGetTelCode").attr("disabled",false);
+                $("#btnGetTelCode").val("获取验证码");
+                wait = 60;
+            } else {
+                wait--;
+                $("#btnGetTelCode").attr("disabled", true);
+                $("#btnGetTelCode").val("重新发送(" + wait + ")");
+                setTimeout(GetTelCodeTime, 1000);
+                //setTimeout("GetTelCodeTime()",
+                //1000)
+            }
+        }
+        //document.getElementById("btn").onclick = function () { time(this); }
+    </script>
+    <script type="text/javascript" src="/Utility/validate/Validate.js?v=20150807"></script>
+</form>
+<div class="login-footer">
+<%<hi:common_footer runat="server" />%>
+</div>

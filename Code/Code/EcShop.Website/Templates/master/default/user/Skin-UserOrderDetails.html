@@ -1,0 +1,462 @@
+﻿<%<hi:common_header runat="server" skinname="/ascx/tags/Common_UserCenter/Skin-Common_User_Header.ascx" />%>
+<form id="form1" runat="server">
+<script src="/utility/validate/pagevalidator.js" type="text/javascript"></script>
+<script src="/utility/jquery.artDialog.js" type="text/javascript"></script>
+<script src="/utility/iframeTools.js" type="text/javascript"></script>
+<script src="/utility/Window.js" type="text/javascript"></script>
+<script src="/Utility/expressInfo.js" type="text/javascript"></script>
+<link rel="stylesheet" href="/utility/skins/blue.css" />
+<div class="hyzxmain">
+    <div class="hyzxconty">
+        当前位置：<span><%<hi:siteurl urlname="home" runat="server">首页</hi:siteurl>%></span>><span><%<hi:siteurl urlname="user_UserDefault" runat="server">会员中心</hi:siteurl>%></span>><span><%<hi:siteurl urlname="user_UserOrders" runat="server">订单管理</hi:siteurl>%></span>><span><a
+            href="#">订单详细</a></span>
+    </div>
+    <div class="hyzxconter">
+        <div class="hyzxconterl">
+            <%<hi:common_user_menu runat="server" />%>
+            <div class="hyzxconterl1">
+            </div>
+        </div>
+        <div id="refund_div" style="display: none">
+            <div class="frame-content" style="width: 300px; overflow: hidden;">
+                <p>
+                    1.您需要选择我们如何将退款返回给您，如果选择预存款，金额将退到预存款，如果选择银行转账，请填写银行账号的相关信息。
+                </p>
+                <p style="color: #cc0000">
+                    <span class="frame-span frame-input130"><em>*</em>&nbsp;选择退款途径：</span> <span>
+                        <abbr class="formselect">
+                            <%<asp:DropDownList id="dropRefundType" runat="server">
+                                    <asp:listitem value="1">退到预存款</asp:listitem>
+                                    <asp:listitem value="2">银行转帐</asp:listitem>
+                                </asp:DropDownList>%>
+                        </abbr>
+                    </span>
+                </p>
+                <p>
+                    <em>&nbsp;申请原因以及退款帐号： （银行转账，请填写您的银行账号相关信息 </em>
+                </p>
+                <p>
+                    <%<asp:TextBox ID="txtRemark" runat="server" TextMode="MultiLine"
+                                       CssClass="forminput" Width="300px" Height="70px" runat="server"></asp:TextBox>%>
+                </p>
+            </div>
+        </div>
+        <div id="return_div" style="display: none">
+            <div class="frame-content">
+                <p>
+                    1.请在退货前与客服确认退货，才将商品寄出。务必把物流单号和物流公司填写于备注里面。<br />
+                    2、您需要选择我们如何将退款返回给您，如果选择预存款，金额将退到预存款，如果选择银行转账，请填写银行账号的相关信息
+                </p>
+                <p style="color: #cc0000">
+                    <span class="frame-span frame-input130"><em>*</em>&nbsp;选择退款途径：</span> <span>
+                        <abbr class="formselect">
+                            <%<asp:DropDownList id="dropReturnRefundType" runat="server">
+                                    <asp:listitem value="1">退到预存款</asp:listitem>
+                                    <asp:listitem value="2">银行转帐</asp:listitem>
+                                </asp:DropDownList>%>
+                        </abbr>
+                    </span>
+                </p>
+                <p>
+                    <em>申请原因，物流公司，物流单号，退款账号等: （银行转账，请填写您的银行账号相关信息 </em>
+                </p>
+                <p>
+                    <%<asp:TextBox ID="txtReturnRemark" runat="server" TextMode="MultiLine"
+                                       CssClass="forminput" Width="300px" Height="70px" runat="server"></asp:TextBox>%>
+                </p>
+            </div>
+        </div>
+        <div id="replace_div" style="display: none">
+            <div class="frame-content" style="width: 300px; overflow: hidden;">
+                <p>
+                    1.请在换货前仔细阅读换货说明并与客服确认换货，才将商品寄出。务必把物流单号和物流公司填写于备注里面
+                </p>
+                <p>
+                    <span class="frame-span frame-input130"><em>*</em>&nbsp;换货备注：</span>
+                </p>
+                <p>
+                    <%<asp:TextBox ID="txtReplaceRemark" runat="server" TextMode="MultiLine"
+                                       CssClass="forminput" Width="300px" Height="70px" runat="server"></asp:TextBox>%>
+                </p>
+            </div>
+        </div>
+        <div style="display: none">
+            <input type="hidden" id="hdorderId" runat="server" />
+            <%<asp:Button ID="btnReturn" runat="server" Text="确 定" CssClass="submit_DAqueding" />%>
+            <%<asp:Button ID="btnReplace" runat="server" Text="确 定" CssClass="submit_DAqueding" />%>
+            <%<asp:Button ID="btnOk" runat="server" Text="确 定" CssClass="submit_DAqueding" />%>
+            <%<asp:Button ID="btnPay" OnClientClick="this.form.target='_blank'" runat="server" Text="确 定" CssClass="submit_DAqueding" />%>
+        </div>
+        <div class="hyzxconterr">
+            <div class="dingdanxx">
+                <%<Hi:SmallStatusMessage id="Status" runat="server" Width="200" Visible="False" />%>
+                <div class="dingdan_box1">
+                    订单详细
+                </div>
+                <div class="dingdan_box2">
+                    <ul>
+                        <li id="title1">拍下商品</li>
+                        <li id="title2">付款成功</li>
+                        <li id="title3">卖家发货</li>
+                        <li id="title4">确认收货</li>
+                        <li id="title5">申请退款</li>
+                        <li id="title6">退款成功</li>
+                        <li id="title7">申请退货/换货</li>
+                        <li id="title8">退货/换货完成</li>
+                    </ul>
+                    <div class="stop">
+                        <div class="item show" id="item1">
+                            <em id="em1">1</em>
+                        </div>
+                        <div class="item" id="item2">
+                            <span>&nbsp;</span> <em id="em2">2</em>
+                        </div>
+                        <div class="item" id="item3">
+                            <span>&nbsp;</span> <em id="em3">3</em>
+                        </div>
+                        <div class="item" id="item4">
+                            <span>&nbsp;</span> <em id="em4">4</em>
+                        </div>
+                        <div class="item" id="item5">
+                            <span>&nbsp;</span> <em id="em5">5</em>
+                        </div>
+                        <div class="item" id="item6">
+                            <span>&nbsp;</span> <em id="em6">6</em>
+                        </div>
+                        <div class="item" id="item7">
+                            <span>&nbsp;</span> <em id="em7">7</em>
+                        </div>
+                        <div class="item" id="item8">
+                            <span>&nbsp;</span> <em id="em8">8</em>
+                        </div>
+                    </div>
+                    <ul class="time" style="display:none">
+                        <li id="time1">
+                            <%<Hi:FormatedTimeLabel id="litAddOrderDate" runat="server"></Hi:FormatedTimeLabel>%>
+                        </li>
+                        <li id="time2">
+                            <%<Hi:FormatedTimeLabel id="litPayDate" runat="server"></Hi:FormatedTimeLabel>%>
+                        </li>
+                        <li id="time3">
+                            <%<Hi:FormatedTimeLabel id="litShipDate" runat="server"></Hi:FormatedTimeLabel>%>
+                        </li>
+                        <li id="time4">
+                            <%<Hi:FormatedTimeLabel id="litResultDate" runat="server"></Hi:FormatedTimeLabel>%>
+                        </li>
+                        <li id="time5">
+                            <%<Hi:FormatedTimeLabel id="litPayBack" runat="server"></Hi:FormatedTimeLabel>%>
+                        </li>
+                        <li id="time6">
+                            <%<Hi:FormatedTimeLabel id="litBackShip" runat="server"></Hi:FormatedTimeLabel>%>
+                        </li>
+                        <li id="time7"></li>
+                        <li id="time8"></li>
+                    </ul>
+                </div>
+                <div class="dingdan_box3">
+                    <div class="dingdanhao">
+                        <span class="d_span1">订单号：<%<asp:Literal ID="litOrderId" runat="server"></asp:Literal>%></span>
+                        <span class="d_span2">状态：<em><%<Hi:OrderStatusLabel ID="lblOrderStatus" runat="server" />%></em></span>
+                        <span>下单日期：<%<Hi:FormatedTimeLabel id="litAddDate" runat="server"></Hi:FormatedTimeLabel>%></span>
+                        <span class="d_span3">
+                            <%<asp:LinkButton id="lkbtnConfirmOrder" isshow="true" runat="server" text="确认订单" visible="false" onclientclick="javascript:return confirm('确认订单？')" forecolor="Red" />%>
+                            <%<asp:LinkButton id="lkbtnCloseOrder" isshow="true" runat="server" text="关闭" onclientclick="javascript:return confirm('确认关闭？')" visible="false" />%>
+                            <a href="javascript:void(0)" onclick="return ApplyForRefund()" runat="server" id="lkbtnApplyForRefund"
+                                visible="false">申请退款 |</a> <a href="javascript:void(0)" onclick="return ApplyForReturn()"
+                                    runat="server" id="lkbtnApplyForReturn" visible="false">申请退货 |</a> <a href="javascript:void(0)"
+                                        onclick="return ApplyForReplace()" runat="server" id="lkbtnApplyForReplace" visible="false">
+                                        申请换货</a> </span>
+                    </div>
+                    <div class="d_beihzhu">
+                        买家备注：<%<asp:Literal ID="litRemark" runat="server"></asp:Literal>%>
+                    </div>
+                    <div class="d_beihzhu">
+                        <%<asp:label text="关闭原因：" runat="server" id="lbCloseReason" visible="false"><asp:Literal ID="litCloseReason" runat="server" /></asp:label> %></div>
+                    <% <asp:Panel ID="plOrderSended" runat="server" Visible="false">
+                            <table width="100%" border="0" cellspacing="1" cellpadding="0" class="bTop_Margin10 OrderDetails_table2">
+                                <tr align="left"><th colspan="2" style="padding-left:10px;">发货信息</th></tr>
+                                <tr>
+                                    <td>物流公司：</td>
+                                    <td class="cGray"><asp:Literal ID="litRealModeName" runat="server" /></td>
+                                </tr>
+                                <tr>
+                                    <td width="15%">发货单号：</td>
+                                    <td width="85%" class="cGray"><asp:Literal ID="litShippNumber" runat="server" /></td>
+                                </tr>
+                            </table>
+                        </asp:Panel>%>
+                    <%<asp:Panel Visible="false" runat="server" ID="plRefund">
+                            <table width="100%" border="0" cellspacing="1" cellpadding="0" class="bTop_Margin10 OrderDetails_table2">
+                                <th colspan="2">退款订单信息</th>
+                                <tr>
+                                    <td>退款总金额：</td>
+                                    <td class="cGray"><Hi:FormatedMoneyLabel ID="lblTotalBalance" runat="server" /></td>
+                                </tr>
+                                <tr>
+                                    <td width="15%">退款说明：</td>
+                                    <td width="85%" class="cGray"><asp:Literal ID="litRefundOrderRemark" runat="server" /></td>
+                                </tr>
+                            </table>
+                        </asp:Panel>%>
+                    <% <asp:Panel ID="plOrderGift" runat="server" Visible="false">
+                            <div style="padding:10px;text-align:left;">
+                                <asp:GridView ID="grdOrderGift" runat="server" AutoGenerateColumns="false" ShowHeader="true"
+                                              GridLines="None" DataKeyNames="GiftId" Width="100%" HeaderStyle-CssClass="title_c1" CssClass="content_b">
+                                    <columns>
+                                        <asp:boundfield headertext="礼品名称" datafield="GiftName" headerstyle-horizontalalign="Left" />
+                                        <asp:boundfield headertext="赠送数量" datafield="Quantity" itemstyle-width="50%" headerstyle-horizontalalign="Left" />
+                                    </columns>
+                                </asp:GridView>
+                            </div>
+                        </asp:Panel>%>
+                    <div class="dingdan_box4">
+                        <div class="nTab">
+                            <div class="TabTitle">
+                                <ul id="myTab">
+                                    <li class="active" onmouseover="nTabs(this,0);">金额明细</li>
+                                    <li class="normal" onmouseover="nTabs(this,1);">物流跟踪</li>
+                                </ul>
+                            </div>
+                            <div class="TabContent">
+                                <div id="myTab_Content0">
+                                    <div class="item">
+                                        商品金额：<em><%<Hi:FormatedMoneyLabel ID="lbltotalPrice" runat="server" />%><%<asp:Literal runat="server" ID="lblBundlingPrice" /> %></em>
+                                    </div>
+                                    <div class="item">
+                                        配送方式：<em><%<asp:Literal ID="litModeName" runat="server" />%></em>
+                                    </div>
+                                    <div class="item">
+                                        打折活动：<em><%<Hi:FormatedMoneyLabel ID="lblDiscount" runat="server" />%></em><em><%<asp:HyperLink ID="litDiscountName" runat="server" /> %></em>
+                                    </div>
+                                    <div class="item">
+                                        运费：<em><%<Hi:FormatedMoneyLabel ID="lblFreight" runat="server" /> %><%<asp:HyperLink ID="litFreeName" runat="server" /> %></em>
+                                    </div>
+                                    <div class="item">
+                                        优惠券抵扣金额：<em><%<asp:Literal ID="litCouponValue" runat="server" />%></em>
+                                    </div>
+                                    <div class="item">
+                                        支付方式：<em><%<asp:Literal ID="litPaymentType" runat="server" />%></em>
+                                    </div>
+                                    <div class="item">
+                                        订单涨价或减价金额：<em><%<Hi:FormatedMoneyLabel ID="lblAdjustedDiscount" runat="server" />%></em>
+                                    </div>
+                                    <div class="item">
+                                        税金：<em><%<Hi:FormatedMoneyLabel ID="litTax" runat="server" />%></em>
+                                    </div>
+                                    <div class="item">
+                                        支付手续费：<em><%<Hi:FormatedMoneyLabel ID="lblPayCharge" runat="server" />%></em>
+                                    </div>
+                                    <div class="item">
+                                        发票抬头：<%<asp:Literal ID="litInvoiceTitle" runat="server" />%>
+                                    </div>
+                                    <div class="item">
+                                        <%<asp:label text="退款金额：" runat="server" id="lbRefundMoney" visible="false"><Hi:FormatedMoneyLabel ID="lblRefundTotal" runat="server" /></asp:label> %>
+                                    </div>
+                                </div>
+                                <div id="myTab_Content1" class="none">
+                                    <div id="spExpressData">
+                                    </div>
+                                    <script type="text/javascript">
+                                        $(function () {
+                                            var OrderId = window.location.search;
+                                            OrderId = OrderId.substring(OrderId.indexOf("=") + 1);
+                                            $('#spExpressData').expressInfo(OrderId, 'OrderId');
+                                        })
+                                    </script>
+                                    <%<asp:Panel ID="plExpress" runat="server" Visible="false" style="widht:730px;margin-bottom:10px;">
+                                    %>
+                                    订单暂未发货
+                                    <%
+                                        </asp:Panel>%>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dingdan_box5">
+                        <div class="dingdan_box5_title">
+                            订单信息
+                        </div>
+                        <div class="dingdan_box5_con">
+                            <div class="shouhuoxx">
+                                收货人信息
+                            </div>
+                            <div class="shouhuoxx_con">
+                                <ul>
+                                    <li>收货人姓名：<em><%<asp:Literal ID="litShipTo" runat="server" />%></em></li>
+                                    <li>详细地址：<em><%<asp:Literal ID="litRegion" runat="server" />%><%<asp:Literal ID="litAddress" runat="server" />%></em></li>
+                                    <li>邮政编码：<em><%<asp:Literal ID="litZipcode" runat="server" />%></em></li>
+                                    <li>电子邮箱：<em><%<asp:Literal ID="litEmail" runat="server" />%></em></li>
+                                    <li>电话号码：<em><%<asp:Literal ID="litTellPhone" runat="server" />%></em></li>
+                                    <li>手机号码：<em><%<asp:Literal ID="litPhone" runat="server" />%></em></li>
+                                    <li>送货上门时间：<em><%<asp:Literal ID="litShipToDate" runat="server" />%></em></li>
+                                </ul>
+                            </div>
+                            <div class="shouhuoxx1">
+                                商品清单
+                            </div>
+                            <div class="shouhuoxx1_con">
+                                <%<hi:common_ordermanage_orderitems runat="server" />%>
+                                <div class="d_spzl">
+                                    货物总重量：<%<asp:Literal ID="litWeight" runat="server" />%>克
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d_jifen">
+                            可得积分：<%<asp:Literal ID="litPoints" runat="server" />%>
+                            <%<asp:HyperLink ID="litSentTimesPointPromotion" runat="server" /> %>
+                        </div>
+                        <div class="d_jine">
+                            订单金额总计：<em><%<Hi:FormatedMoneyLabel ID="litTotalPrice" runat="server" />%></em>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function displaycss(obj) {
+            var str = obj.split(",");
+            for (var i = 0; i < str.length; i++) {
+                $("#time" + str[i]).css("display", "none");
+                $("#item" + str[i]).css("display", "none");
+                $("#title" + str[i]).css("display", "none");
+            }
+        }
+        function setem(obj, set) {
+            $("#em" + obj).text(set);
+        }
+        var result = $("#UserOrderDetails_lblOrderStatus").html();
+        switch (result) {
+            case "等待买家付款":
+                $(".stop div:lt(1)").addClass("show");
+                displaycss("5,6,7,8");
+                break;
+            case "已付款,等待发货":
+                $(".stop div:lt(2)").addClass("show");
+                displaycss("5,6,7,8");
+                break;
+            case "已发货":
+                $(".stop div:lt(3)").addClass("show");
+                displaycss("5,6,7,8");
+                break;
+            case "申请退款":
+                $(".stop div:lt(5)").addClass("show");
+                displaycss("3,4,7,8");
+                setem(5, 3);
+                setem(6, 4);
+                break;
+            case "申请退货":
+                $(".stop div:lt(7)").addClass("show");
+                displaycss("3,4,5,6");
+                setem(7, 3);
+                setem(8, 4);
+                break;
+            case "申请换货":
+                $(".stop div:lt(7)").addClass("show");
+                displaycss("3,4,5,6");
+                setem(7, 3);
+                setem(8, 4);
+                break;
+            case "已退款":
+                $(".stop div:lt(6)").addClass("show");
+                displaycss("3,4,7,8");
+                setem(5, 3);
+                setem(6, 4);
+                break;
+            case "已退货":
+                $(".stop div:lt(8)").addClass("show");
+                displaycss("3,4,5,6");
+                setem(7, 3);
+                setem(8, 4);
+                break;
+            case "订单已完成":
+                $(".stop div:lt(4)").addClass("show");
+                displaycss("5,6,7,8");
+                break;
+            case "已关闭":
+                $(".stop div:lt(1)").addClass("show");
+                displaycss("5,6,7,8");
+                break;
+        };
+   
+        var type = "";
+        function validatorForm() {
+            if (type == "refund") {
+                if ($("#UserOrderDetails_txtRemark").val().replace(/\s/g, "") == "") {
+                    alert("请输入申请原因以及退款帐号");
+                    return false;
+                }
+            }
+            else if (type == "return") {
+                if ($("#UserOrderDetails_txtReturnRemark").val().replace(/\s/g, "") == "") {
+                    alert("请输入申请原因，物流公司，物流单号，退款账号等");
+                    return false;
+                }
+            }
+            else if (type == "replace") {
+                if ($("#UserOrderDetails_txtReplaceRemark").val().replace(/\s/g, "") == "") {
+                    alert("请输入换货备注");
+                    return false;
+                }
+            }
+            else if (type == "pay") {
+                if ($("#UserOrderDetails_dropPayType").val() == "") {
+                    alert("请选择支付方式");
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function ApplyForRefund() {
+            var orderId = window.location.search;
+            orderId = orderId.substring(orderId.indexOf("=") + 1);
+            type = "refund";
+            setArryText('UserOrderDetails_hdorderId', orderId);
+            setArryText('UserOrderDetails_txtRemark', '');
+            setArryText('UserOrderDetails_dropRefundType', '');
+            DialogShow("申请退款", "applyforrefund", "refund_div", "UserOrderDetails_btnOk");
+            return false;
+        }
+
+        function ApplyForReturn() {
+            var orderId = window.location.search;
+            orderId = orderId.substring(orderId.indexOf("=") + 1);
+            type = "return";
+            setArryText('UserOrderDetails_hdorderId', orderId);
+            setArryText('UserOrderDetails_txtReturnRemark', '');
+            setArryText('UserOrderDetails_dropReturnRefundType', '');
+            DialogShow("申请退货", "applyforreturn", "return_div", "UserOrderDetails_btnReturn");
+            return false;
+        }
+
+        function ApplyForReplace() {
+            var orderId = window.location.search;
+            orderId = orderId.substring(orderId.indexOf("=") + 1);
+            type = "replace";
+            setArryText('UserOrderDetails_hdorderId', orderId);
+            setArryText('UserOrderDetails_txtReplaceRemark', '');
+            DialogShow("申请换货", "applyforreplace", "replace_div", "UserOrderDetails_btnReplace");
+            return false;
+        }
+
+        function nTabs(thisObj, Num) {
+            if (thisObj.className == "active") return;
+            var tabObj = thisObj.parentNode.id;
+            var tabList = document.getElementById(tabObj).getElementsByTagName("li");
+            for (i = 0; i < tabList.length; i++) {
+                if (i == Num) {
+                    thisObj.className = "active";
+                    document.getElementById(tabObj + "_Content" + i).style.display = "block";
+                } else {
+                    tabList[i].className = "normal";
+                    document.getElementById(tabObj + "_Content" + i).style.display = "none";
+                }
+            }
+        }
+
+    </script>
+    <div class="hyzxfooter">
+    </div>
+</form>
+<%<hi:common_footer runat="server" skinname="/ascx/tags/Common_UserCenter/Skin-Common_User_Footer.ascx" />%>

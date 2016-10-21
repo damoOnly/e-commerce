@@ -1,0 +1,62 @@
+﻿<hi:common_vheader runat="server" />
+<div class="page gray-page">
+	<section>
+    	<div class="log-info">
+        	<p><label>物流公司：</label><span><asp:Literal runat="server" id="litCompanyName" /></span></p>
+            <p><label>运单号码：</label><span><asp:Literal runat="server" id="litLogisticsNumber" /></span></p>
+            <!--<p><label>物流状态：</label><span id="logstatus">未签收</span></p>-->
+        </div>        
+        <div class="log-pro">
+        	<h5>物流详情</h5>
+            <div class="log-list">
+                <ul class="fix" id="LogisticsInfo">
+                </ul>
+            </div>
+        </div>
+    </section>
+</div>
+<script type="text/javascript">
+
+    //隐藏右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+
+    //隐藏底部菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideToolbar');
+    });
+</script>
+<script type="text/javascript">
+    $(function () {
+        var OrderId = getParam("OrderId");
+        $("#ordernum").text(OrderId);
+        var url = '/api/VshopProcess.ashx';
+        $.getJSON(url, { action: 'Logistic', orderId: OrderId }, function (resultData) {
+            if (resultData != null && resultData != "") {
+                //if (resultData[0].code == "200") {
+                //    $("#logstatus").text("签收成功");
+                //}
+                var info = "";
+                $(resultData.reverse()).each(function (index, day) {
+                    if (index == 0) {
+                        info += '<li class="cur">';
+                    }
+                    else {
+                        info += '<li>';
+                    }
+                    info += '<p><label>' + day.context + '</label></p>';
+                    info += '<p><span class="log-date">' + day.time + '</span></p>';
+                    info += '</li>';
+
+                });
+                $("#LogisticsInfo").append(info);
+            }
+            else {
+                var info = '<li class="cur"><p><label>没有物流信息</label></p></li>';
+                $("#LogisticsInfo").append(info);
+            }
+        });
+    });
+</script>
+<hi:common_vfooter runat="server" />

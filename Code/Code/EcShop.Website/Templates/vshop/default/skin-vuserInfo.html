@@ -1,0 +1,59 @@
+﻿<hi:common_vheader runat="server" />
+    <div class="pbox">
+        <p class="text-muted">用户名</p>
+        <input id="txtUserName" type="text" runat="server" clientidmode="Static" class="form-control" placeholder="请填写您的用户名">
+        <p class="text-muted">手机</p>
+        <input id="txtPhone" type="text" runat="server" clientidmode="Static" class="form-control" placeholder="请填写您的手机号">
+        <p class="text-muted">真实姓名</p>
+        <input id="txtRealName" type="text" runat="server" clientidmode="Static" class="form-control" placeholder="请填写您的姓名">
+        <p class="text-muted">QQ</p>
+        <input id="txtEmail" type="text" runat="server" clientidmode="Static" class="form-control" placeholder="请填写您的QQ号码">
+        <button id="btnSetUserName" type="button" class="btn btn-warning btn-block">保存用户信息</button>
+        <p id="firstLoginNote" class="text-center"><a href="/vshop/default.aspx" class="text-muted">不填写，直接去首页。（后续可在个人中心修改）</a></p>
+    </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnSetUserName").bind("click", function () { SetUserName(); }); //设置新昵称
+
+        if($.trim($('#txtUserName').val()))
+           $('#txtUserName').attr('disabled','disabled');
+
+        if (getParam('edit'))
+            $('#firstLoginNote').hide();
+    });
+    function SetUserName() {
+		var identityCard=$.trim($("#txtIdentityCard").val());
+		if(identityCard&&identityCard!=''){
+			var check = /^[1-9]\d{7}((0[1-9])|(1[0-2]))((0[1-9])|([1-2][0-9])|(3[0-1]))\d{3}$/.test(identityCard);
+			if(!check){
+			check = /^[1-9]\d{5}[1-9]\d{3}((0[1-9])|(1[0-2]))((0[1-9])|([1-2][0-9])|(3[0-1]))\d{3}(\d|x|X)$/.test(identityCard);
+			}
+			if(!check){
+				alert_h("身份证格式填写错误");
+				return false;
+			}
+		}
+        $.ajax({
+            url: "/API/VshopProcess.ashx",
+            type: 'post', dataType: 'json', timeout: 10000,
+            data: { action: "SetUserName", userName: $("#txtUserName").val(),IdentityCard:identityCard,RealName:$("#txtRealName").val(), CellPhone: $("#txtPhone").val(), QQ: $("#txtEmail").val() },
+            success: function (resultData) {
+                if (resultData.Status == "OK") {
+                    alert_h("修改用户信息成功", function () { 
+                        location.href = "/VShop/MemberCenter.aspx";
+                    });
+                }
+                else {
+                    alert_h("修改用户信息失败, 请重试");
+                }
+            }
+        });
+    }
+</script>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+<hi:common_vfooter runat="server" />

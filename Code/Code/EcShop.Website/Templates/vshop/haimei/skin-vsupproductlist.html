@@ -1,0 +1,421 @@
+﻿<hi:common_vheader runat="server" />
+<!--<div class="page pl-page gray-page">-->
+<div class="page gray-page supp-page">
+    <header class="gr-sh">
+        <div class="supp-wrap fix">
+            <div class="fr">
+                <span id="isCollect"><asp:Literal runat="server" id="isCollect" /></span><span class="supp-fav">
+                    <!--123-->
+                    <span class="data-id"><asp:Literal runat="server" id="litSupplierFavCount" /></span>
+                </span>
+            </div>
+            <div class="supp-img"><!--<img src="/templates/vshop/haimei/resource/default/image/temp/shop.png" class="img-responsive"/>--><Hi:HiImage runat="server" ID="imgSupplierLogo" CssClass="img-responsive" /></div>
+            <div class="supp-con">
+                <div class="supp-name"><!--爱他美旗舰奶粉店--><asp:Literal runat="server" id="litSupplierName" /></div>
+                <p style="height:20px;overflow:hidden;">店主：<asp:Literal runat="server" id="litSupplierOwner" /><span class="ml20"><asp:Literal runat="server" id="litSupplierAddress" /></span></p>
+                <p style="height:20px;overflow:hidden;">开店：<!--2015-09-25 18：26：32--><asp:Literal runat="server" id="litSupplierCreateTime" /></p>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div class="neworderlist dis-none" style="top:102px;z-index:1200">
+            <div class="thirdcatagory">
+            </div>
+            <div class="order-list">
+                <ul class="fix">
+                    <li><a name="default" href="javascript:void(0)">综合排序</a></li>
+                    <li><a name="saleprice" href="javascript:void(0)">价格</a></li>
+                    <!--<li><a name="addedDate" href="#">上架</a></li>
+            <li><a name="VistiCounts" href="#">浏览量</a></li>-->
+                    <li><a name="showsaleCounts" href="javascript:void(0)">销量</a></li>
+                    <!--<li id="liabrush"><a class="search-arrow" id="search-arrow" href="javascript:void(0);" onclick="ShowCategory();">筛选</a></li>-->
+                </ul>
+            </div>
+        </div>
+        <div class="no-data pl10 pr10" id="no-data">
+            <p>没有找到相关商品</p>
+        </div>
+        <div class="gd-list" id="gd-list">
+            <ul class="fix goods-list-grid">
+                <hi:vshoptemplatedrepeater id="rptProducts" templatefile="/Tags/skin-Common_Prodcts.ascx" runat="server" />
+            </ul>
+            <!-- <div class="more-tip" id="more-tip">下拉加载更多...</div>-->
+            <div id="pager"> </div>
+            <div class="groom-wrap">
+                <div class="groom-con">
+                    <h3>相似商品其他分类</h3>
+                    <div class="classify clearfix">
+                        <ul class="classsify-ul fix" id="classsify-ul">
+                            <asp:Literal runat="server" ID="litSiblingsCategories" />
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dis-none">
+            <hi:vshoptemplatedrepeater id="rptCategories" templatefile="/Tags/skin-Common_VProductListCategory.ascx" runat="server" />
+        </div>
+    </section>
+    <div class="brush-wrap" id="brush-wrap" name="brush">
+        <!--<div class="brush-cover"></div>
+        <div class="brush-con fix">
+            <div class="brush-header fix"><a class="cancel-btn">取消</a>筛选</div>
+            <div class="brush-list fix">
+                <ol class="fix">
+                    <h4>品牌</h4>
+                    <div class="fix brand-list"><a><img src="/templates/vshop/haimei/resource/default/image/temp/brand/b1.png" /></a><a><img src="/templates/vshop/haimei/resource/default/image/temp/brand/b2.png" /></a></div>
+                </ol>
+                <ol class="fix">
+                    <h4>进口奶粉</h4>
+                    <div class="fix"><a name="8000109">新生儿</a><a name="8000110">0-6个月宝宝</a><a name="8000111">6-12个月宝宝</a><a name="8000112">1-2岁宝宝</a><a name="8000113">2岁以上宝宝</a></div>
+                </ol>
+                <ol class="fix">
+                    <h4>进口奶粉</h4>
+                    <div class="fix"><a name="8000109">新生儿</a><a name="8000110">0-6个月宝宝</a><a name="8000111">6-12个月宝宝</a><a name="8000112">1-2岁宝宝</a><a name="8000113">2岁以上宝宝</a></div>
+                </ol>
+            </div>
+            <div class="brush-footer fix"><div class="brush-btns"><a class="reset-btn">重置</a><a class="cancel-btn ok-btn">确定</a></div><div class="brush-count">有<span>123456</span>件商品</div></div>
+        </div>-->
+    </div>
+</div>
+<input type="hidden" value="" runat="server" clientidmode="static" id="txtTotal" />
+<footer class="sku-wrap" id="sku-wrap">
+    <section class="sku-con" id="sku-con">
+        <div class="sku-inner">
+            <div class="sku-info clearfix">
+                <img id="control_item_info_img" width="50" height="50" src="/Templates/vshop/haimei/images/lazy.png"> <span class="price">¥<span id="spSalaPrice">0.00</span></span>
+                <div class="sku-close">&nbsp;</div>
+            </div>
+            <div class="control-wrap">
+                <input type="hidden" runat="server" id="hidden_skus" clientidmode="Static" />
+                <div class="specification-box">
+                    <div class="skus-info"></div>
+                    <div class="buy-num">
+                        <div class="text-muted">购买数量</div>
+                        <div class="list clearfix">
+                            <div class="goods-num clearfix">
+                                <div class="n-options clearfix">
+                                    <a class="op-btn reduce" id="spSub"><span></span></a> <a class="op-btn plus" id="spAdd"><span></span></a>
+                                    <div class="input-con">
+                                        <input type="tel" id="buyNum" class="form-control" value="1">
+                                    </div>
+                                </div>
+                                <div class="info font-s text-muted">（剩余可购买数量：<span id="spStock">3000</span>件）</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="control-btns"> <a class="btn btn-danger buy-btn" id="control-ok">确定</a> </div>
+    </section>
+</footer>
+<script src="/utility/vproduct.helper.js" type="text/javascript"> </script>
+<script src="/script/iscroll.js" type="text/javascript"></script>
+<script src="/script/addcart.js" type="text/javascript"></script>
+<script src="/script/productlist.js?v=20150708" type="text/javascript"></script>
+<script src="/Utility/common.js" type="text/javascript"></script>
+<!--<script src="/Utility/pager.js" type="text/javascript"></script>-->
+<script type="text/javascript">
+    $(function () {
+        //设置 排序 状态
+        
+
+        ShowSupplierThreeCategory();
+
+        //没有数据
+    //    if (!$('#gd-list > ul > li').length) {
+    //        $('#gd-list').hide();
+    //        $('#no-data').show();
+    //    }
+    // //   vshopPager('pager', $('#txtTotal').val(), 1, 20);
+    //    // 筛选
+    //    $("#search-arrow").on("click", function () {
+    //        $("#brush-wrap").addClass("show");
+    //        $("html,body").addClass("ovh");
+    //    })
+    //    // 关闭筛选
+    //    $(document).delegate("#brush-wrap .cancel-btn", "click", function () {
+    //        $("#brush-wrap").removeClass("show");
+    //        $("html,body").removeClass("ovh");
+    //    })
+    //    // 重置筛选
+    //    $(document).delegate("#brush-wrap .reset-btn", "click", function () {
+    //        $("#brush-wrap .brush-list a").removeClass("selected");
+    //    })
+    //    // 点击 选项
+    //    $(document).delegate("#brush-wrap .brush-list a", "click", function () {
+    //        var theme = "selected";
+    //        $(this).addClass(theme).siblings().removeClass(theme);
+    //    })
+    //    // 点击 标题
+    //    $(document).delegate("#brush-wrap ol > h4", "click", function () {
+    //        var theme = "up";
+    //        $(this).parent().toggleClass(theme);
+    //        $(this).siblings().toggle();
+    //    })
+    //    // 确定
+    //    $(document).delegate("#brush-wrap .ok-btn", "click", function () {
+    //        var tempcategoryId, tempimportsourceid, tempbrandid;
+    //        var $cateA = $("#brush-wrap a[name=CategoryId].selected");
+    //        var $imporA = $("#brush-wrap a[name=ImportSourceId].selected");
+    //        var $brandA = $("#brush-wrap a[name=BrandId].selected");
+    //        if ($cateA.length) {
+    //            tempcategoryId = $cateA.attr("categoryid");
+    //        }
+    //        if ($imporA.length) {
+    //            tempimportsourceid = $imporA.attr("importsourceid");
+    //        }
+    //        if ($brandA.length) {
+    //            tempbrandid = $brandA.attr("brandid");
+    //        }
+    //        loadshop(tempcategoryId, tempimportsourceid, tempbrandid)
+    //    })
+
+    //    //点击确认
+    //    function loadshop(tempcategoryId, tempimportsourceid, tempbrandid) {
+    //        var sort = getParam('sort');
+    //        var order = getParam('order');
+    //        if (sort && order) {
+    //            var $link = $('.order-list a[name="' + sort + '"]');
+    //            var $curLi = $link.parent();
+    //            var theme = "selected ";
+    //            var theme2 = "selected down up";
+    //            if (order == 'desc') {
+    //                theme += 'down';
+    //            } else {
+    //                theme += 'up';
+    //            }
+    //            $curLi.addClass(theme).siblings().removeClass(theme + theme2);
+    //        } else {
+    //            var $link = $('.order-list a[name=default]');
+    //            var $curLi = $link.parent();
+    //            var theme = "selected ";
+    //            $curLi.addClass(theme).siblings().removeClass(theme + theme2);
+    //        }
+    //        var categoryId = getParam('categoryId');
+    //        var keyWords = getParam('keyWord');
+
+    //        var brandid = getParam('brandid');
+    //        var importsourceid = getParam('importsourceid');
+
+    //        var TopicId = getParam('TopicId');
+
+
+    //        if (categoryId == null || categoryId == undefined) {
+    //            categoryId = "";
+    //        }
+    //        //筛选的类别
+    //        if (tempcategoryId != null && tempcategoryId != "" && tempcategoryId != undefined) {
+    //            categoryId = tempcategoryId;
+    //        }
+
+    //        if (keyWords == null || keyWords == undefined) {
+    //            keyWords = "";
+    //        }
+
+
+    //        if (brandid == null || brandid == undefined) {
+    //            brandid = "";
+    //        }
+    //        //筛选的品牌
+    //        if (tempbrandid != null && tempbrandid != "" && tempbrandid != undefined) {
+    //            brandid = tempbrandid;
+    //        }
+    //        if (importsourceid == null || importsourceid == undefined) {
+    //            importsourceid = "";
+    //        }
+    //        //筛选的原产地
+    //        if (tempimportsourceid != null && tempimportsourceid != "" && tempimportsourceid != undefined) {
+    //            importsourceid = tempimportsourceid;
+    //        }
+
+    //        if (TopicId == null || TopicId == undefined) {
+    //            TopicId = "";
+    //        }
+
+    //        window.location.href = '/vshop/SupproductList.aspx?supplierId=' + getParam('SupplierId') + '&categoryId=' + categoryId + '&keyWord=' + keyWords + '&brandid=' + brandid + "&TopicId=" + TopicId + "&importsourceid=" + importsourceid;// escape(keyWords);
+    //    }
+
+    });
+
+    //显示三级分类
+    function ShowSupplierThreeCategory() {
+        var supplierid = getParam('SupplierId');
+        if (supplierid == null || supplierid == undefined) {
+            supplierid = "";
+        }
+        $.ajax({
+            url: "/API/VshopProcess.ashx",
+            type: 'post', dataType: 'json', timeout: 10000,
+            data: { action: "ShowSupplierThreeCategory", SupplierId: supplierid },
+            success: function (data) {
+                if (data != null) {
+                    var strs = '';
+                    if (data != null) {
+                        if (data.Status == "-1") {
+                            strs = "没有更多分类, 请重试"
+                        }
+                        else {
+                            if (data.length > 0) {
+                                strs = '<div class="thirdcatagorylist"><ul><li><a href="javascript:void(0)" class="be_cur" cate="">全部</a></li>'
+                                for (var i = 0; i < data.length; i++)
+                                { strs += '<li><a href="javascript:void(0)" cate="' + data[i].CategoryId + '">' + data[i].Name + '</a></li>'; }
+                                strs += '</ul></div>';
+                            }
+                        }
+                        $(".thirdcatagory").html(strs).show();
+                        $(".neworderlist").show();
+                      //  scroll2();
+                    }
+                }
+            }
+        });
+    }
+
+    //加载类目
+    //function ShowCategory() {
+    //    var isshow = true;//false;
+    //    var categoryId = getParam('categoryId');
+    //    if (categoryId == null || categoryId == undefined) {
+    //        categoryId = "";
+    //    }
+    //    $.ajax({
+    //        url: "/API/VshopProcess.ashx",
+    //        type: 'post', dataType: 'json', timeout: 10000,
+    //        data: { action: "ShowCategoryBrands", categoryId: categoryId, supplierid: getParam('SupplierId') },
+    //        success: function (resultData) {
+    //            if (resultData != null) {
+    //                if (resultData.Status == "-1") {
+    //                    alert_h("没有分类, 请重试");
+    //                }
+    //                else {
+    //                    var strs = "";
+    //                    var tempdepth = 1;
+    //                    if (resultData.importSources.length > 0 || resultData.brands.length > 0 || resultData.Categorys.length) {
+    //                        strs += "<div class=\"brush-cover\"></div>";
+    //                        strs += "<div class=\"brush-con fix\">";
+    //                        strs += "<div class=\"brush-header fix\"><a class=\"cancel-btn\">取消</a>筛选</div>";
+    //                        strs += "<div class=\"brush-list fix\">";
+
+    //                        //原产地
+    //                        if (resultData.importSources.length > 0) {
+    //                            strs += "<ol class=\"fix\">";
+    //                            strs += "<h4>原产地</h4>";
+    //                            strs += "<div class=\"fix\">";
+    //                            for (var i = 0; i < resultData.importSources.length; i++) {
+    //                                var importinfo = resultData.importSources[i];
+
+    //                                strs += "<a ImportSourceId=" + importinfo.ImportSourceId + " name=\"ImportSourceId\">" + importinfo.CnArea + "</a>";
+    //                            }
+    //                            strs += "</div>";
+    //                            strs += "</ol>";
+    //                        }
+    //                        //品牌
+    //                        if (resultData.brands.length > 0) {
+    //                            strs += "<ol class=\"fix\">";
+    //                            strs += "<h4>品牌</h4>";
+    //                            strs += "<div class=\"fix\">";
+    //                            for (var i = 0; i < resultData.brands.length; i++) {
+    //                                var brandInfo = resultData.brands[i];
+
+    //                                strs += "<a BrandId=" + brandInfo.BrandId + "><img src=" + brandInfo.Logo + " name=\"BrandId\"/>" + brandInfo.BrandName + "</a>";
+    //                            }
+    //                            strs += "</div>";
+    //                            strs += "</ol>";
+    //                        }
+    //                        //分类
+    //                        for (var i = 0; i < resultData.Categorys.length; i++) {
+    //                            if (resultData.Categorys[i]["CategoryId"] == categoryId) {
+    //                                tempdepth = resultData.Categorys[i]["Depth"];
+    //                                continue;
+    //                            }
+    //                        }
+    //                        if (tempdepth == 1) {
+    //                            for (var i = 0; i < resultData.Categorys.length; i++) {
+    //                                var categoryInfo = resultData.Categorys[i];
+    //                                if (categoryInfo.Depth == 2 && categoryInfo.ParentCategoryId == categoryId) {
+    //                                    strs += "<ol class=\"fix\">";
+
+    //                                    var tmpCid = categoryInfo.CategoryId;
+    //                                    strs += " <h4>" + categoryInfo.Name + "</h4>";
+    //                                    if (!categoryInfo.HasChildren) {
+    //                                        continue;
+    //                                    }
+    //                                    strs += "<div class=\"fix\">";
+    //                                    for (var j = 0; j < resultData.Categorys.length; j++) {
+    //                                        var tempcategoryInfo = resultData.Categorys[j];
+    //                                        if (tempcategoryInfo.Depth == 3 && tempcategoryInfo.ParentCategoryId == tmpCid) {
+    //                                            strs += "<a CategoryId=" + tempcategoryInfo.CategoryId + " name=\"CategoryId\">" + tempcategoryInfo.Name + "</a>";
+    //                                        }
+    //                                    }
+    //                                    strs += "</div></ol>";
+    //                                    isshow = true;
+    //                                }
+    //                            }
+    //                        } else if (tempdepth == 2) {
+    //                            for (var i = 0; i < resultData.Categorys.length; i++) {
+    //                                var categoryInfo = resultData.Categorys[i];
+    //                                if (categoryInfo.Depth == 2 && categoryInfo.CategoryId == categoryId) {
+    //                                    strs += "<ol class=\"fix\">";
+
+    //                                    var tmpCid = categoryInfo.CategoryId;
+    //                                    strs += " <h4>" + categoryInfo.Name + "</h4>";
+    //                                    if (!categoryInfo.HasChildren) {
+    //                                        continue;
+    //                                    }
+    //                                    strs += "<div class=\"fix\">";
+    //                                    for (var j = 0; j < resultData.Categorys.length; j++) {
+    //                                        var tempcategoryInfo = resultData.Categorys[j];
+    //                                        if (tempcategoryInfo.Depth == 3 && tempcategoryInfo.ParentCategoryId == tmpCid) {
+    //                                            strs += "<a CategoryId=" + tempcategoryInfo.CategoryId + " name=\"CategoryId\">" + tempcategoryInfo.Name + "</a>";
+    //                                        }
+    //                                    }
+    //                                    strs += "</div></ol>";
+    //                                    isshow = true;
+    //                                }
+    //                            }
+    //                        } else if (tempdepth == 3) {
+    //                            strs += "<ol class=\"fix\">";
+    //                            strs += "<div class=\"fix\">";
+    //                            for (var i = 0; i < resultData.Categorys.length; i++) {
+    //                                var categoryInfo = resultData.Categorys[i];
+    //                                if (categoryInfo.Depth == 3 && categoryInfo.ParentCategoryId == categoryId) {
+    //                                    strs += "<a CategoryId=" + categoryInfo.CategoryId + " name=\"CategoryId\">" + categoryInfo.Name + "</a>";
+    //                                } else if (categoryInfo.Depth == 3 && categoryInfo.CategoryId == categoryId) {
+    //                                    strs += "<a CategoryId=" + categoryInfo.CategoryId + " name=\"CategoryId\">" + categoryInfo.Name + "</a>";
+    //                                }
+    //                                isshow = true;
+    //                            }
+    //                            strs += "</div></ol>";
+    //                        }
+
+    //                        //
+    //                        //strs += "</div><div class=\"brush-btns\"> <a class=\"gray-btn ok-btn\">确定</a><a class=\"cancel-btn\">取消</a> </div>";
+    //                        strs += "</div>";
+    //                        strs += "<div class=\"brush-footer fix\"><div class=\"brush-btns\"><a class=\"reset-btn\">重置</a><a class=\"cancel-btn ok-btn\">确定</a></div></div>";
+    //                        strs += "</div>";
+
+    //                    }
+
+    //                    //
+    //                    if (!isshow) {
+    //                        strs = "";
+    //                        $("#liabrush").attr("style", "display:none");
+    //                    }
+    //                    $("#brush-wrap").html(strs);
+    //                }
+    //            }
+    //        }
+    //    });
+    //}
+
+    function supProsearchs() {
+        var key = $("#txtKeywords").val();
+        var supplierId = getParam('SupplierId');
+        var url = "/Vshop/SupProductList.aspx?supplierId=" + supplierId + "&keyWord=" + encodeURI(key);
+        window.location.href = url;
+    }
+
+</script>
+<hi:common_vfooter runat="server" />

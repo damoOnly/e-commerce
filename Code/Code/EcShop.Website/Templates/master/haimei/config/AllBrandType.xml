@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root CategoryNum="0">
+  <Menu Id="1" Title="食品保健" DisplaySequence="1" Category="2" Url="" Where="1000000,,,,," Visible="true" />
+  <Menu Id="2" Title="美妆洗护" DisplaySequence="1" Category="2" Url="" Where="8000038,,,,," Visible="true" />
+  <Menu Id="3" Title="母婴用品" DisplaySequence="1" Category="2" Url="" Where="5000000,,,,," Visible="true" />
+  <Menu Id="4" Title="家居日用" DisplaySequence="1" Category="2" Url="" Where="8000040,,,,," Visible="true" />
+</root>

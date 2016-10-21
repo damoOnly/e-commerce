@@ -1,0 +1,37 @@
+﻿<%<Hi:Common_Header runat="server"  />%>
+<form runat="server">
+<div class="main">	
+	<!--页面位置导航_start hyh-->
+     <h5  class="buy_qq_notice" style="display:none"> <b ><% <asp:Literal runat="server" ID="litMsg" /> %></b>  您当前请求的页面或对象不存在</h5>
+     <div class="msg-error">     	
+        <div class="message">        	
+            <!--<div class="no-data fix">
+            	<h6>您访问的商品或者不存在</h6>
+                <p>您可以：</p>
+                <p>该宝贝可能已经下架，您可以选择其他商品</p>
+                <p>在顶部搜索框重新输入关键词搜索</p>
+                <p>为你推荐一些你可能喜欢的内容，将在<span class="waring" id="time">8</span>秒后自动跳转</p>
+                <div class="g-btns">
+                    <a class="g-btn" href="../../../user/Favorites.aspx">去我的收藏</a><a class="g-btn red-btn" href="../../../Default.aspx">去首页逛逛</a>
+                </div>
+            </div>--> 
+            <div class="no-data fix">
+            	<p>抱歉，</p>
+                <p>没有找到你访问的商品</p>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+<script type="text/javascript">
+	/*var time = 8;
+	var inter = window.setInterval(function(){
+		time--;
+		$("#time").text(time);
+		if(time <= 0){
+			window.location.href = "../../../Default.aspx";
+		}
+	},1000);*/
+</script>
+<%<Hi:Common_Footer runat="server"   />%>
+

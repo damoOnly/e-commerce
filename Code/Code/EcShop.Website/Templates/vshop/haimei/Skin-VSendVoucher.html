@@ -1,0 +1,17 @@
+﻿<hi:common_vheader runat="server" />
+<div class="pbox">
+    <hi:vvoucherimage runat="server" />
+</div>
+<script type="text/javascript">
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    });
+</script>
+<hi:common_vfooter runat="server" />
+

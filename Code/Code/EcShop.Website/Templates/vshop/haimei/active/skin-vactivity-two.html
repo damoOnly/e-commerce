@@ -1,0 +1,59 @@
+﻿<hi:common_vheader runat="server" />
+<div style="background:#8f3eda;">
+    <div><img src="../images/active/vactban-two.jpg" width="100%" /></div><!--banner--->
+    <div class="activewrap">
+        <hi:VCommon_ActivityShow ID="list_Common_ActivityShow" Topicids="56,57,58,64,65" MaxNum="50" skinname="/Tags/skin-Common_GoodsList_VActiveShow.ascx" runat="server" />
+    </div>
+</div>
+<input type="hidden" value="" runat="server" clientidmode="static" id="txtTotal" />
+<footer class="sku-wrap" id="sku-wrap">
+    <section class="sku-con" id="sku-con">
+        <div class="sku-inner">
+            <div class="sku-info clearfix">
+                <img id="control_item_info_img" width="50" height="50" src="/Templates/vshop/haimei/images/lazy.png"> <span class="price">¥<span id="spSalaPrice">0.00</span></span>
+                <div class="sku-close">&nbsp;</div>
+            </div>
+            <div class="control-wrap">
+                <input type="hidden" runat="server" id="hidden_skus" clientidmode="Static" />
+                <div class="specification-box">
+                    <div class="skus-info"></div>
+                    <div class="buy-num">
+                        <div class="text-muted">购买数量</div>
+                        <div class="list clearfix">
+                            <div class="goods-num clearfix">
+                                <div class="n-options clearfix">
+                                    <a class="op-btn reduce" id="spSub"><span></span></a> <a class="op-btn plus" id="spAdd"><span></span></a>
+                                    <div class="input-con">
+                                        <input type="tel" id="buyNum" class="form-control" value="1">
+                                    </div>
+                                </div>
+                                <div class="info font-s text-muted">（剩余可购买数量：<span id="spStock">3000</span>件）</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="control-btns"> <a class="btn btn-danger buy-btn" id="control-ok">确定</a> </div>
+    </section>
+</footer>
+<script src="/utility/vproduct.helper.js" type="text/javascript"> </script>
+<script src="/script/addcart.js" type="text/javascript"></script>
+<script src="/Utility/common.js" type="text/javascript"></script>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+    $(function () {
+        //若数量 大于等于1 则显示
+        $("span.num").each(function (index, element) {
+            var txt = parseInt($(this).text());
+            if (txt) {
+                $(this).show();
+            }
+        });
+
+    });
+</script>
+<hi:common_vfooter runat="server" />

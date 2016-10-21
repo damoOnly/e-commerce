@@ -1,0 +1,122 @@
+﻿
+<hi:common_vheader runat="server" />
+    <div class="page gray-page">
+    <section>
+    	<form id="form" role="form" class="pbox clearfix" runat="server">
+        <div class="sm-con mt10 pl10 pr10">
+            <dl class="sm-dl fix">
+            	<dt><span class="require">*</span>姓名：</dt>
+                <dd>
+                    <div class="input-con">     
+                    	<%<asp:TextBox ID="txtRealName" runat="server" ClientIDMode="Static" class="inputbox" placeholder="填写你的姓名" />%> 
+                    </div>
+                </dd>
+            </dl>
+            
+            <!--<dl class="sm-dl fix">
+            	<dt></dt>
+                <dd>
+                    <div class="input-con">     
+                    	<%<asp:TextBox ID="txtUserName" runat="server" ClientIDMode="Static" class="inputbox dis-none" placeholder="" />%> 
+                    </div>
+                </dd>
+            </dl> -->           
+            
+             <dl class="sm-dl fix">
+             	<dt><span class="require">*</span>联系电话：</dt>
+                <dd>
+                    <div class="input-con"> 
+                    	<%<asp:TextBox ID="txtCellPhone" runat="server" ClientIDMode="Static" class="inputbox" placeholder="填写你的联系电话" />%>
+                    </div>
+                </dd>
+            </dl>
+            
+            <dl class="sm-dl fix">
+             	<dt><span class="require">*</span>邮箱：</dt>
+                <dd>
+                    <div class="input-con">
+                    	<%<asp:TextBox ID="txtEmail" runat="server" ClientIDMode="Static" class="inputbox" placeholder="请填写您的邮箱" />%>
+                         <!--<span id="txtEmail_succeed" class="dis-none">该邮箱可以使用</span>-->
+        				 <span id="txtEmail_error"></span>
+                    </div>
+                </dd>
+            </dl>
+            
+            
+            
+            <dl class="sm-dl fix">
+             	<dt>申请理由：</dt>
+                <dd>
+                    <div class="input-con">
+                    	<%<asp:TextBox ID="txtReferralReason" ClientIDMode="Static" runat="server" TextMode="MultiLine" class="textarea" />%>
+                    </div>
+                </dd>
+            </dl>             
+         </div>
+         
+         <div class="pt20 pl10 pr10 mb20 fix">
+                <input id="btnReferral" value="提交申请" type="button" class="red-btn" />
+            </div>
+            </form>
+     </section>
+</div>
+<script src="../../../Utility/validate/ValidateEmail.js"></script>
+<script type="text/javascript">
+    $(document).ready(function (e) {
+
+        //邮箱验证        
+        $("#txtEmail").jdValidate(validatePrompt.mail, validateFunction.mail, false, $.trim($('#txtUserName').val()));
+
+        $("#btnReferral").click(function (e) {
+            if ($("#txtRealName").val().trim().length == 0 || $("#txtCellPhone").val().trim().length == 0) {
+                alert_h("姓名或联系电话不能为空！"); return false;
+            }
+            if ($("#txtReferralReason").val().trim().length <= 0 || $("#txtReferralReason").val().trim().length >= 300) {
+                alert_h("请填写申请理由,字符控制在300字以内。"); return false;
+            }
+            if ($("#txtEmail").val().trim().length == 0 || $("#txtEmail").val().trim().length == 0) {
+                alert_h("邮箱不能为空！"); return false;
+            }
+            var data = {};
+            var realname = $("#txtRealName").val().trim();
+            var cellphone = $("#txtCellPhone").val().trim();
+            var reason = $("#txtReferralReason").val().trim();
+            var email = $("#txtEmail").val().trim();
+            data.RealName = realname;
+            data.CellPhone = cellphone;
+            data.ReferralReason = reason;
+            data.Email = email;
+               
+            //邮箱验证
+            var flag = validateFunction.FORM_validate($.trim($('#txtUserName').val()));
+            var timeout;
+            var fn = function () {
+                if ($("#txtEmail").attr("sta") == "2") {
+                    $.post("/api/VshopProcess.ashx?action=ReferralRegister", data, function (json) {
+                        if (json.success === true) {
+                            alert_h("提交成功", function () {
+                                location.reload();
+                            });
+                        }
+                        else {
+                            alert_h(json.msg);
+                        }
+                    });
+                }
+            }
+            if (flag) {
+                fn();
+            } else {
+                if (timeout) {
+                    window.clearTimeout(timeout);
+                }
+                timeout = window.setTimeout(function () {
+                    fn();
+                }, 500);
+                return false;
+            }
+        })
+    });
+</script>
+
+<Hi:Common_vFooter  runat="server" />

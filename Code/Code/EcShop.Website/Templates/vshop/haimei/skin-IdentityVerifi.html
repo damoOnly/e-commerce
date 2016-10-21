@@ -1,0 +1,152 @@
+﻿<hi:common_vheader runat="server" />
+<style>
+    .box{position:absolute;width:600px;left:50%;height:auto;z-index:100;background-color:#fff;border:1px #ddd solid;padding:1px;}
+    .box h2{height:25px;font-size:14px;background-color:#aaa;position:relative;padding-left:10px;line-height:25px;color:#fff;}
+    .box h2 a{position:absolute;right:5px;font-size:12px;color:#fff;}
+    .box .list{padding:10px;}
+    .box .list li{height:24px;line-height:24px;}
+    .box .list li span{margin:0 5px 0 0;font-family:"宋体";font-size:12px;font-weight:400;color:#ddd;}
+    .showbtn {font:bold 24px '微软雅黑';}
+    #bg{background-color:#666;position:absolute;z-index:99;left:0;top:0;display:none;width:100%;height:100%;opacity:0.5;filter: alpha(opacity=50);-moz-opacity: 0.5;}
+</style>
+<div class="page gray-page">
+    <section>
+        <div class="sm-con mt10 pl10 pr10">
+            <dl class="sm-dl fix">
+                <dt>真实姓名：</dt>
+                <dd>
+                    <div class="input-con">
+                        <input id="txtRealName" type="text" runat="server" clientidmode="Static" class="inputbox" placeholder="请填写您的姓名" />
+                    </div>
+                </dd>
+            </dl>
+            <dl class="sm-dl fix">
+                <dt>身份证号码：</dt>
+                <dd>
+                    <div class="input-con">
+                        <input id="txtIdentityCard" type="text" runat="server" clientidmode="Static" class="inputbox" placeholder="请填写您的身份证号码" />
+                    </div>
+                </dd>
+            </dl>
+        </div>
+        <div class="sm-con mt10 pl10 pr10">
+            <div class="sm-con mt10 pl10 pr10 pt10 pb10" style="border:1px solid #aab2bd;background:#fff;border-radius:5px;">
+                <div style="background-image:url('/templates/vshop/haimei/resource/default/image/lg-logo.png');background-size:20px;background-position:center center;background-repeat:no-repeat;width:20px;height:20px;border-radius:20px;margin:0 auto;"></div>
+                <p style="color:#1690bf;text-align:center;">海美生活提醒您填写真实身份证号码</p>
+                <p>1.海关需对境外购物查验身份信息，错误信息将导致无法正常清关 。</p>
+                <p>2.身份证信息将加密报关，海美保证您的信息安全。</p>
+                <p>2.非大陆居民身份信息系统不能识别，无法完成清关。</p>
+            </div>
+        </div>
+        <div class="pt20 pl10 pr10 mb20 fix">
+            <button id="btnSetUserName" type="button" class="red-btn">提交认证</button>
+            <input type="hidden" runat="server"  id="hidd_Sumit" />
+        </div>
+    </section>
+</div>
+<div id="bg"></div>
+<div class="box" style="display:none; text-align:center">
+    认证中，请稍等...
+</div>
+<script src="../../../Utility/validate/ValidateEmail.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnSetUserName").bind("click", function () { SetUserName(); }); //设置新昵称
+    });
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+    function SetUserName()
+    {
+        var identityCard = $.trim($("#txtIdentityCard").val());
+        if (identityCard=="")
+        {
+            alert_h("身份证号码不能为空！");
+            return false;
+        }
+        if (identityCard && identityCard != '')
+        {
+            var check = /^[1-9]\d{7}((0[1-9])|(1[0-2]))((0[1-9])|([1-2][0-9])|(3[0-1]))\d{3}$/.test(identityCard);
+            if (!check) {
+                check = /^[1-9]\d{5}[1-9]\d{3}((0[1-9])|(1[0-2]))((0[1-9])|([1-2][0-9])|(3[0-1]))\d{3}(\d|x|X)$/.test(identityCard);
+            }
+            if (!check) {
+                alert_h("身份证格式填写错误");
+                return false;
+            }
+        }
+        var realName = $.trim($('#txtRealName').val());
+        if (realName != '') {
+            if (realName.indexOf('先生') >= 0 || realName.indexOf('小姐') >= 0) {
+                alert_h("真实姓名不能包含‘先生’或者‘小姐’,请填写真实姓名");
+                return false;
+            }
+        }
+        //邮箱验证
+        var timeout;
+        $.ajax({
+            url: "/API/VshopProcess.ashx",
+            type: 'post', dataType: 'json', timeout: 10000,
+            data: { action: "SetUserName", userName: "", IdentityCard: identityCard, RealName: realName, CellPhone:"", QQ: "", Email:"" },
+            beforeSend: function ()
+            {
+                $("#bg").css({
+                    display: "block", height: $(document).height()
+                });
+                var $box = $('.box');
+                $box.css({
+                    //设置弹出层距离左边的位置
+                    left: ($("body").width() - $box.width()) / 2 - 20 + "px",
+                    //设置弹出层距离上面的位置
+                    top: ($(window).height() - $box.height()) / 2 + $(window).scrollTop() + "px",
+                    display: "block"
+                });
+            },
+            complete: function () {
+                $("#bg,.box").css("display", "none");
+            },
+            success: function (resultData)
+            {
+                if (resultData.Status == "OK")
+                {
+                    var stype = GetQueryString("type");
+                    if (stype != null && stype == "submit") {
+                        location.href = "/VShop/SubmmitOrder.aspx?buyAmount=" + GetQueryString("buyAmount") + "&productSku=" + GetQueryString("productSku") + "&from=" + GetQueryString("from") + "&storeId=";
+                        return;
+                    }
+                    alert_h("修改个人信息成功");
+                    location.href = "/VShop/MemberCenter.aspx";
+                }
+                else {
+                    if (resultData.IsVerify == "IsNotLog")
+                    {
+                        alert_h("登录信息为空，请先绑定手机！");
+                        location.href = "BindPhoneNumber.aspx";
+                    } else if (resultData.IsVerify == "UNPASS") {
+                        alert_h("实名认证失败, 请确认姓名和身份证是否一致，今天还有" + resultData.mscount + "次认证机会！");
+                    } else if (resultData.IsVerify == "SendMax") {
+                        alert_h("您今天认证次数超过" + resultData.mscount + "次, 不能再认证！");
+                    } else if (resultData.IsVerify == "PASS") {
+                        alert_h("个人信息修改失败，请重试！");
+                    } else if (resultData.IsVerify == "IsNotVerify") {
+                        alert_h("存在已认证的身份证号码，不能保存!");
+                    }
+                    else {
+                        alert_h("保存失败，请重试！");
+                    }
+                }
+            }
+        });
+    }
+
+   
+</script>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+<hi:common_vfooter runat="server" />

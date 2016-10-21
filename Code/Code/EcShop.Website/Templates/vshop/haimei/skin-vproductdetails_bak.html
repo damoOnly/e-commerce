@@ -1,0 +1,359 @@
+﻿<hi:common_vheader runat="server" />
+<link rel="stylesheet" type="text/css" href="/templates/vshop/haimei/resource/default/css/lib/swiper.min.css"/>
+<div class="page gray-page">
+    <header class="bort-none"> <a class="pd-back-btn" id="back-btn"></a> </header>
+    <section>        
+        <div class="banner de-banner">
+            <div class="swiper-container" id="banner">
+              <div class="swiper-wrapper">
+                  <hi:vshoptemplatedrepeater id="rptProductImages" templatefile="/Tags/skin-Common_Slide.ascx" runat="server" />
+              </div>
+            </div>           
+            <div class="slider-bar"></div>
+        </div>
+        <div class="pro-wrap fix">
+                <div class="pro-item fix">
+                   <Hi:HiImage runat="server" ID="imgIcon" CssClass="imporsourceType-img"/>
+            		<span class="source-area"><asp:Literal runat="server" id="litCnArea" /></span>
+                </div>
+                <div class="pro-item fix">
+                    <div class="pro-name">
+                        <asp:Literal runat="server" id="litProdcutName" />
+                        <span class="pro-intr">
+                            <asp:Literal runat="server" id="litShortDescription" />
+                        </span>
+                    </div>
+                </div>
+                <div class="pro-item fix">
+                    	<div class="lh30 fix"><span class="pro-price">￥<span id="spSalaPrice"><asp:Literal runat="server" id="litSalePrice" /></span></span><span class="pro-uprice"><asp:Literal runat="server" id="litMarketPrice" /></span><span class="pro-sales">已售<asp:Literal runat="server" id="litSoldCount" />件</span><span class="dis-none"> <hi:productpromote runat="server" isanonymous="true" isvshop="true" /><%<Hi:UserProductReferLabel txtClass="text-muted" PriceClass="label label-danger" ID="lbUserProductRefer" runat="server" />%></span></div>
+                        <div class="pro-rate">
+                        	<p>温馨提示：</p>
+                            <p>本商品试用税率为<span><asp:Literal runat="server" id="litTaxRate" /></span>%，若订单总税额&le;50元则免征</p>
+                        </div>
+                    </div>
+                <div class="pro-item fix">
+                    	<label class="gnum-label">购买数量：</label>
+                        <div class="ovh">
+                            <div class="goods-num fix">               
+                                <div class="n-options fix">
+                                    <a class="op-btn reduce" id="spSub"><span></span></a> <a class="op-btn plus" id="spAdd"><span></span></a>
+                                    <div class="input-con">                                 
+                                        <input type="tel" id="buyNum" class="form-control" value="1" />
+                                    </div>
+                                </div>
+                                <div class="info">
+                                    （库存：<span id="spStock"><asp:Literal runat="server" id="litStock" /></span>件）<input type="hidden" runat="server" id="hidden_BuyCardinality" clientidmode="Static" />
+                                    <div class="dis-none"><asp:Literal runat="server" id="litBuyCardinality" /></div>
+                                </div>
+                            </div>  
+                        </div> 
+                        <p class="gnum-label">配送方式：<asp:Literal runat="server" id="litShipping" /></p>                    
+                    </div>   
+                <div class="pro-item pro-sele fix">
+                        <div class="fix">
+                        	<hi:common_skuselector id="skuSelector" runat="server" />
+                            <div class="dis-none">
+                                <table class="table" id="attrtable">
+                                    <tbody>
+                                        <hi:common_expandattributes id="ExpandAttributes" runat="server" />
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>   
+            </div>
+        <div class="shop-inf fix">
+        	<!--<a class="shop-link fix"><span>进入店铺</span><img src="/templates/vshop/haimei/resource/default/image/temp/shop.png"/>爱他美旗舰奶粉店</a>-->
+            <asp:Literal runat="server" id="litSupplier" />
+            <!--<div class="shop-des fix">
+            	<div class="shop-sbm">
+                	<ol>
+                    	<label>描术：</label><span>4.8</span>                        
+                    </ol>
+                    <ol>
+                        <label>好评：</label><span>4.8</span>
+                    </ol>
+                    <ol>
+                        <label>物流：</label><span>4.8</span>
+                    </ol>
+                </div>
+                <div class="ovh pt15 fix">
+            	<a class="shop-op"><span class="fav-shop"></span><label>收藏店铺</label></a>
+                <a class="shop-op"><span>2698</span><label>所有商品</label></a>
+                <span class="shop-op"><span>5000</span><label>收藏人数</label></span>
+                </div>
+            </div>-->
+        </div>
+        <div class="pro-hp">
+            <a href="javascript:;" onclick="javascript:location.href='ProductReview.aspx'+location.search;"><span class="num"><asp:Literal runat="server" id="litReviewsCount" /></span>商品评价</a>
+        </div>
+        <div class="pro-wrap mt10">
+            <div class="pro-des-wrap">
+                <h5>商品属性</h5>                    
+                <div class="pro-des-con"> <asp:Literal runat="server" id="litDescription" /> </div>
+            </div>
+        </div>
+    </section>
+</div>
+<div class="buy-tip" id="buy-tip">您需要选择规格才可以继续购买</div>
+<div class="btns-fixed">    
+    <a href="ShoppingCart.aspx" class="btn-fr">
+        <i class="bn-icon cart-icon"><em class="cf-count" id="cart-num"></em></i>
+         <label>去购物车</label>
+    </a>
+    <div class="btn-fl">
+        <a id="addF" href="javascript:AddFavorite();" class=""><span class="bn-icon add-fav"></span><label>加入收藏</label></a>
+        <a id="addedF" href="javascript:void(0);" class="hide has-fav"><span class="bn-icon has-fav-icon"></span><label>已收藏</label></a>
+    </div> 
+	<div class="btn-gh">
+        <button id="addcartButton" type="shoppingBtn" onclick="AddProductToCart()" class="shopping-cart">加入购物车</button>
+        <button id="buyButton" type="shoppingBtn" class="buy-btn">立刻购买</button>
+	</div>		
+    <div class="scrolltop glyphicon glyphicon-chevron-up" id="scrolltop"></div>   
+</div>
+
+<input type="hidden" runat="server" id="hidden_skus" clientidmode="Static" />
+<input type="hidden" runat="server" clientidmode="Static" id="litHasCollected" />
+
+
+<script type="text/javascript" src="/script/swipe.js"></script> 
+<script type="text/javascript">
+	  var mySwiper = new Swiper('#banner',{
+		  autoplay:5000,
+		  speed:200,
+		  width:window.innerWidth,
+		  autoplayDisableOnInteraction:false,
+		  visibilityFullFit : true,
+		  loop:true,
+		  onClick: function(swiper){
+			  var url = $(swiper.clickedSlide).attr("data-src");
+			  if(url){
+				 window.location = url;
+			  }
+		  },
+		  pagination : '.slider-bar',
+		  paginationClickable :true
+	  });
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+    function AddFavorite() {
+        var data = {};
+        data.ProductId = getQueryString("productId");
+
+        $.post("/api/VshopProcess.ashx?action=AddFavorite", data, function (json) {
+            if (json.success === true) {
+                $("#imgFavorite").hide().css('display', 'block').addClass('select');
+                $('#addF').addClass('hide');
+                $('#addedF').removeClass('hide');
+                $('#litHasCollected').val(json.favoriteId);
+                alert_h('收藏成功！');
+
+            }
+            else {
+                alert_h('您当前还没有登录！', function () {
+                    location.replace('/vshop/MyFavorites.aspx?returnUrl=/vshop/ProductDetails.aspx?productId=' + getParam('productId'));
+                });
+            }
+        });
+    }
+    function DeleteFavorite() {
+        var favoriteId = $('#litHasCollected').val();
+        if (favoriteId == '0') {
+            return;
+        }
+        var data = { favoriteId: favoriteId };
+        $.post("/api/VshopProcess.ashx?action=DelFavorite", data, function (json) {
+            if (json.success === true) {
+                //$("#imgFavorite").hide().css('display', 'block').addClass('select');
+                $('#addF').removeClass('hide');
+                $('#addedF').addClass('hide');
+                alert_h('取消收藏成功！');
+            }
+            else {
+                alert_h('您当前还没有登录！', function () {
+                    location.replace('/vshop/MyFavorites.aspx?returnUrl=/vshop/ProductDetails.aspx?productId=' + getParam('productId'));
+                });
+            }
+        });
+    }
+    $(function () {
+        if ($('#litHasCollected').val() != "0") {
+            $('#addF').addClass('hide');
+            $('#addedF').removeClass('hide');
+        }
+
+        var data = {};
+        data.ProductId = getQueryString("productId");
+
+        $.post("/api/VshopProcess.ashx?action=CheckFavorite", data, function (json) {
+            if (json.success === true) {
+                $("#imgFavorite").hide().css('display', 'block').addClass('select');
+
+            }
+        });        
+        //包含多个规格时，首先禁用购买和加入购物车按钮
+        if ($(".SKUValueClass").length > 0) {
+            disableShoppingBtn(true);
+        }
+
+        //点击分享，显示分享图标，在点击下隐藏分享图标
+        $(".share-btn").on("click",function () {
+            $("#displayShareDiv").toggleClass("share-show");
+        });
+		//存在规格 则显示 规格
+		if($(".SKUValueClass").length){
+			$(".pro-sele").show();
+		}
+		//点击 返回
+		$("#back-btn").bind("click",function(){
+			window.history.go(-1);
+		})
+    })
+    if ($("#attrtable tr").length <= 0) {
+        $("#attrtable").parent().hide();
+    }
+	//修复样式
+    $("body").addClass("detail-body");
+</script> 
+<script src="/utility/vproduct.helper.js" type="text/javascript"> </script> 
+<script src="/script/swipe.js"></script> 
+<script src="/utility/productShare.js?v=20150918"></script> 
+<!--<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>--> 
+<script type="text/javascript">
+    //保存 cookies
+    function setMyCookie(key, value) {
+        if (arguments.length == 1) {
+            if (window.localStorage) {
+                return localStorage[key];
+            } else {
+                var objValue = null;
+                var arrStr = document.cookie.split("; ");
+                for (var i = 0; i < arrStr.length; i++) {
+                    var temp = arrStr[i].split("=");
+                    if (temp[0] == key) {
+                        objValue = unescape(temp[1]);
+                        break;
+                    }
+                }
+                return objValue;
+            }
+        } else {
+            if (window.localStorage) {
+                if (typeof value != "string") {
+                    value = JSON.stringify(value);
+                }
+                localStorage[key] = value;
+            } else {
+                var str = key + "=" + escape(value);
+                var expires = 0;
+                if (expires > 0) {//为0时不设定过期时间，浏览器关闭时cookie自动消失
+                    var date = new Date();
+                    var ms = expires * 3600 * 1000;
+                    date.setTime(date.getTime() + ms);
+                    str += "; expires=" + date.toGMTString();
+                }
+                document.cookie = str;
+            }
+        }
+    }
+
+    //浏览页面之后,记录浏览历史记录
+    var url = document.location.href;
+    var productId = $("#hiddenSkuId").val().split('_')[0];
+
+    function BrowerHistory() {
+        //分享操作
+        $.ajax({
+            url: "/API/VshopProcess.ashx",
+            type: 'post', dataType: 'json', timeout: 10000,
+            data: { action: "GetBrowserPDetailsHistory", Url: url, PlatType:2, ProductId: productId },
+            success: function (resultData) {
+                if (resultData.Status != "NO") {
+                    //成功 设值
+                    setMyCookie("DataCacheWX_UserScanHistroysHtml", resultData);
+
+                    //取值，setMyCookie("DataCacheWX_UserScanHistroysHtml");
+                }
+                else {
+                    //失败
+                }
+            }
+        });
+    }
+
+    $(function () {
+        //浏览历史记录
+        BrowerHistory();
+    });
+    //分享操作（分享类型：1：分享到微信朋友圈 2：分享到QQ空间 3：分享到腾讯微博  4：分享到新浪微博）
+    /*var content = '好想与你一起分享，赶快和朋友们推荐你心仪的宝贝吧！';
+    var link = document.location.href;
+    var productId = (link.split('?')[1]).split('=')[1];
+
+    function ShareOperator(shareType) {
+        alert('分享开始');
+        //分享操作
+        $.ajax({
+            url: "/API/VshopProcess.ashx",
+            type: 'post', dataType: 'json', timeout: 10000,
+            data: { action: "onMenuShare", ShareContent: content, Link: link, ShareType: shareType, ProductId: productId },
+            success: function (resultData) {
+                alert("test, 请重试");
+                if (resultData.Status == "OK") {
+                    alert("分享成功");
+                }
+                else if (resultData.Status == "-1") {
+                    alert("分享失败，请重试");
+                }
+                else {
+                    alert("分享失败, 请重试");
+                }
+            },
+            complete: function () {
+                alert("11");
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(textStatus);
+                alert(errorThrown);
+            },
+
+        });
+        alert('分享结束');
+    }
+
+    function geturl(evt) {
+        //alert('用户分享的网页是：' + evt.data.url);
+        //alert('用户将当前网页分享到了：' + evt.data.service);
+    }
+
+    function getservice(evt) {
+        //分享到的媒体
+        var share = evt.data.service;
+        switch (share) {
+            case "weixin":
+                ShareOperator(1);
+                break;
+            case "qzone":
+                ShareOperator(2);
+                break;
+            case "tqq":
+                ShareOperator(3);
+                break;
+            case "tsina":
+                ShareOperator(4);
+                break;
+        }
+    }
+
+    var jiathis_config = {
+        summary: $(".name").text(),
+        title: content,
+        shortUrl: false,
+        hideMore: false,
+        data_track_clickback: true,
+        evt: { "share": "getservice" }
+    }*/   
+</script> 

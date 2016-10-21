@@ -1,0 +1,454 @@
+﻿<%<Hi:Common_Header runat="server"  SkinName="/ascx/tags/Skin-Common_Header3.ascx"/>%>
+<!--<div id="main1" class="main">
+<div class="tqj"></div>
+<div class="container articleshelp">
+  <div class="cssleft">
+  <h6><img src="/images/process/bzzx.gif" width="182" height="45" /></h6>
+  <div class="csslist">
+
+  </div>
+  </div>
+  <div class="cssright">
+      <div class="cssright_h1"><a href="url:home">首页</a> > 帮助中心 </div>
+    <ul class="cssborder">
+      	<%<Hi:ThemedTemplatedRepeater ID="rptHelps" runat="server" TemplateFile="/ascx/tags/Common_Comment/Skin-Common_HelpCenter_Help.ascx"  />%>
+    </ul>
+    <div class="csspage">            <div class="page">
+                           <%<UI:Pager runat="server" ShowTotalPages="true" ID="pager" />%>
+                </div></div>
+  </div>
+</div>
+</div>-->
+<div class="crum">
+    当前位置：<span><a href="/">首页</a></span>&gt;<span><a href="/Helps.aspx">帮助中心</a></span><span>
+    </span>
+</div>
+<div class="helps-main">
+	<div class="help-menu">
+    	<div class="help-menulist">
+        <h2>帮助中心</h2>
+		<%<Hi:Common_HelpCategory TemplateFile="/ascx/tags/Common_Comment/Skin-Common_HelpCenter_Category.ascx" runat="server"  />%>
+<!--         	<dl class="selected">
+            	<dt><i></i><span>新手指南</span></dt>
+                <dd class="show">
+                	<ul class="help-submenu">
+                    	<li><a>注册新用户</a></li>
+                        <li><a>帐号密码</a></li>
+                        <li><a>买家入门</a></li>
+                        <li><a>购物流程</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+            	<dt><i></i><span>海美学堂</span></dt>
+                <dd>
+                	<ul class="help-submenu">
+                    	<li><a>海美学堂</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+            	<dt><i></i><span>我的海美</span></dt>
+                <dd>
+                	<ul class="help-submenu">
+                    	<li><a>我的海美</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+            	<dt><i></i><span>支付方式</span></dt>
+                <dd>
+                	<ul class="help-submenu">
+                    	<li><a>支付方式</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+            	<dt><i></i><span>关于配送</span></dt>
+                <dd>
+                	<ul class="help-submenu">
+                    	<li><a>关于配送</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+            	<dt><i></i><span>货物验收</span></dt>
+                <dd>
+                	<ul class="help-submenu">
+                    	<li><a>货物验收</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+            	<dt><i></i><span>交易安全</span></dt>
+                <dd>
+                	<ul class="help-submenu">
+                    	<li><a>交易安全</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+            	<dt><i></i><span>掌上海美</span></dt>
+                <dd>
+                	<ul class="help-submenu">
+                    	<li><a>掌上海美</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+            	<dt><i></i><span>常见问题</span></dt>
+                <dd>
+                	<ul class="help-submenu">
+                    	<li><a>常见问题</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+            	<dt><i></i><span>售后服务</span></dt>
+                <dd>
+                	<ul class="help-submenu">
+                    	<li><a>售后服务</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+            	<dt><i></i><span>联系客服</span></dt>
+                <dd>
+                	<ul class="help-submenu">
+                    	<li><a>联系客服</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+            	<dt><i></i><span>服务条款</span></dt>
+                <dd>
+                	<ul class="help-submenu">
+                    	<li><a>服务条款</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+            	<dt><i></i><span>联系海美</span></dt>
+                <dd>
+                	<ul class="help-submenu">
+                    	<li><a>联系海美</a></li>
+                    </ul>
+                </dd>
+            </dl> -->
+        </div>
+    </div>
+    <div class="help-con">
+    	<div class="h-module">
+        	<div class="fix">
+                <div class="cs-img"></div>
+                <div class="cs-search">                	
+                    	<div class="cs-search-box fix">
+                            <div class="cs-search-btn">
+                                <input type="button" onclick="SearchHelp();" value="" class="cs-submit"/>
+                            </div>
+                            <div class="cs-search-input">
+                                <input id="searchcontent" type="text"/>
+                            </div>
+                        </div>                    
+                    <div class="hot-search"><label>热门搜索：</label><a href="HelpSearch.aspx?searchcontent=配送范围">配送范围</a><a href="HelpSearch.aspx?searchcontent=关税表">关税表</a><a href="HelpSearch.aspx?searchcontent=退换货">退换货</a><a href="HelpSearch.aspx?searchcontent=购物流程">购物流程</a><a href="HelpSearch.aspx?searchcontent=新手引导">新手引导</a><a href="HelpSearch.aspx?searchcontent=海美客服">海美客服</a>
+                    </div>
+                </div>
+                <div class="cs-hot">
+                	<p>海美客服热线</p>
+                    <div class="hot-line">400-663-9898</div>
+                </div>
+            </div>
+        </div>
+        <div class="h-module">
+        	<h3 class="h-module-tit">常用自助服务</h3>
+            <div class="service-list">
+            	<ul class="fix">
+                	<li>
+                        <a href="/user/UserOrders.aspx" class="h-m fix">
+                            <span class="h-cir"><em class="s1"></em></span>
+                            <span  class="h-con">
+                                <span class="ser-tit">查询订单 </span>
+                                <span>快速查看订单详情、配送进度、确认收货等</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="h-m fix">
+                            <span class="h-cir"><em class="s2"></em></span>
+                            <span class="h-con">
+                                <span class="ser-tit">我要催单</span>
+                                <span>催发货、催配送、1小时快速答复</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/helpItem.aspx?helpid=40" class="h-m fix">
+                            <span class="h-cir"><em class="s3"></em></span>
+                            <span class="h-con">
+                                <span class="ser-tit">配送服务查询</span>
+                                <span>查看您所在地址支持的配送服务类型和时效</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/helpItem.aspx?helpid=34" class="h-m fix">
+                            <span class="h-cir"><em class="s4"></em></span>
+                            <span class="h-con">
+                                <span class="ser-tit">查询售后政策</span>
+                                <span>查看退换货/维修规则、处理流程</span>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="/user/UserOrders.aspx?orderStatus=3" class="h-m fix">
+                            <span class="h-cir"><em class="s5"></em></span>
+                            <span class="h-con">
+                                <span class="ser-tit">申请退换货</span>
+                                <span>快速提交退换货/维修申请查看处理进度、退款记录</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/user/MyAccountSummary.aspx" class="h-m fix">
+                            <span class="h-cir"><em class="s6"></em></span>
+                            <span class="h-con">
+                                <span class="ser-tit">查询余额</span>
+                                <span>查询账户余额、消费记录、退款明细、余额充值</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/user/UserOrders.aspx?orderStatus=1" class="h-m fix">
+                            <span class="h-cir"><em class="s7"></em></span>
+                            <span class="h-con">
+                                <span class="ser-tit">取消订单</span>
+                                <span>申请取消订单、终止发货（限自营商品）</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="mr0">
+                        <a href="/user/MyAccount.aspx" class="h-m fix">
+                            <span class="h-cir"><em class="s8"></em></span>
+                            <span class="h-con">
+                                <span class="ser-tit">账户安全</span>
+                                <span>修改密码、绑定手机、提高账户安全等</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="h-column">
+        	<h3>热门问题</h3>
+            <div class="tab-wrap">
+                <div class="tab-header">
+                	<ul class="fix">
+                    	<li class="selected"><span>购买类</span><span class="hc-trangle"></span></li>
+                        <li><span>支付类</span><span class="hc-trangle"></span></li>
+                        <li><span>配送类</span><span class="hc-trangle"></span></li>
+                        <li><span>退换货</span><span class="hc-trangle"></span></li>
+                        <li><span>退款类</span><span class="hc-trangle"></span></li>
+                        <li><span>账户类</span><span class="hc-trangle"></span></li>
+                        <li class="mr0"><span>其他</span><span class="hc-trangle"></span></li>
+                    </ul>
+                </div>
+                <div class="tab-main">
+                	<div class="tab-con selected">
+                    	<div class="que-list fix">
+                        	<div class="que-aside">
+                            	<ul class="fix">
+                                    <li>
+                                        <a href="/helpItem.aspx?helpid=38">如何取消订单？</a>
+                                    </li>
+                                    <li>
+                                        <a href="/helpItem.aspx?helpid=38">为什么有些订单需要提供身份证信息？</a>
+                                    </li>
+                                    <li>
+                                        <a href="/helpItem.aspx?helpid=38">已经下单了，为什么还会缺货呢？</a>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                            <!--<div class="que-ext">
+                                <ul class="fix">
+                                    <li>
+                                        <a>买家申请退款后，卖家一直不处理退款怎么办？</a>
+                                    </li>                               
+                                    <li>
+                                        <a>天猫超市的配送与费用说明天猫卖家开具销售积分发票给天猫的</a>
+                                    </li>                                
+                                    <li>
+                                        <a>注意事项《tmall.com(天猫)规则》</a>
+                                    </li>
+                                </ul>
+                            </div>-->
+                        </div>
+                    </div>
+                    <div class="tab-con">
+                        <div class="que-list fix">
+                            <div class="que-aside">
+                                <ul class="fix">
+                                    <li>
+                                        <a href="/helpItem.aspx?helpid=38">我通过网上支付了，为什么订单显示未到款？</a>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                        
+                        </div>
+                    </div>
+                    <div class="tab-con">
+                        <div class="que-list fix">
+                            <div class="que-aside">
+                                <ul class="fix">
+                                    <li>
+                                        <a href="/helpItem.aspx?helpid=38">订单已提交成功，什么时候可以发货？</a>
+                                    </li>
+                                    <li>
+                                        <a href="/helpItem.aspx?helpid=38">签收时发现商品包装破损，该如何处理？</a>
+                                    </li>
+                                    <li>
+                                        <a href="/helpItem.aspx?helpid=38">非商品自身质量问题是否可以退货？</a>
+                                    </li>
+                                    <li>
+                                        <a href="/helpItem.aspx?helpid=38">
+                                            订单取消了，还想要，能不能再配送过来？
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="tab-con">
+                        <div class="que-list fix">
+                            <div class="que-aside">
+                                <ul class="fix">
+                                    <li>
+                                        <a href="/helpItem.aspx?helpid=38">我想办理退换货如何操作？</a>
+                                    </li>
+                                    <li>
+                                        <a href="/helpItem.aspx?helpid=38">什么样的情况会收取退换货的运费？</a>
+                                    </li>
+                                   
+
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="tab-con">
+                        <div class="que-list fix">
+                            <div class="que-aside">
+                                <ul class="fix">
+                                    <li>
+                                        <a href="/helpItem.aspx?helpid=38">订单取消后，什么时候退款？</a>
+                                    </li>
+                                    <li>
+                                        <a href="/helpItem.aspx?helpid=38">取消的订单使用了优惠券，退款如何操作的？</a>
+                                    </li>
+                                   
+
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="tab-con">
+                        <div class="que-list fix">
+                            <div class="que-aside">
+                                <ul class="fix">
+                                    <li>
+                                        <a href="/helpItem.aspx?helpid=38">如何增强账户的安全性？</a>
+                                    </li>
+                                    <li>
+                                        <a href="/helpItem.aspx?helpid=38">密码设置技巧有哪些？</a>
+                                    </li>
+                                    <li>
+                                        <a href="/helpItem.aspx?helpid=38">我把登录密码忘记了，怎么办呀？</a>
+                                    </li>
+
+
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="tab-con"></div>
+
+                    </div>
+            </div>
+        </div>
+        <div class="h-module">
+        	<h3 class="h-module-tit">联系我们</h3>
+            <div class="contact-list">
+            	<ul class="fix">
+                	<li>
+                    	<h5>电话客服</h5>
+                        <p>预约客服，主动回电 </p>
+                        <!--<a class="appoint-btn">点此预约</a>-->
+                        客服热线：<span class="hot-line">400-663-9898</span>
+
+                    </li>
+                    <li>
+                    	<h5>在线客服</h5>
+                        <p>在线解答您的咨询，高效、便捷 </p>
+                        <a href="tencent://message/?Menu=yes&amp;uin=2355731900&amp;Site=80fans&amp;Service=300&amp;sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a545b1714f9d45" class="appoint-btn">点此咨询</a>
+                    </li>
+                    <li>
+                    	<h5>提建议</h5>
+                        <p>对我们提出您宝贵的建议</p>
+                        <a class="appoint-btn" href="/LeaveComments.aspx">我要留言</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+	$(function(){
+		var theme = "selected";
+		/*//菜单伸缩
+		$(".helps-main .help-menulist dt").bind("click",function(){
+			var $dl = $(this).parent();
+			var time = 500;
+			$dl.toggleClass(theme);
+			$dl.find("dd").slideToggle(time);
+			$dl.siblings().removeClass(theme);
+			$dl.siblings().find("dd").slideUp(time);
+		})*/
+		//标签页 切换		
+		$(".tab-wrap .tab-header li").hover(function(e){
+			var index = $(this).index();
+			$(this).addClass(theme).siblings().removeClass(theme);
+			var $curItem = $(".tab-wrap .tab-main .tab-con").eq(index);
+			$curItem.addClass(theme).siblings().removeClass(theme);
+		})
+
+		$('#searchcontent').keydown(function (e) {
+		    if (e.keyCode == 13) {
+		        SearchHelp();
+		        return false;
+		    }
+		})
+
+	})
+
+	function SearchHelp() {
+	    var content = $.trim($("#searchcontent").attr("value"));
+	    if (content == null || content == undefined || content == "") {
+	        window.location.href = '/HelpSearch.aspx';
+	    }
+	    else {
+	        window.location.href = '/HelpSearch.aspx?searchcontent=' + encodeURI(content);
+	    }
+
+	}
+
+
+</script>
+<%<Hi:Common_Footer runat="server"   />%>
+

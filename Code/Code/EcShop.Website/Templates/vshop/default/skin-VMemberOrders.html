@@ -1,0 +1,56 @@
+﻿<hi:common_vheader runat="server" />
+<div id="divorderlist" class="pbox">
+    <hi:vshoptemplatedrepeater id="rptOrders" templatefile="/Tags/skin-Common_MemberCenterOrders.ascx"
+        runat="server" />
+</div>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+<p id="divEmpty" class="text-center list-empty hide">
+    <span class="glyphicon glyphicon-list-alt"></span>订单列表为空
+</p>
+<script type="text/javascript">
+    function CancelOrder(orderId) {  
+        var data = {};
+        data.orderId = orderId;
+        myConfirm('询问', '您确定要取消订单吗？', '确定', function () {
+            $.post("/api/VshopProcess.ashx?action=CancelOrder", data, function (json) {
+                if (json.success === true) {
+                    alert_h('取消成功！', function () {
+                        location.reload();
+                    });
+                }
+                else {
+                    alert_h(json.msg);
+                }
+            });
+        });
+    }
+    function FinishOrder(orderId) {
+        var data = {};
+        data.orderId = orderId;
+        myConfirm('询问', '您确定已经收到货物了吗？', '确定收货', function () {
+            $.post("/api/VshopProcess.ashx?action=FinishOrder", data, function (json) {
+                if (json.success === true) {
+                    alert_h('确认收货成功！', function () {
+                        location.reload();
+                    });
+                }
+                else {
+                    alert_h(json.msg);
+                }
+            });
+        });   
+    }
+    $(function () {
+        if (!$.trim($("#divorderlist").html())) {
+            $("#divorderlist").hide();
+            $("#divEmpty").removeClass('hide');
+        }
+    })
+</script>
+
+<hi:common_vfooter runat="server" />

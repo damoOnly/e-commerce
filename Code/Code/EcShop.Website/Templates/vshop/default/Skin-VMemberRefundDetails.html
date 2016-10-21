@@ -1,0 +1,57 @@
+﻿<hi:common_vheader runat="server" />
+<div class="pbox">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                退款申请单</h3>
+        </div>
+        <div class="panel-body ship-info">
+            <div>
+                <span class="span-r-80">订单编号:</span><asp:literal runat="server" id="txtOrderId" />&nbsp;</div>
+            <div>
+                <span class="span-r-80">处理状态:</span><asp:literal runat="server" id="handleStatus" /></div>
+            <div>
+                <span class="span-r-80">申请时间:</span><hi:FormatedTimeLabel runat="server" id="litAddDate" /></div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading order-shopcart">
+            <h3 class="panel-title">
+                商品清单<span class="font-s">（点击商品可评价）</span></h3>
+            <span class="badge-h badge-danger order-amount">¥<Hi:FormatedMoneyLabel runat="server" id="litTotalPrice" />
+            </span>
+        </div>
+        <div class="panel-body goods-list-p">
+            <hi:vshoptemplatedrepeater id="rptOrderProducts" templatefile="/Tags/skin-Common_MemberOrderProducts.ascx"
+                runat="server" />
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                详细信息</h3>
+        </div>
+        <div class="panel-body ship-info">
+            <div>
+                <span class="span-r-80">退款留言:</span><asp:literal runat="server" id="litRemark" /></div>
+            <div>
+                <span class="span-r-80">退款途径:</span><asp:literal runat="server" id="litType" /></div>
+			<div>
+                <span class="span-r-80">货物总重量:</span><asp:literal runat="server" id="litWeight" /></div>
+            <div>
+                <span class="span-r-80">订单总金额:</span>¥<Hi:FormatedMoneyLabel runat="server" id="litOrderTotal" /></div>
+            <div>
+                <span class="span-r-80">退款金额:</span>¥<Hi:FormatedMoneyLabel runat="server" id="litRefundTotal" /></div>
+            <div>
+                <span class="span-r-80">管理员备注:</span><asp:literal runat="server" id="litAdminRemark" /></div>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+<hi:common_vfooter runat="server" />

@@ -1,0 +1,37 @@
+﻿<p style="display: none">
+    <hi:cnzzshow runat="server" />
+</p>
+<footer>
+    <a href="default.aspx">
+        <div class="glyphicon glyphicon-home"></div>
+    </a>
+    <a href="ProductSearch.aspx">
+        <div class="glyphicon glyphicon-search"></div>
+    </a>
+    <a href="ShoppingCart.aspx">
+        <div class="glyphicon glyphicon-shopping-cart"></div>
+    </a>
+    <a href="MemberCenter.aspx">
+        <div class="glyphicon glyphicon-user"></div>
+    </a>
+    <div class="glyphicon glyphicon-refresh"></div>
+    <div class="glyphicon glyphicon-arrow-left"></div>
+</footer>
+<script type="text/javascript">
+
+    //隐藏底部菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideToolbar');
+    });
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?4d35a99853f12e55bb76639cc97344ee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+</body> </html> 

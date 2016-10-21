@@ -1,0 +1,536 @@
+﻿<%<hi:common_header runat="server" skinname="/ascx/tags/Common_UserCenter/Skin-Common_User_Header.ascx" />%>
+<script src="/utility/jquery.artDialog.js" type="text/javascript"></script>
+<script src="/utility/iframeTools.js" type="text/javascript"></script>
+<script src="/utility/Window.js" type="text/javascript"></script>
+<link rel="stylesheet" href="/utility/skins/blue.css" />
+<style type="text/css">
+    .op-btn {
+        width: 25px;
+        height: 28px;
+        background: #f5f4f4;
+        background: -webkit-gradient(linear,0 0,0 100%,from(#fffeff),to(#f5f4f4));
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .plus {
+        float: right;
+        border-left: 1px solid #d4d4d4;
+    }
+
+    .reduce {
+        float: left;
+        border-right: 1px solid #d4d4d4;
+    }
+
+    .n-options {
+        border: 1px solid #d4d4d4;
+        width: 84.5px;
+        overflow: hidden;
+    }
+
+    .input-con {
+        height: 40px;
+        overflow: hidden;
+    }
+
+    .reduce span {
+        background: url(../images/icon-del.png) no-repeat center center;
+    }
+
+    .op-btn > span {
+        display: block;
+        height: 100%;
+    }
+
+    .ui_textinput {
+        width: 20px;
+        height: 20px;
+        padding: 3px 5px;
+        border: 1px solid #eaeaea;
+        color: #999;
+        text-align: center;
+        line-height: 14px;
+        font-size: 12px;
+        -webkit-appearance: none;
+        border-radius: 0;
+    }
+</style>
+<form runat="server">
+    <div class="hyzxmain">
+        <%<input type="hidden" value="" id="skuIds" runat="server" />%>
+        <%<input type="hidden" value="" id="quantityList" runat="server" />%>
+        <%<input type="hidden" value="" id="LogisticsCompany" runat="server" />%>
+        <%<input type="hidden" value="" id="LogisticsId" runat="server" />%>
+        <div class="hyzxconty">
+            当前位置：<span><%<hi:siteurl urlname="home" runat="server">首页</hi:siteurl>%></span>><span><%<hi:siteurl urlname="user_UserDefault" runat="server">会员中心</hi:siteurl>%></span>><span>
+                <a href="#">订单管理</a>
+            </span>
+        </div>
+        <div class="hyzxconter">
+            <div class="hyzxconterl">
+                <%<hi:common_user_menu runat="server" />%>
+                <div class="hyzxconterl1">
+                </div>
+            </div>
+            <div class="hyzxconterr">
+                <div class="dingdanxx">
+                    <%<Hi:SmallStatusMessage id="Status" runat="server" Width="200" Visible="False" />%>
+                    <div class="dingdan_box1">
+                        <div class="uitab-wrap">
+                            <div class="uitab-header" id="uitab-header">
+                                <ul class="fix">
+                                    <li class="selected">
+                                        <asp:HyperLink ID="hlinkAllOrder" runat="server"><span>全部订单</span></asp:HyperLink>
+                                    </li>
+                                    <li>
+                                        <asp:HyperLink ID="hlinkNotPay" runat="server" Text=""><span>待付款</span></asp:HyperLink>
+                                    </li>
+                                    <li>
+                                        <asp:HyperLink ID="hlinkNotGetGoods" runat="server" Text=""><span>待收货</span></asp:HyperLink>
+                                    </li>
+                                    <!--<li>
+                                        <asp:HyperLink ID="hlinkRefund" runat="server" Text=""><span>退款单</span></asp:HyperLink>
+                                    </li>
+                                    <li>
+                                        <asp:HyperLink ID="hlinkReturn" runat="server" Text=""><span>退货单</span></asp:HyperLink>
+                                    </li>-->
+                                    <li>
+                                        <asp:HyperLink ID="hlinkFinished" runat="server" Text=""><span>已完成</span></asp:HyperLink>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tuikuan_con">
+                        <span>
+                            订单编号：
+                            <%<asp:TextBox ID="txtOrderId" runat="server" CssClass="input-text2" />%>
+                        </span><span>
+                            商品名称：
+                            <%<asp:TextBox ID="txtProductName" runat="server" CssClass="input-text2" />%>
+                        </span><span>
+                            物流单号：
+                            <%<asp:TextBox ID="txtShipId" runat="server" CssClass="input-text2" />%>
+                        </span><span>
+                            收货人：
+                            <%<asp:TextBox ID="txtShipTo" runat="server" CssClass="input_huohao" />%>
+                        </span>
+                        <span>
+                            收货人手机号码：
+                            <%<asp:TextBox ID="txtCellPhone" runat="server" CssClass="input_huohao" />%>
+                        </span><span>
+                            状态：
+                            <%<%<Hi:OrderStautsDropDownList ID="dropOrderStatus" CssClass="select1_text" runat="server" />%>
+                        </span><span>
+                            下单时间：
+                            <%<UI:WebCalendar CalendarType="StartDate" runat="server" ID="calendarStartDate" CssClass="input_huohao" />%>
+                            至
+                            <%<UI:WebCalendar CalendarType="EndDate" runat="server" ID="calendarEndDate" CssClass="input_huohao" />%>
+                        </span><span>
+                            <%<asp:ImageButton ImageUrl="/images/users/d_btn1.jpg" ID="imgbtnSearch" runat="server" /> %>
+                        </span>
+                        <%<asp:Literal runat="server" ID="litOrderTotal" />%>
+                        <%<asp:Literal ID="litOrderStatus" runat="server"></asp:Literal>%>
+                    </div>
+                    <div class="uitab-con" id="uitab-con">
+                        <div class="uitab-item selected">
+                            <div class="shouhuoxx1_con">
+                                <%<hi:common_ordermanage_orderlist skinname="" runat="server" style="display:none;" />%>
+
+                            </div>
+                            <div class="page">
+                                <%<UI:Pager runat="server" ShowTotalPages="true" ID="pager" CssClass="feiye" />%>
+                            </div>
+                        </div>
+                        <!--<div class="uitab-item">待付款...</div>
+                        <div class="uitab-item">待收货...</div>
+                        <div class="uitab-item">退款单...</div>
+                        <div class="uitab-item">退货单...</div>
+                        <div class="uitab-item">已完成...</div>-->
+                    </div>
+                    <div class="shouhuoxx1_con">
+                        <div id="pay_div" style="display: none">
+                            <div class="frame-content" style="width: 300px; overflow: hidden;">
+                                <p>
+                                    1.再次确认您选择的支付方式，您也可以重新选择。
+                                </p>
+                                <p style="color: #cc0000">
+                                    <em>确认支付方式：</em> <span>
+                                        <abbr class="formselect">
+                                            <%<asp:DropDownList id="dropPayType" runat="server" />%>
+                                        </abbr>
+                                    </span>
+                                </p>                                
+                            </div>
+                        </div>
+                        <div id="refund_div" style="display: none">
+                            <div class="frame-content" style="width: 330px; overflow: hidden;">
+                                <p>
+                                    1.您需要选择我们如何将退款返回给您，如果选择预存款，金额将退到预存款，如果选择银行转账，请填写银行账号的相关信息。
+                                </p>
+                                <p style="color: #cc0000">
+                                    <em>退款途径：</em> <span>
+                                        <abbr class="formselect">
+                                            <%<asp:DropDownList id="dropRefundType" runat="server" Width="150px">
+                                            <asp:listitem value="1">退到预存款</asp:listitem>
+                                            <asp:listitem value="2">银行转帐</asp:listitem>
+                                        </asp:DropDownList>%>
+                                        </abbr>
+                                    </span>
+                                </p>
+                                <p>
+                                    <em>退款原因：</em>
+                                    <span>
+                                        <abbr class="formselect">
+                                            <%<asp:DropDownList id="dropRefundReason" runat="server" Width="150px">
+                                            </asp:DropDownList>%>
+                                        </abbr>
+                                    </span>
+                                </p>
+                                <p>
+                                    <%<asp:TextBox ID="txtRemark" runat="server" TextMode="MultiLine"
+                                                   CssClass="forminput" Width="310px" Height="70px" runat="server"></asp:TextBox>%>
+                                </p>
+                            </div>
+                        </div>
+                        <div id="return_div" style="display: none">
+                            <div class="frame-content" style="width: 600px; overflow: hidden;">
+                                <p>
+                                    1.请在退货前与客服确认退货，才将商品寄出。务必把物流单号和物流公司填写于备注里面；<br />
+                                    2.您需要选择我们如何将退款返回给您，如果选择预存款，金额将退到预存款，如果选择银行转账，请填写银行账号的相关信息。
+                                </p>
+                                <div class="panel-body goods-list-p cs-glist" style="padding:0;background-color:white;" id="divProducts">
+                                </div>
+                                <p style="color: #cc0000">
+                                    <em>物流公司：</em> <span>
+                                        <abbr class="formselect">
+                                            <% <hi:logisticscompanydropdownlist id="dropLogisticsCompany" runat="server" Width="150px" />%>
+                                        </abbr>
+                                    </span>
+                                </p>
+                                <p style="color: #cc0000">
+                                    <em>物流单号：</em> <span>
+                                        <abbr class="formselect">
+                                            <%<asp:textbox id="txtLogisticsId" Width="140px" runat="server"></asp:textbox>%>
+                                        </abbr>
+                                    </span>
+                                </p>
+                                <p style="color: #cc0000">
+                                    <em>退款途径：</em> <span>
+                                        <abbr class="formselect">
+                                            <%<asp:DropDownList id="dropReturnRefundType" runat="server" Width="150px">
+                                            <asp:listitem value="1">退到预存款</asp:listitem>
+                                            <asp:listitem value="2">银行转帐</asp:listitem>
+                                        </asp:DropDownList>%>
+                                        </abbr>
+                                    </span>
+                                </p>
+                                <p>
+                                    <em>退货原因：</em><span>
+                                        <abbr class="formselect">
+                                            <%<asp:DropDownList id="dropReturnReason" runat="server" Width="150px">
+                                            </asp:DropDownList>%>
+                                            </abbr></span>
+                                            <br />
+                                            <span style="color:#999;">（物流公司、物流单号、退款账号等；银行转账，请填写您的银行账号相关信息）</span>
+                                </p>
+                                <p>
+                                    <%<asp:TextBox ID="txtReturnRemark" runat="server" TextMode="MultiLine"
+                                                   CssClass="forminput" Width="580px" Height="70px" runat="server"></asp:TextBox>%>
+                                </p>
+                            </div>
+                        </div>
+                        <div id="replace_div" style="display: none">
+                            <div class="frame-content" style="width: 330px; overflow: hidden;">
+                                <p>
+                                    1.请在换货前仔细阅读换货说明并与客服确认换货，才将商品寄出。务必把物流单号和物流公司填写于备注里面。
+                                </p>
+                                <p>
+                                    <em>换货备注：</em>
+                                </p>
+                                <p>
+                                    <%<asp:TextBox ID="txtReplaceRemark" runat="server" TextMode="MultiLine"
+                                                   CssClass="forminput" Width="310px" Height="70px" runat="server"></asp:TextBox>%>
+                                </p>
+                            </div>
+                        </div>
+                        <div style="display: none">
+                            <input type="hidden" id="hdorderId" runat="server" />
+                            <%<asp:Button ID="btnReturn" runat="server" Text="确 定" CssClass="submit_DAqueding" />%>
+                            <%<asp:Button ID="btnReplace" runat="server" Text="确 定" CssClass="submit_DAqueding" />%>
+                            <%<asp:Button ID="btnOk" runat="server" Text="确 定" CssClass="submit_DAqueding" />%>
+                            <%<asp:Button ID="btnPay" OnClientClick="this.form.target='_blank'" runat="server" Text="确 定" CssClass="submit_DAqueding" />%>
+                        </div>
+                        <script src="/Utility/common.js" type="text/javascript"></script>
+                        <script type="text/javascript">
+                            var type = "";
+                               function validatorForm() {
+                                   if (type == "refund") {
+                                       var txtRemark = '';
+                                       var index = $('#UserOrders_dropRefundReason:first option:selected').index();
+                                       var length = $('#UserOrders_dropRefundReason:first option').length;
+                                       if (index == length - 1) {
+                                           txtRemark = $("#UserOrders_txtRemark").val().replace(/\s/g, "");
+                                       } else {
+                                           txtRemark = $('#UserOrders_dropRefundReason:first').val();
+                                       }
+                                       if (txtRemark == "") {
+                                           alert("请选择或输入申请原因");
+                                           return false;
+                                       }
+                                   }
+                                   else if (type == "return") {
+                                       var boo = btnReturnClike();
+                                       if (!boo) {
+                                           alert("请选择退货商品！");
+                                           return false;
+                                       }
+                                       if ($("#UserOrders_dropLogisticsCompany").val().replace(/\s/g, "") == "") {
+                                           alert("请选择物流公司！");
+                                           return false;
+                                       }
+                                       if ($("#UserOrders_txtLogisticsId").val().replace(/\s/g, "") == "") {
+                                           alert("请输入物流单号！");
+                                           return false;
+                                       }
+                                       if ($("#UserOrders_txtReturnRemark").val().replace(/\s/g, "") == "") {
+                                           alert("请输入申请原因，退款账号等");
+                                           return false;
+                                       }
+
+                                   }
+                                   else if (type == "replace") {
+                                       if ($("#UserOrders_txtReplaceRemark").val().replace(/\s/g, "") == "") {
+                                           alert("请输入换货备注");
+                                           return false;
+                                       }
+                                   }
+                                   else if (type == "pay") {
+                                       if ($("#UserOrders_dropPayType").val() == "") {
+                                           alert("请选择支付方式");
+                                           return false;
+                                       }
+                                   }
+                                return true;
+                            }
+
+                            function paySelect(obj) {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "../Handler/MemberHandler.ashx?action=CheckIsFirstOrder",
+                                    data: { orderId: $(obj).attr("oId") },
+                                    datatype: "json",
+                                    success: function (result) {
+                                        if (result.success) {
+                                            type = "pay";
+                                            setArryText('UserOrders_hdorderId', $(obj).attr("oId"));
+                                            $("#UserOrders_dropPayType").val($(obj).attr("pId"));
+                                            setArryText('UserOrders_dropPayType', $(obj).attr("pId"));
+                                            DialogShow("确认支付方式", "payselect", "pay_div", "UserOrders_btnPay");
+                                            return false;
+                                        } else {
+                                            alert(result.msg);
+                                        }
+                                    }
+                                });
+                            }
+
+                            function ApplyForRefund(orderId) {
+                                type = "refund";
+                                setArryText('UserOrders_hdorderId', orderId);
+                                setArryText('UserOrders_txtRemark', '');
+                                setArryText('UserOrders_dropRefundType', '');
+                                setArryText('UserOrders_dropRefundReason', '');
+                                DialogShow("申请退款", "applyforrefund", "refund_div", "UserOrders_btnOk");
+                                changeRefundReason();
+                                return false;
+                            }
+                            //物流单号
+                            var txtLogisticsId = "";
+                            //保存选择退货的商品信息
+                            function btnReturnClike() {
+                                var items = $("#tblproducts tbody tr");
+                                //商品skuid
+                                var skuIds = "";
+                                //退货数量
+                                var quantityList = "";
+                                $(items).each(function (index, itm) {
+                                    if ($(itm).find("td").eq(0).find("input").attr("checked") == "checked") {
+                                        if ($(itm).find("td").eq(0).find("input").attr("skuid") != undefined) {
+                                            skuIds += $(itm).find("td").eq(0).find("input").attr("skuid") + ",";
+                                        }
+                                        if ($(itm).find("td").eq(3).find("div input").attr("value") != undefined) {
+                                            quantityList += $(itm).find("td").eq(3).find("div input").attr("value") + ",";
+                                        }
+                                    }
+                                });
+
+                                if (skuIds != "" && skuIds.length > 0) {
+                                    skuIds = skuIds.substring(0, skuIds.length - 1);
+                                }
+
+                                if (quantityList != "" && quantityList.length > 0) {
+                                    quantityList = quantityList.substring(0, quantityList.length - 1);
+                                }
+
+                                $("#UserOrders_quantityList").val(quantityList);
+                                $("#UserOrders_skuIds").val(skuIds);
+                                $("#UserOrders_LogisticsCompany").val($("#UserOrders_dropLogisticsCompany").val());
+                                $("#UserOrders_LogisticsId").val($("#UserOrders_txtLogisticsId").val());
+                                if (skuIds.trim() == "") return false; else return true;
+                            }
+                            function ApplyForReturn(orderId) {
+                                $.ajax({
+                                    type: "Get",
+                                    url: "/Handler/MemberHandler.ashx?action=GetReturnProducts&OrderId=" + orderId,
+                                    datatype: "json",
+                                    async: false,
+                                    success: function (data) {
+                                        var html = "<table style='width:100%;' id=\"tblproducts\">";
+                                        if (data != "" && data.data != null && data.data.length > 0)
+                                            $(data.data).each(function (index, item) {
+                                                html += "<tr style=\"border-bottom:#f7f7f7 solid 1px;\">";
+                                                html += "<td>";
+                                                html += " <input type=\"checkbox\" class=\"checkbox\" name=\"goodid\" skuid=\"" + item.SkuId + "\"/>";
+                                                html += "</td>"
+                                                html += "<td>";
+                                                html += "<div class=\"left\"><a href='/product_detail-954.aspx?OrderId=" + orderId + "'  target=\"_blank\">";
+                                                html += "<img src=\"" + item.ThumbnailsUrl + "\" style=\"border-width:0px; width:80px; height:80px;\"/></a>";
+                                                html += "</td>"
+                                                html += "<td>";
+                                                html += "<a href=\"/product_detail-954.aspx?OrderId=" + orderId + "\" target=\"_blank\">" + item.ItemDescription + "</a><br/>";
+                                                html += "<input name=\"skucontent\" type=\"hidden\" value=\"" + item.SkuContent + "\"/>";
+                                                html += "¥" + item.ItemAdjustedPrice + "<span class=\"bcolor\">x" + item.Quantity + "</span><br/>";
+                                                html += "</td>"
+                                                html += "<td><br/>"
+                                                html += "<div class=\"n-options clearfix\"><a class=\"op-btn reduce\" name=\"spSub\" onclick=\"ChangeCount(-1,this)\"><span>－</span></a><input type=\"tel\" class=\"ui_textinput\" readonly=\"true\" name=\buyNum\" num='" + item.Quantity + "' value='" + item.Quantity + "' skuid=\"" + item.SkuId + "\"><a class=\"op-btn plus\" name=\"spAdd\"  onclick=\"ChangeCount(1,this)\"><span>＋</span></a></div>";
+                                                html += "</td>"
+                                                html += "</tr>";
+                                            });
+                                        html += "<tr><td colspan='10'><span style='float:left;vertical-align:text-bottom;'><input type=\"checkbox\" class=\"checkbox\" name=\"goodid\" onclick='AllSelect()' id='allCheck'/><label for='allCheck'>全选</label></span></td></tr>"
+                                        html += "</table>";
+                                        $("#divProducts").html(html);
+                                    }
+                                });
+                                type = "return";
+                                setArryText('UserOrders_hdorderId', orderId);
+                                setArryText('UserOrders_txtReturnRemark', '');
+                                setArryText('UserOrders_dropReturnRefundType', '');
+                                setArryText('UserOrderDetails_dropReturnReason', '');
+                                DialogShow("申请退货", "applyforreturn", "return_div", "UserOrders_btnReturn");
+                                return false;
+                            }
+                            function AllSelect() {
+                                var items = $("#tblproducts tbody tr");
+                                $(items).each(function (index, itm) {
+                                    if ($(itm).find("td").eq(0).find("input").attr("id") != "allCheck") {
+                                        if( $("#allCheck").attr("checked")=="checked")
+                                            $(itm).find("td").eq(0).find("input").attr("checked", "checked");
+                                        else
+                                            $(itm).find("td").eq(0).find("input").removeAttr("checked");
+                                    }
+                                });
+                            }
+                            function ChangeCount(index, This) {
+                                var item = $(This).parent().find("input");
+                                var count = parseInt(item.val()) + index;
+                                if (!(count <= 0 || count > parseInt(item.attr("num")))) {
+                                    item.attr("value",count);
+                                }
+                            }
+                            function ApplyForReplace(orderId) {
+                                type = "replace";
+                                setArryText('UserOrders_hdorderId', orderId);
+                                setArryText('UserOrders_txtReplaceRemark', '');
+                                DialogShow("申请换货", "applyforreplace", "replace_div", "UserOrders_btnReplace");
+                                return false;
+                            }
+                            function changeRefundReason() {
+                                $("#UserOrders_dropRefundReason").change(function () {
+                                    if (this.selectedIndex == this.options.length - 1) {
+                                        $('#UserOrders_txtRemark').removeAttr('disabled').select().focus();
+                                    } else {
+                                        $('#UserOrders_txtRemark').attr('disabled', 'disabled');
+                                    }
+                                }).change();
+                            }
+                            $(function () {
+                                function setStatus() {
+                                    var urlStatus = parseInt(getParam("orderStatus"));
+                                    var index = 0;
+                                    if (urlStatus == 0) {
+                                        index = 0;
+                                    } else
+                                        if (urlStatus == 1) {
+                                            index = 1;
+                                        } else
+                                            if (urlStatus == 3) {
+                                                index = 2;
+                                            } else
+                                                if (urlStatus == 9) {
+                                                    index = 3;
+                                                }
+                                                else
+                                                    if (urlStatus == 10) {
+                                                        index = 4;
+                                                    } else
+                                                        if (urlStatus == 5) {
+                                                            index = 5;
+                                                        }
+                                    var $ele = $("#uitab-header li").eq(index);
+                                    var theme = "selected";
+                                    $ele.addClass(theme).siblings().removeClass(theme);
+                                }
+                                setStatus();
+
+                                //标签页 切换
+                                $("#uitab-header li").bind("click", function () {
+                                    var $ele = $(this);
+                                    var theme = "selected";
+                                    var index = $ele.index();
+                                    ////设置 搜索框 状态
+                                    //$("#UserOrders_dropOrderStatus").val(index);
+                                    //var $curItem = $("#uitab-con .uitab-item:eq(" + index + ")");
+
+                                    //var urlStatus = getParam("orderStatus");
+                                    //var currentStatus = $("#UserOrders_dropOrderStatus").val();
+                                    //if (urlStatus == currentStatus) {
+                                    //    $curItem.addClass(theme).siblings().removeClass(theme);
+                                    //} else {
+                                    //    $ele.addClass(theme).siblings().removeClass(theme);
+                                    //}
+                                })
+                            })
+							$(function(){
+								function setHeight(){
+									height = $('.my_left_category').height();
+									$('.shadow_border').height(height+2);
+								};
+								$('.my_left_category>div').filter('.my_left_category>div:gt(6)').hide ();
+								$('.my_left_category>div').filter ('.my_left_category>div:nth-child(14)').mouseover(function(){
+									$(this).siblings ('.my_left_category>div:gt(6)').show();
+									setHeight();
+								})
+								$('.my_left_category>div').filter ('.my_left_category>div:nth-child(14)').mouseout(function(){
+									$(this).siblings ('.my_left_category>div:gt(6)').hide();
+									setHeight();
+								})
+								$('.my_left_category>div').filter ('.my_left_category>div:nth-child(14)').siblings ('.my_left_category>div:gt(6)').mouseover(function(){
+									$('.my_left_category>div').filter ('.my_left_category>div:nth-child(6)').siblings ('.my_left_category>div:gt(6)').show();
+									setHeight();
+								})
+								$('.my_left_category>div').filter ('.my_left_category>div:nth-child(14)').siblings ('.my_left_category>div:gt(6)').mouseout(function(){
+									$('.my_left_category>div').filter ('.my_left_category>div:nth-child(14)').siblings ('.my_left_category>div:gt(6)').hide();
+									setHeight();
+								})
+							});
+                        </script>
+                        <!-- InstanceEndEditable -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<%<hi:common_footer runat="server" skinname="/ascx/tags/Common_UserCenter/Skin-Common_User_Footer.ascx" />%>

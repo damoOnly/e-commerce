@@ -1,0 +1,95 @@
+﻿<hi:common_vheader runat="server" />
+<div class="page">
+    <section>
+        <div class="my-points">
+            <div class="fix">
+                <dl class="mp-dl fix">
+                    <dt>总积分：</dt>
+                    <dd><span class="yel-lb"><asp:Literal runat="server" ID="litSumPoint" /></span></dd>
+                </dl>
+                <dl class="mp-dl fix">
+                    <dt>可用积分：</dt>
+                    <dd><span class="green-lb"><asp:Literal runat="server" ID="litPoint" /></span></dd>
+                </dl>
+            </div>
+            <div class="fix">
+                <input type="hidden" clientidmode="Static" value="" runat="server" id="txtTotal" />
+                <a class="rule-link" href="HelpItem.aspx?HelpId=44">查看积分规则</a>
+            </div>
+        </div>
+        <div class="points-list">
+            <table class="points-table">
+                <thead>
+                    <tr>
+                        <td class="w1">积分</td>
+                        <td class="w2">日期</td>
+                        <td class="w3">类型</td>
+                        <td>说明</td>
+                    </tr>
+                </thead>
+                <tbody class="goods-list-grid clearfix" id="goodslist">
+                    <!---->
+                    <hi:vshoptemplatedrepeater id="rptUserPointList" templatefile="/Tags/Skin-Common_UserPointList.ascx" runat="server" />
+                    <!--<tr>
+                        <td>
+                            <span class="green-lb">+100</span>
+                        </td>
+                        <td>
+                            2015-06-01 16:57:12
+                        </td>
+                        <td>
+                            注册成功送积分
+                        </td>
+                        <td>
+                            注册成功送积分100
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="red-lb">-100</span>
+                        </td>
+                        <td>
+                            2015-06-01 16:57:12
+                        </td>
+                        <td>
+                            积分抽奖减积分
+                        </td>
+                        <td>
+                            积分抽奖减积分100
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="green-lb">+100</span>
+                        </td>
+                        <td>
+                            2015-06-01 16:57:12
+                        </td>
+                        <td>
+                            注册成功送积分
+                        </td>
+                        <td>
+                            注册成功送积分100
+                        </td>
+                    </tr>-->
+                </tbody>
+            </table>
+        </div>
+        <div class="more-tip" id="more-tip">正在加载更多...</div>
+        <!--<div class="pl10 pr10">
+            <div id="pager"></div>
+        </div>-->
+    </section>
+    <hi:common_vfooter runat="server" />
+    <script src="/Utility/common.js" type="text/javascript"></script>
+    <!--<script src="/Utility/pager.js" type="text/javascript"></script>-->
+    <script src="/script/myuserpoints.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(function () {
+
+            //评论分页数据
+            //vshopPager('pager', $('#txtTotal').val(), 1, 5);
+        });
+
+    </script>

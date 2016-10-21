@@ -1,0 +1,39 @@
+﻿<%<hi:common_header runat="server" skinname="/ascx/tags/Common_UserCenter/Skin-Common_User_Header.ascx" />%>
+<form runat="server">
+    <div class="hyzxmain">
+        <div class="hyzxconty">
+            当前位置：<span><a href="url:home">首页</a></span>><span><a href="url:user_UserDefault">会员中心</a></span>><span>
+                <a href="#">实名认证</a>
+            </span>
+        </div>
+        <div class="hyzxconter">
+            <%<hi:common_user_menu runat="server" />%>
+            <div class="hyzxconterr">
+                <div class="dingdanxx">
+                    <%<Hi:SmallStatusMessage id="Status" runat="server" Visible="False" />%>
+                    <div class="dingdan_box1">实名认证</div>
+                    <div class="yzyoux1">
+                        <em><samp style="color: red"> *</samp>真实姓名：</em><span>
+                            <%<asp:TextBox ID="txtRealName" runat="server" class="userInput" />%>
+                            <p>和身份证姓名一致</p>
+                        </span>
+                        <span id="userProfile_txtRealNameTip"></span>
+
+                    </div>
+                    <div class="yzyoux1">
+                        <em><samp style="color: red"> *</samp>身份证号：</em><span>
+                            <%<asp:TextBox ID="txtIdentityCard" runat="server" class="input-text" validategroup="default" />%>
+                            <p>为了您的商品快速通关,按相关法规,须向海关备案收货人的身份证信息</p>
+                        </span>
+                        <span id="userShippingAddresses_txtIdentityCardTip" style="display:none;"></span>
+                    </div>
+                    <div class="btn-password"><%<asp:Button ID="btnSubmit" CssClass="btn_style_bar mt20 ml90" Text="提交" runat="server" /> %></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+
+</script>
+<%<hi:common_footer runat="server" skinname="/ascx/tags/Common_UserCenter/Skin-Common_User_Footer.ascx" />%>

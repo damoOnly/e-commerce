@@ -1,0 +1,18 @@
+﻿<Hi:Common_vHeader  runat="server" />
+<div class="pbox">
+    <div class="alert alert-warning app-result" role="alert"><%<asp:Literal ID="litReferralRegisterresults" runat="server" />%></div>
+
+    <div class="alert alert-danger" role="alert" runat="server" id="divRefuseReasons"><%<asp:Literal ID="litRefuseReasons" runat="server" />%></div>
+    <hr />
+
+    <button class="btn btn-info btn-block" id="btnToRegister">重新填写申请表单</button>
+</div>
+<script language="javascript" type="text/javascript">
+    $(document).ready(function (e) {
+        $("#btnToRegister").click(function (e) {
+            location.href = "ReferralRegister.aspx?again=1";
+        });
+    });
+</script>
+
+<Hi:Common_vFooter  runat="server" />

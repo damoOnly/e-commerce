@@ -1,0 +1,21 @@
+﻿<%<Hi:Common_Header runat="server" SkinName="/ascx/tags/Common_UserCenter/Skin-Common_User_Header.ascx" />%>
+<form runat="server" id="form1">
+<div class="hyzxmain">
+<div class="hyzxconty">当前位置><span><a href="url:home">首页</a></span>><span><a href="url:user_UserDefault">会员中心</a></span>><span><a href="#">申请结果</a></span></div>
+<div class="hyzxconter">
+<div class="hyzxconterl">
+<%<Hi:Common_User_Menu runat="server" />%>
+<div class="hyzxconterl1">
+</div>
+</div>
+
+
+<div class="hyzxconterr referral">  
+        <div class="dingdan_box1">申请结果</div>
+        <div class="tuikuan_con"><%<asp:Literal ID="litReferralRegisterresults" runat="server" />%></div>
+        <div class="grxx_btn"><a type="button" href="/user/ReferralRegister.aspx?again=1" class="btn_form">重新填写申请表单</a></div>
+	</div>
+</div>
+</div>
+</form>
+<%<Hi:Common_Footer runat="server" SkinName="/ascx/tags/Common_UserCenter/Skin-Common_User_Footer.ascx" />%>

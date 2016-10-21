@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <Ad Id="1" Type="slide" Image1="/templates/master/default/UploadImage/advertimg/20130911162839_9256.jpg" Image2="/templates/master/default/UploadImage/advertimg/20130911163017_0502.jpg" Image3="/templates/master/default/UploadImage/advertimg/20130911163039_7395.jpg" Image4="" Image5="" Image6="" Image7="" Image8="" Image9="" Image10="" Url1="http:/www.baidu.com" Url2="" Url3="" Url4="" Url5="" Url6="" Url7="" Url8="" Url9="" Url10="" AdImageSize="564*239" />
+  <Ad Id="2" Type="image" Image="/templates/master/zhubao/UploadImage/advertimg/20150626173739_1546.jpg" Url="" AdImageSize="285*127" />
+  <Ad Id="3" Type="image" Image="/templates/master/jiafang1200/UploadImage/advertimg/20140211141526_7333.jpg" Url="" AdImageSize="341*64" />
+  <Ad Id="4" Type="image" Image="/templates/master/zhubao/UploadImage/advertimg/20150630152553_9871.png" Url="" AdImageSize="189*38" />
+  <Ad Id="5" Type="image" Image="/templates/master/zhubao/UploadImage/advertimg/20150701091927_7639.jpg" Url="" AdImageSize="975*352" />
+  <Ad Id="6" Type="image" Image="/templates/master/zhubao/UploadImage/advertimg/20150630102137_5871.jpg" Url="" AdImageSize="215*145" />
+  <Ad Id="7" Type="image" Image="/templates/master/zhubao/UploadImage/advertimg/20150630112714_5192.jpg" Url="" AdImageSize="209*93" />
+  <Ad Id="8" Type="image" Image="/templates/master/zhubao/UploadImage/advertimg/20150629172507_3768.jpg" Url="" AdImageSize="339*646" />
+  <Ad Id="9" Type="image" Image="/templates/master/zhubao/UploadImage/advertimg/20140224172822_6270.jpg" Url="" AdImageSize="1200*50" />
+  <Ad Id="10" Type="image" Image="/templates/master/zhubao/UploadImage/advertimg/20140224174110_8659.jpg" Url="" AdImageSize="220*130" />
+  <Ad Id="11" Type="custom" Html="&amp;lt;div class=&amp;quot;big-banner&amp;quot;&amp;gt;&#xA;   &amp;lt;div class=&amp;quot;flexslider&amp;quot; id=&amp;quot;banner&amp;quot;&amp;gt; &#xA;       &amp;lt;ul class=&amp;quot;slides fix&amp;quot;&amp;gt;&#xA;           &amp;lt;li&amp;gt;&amp;lt;a href=&amp;quot;#&amp;quot; style=&amp;quot;background:url(/templates/master/haimei/UploadImage/AdvertImg/20151214131904_2019.jpg) no-repeat center top;&amp;quot;&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&#xA;           &amp;lt;li&amp;gt;&amp;lt;a href=&amp;quot;#&amp;quot; style=&amp;quot;background:url(/templates/master/haimei/UploadImage/AdvertImg/20151214131911_9921.jpg) no-repeat center top;&amp;quot;&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&#xA;           &amp;lt;li&amp;gt;&amp;lt;a href=&amp;quot;#&amp;quot; style=&amp;quot;background:url(/templates/master/haimei/UploadImage/AdvertImg/20151214131919_3343.jpg) no-repeat center top;&amp;quot;&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&#xA;       &amp;lt;/ul&amp;gt;&#xA;   &amp;lt;/div&amp;gt;&#xA;&amp;lt;/div&amp;gt;" />
+  <Ad Id="12" Type="image" Image="/templates/master/default/UploadImage/advertimg/index_282.jpg" Url="" AdImageSize="229*143" />
+  <Ad Id="13" Type="image" Image="/templates/master/haimei/UploadImage/advertimg/20151016170009_7678.jpg" Url="" AdImageSize="628*430" />
+  <Ad Id="14" Type="image" Image="/templates/master/zhubao/UploadImage/advertimg/20150629180745_5472.jpg" Url="" AdImageSize="339*646" />
+  <Ad Id="15" Type="image" Image="/templates/master/default/UploadImage/advertimg/2.jpg" Url="" AdImageSize="210*90" />
+  <Ad Id="16" Type="image" Image="/templates/master/default/UploadImage/advertimg/2.jpg" Url="" AdImageSize="210*90" />
+  <Ad Id="17" Type="custom" Html="&amp;lt;!-- JiaThis Button BEGIN --&amp;gt; &amp;lt;div class=&amp;quot;jiathis_style&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;jiathis_txt&amp;quot;&amp;gt;加关注：&amp;lt;/span&amp;gt; &amp;lt;a class=&amp;quot;jiathis_button_tsina&amp;quot;&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;a class=&amp;quot;jiathis jiathis_txt jtico jtico_jiathis&amp;quot; href=&amp;quot;http:/www.jiathis.com/share&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;分享&amp;lt;/a&amp;gt; &amp;lt;/div&amp;gt;&#xA;&amp;lt;script type=&amp;quot;text/javascript&amp;quot; charset=&amp;quot;utf-8&amp;quot; src=&amp;quot;http:/v3.jiathis.com/code/jia.js?uid=1351212253025417&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;&#xA;&amp;lt;!-- JiaThis Button END --&amp;gt;" />
+  <Ad Id="18" Type="custom" Html="&amp;lt;img src=&amp;quot;/templates/master/haimei/UploadImage/AdvertImg/20151103173908_6482.jpg&amp;quot; title=&amp;quot;QQ截图20151103173858&amp;quot; alt=&amp;quot;QQ截图20151103173858&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;" />
+  <Ad Id="19" Type="custom" Html="&amp;lt;img src=&amp;quot;/templates/master/zhubao/UploadImage/AdvertImg/20150629152830_5617.jpg&amp;quot; title=&amp;quot;广告&amp;quot; alt=&amp;quot;广告&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;br /&amp;gt;" />
+  <Ad Id="20" Type="image" Image="/templates/master/jiafang1200/UploadImage/advertimg/20140212113438_2465.jpg" Url="" AdImageSize="938*333" />
+  <Ad Id="21" Type="image" Image="/templates/master/zhubao/UploadImage/advertimg/20150703165933_5565.jpg" Url="" AdImageSize="259*333" />
+  <Ad Id="22" Type="image" Image="/templates/master/jiafang1200/UploadImage/advertimg/20140212113438_2465.jpg" Url="" AdImageSize="938*333" />
+  <Ad Id="23" Type="image" Image="/templates/master/jiafang1200/UploadImage/advertimg/20140212113448_1251.jpg" Url="" AdImageSize="259*333" />
+  <Ad Id="24" Type="image" Image="/templates/master/jiafang1200/UploadImage/advertimg/20140212113438_2465.jpg" Url="" AdImageSize="938*333" />
+  <Ad Id="25" Type="image" Image="/templates/master/jiafang1200/UploadImage/advertimg/20140212113448_1251.jpg" Url="" AdImageSize="259*333" />
+  <Ad Id="26" Type="image" Image="/templates/master/jiafang1200/UploadImage/advertimg/20140212113438_2465.jpg" Url="" AdImageSize="938*333" />
+  <Ad Id="27" Type="image" Image="/templates/master/jiafang1200/UploadImage/advertimg/20140212113448_1251.jpg" Url="" AdImageSize="259*333" />
+  <Ad Id="28" Type="custom" Html="&amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;收藏商城&amp;lt;/a&amp;gt;" />
+  <Ad Id="29" Type="image" Image="/templates/master/haimei/UploadImage/advertimg/20150701124616_4008.jpg" Url="" AdImageSize="1200*180" />
+  <Ad Id="30" Type="custom" Html="&amp;lt;img src=&amp;quot;/templates/master/zhubao/UploadImage/AdvertImg/20150629145736_6543.jpg&amp;quot; title=&amp;quot;主图&amp;quot; alt=&amp;quot;主图&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;img src=&amp;quot;/templates/master/zhubao/UploadImage/AdvertImg/20150629150040_5319.jpg&amp;quot; title=&amp;quot;sad&amp;quot; alt=&amp;quot;sad&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;" />
+  <Ad Id="31" Type="custom" Html="" />
+  <Ad Id="32" Type="custom" Html="111" />
+  <Ad Id="33" Type="custom" Html="111" />
+  <Ad Id="34" Type="custom" Html="111" />
+  <Ad Id="35" Type="image" Image="/templates/master/zhubao/UploadImage/advertimg/20150703160117_2817.jpg" Url="" AdImageSize="339*646" />
+  <Ad Id="36" Type="image" Image="/templates/master/zhubao/UploadImage/advertimg/20150703162155_6897.jpg" Url="" AdImageSize="339*646" />
+  <Ad Id="37" Type="image" Image="/templates/master/zhubao/UploadImage/advertimg/20150703163702_7487.jpg" Url="" AdImageSize="339*646" />
+  <Ad Id="38" Type="image" Image="/templates/master/zhubao/UploadImage/advertimg/20150703165958_8129.jpg" Url="" AdImageSize="339*646" />
+  <Ad Type="image" Id="newads_001" Url="" Image="/templates/master/haimei/UploadImage/advertimg/20151102145339_9353.jpg" DivCss="guild adv_image cssEdite" ImgStyle="" ImageAttr="class='lazyload' " />
+  <Ad Type="image" Id="newads_002" Url="" ImageAttr="" Image="/templates/master/haimei/UploadImage/advertimg/20150819144640_1364.jpg" DivCss="adv_image cssEdite" ImgStyle="width:171px;height:180px;" />
+  <Ad Type="image" Id="newads_003" Url="" ImageAttr="" Image="/templates/master/haimei/UploadImage/advertimg/20140224141907_7835.jpg" DivCss="adv_image cssEdite" ImgStyle="width:171px;height:180px;" />
+  <Ad Type="image" Id="newads_004" Url="" ImageAttr="" Image="/templates/master/haimei/UploadImage/advertimg/20130911163039_7395.jpg" DivCss="adv_image cssEdite" ImgStyle="width:171px;height:180px;" />
+  <Ad Type="image" Id="newads_005" Url="http://localhost:8080/product_detail-973.aspx" ImageAttr="" Image="/templates/master/haimei/UploadImage/advertimg/20150819162135_0980.jpg" DivCss="adv_image cssEdite" ImgStyle="width:171px;height:180px;" />
+  <Ad Type="image" Id="newads_006" Url="" ImageAttr="" Image="/templates/master/haimei/UploadImage/advertimg/20140224152819_5950.jpg" DivCss="adv_image cssEdite" ImgStyle="width:171px;height:180px;" />
+  <Ad Type="image" Id="newads_007" Url="" ImageAttr="" Image="/templates/master/haimei/UploadImage/advertimg/20140211160800_6867.jpg" DivCss="adv_image cssEdite" ImgStyle="width:171px;height:180px;" />
+  <Ad Type="image" Id="newads_008" Url="" ImageAttr="" Image="/templates/master/haimei/UploadImage/advertimg/20140211160809_3001.jpg" DivCss="adv_image cssEdite" ImgStyle="width:171px;height:180px;" />
+  <Ad Type="image" Id="newads_11" Url="" Image="/templates/master/haimei/UploadImage/advertimg/20151216135040_8962.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_12" Url="/browse/category-5000000.aspx" Image="/templates/master/haimei/UploadImage/advertimg/20151216135056_4711.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_13" Url="" Image="/templates/master/haimei/UploadImage/advertimg/20151216140220_2193.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_14" Url="/product_detail-1616.aspx" Image="/templates/master/haimei/UploadImage/advertimg/20151216140248_2693.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_15" Url="/product_detail-1653.aspx" Image="/templates/master/haimei/UploadImage/advertimg/20151103174749_5008.png" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_16" Url="/product_detail-2247.aspx" Image="/templates/master/haimei/UploadImage/advertimg/20151216135749_4382.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_17" Url="/product_detail-2106.aspx" Image="/templates/master/haimei/UploadImage/advertimg/20151216140231_8089.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_18" Url="/product_detail-1310.aspx" Image="/templates/master/haimei/UploadImage/advertimg/20151216140258_5574.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_19" Url="/product_detail-2200.aspx" Image="/templates/master/haimei/images/temp/m10.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_20" Url="/product_detail-2050.aspx" Image="/templates/master/haimei/images/temp/m2.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_201" Url="/product_detail-1602.aspx" Image="/templates/master/haimei/UploadImage/advertimg/20151216135040_8962.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_202" Url="/browse/category-8000072.aspx" Image="/templates/master/haimei/UploadImage/advertimg/20151216135056_4711.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_203" Url="/product_detail-1551.aspx" Image="/templates/master/haimei/UploadImage/advertimg/20151216140220_2193.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_204" Url="/product_detail-2363.aspx" Image="/templates/master/haimei/UploadImage/advertimg/20151216140248_2693.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_205" Url="/product_detail-2359.aspx" Image="/templates/master/haimei/UploadImage/advertimg/20151103174749_5008.png" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_206" Url="/product_detail-1565.aspx" Image="/templates/master/haimei/UploadImage/advertimg/20151216135749_4382.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_207" Url="/product_detail-1969.aspx" Image="/templates/master/haimei/UploadImage/advertimg/20151216140231_8089.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_208" Url="/product_detail-1550.aspx" Image="/templates/master/haimei/UploadImage/advertimg/20151216140258_5574.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_209" Url="/product_detail-2364.aspx" Image="/templates/master/haimei/images/temp/n10.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_210" Url="/product_detail-2439.aspx" Image="/templates/master/haimei/images/temp/n2.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_301" Url="/product_detail-2044.aspx" Image="/templates/master/haimei/UploadImage/advertimg/20151216135040_8962.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_302" Url="/browse/category-1000000.aspx" Image="/templates/master/haimei/UploadImage/advertimg/20151216135056_4711.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_303" Url="/product_detail-2038.aspx" Image="/templates/master/haimei/UploadImage/advertimg/20151216140220_2193.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_304" Url="/product_detail-1547.aspx" Image="/templates/master/haimei/UploadImage/advertimg/20151216140248_2693.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_305" Url="/product_detail-1237.aspx" Image="/templates/master/haimei/UploadImage/advertimg/20151103174749_5008.png" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_306" Url="/product_detail-2032.aspx" Image="/templates/master/haimei/UploadImage/advertimg/20151216135749_4382.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_307" Url="/product_detail-998.asp" Image="/templates/master/haimei/UploadImage/advertimg/20151216140231_8089.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_308" Url="/product_detail-975.aspx" Image="/templates/master/haimei/UploadImage/advertimg/20151216140258_5574.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_309" Url="/product_detail-449.aspx" Image="/templates/master/haimei/images/temp/a10.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_310" Url="/product_detail-2043.aspx" Image="/templates/master/haimei/images/temp/a2.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_401" Url="/product_detail-2144.aspx" Image="/templates/master/haimei/UploadImage/advertimg/20151216135040_8962.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_402" Url="/category-8000038.asp" Image="/templates/master/haimei/UploadImage/advertimg/20151216135056_4711.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_403" Url="/product_detail-1928.aspx" Image="/templates/master/haimei/UploadImage/advertimg/20151216140220_2193.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_404" Url="/product_detail-1589.aspx" Image="/templates/master/haimei/UploadImage/advertimg/20151216140248_2693.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_405" Url="" Image="/templates/master/haimei/UploadImage/advertimg/20151103174749_5008.png" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_406" Url="" Image="/templates/master/haimei/UploadImage/advertimg/20151216135749_4382.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_407" Url="" Image="/templates/master/haimei/UploadImage/advertimg/20151216140231_8089.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_408" Url="" Image="/templates/master/haimei/UploadImage/advertimg/20151216140258_5574.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_409" Url="" Image="/templates/master/haimei/images/temp/b10.jpg " DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_410" Url="" Image="/templates/master/haimei/images/temp/b2.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_501" Url="" Image="/templates/master/haimei/images/temp/c1.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="dclass='lazyload' " />
+  <Ad Type="image" Id="newads_502" Url="" Image="/templates/master/haimei/images/temp/c3.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_503" Url="" Image="/templates/master/haimei/images/temp/c4.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_504" Url="" Image="/templates/master/haimei/images/temp/c6.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_505" Url="" Image="/templates/master/haimei/images/temp/c9.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_506" Url="" Image="/templates/master/haimei/images/temp/c5.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_507" Url="" Image="/templates/master/haimei/images/temp/c7.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_508" Url="" Image="/templates/master/haimei/images/temp/c8.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_509" Url="" Image="/templates/master/haimei/images/temp/c10.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_510" Url="" Image="/templates/master/haimei/images/temp/c2.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_601" Url="" Image="/templates/master/haimei/images/temp/e1.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_602" Url="" Image="/templates/master/haimei/images/temp/e3.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_603" Url="" Image="/templates/master/haimei/images/temp/e4.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_604" Url="" Image="/templates/master/haimei/images/temp/e6.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_605" Url="" Image="/templates/master/haimei/images/temp/e9.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_606" Url="" Image="/templates/master/haimei/images/temp/e5.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_607" Url="" Image="/templates/master/haimei/images/temp/e7.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_608" Url="" Image="/templates/master/haimei/images/temp/e8.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_609" Url="" Image="/templates/master/haimei/images/temp/e10.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_610" Url="" Image="/templates/master/haimei/UploadImage/advertimg/20150819162135_0980.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_701" Url="" Image="/templates/master/haimei/images/temp/f1.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_702" Url="" Image="/templates/master/haimei/images/temp/f3.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_703" Url="" Image="/templates/master/haimei/images/temp/f4.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_704" Url="" Image="/templates/master/haimei/images/temp/f6.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_705" Url="" Image="/templates/master/haimei/images/temp/f9.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_706" Url="" Image="/templates/master/haimei/images/temp/f5.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_707" Url="" Image="/templates/master/haimei/images/temp/f7.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_708" Url="" Image="/templates/master/haimei/images/temp/f8.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_709" Url="" Image="/templates/master/haimei/images/temp/f10.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="image" Id="newads_710" Url="" Image="/templates/master/haimei/images/temp/f2.jpg" DivCss="cssEdite" ImgStyle="" ImageAttr="" />
+  <Ad Type="logo" Id="" Url="" Image="" DivCss="cssEdite" ImgStyle="width:171px;height:180px;" ImageAttr="" />
+  <Ad Type="logo" Id="13" Url="" Image="" DivCss="" ImgStyle="" ImageAttr="" />
+</root>

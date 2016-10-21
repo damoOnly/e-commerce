@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>预览</title>
+<link rel="stylesheet" type="text/css" href="js/dist/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="resource/default/css/core/basic.css"/>
+<link rel="stylesheet" type="text/css" href="resource/default/css/lib/swiper.min.css">
+<link rel="stylesheet" type="text/css" href="resource/default/css/lib/page.css">
+<link rel="stylesheet" type="text/css" href="resource/default/css/ui/app.css">
+<link rel="stylesheet" type="text/css" href="resource/default/css/core/base.css"/>
+<script src="js/lib/jquery-1.10.2.js"></script>
+<script src="js/lib/swipe.js"></script>
+<script src="js/lib/page.js"></script>
+<script src="../../../Utility/common.js" type="text/javascript"> </script>
+<script src="../haimei/script/jquery.lazyload.min.js"></script>
+<script src="../haimei/script/main.js"></script>
+<script src="../../../Utility/vproduct.helper.js" type="text/javascript"> </script>
+<script src="../haimei/script/addcart.js" type="text/javascript"></script>
+<!--<script src="/utility/vproduct.helper.js" type="text/javascript"> </script>
+<script src="/script/addcart.js" type="text/javascript"></script>-->
+
+</head>
+<body class="ovh">	
+	<div id="page" class="page"></div>
+</body>
+<script type="text/javascript">
+	window.onmessage = function(obj){
+		var $page = $("#page");
+		$page.html(obj.data.html);
+		$page.find(".editing").removeClass("editing");
+		$page.find(".actions,.sort").remove();
+	}	
+</script>
+</html>

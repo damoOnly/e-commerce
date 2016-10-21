@@ -1,0 +1,48 @@
+﻿<Hi:Common_vHeader runat="server" />
+
+<p class="text-center list-empty hide" id="empty">
+    <span class="glyphicon glyphicon-star"></span>
+    收藏为空
+</p>
+	<div class="pbox">        
+           <Hi:VshopTemplatedRepeater ID="rptProducts" TemplateFile="/Tags/skin-Common_MyFavorites.ascx" runat="server" />   
+    </div>
+
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        if (!$.trim($('.pbox').html())) {
+            $('.pbox').addClass('hide');
+            $('#empty').removeClass('hide');
+        }
+
+
+    });
+
+
+    function Submit(id) {
+        var data = {};
+        data.favoriteId = id;
+        $.post("/api/VshopProcess.ashx?action=DelFavorite", data, function (json) {
+            if (json.success === true) {
+                alert_h("取消成功");
+                location.reload();
+            }
+            else {
+                alert_h(json.msg);
+            }
+        });
+    }
+
+    
+
+
+  </script>
+
+<hi:common_vfooter runat="server" />

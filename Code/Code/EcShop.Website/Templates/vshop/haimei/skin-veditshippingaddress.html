@@ -1,0 +1,243 @@
+﻿<hi:common_vheader runat="server" />
+<script src="/Utility/regionSelector_FileData.js" type="text/javascript"></script>
+<div class="page gray-page">
+    <section>
+        <dd class="sm-con mt10 pl10 pr10">
+            <dl class="sm-dl fix">
+                <dt><label class="gray-lb">*收货人</label></dt>   
+                <dd>
+                    <div class="input-con">
+                        <input class="inputbox" runat="server" clientidmode="Static" type="text" placeholder="收货人姓名" id="shipTo" />
+                    </div>
+                </dd>
+            </dl>
+            <dl class="sm-dl fix">
+                <dt><label class="gray-lb">*手机号码</label></dt>
+                <dd>
+                    <div class="input-con">
+                        <input id="cellphone" runat="server" clientidmode="Static" type="text" placeholder="请填写收货人手机号" />
+                    </div>
+                </dd>
+            </dl>
+            <dl class="fix sm-dl">
+                <dt><label class="gray-lb">*省市区</label></dt>  
+                <dd>
+                    <div id="vshopRegion"></div>
+                    <input name="address" id="region" runat="server" clientidmode="Static" type="hidden" />
+                    <input name="address" id="regionText" runat="server" clientidmode="Static" type="hidden" />
+               </dd>
+            </dl>
+            <dl class="sm-dl fix">
+                <dt><label class="gray-lb">*详细地址</label></dt>
+                <dd>
+                    <div class="input-con">
+                        <textarea id="address" class="textarea" runat="server" clientidmode="Static" rows="3" placeholder="请填写收货人详细地址"></textarea>
+                    </div>
+                </dd>
+            </dl>
+            <dl class="sm-dl fix dis-none">
+                <dd>
+                    <label class="gray-lb">邮政编码</label>
+                    <div class="input-con">
+                        <input class="inputbox" runat="server" clientidmode="Static" type="text" placeholder="请填写邮政编码" id="zipcode" />
+                    </div>
+                </dd>
+            </dl>
+        </div>
+        <div class="sm-con mt10 pl10 pr10">
+            <div class="sm-con mt10 pl10 pr10 pt10 pb10" style="border:1px solid #aab2bd;background:#fff;border-radius:5px;">
+                <div style="background-image:url('/templates/vshop/haimei/resource/default/image/lg-logo.png');background-size:20px;background-position:center center;background-repeat:no-repeat;width:20px;height:20px;border-radius:20px;margin:0 auto;"></div>
+                <p style="color:#1690bf;text-align:center;">海美生活提醒您填写真实身份证号码</p>
+                <p>1.海关需对境外购物查验身份信息，错误信息将导致无法正常清关 。</p>
+                <p>2.身份证信息将加密报关，海美保证您的信息安全。</p>
+                <p>3.非大陆居民身份信息系统不能识别，无法完成清关。</p>
+            </div>
+        </div>
+        <div class="pt20 pl10 pr10  mb20 fix">
+            <button class="red-btn mt20" id="submit-btn" onclick="AddShippingAddress()">提交</button>
+            <input name="address" id="shipId" runat="server" clientidmode="Static" type="hidden" />
+        </div>
+    </section>
+</div>
+<script type="text/javascript">
+    var regionSelector = new vShop_RegionSelector('vshopRegion', function (address, code) {
+        $("#address-check-btn").html(address + "<span class='caret'></span>");
+        $('#region').val(code);
+    }, $('#regionText').val());
+
+
+
+    function AddShippingAddress() {
+        var isValite = true;
+        if ($.trim($("#shipTo").val()) == "") {
+            $("#shipTo").focus();
+            alert_h($("#shipTo").attr('placeholder'));
+            isValite = false;
+            return false;
+        }
+        else {
+            $("#divShipToTip").hide();
+        }
+        //if ($.trim($("#identityCard").val()) == "") {
+        //    $("#identityCard").focus();
+        //    $("#divIdentityCardTip").show();
+        //    alert_h($("#identityCard").attr('placeholder'));
+        //    isValite = false;
+        //    return false;
+        //}
+        //else {
+        //    $("#divIdentityCardTip").hide();
+        //}
+        //var identityCard = $.trim($("#identityCard").val());
+        //if (!IdentityCodeValid(identityCard)) {
+        //    return false;
+        //}
+        if ($.trim($("#address").val()) == "") {
+            $("#divAddressTip").show();
+            $("#address").focus();
+            alert_h($("#address").attr('placeholder'));
+            isValite = false;
+            return false;
+        }
+        else {
+            $("#divAddressTip").hide();
+        }
+        if ($.trim($("#cellphone").val()) == "") {
+            $("#divCellphoneTip").show();
+            $("#cellphone").focus();
+            alert_h($("#cellphone").attr('placeholder'));
+            isValite = false;
+            return false;
+        }
+        else {
+            $("#divCellphoneTip").hide();
+        }
+        if ($("#region").val() == "") {
+            //判断详细地址
+            isValite = false;
+            alert_h('请选择省市区');
+            return false;
+        }
+        else {
+
+        }
+        if ($.trim($("#zipcode").val()) == "") {
+            $("#zipcode").focus();
+            $("#divZipcodeTip").show();
+            alert_h($("#zipcode").attr('placeholder'));
+            isValite = false;
+            return false;
+        }
+        else {
+            $("#divZipcodeTip").hide();
+        }
+        var cellphone = $.trim($('#cellphone').val());
+        if (cellphone != '') {
+            var check = /^(1(3|4|5|7|8))\d{9}$/.test(cellphone);
+            if (!check) {
+                alert_h("手机号码填写错误");
+                return false;
+            }
+        }
+        var shipTo = $.trim($('#shipTo').val());
+        if (shipTo != '') {
+            if (shipTo.indexOf('先生') >= 0 || shipTo.indexOf('小姐') >= 0) {
+                alert_h("真实姓名不能包含‘先生’或者‘小姐’,请填写真实姓名");
+                return false;
+            }
+            var check = /^[\u4e00-\u9fa5]{2,6}$/.test(shipTo);
+            if (!check) {
+                alert_h("姓名必须为2-6个汉字");
+                return false;
+            }
+        }
+
+        if (!isValite)
+            return false;
+
+        $.ajax({
+            url: "/API/VshopProcess.ashx",
+            type: 'post',
+            dataType: 'json',
+            timeout: 10000,
+            data: {
+                action: "UpdateShippingAddress",
+                shipTo: shipTo,
+                address: $("#address").val(),
+                cellphone: cellphone,
+                regionSelectorValue: $("#region").val(),
+                shippingid: $('#shipId').val(),
+                identityCard:"",
+                zipcode: $("#zipcode").val()
+            },
+            success: function (resultData) {
+                if (resultData.success) {
+                    if (window.location.search.indexOf("returnUrl=") == -1) {
+                        var urlref = document.referrer;
+                        var currdomain = document.domain;
+                        if (urlref != "" && urlref != undefined && urlref.indexOf(currdomain) > -1)
+                            location.href = urlref;
+                        else
+                            location.href = "/Vshop/ShippingAddresses.aspx";
+                        return false;
+                    }
+                    var returnURL = window.location.search.substr(window.location.search.indexOf("returnUrl=") + 10);
+                    if (returnURL == undefined) {
+                        location.href = "/Vshop/ShippingAddresses.aspx";
+                        return false;
+                    }
+                    location.href = decodeURIComponent(returnURL);
+                }
+                else {
+                    alert_h("添加失败");
+                }
+            }
+        });
+    }
+    function IdentityCodeValid(code) {
+        var pass = true
+        var city = { 11: "北京", 12: "天津", 13: "河北", 14: "山西", 15: "内蒙古", 21: "辽宁", 22: "吉林", 23: "黑龙江 ", 31: "上海", 32: "江苏", 33: "浙江", 34: "安徽", 35: "福建", 36: "江西", 37: "山东", 41: "河南", 42: "湖北 ", 43: "湖南", 44: "广东", 45: "广西", 46: "海南", 50: "重庆", 51: "四川", 52: "贵州", 53: "云南", 54: "西藏 ", 61: "陕西", 62: "甘肃", 63: "青海", 64: "宁夏", 65: "新疆", 71: "台湾", 81: "香港", 82: "澳门", 91: "国外 " };
+        if (!code || !/^[1-9]\d{5}((1[89]|20)\d{2})(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])\d{3}[\dx]$/i.test(code)) {
+            alert_h("身份证号格式错误");
+            pass = false;
+        }
+
+            //else if (!city[code.substr(0, 2)]) {
+            //    alert_h("地址编码错误");
+            //    return false;
+            //}
+        else {
+            //18位身份证需要验证最后一位校验位
+            if (code.length == 18) {
+                code = code.split('');
+                //∑(ai×Wi)(mod 11)
+                //加权因子
+                var factor = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
+                //校验位
+                var parity = [1, 0, 'X', 9, 8, 7, 6, 5, 4, 3, 2];
+                var sum = 0;
+                var ai = 0;
+                var wi = 0;
+                for (var i = 0; i < 17; i++) {
+                    ai = code[i];
+                    wi = factor[i];
+                    sum += ai * wi;
+                }
+                var last = parity[sum % 11];
+                if (parity[sum % 11] != code[17].toUpperCase()) {
+                    alert_h("身份证号格式错误,校验位错误");
+                    pass = false;
+                }
+            }
+        }
+        return pass;
+    }
+</script>
+
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+<hi:common_vfooter runat="server" />

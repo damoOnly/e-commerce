@@ -1,0 +1,91 @@
+﻿<hi:common_vheader runat="server" />
+<script type="text/javascript" src="/templates/vshop/haimei/js/bussiness/lg.js"></script>
+<div class="page">
+    <section>
+        <div class="lg-panel" id="divLogin">
+        	<div class="lg-logo">
+            	<img src="/templates/vshop/haimei/resource/default/image/lg-logo.png" />
+            </div>
+            <div class="fix lg-module">
+                <dl class="lg-dl fix">
+                    <dt>账号：</dt>
+                    <dd>
+                        <div class="input-con bor">
+                            <input name="txtName" type="text" id="txtUserName" class="inputbox" tabindex="1" placeholder="请输入账号">
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="lg-dl fix">
+                    <dt>密码：</dt>
+                    <dd>
+                        <div class="input-con">
+                            <input class="inputbox" type="password" tabindex="2" name="txtPassword" id="txtPassword" placeholder="请输入密码">
+                        </div>                        
+                    </dd>
+                </dl>
+            </div>
+            <div class="lg-toolbar">
+                <!--<label class="checkbox-label">
+                    <input name="cbxRemName" type="checkbox" id="cbxRemName" class="checkbox" tabindex="3">
+                    记住账号</label>-->
+                <div class="tip dis-none" id="txtLoginTimes"></div>
+                <div class="fix">
+                    <input class="submit-btn" value="确定绑定这个账号" type="submit" tabindex="4" id="btnLogin" name="btnLogin">
+                </div>
+                <div class="lg-bars fix"> <!--<a class="fl fg-link">忘记密码</a> --><a class="fr gr-link" id="aRegister" href="javascript:void(0)">我还没有账号，立刻去注册！</a> </div>
+            </div>
+            <!--第三方登录 -->
+            <!--<div class="other-way">
+                <p class="lg-ways-tit">更多登录方式</p>
+                <div class="lg-ways fix">
+                    <a><img src="/templates/vshop/haimei/resource/default/image/other-way/lg-qq.png" /><span>QQ</span></a><a><img src="/templates/vshop/haimei/resource/default/image/other-way/lg-wx.png" /><span>微信</span></a>
+                </div>
+            </div>-->
+        </div>
+        <div class="lg-panel dis-none" id="divRegister">
+            <div class="fix lg-module">
+                <dl class="lg-dl fix">
+                    <dt>用户名：</dt>
+                    <dd>
+                        <div class="input-con bor">
+                            <input name="txtName" type="text" id="txtRegisterUserName" class="inputbox" tabindex="1" placeholder="请输入您的用户名">
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="lg-dl fix">
+                    <dt>邮箱：</dt>
+                    <dd>
+                        <div class="input-con bor">
+                            <input name="txtName" type="text" id="text_email_domain" class="inputbox" tabindex="2" placeholder="请输入您的邮箱">
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="lg-dl fix">
+                    <dt>密码：</dt>
+                    <dd>
+                        <div class="input-con">
+                            <input class="inputbox" type="password" tabindex="3" name="txtPassword" id="text_password" placeholder="请输入密码">
+                        </div>                        
+                    </dd>
+                </dl>
+            </div>
+            <div class="lg-toolbar"> 
+            	<label class="checkbox-label">
+                    <input type="checkbox" id="agreen" class="checkbox" tabindex="4" checked="checked" />
+                    同意<a href="HelpItem.aspx?HelpId=44">用户协议</a></label>              
+                <div class="fix">
+                    <input class="submit-btn" value="注册并绑定这个账号" type="submit" tabindex="5" id="btnRegisterUser" name="btnLogin">
+                </div>
+                <div class="lg-bars fix"> <a class="fr gr-link" id="aLogin" href="javascript:void(0)">我已有账号，立刻去登录！</a></div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+<hi:common_vfooter runat="server" />
+

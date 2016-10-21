@@ -1,0 +1,17 @@
+﻿<Hi:Common_vHeader  runat="server" />
+<div class="pbox">
+    <%<asp:Literal ID="litReferralRegisterAgreement" runat="server" />%>
+
+    <hr />
+
+    <button class="btn btn-info btn-block" id="btnToRegister">立即填写申请表单</button>
+</div>
+<script language="javascript" type="text/javascript">
+    $(document).ready(function (e) {
+        $("#btnToRegister").click(function (e) {
+            location.href = "ReferralRegister.aspx";
+        });
+    });
+</script>
+
+<Hi:Common_vFooter  runat="server" />

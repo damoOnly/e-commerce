@@ -1,0 +1,212 @@
+﻿ <%<hi:common_header runat="server" skinname="/ascx/tags/Skin-Common_ActiveHeader.ascx" />%>
+<input type="hidden" runat="server" id="search_text" />
+<div style="background:#ff587c;">
+    <div style="background:url('../images/active/women_banner.jpg') center top no-repeat;height:400px;"></div><!--banner--->
+    <div class="activewrap">
+        <hi:Common_ActivityShow ID="list_Common_ActivityShow" Topicids="69,70,71" MaxNum="50" skinname="/ascx/Tags/Common_GoodsList/skin-Common_GoodsList_ActiveShow.ascx" runat="server" />
+    </div>
+</div>
+
+<div class="login_tan" id="loginForBuy" style="display:none;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td colspan="4">
+                <table class="loginForBuytit" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="400">
+                            <h2>您尚未登录，请登录</h2>
+                        </td>
+                        <td width="39"><p><img id="imgCloseLogin" src="/images/sub/close2.jpg" width="25" height="24" /></p></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr><td colspan="4">&nbsp;</td></tr>
+        <tr>
+            <td width="25" valign="middle" w>&nbsp;</td>
+            <td valign="middle" width="65" class="fB">用户名：</td>
+            <td width="250" valign="middle">
+                <label>
+                    <input type="text" name="textfield" id="textfieldusername" class="login_tan_input1" />
+                </label>
+            </td>
+            <td valign="middle" width="104">&nbsp;</td>
+        </tr>
+        <tr>
+            <td height="45" valign="middle">&nbsp;</td>
+            <td valign="middle" class="fB">密　码：</td>
+            <td valign="middle"><input type="password" name="textfield2" id="textfieldpassword" class="login_tan_input2" /></td>
+            <td valign="middle"><a href="url:ForgotPassword">忘记密码了?</a></td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <table>
+                    <tr>
+                        <td width="85" valign="middle">&nbsp;</td>
+                        <td width="140">
+                            <label>
+                                <input type="button" name="button" id="btnLoginAndBuy" value=" " class="login_tan_input3" />
+                            </label>
+                        </td>
+                        <td width="79" align="center"><a href="url:register">我要注册</a></td>
+                        <!--<td width="135"><input id="btnAmoBuy" type="button" value="匿名购买" /></td>-->
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="bars success-tip" id="success-tip">+1</div>
+<div class="login-shadow"></div>
+
+
+<script>
+    $(function () {
+        $("#btnLoginAndBuy").bind("click", function () { LoginAndBuy(); });
+        var $input = $(".num-wrap input");
+        if ($input != null && $input != undefined && $input != "") {
+            $input.each(function (i, elem) {
+                var theme = "disabled";
+                var elem = $(elem);
+                if (elem.hasClass(theme)) {
+                    elem.attr("disabled", "disabled");
+                } else {
+                    elem.removeAttr("disabled");
+                }
+            });
+        }
+        //购物车 输入框 失去焦点
+        $(".num-wrap input").blur(function () {
+            var theme = "disabled";
+            if ($(this).hasClass(theme)) {
+                $(this).attr("disabled", "disabled");
+                return;
+            }
+            var $ele = $(this);
+            var val = $ele.val();
+            var oldV = $ele.attr("old-v");
+            var $btnReduce = $(this).parents(".num-wrap").find(".btn-reduce");
+            if (isNaN(val)) {
+                $ele.val(oldV);
+                if (oldV <= 1) {
+                    $btnReduce.addClass("disabled");
+                } else {
+                    $btnReduce.removeClass("disabled");
+                }
+                return;
+            }
+            if (val <= 1) {
+                val = 1;
+                $ele.val(val);
+                $btnReduce.addClass("disabled");
+            } else {
+                $btnReduce.removeClass("disabled");
+            }
+            $ele.attr("old-v", val);
+        })
+        //购物车 数量 添加
+        $(".num-wrap .btn-add").unbind("click").bind("click", function () {
+            var theme = "disabled";
+            if ($(this).hasClass(theme)) {
+                return;
+            }
+            var $ele = $(this).parents(".num-wrap").find("input");
+            var val = $ele.val();
+            if (isNaN(val) || val == "") {
+                val = $ele.attr("old-v");
+                if (!val) {
+                    val = 1;
+                }
+            }
+            val = parseInt(val);
+            val += 1;
+            if (val > 1) {
+                $(this).parents(".num-wrap").find(".btn-reduce").removeClass("disabled");
+            }
+            $ele.val(val).attr("old-v", val);
+        })
+        //购物车 数量 添加
+        $(".num-wrap .btn-reduce").unbind("click").bind("click", function () {
+            var theme = "disabled";
+            if ($(this).hasClass(theme)) {
+                return;
+            }
+            var $ele = $(this).parents(".num-wrap").find("input");
+            var val = $ele.val();
+            if (isNaN(val) || val == "") {
+                val = $ele.attr("old-v");
+                if (!val) {
+                    val = 1;
+                }
+            }
+            val = parseInt(val);
+            val -= 1;
+            if (val <= 1) {
+                val = 1;
+                $(this).addClass(theme);
+            }
+            $ele.val(val).attr("old-v", val);
+        })
+    });
+    function AddToFav(productid) {
+        if ($("#hiddenIsLogin").val() == "nologin") {
+            $("#loginForBuy").fadeIn();
+            $('.login-shadow').fadeIn();
+            $('html,body').css('overflow', 'hidden');
+            return false;
+        }
+        var data = {};
+        data.ProductId = productid;
+        $.post("/Handler/MemberHandler.ashx?action=AddFavorite", data, function (result) {
+            if (result.success) {
+                alert("收藏成功");
+                $("#" + productid).text(result.CollectNum);
+            }
+            else {
+                if (!result.success && result.CollectNum != undefined) {
+                    alert("该商品已经收藏");
+                }
+            }
+        });
+    }
+    // 登录后再购买
+    function LoginAndBuy() {
+        var username = $("#textfieldusername").val();
+        var password = $("#textfieldpassword").val();
+        var thisURL = document.URL;
+
+        if (username.length == 0 || password.length == 0) {
+            alert("请输入您的用户名和密码!");
+            return;
+        }
+
+        $.ajax({
+            url: "Login.aspx",
+            type: "post",
+            dataType: "json",
+            timeout: 10000,
+            data: { username: username, password: password, action: "Common_UserLogin" },
+            async: false,
+            success: function (data) {
+                if (data.Status == "Succes") {
+                    $("#loginForBuy").hide('hide');
+                    $("#hiddenIsLogin").val('logined');
+                    window.location.reload();
+
+                }
+                else {
+                    alert(data.Msg);
+                }
+            }
+        });
+    }
+
+    $('#imgCloseLogin').click(function () {
+        $("#loginForBuy").fadeOut(100);
+        $(".login-shadow").fadeOut(100);
+        $('html,body').css('overflow', 'auto');
+    });
+</script>
+
+<script src="/Utility/productlist.helper.js?v=20150825" type="text/javascript"></script>
+    <%<hi:common_footer runat="server" />%>

@@ -1,0 +1,85 @@
+﻿<%<Hi:Common_Header runat="server"  />%>
+<form runat="server" clientidmode="Static" id="aspnetForm">
+<div class="zhuce">
+    <div class="xyonghu">
+        新用户注册</div>
+    <div><%<Hi:SmallStatusMessage id="Status" runat="server" Visible="False" />%></div>
+    <div class="zhuce_con">
+        <div class="zhuce_con_l">
+            <div class="zc_name">
+                <em>&nbsp;&nbsp;&nbsp;&nbsp;用户名：</em>
+                <span><%<asp:TextBox ID="txtUserName" name="txtUserName" CssClass="zhuce_input1" runat="server" clientidmode="Static" tabindex="1" />%></span>
+                <span id="txtUserName_succeed" class="zc_tishi">一旦注册成功不能修改</span>
+                <span class="zc_tishi2" id="txtUserName_error"></span>
+            </div>
+                          
+            <div class="zc_name">
+               
+                 <em>手机号码：</em>
+                <span><%<asp:TextBox ID="txtCellPhone" name="txtCellPhone" CssClass="zhuce_input1" runat="server" clientidmode="Static" tabindex="3" />%></span>
+                <span id="txtCellPhone_succeed" class="zc_tishi">该手机号码可以使用</span>
+                <span class="zc_tishi2" id="txtCellPhone_error"></span>
+            </div>
+              <div class="zc_name">
+                <em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮箱：</em>
+                <span><%<asp:TextBox ID="txtEmail" name="txtEmail" CssClass="zhuce_input1" runat="server" clientidmode="Static" tabindex="3" />%></span>
+                <span id="txtEmail_succeed" class="zc_tishi">该邮箱可以使用</span>
+                <span class="zc_tishi2" id="txtEmail_error"></span>
+            </div>
+            <div class="zc_name">
+                <em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;密码：</em> <span>
+                    <%<asp:TextBox ID="txtPassword" name="txtPassword" runat="server" clientidmode="Static"  CssClass="zhuce_input1"  TextMode="Password" tabindex="4" />%></span>
+                <span id="txtPassword_succeed" class="zc_tishi">密码可用</span>
+                <span class="zc_tishi2" id="txtPassword_error"></span>
+            </div>
+            
+            <div class="zc_anquan" id="pwdstrength">
+                <em>密码安全度：</em> <b></b></div>
+                <div></div>
+            <div class="zc_name">
+                <em>确认密码：</em>
+                <span><%<asp:TextBox ID="txtPassword2" name="txtPassword2" clientidmode="Static"  CssClass="zhuce_input1"  runat="server" TextMode="Password" tabindex="5" />%></span>
+                <span id="txtPassword2_succeed" class="zc_tishi">密码输入正确</span>
+                <span class="zc_tishi2" id="txtPassword2_error"></span>
+            </div>
+            <div class="zc_name">
+                <em class="yanzhengma">验证码：</em>
+                   <span><%<asp:TextBox ID="txtNumber" clientidmode="Static" CssClass="zhuce_input2" runat="server" MaxLength="4" autocomplete="off" tabindex="6" />%></span>
+                    <span class="yanzheng_input3"><img id="imgVerifyCode" src='' style="vertical-align: middle; border-style: none;" alt="" /></span> 
+                    <span class="yanzheng_input4">看不清？<a href="javascript:refreshCode();">换一张</a></span>
+                <span id="txtNumber_succeed" class="zc_tishi">验证码输入正确</span>
+                <span class="zc_tishi2" id="txtNumber_error"></span>
+            </div>
+            <div class="zc_xieyi">
+                <%<asp:CheckBox ID="chkAgree" name="chkAgree" CssClass="xy_xuanze" clientidmode="Static" runat="server" Checked="true" tabindex="7"/>%><em>本人已阅读、理解并同意本站的<a
+                    href="RegisterAgreement.aspx">会员注册协议</a></em></div>
+            <div>
+               <input type="button" ID="btnRegister" name="btnRegister" runat="server" class="xieyi_btn"/>
+               
+                </div>
+        </div>
+        <div class="zhuce_con_r">
+            <div>
+                已有会员账号？ 可以<a href="url:login">直接登录</a></div>
+            <div>
+                其它登录方式</div>
+            <div>
+                <%<Hi:Common_Link_OpenId runat="server"  /> %>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" language="javascript">
+    document.getElementById('imgVerifyCode').src = applicationPath + "/VerifyCodeImage.aspx";
+    function refreshCode() {
+        var img = document.getElementById("imgVerifyCode");
+
+        if (img != null) {
+            var currentDate = new Date();
+            img.src = applicationPath + "/VerifyCodeImage.aspx?t=" + currentDate.getTime();
+        }
+    }
+</script>
+<script type="text/javascript" src="/Utility/validate/Validate.js"></script>
+</form>
+<%<Hi:Common_Footer runat="server"   />%>

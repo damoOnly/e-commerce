@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root CategoryNum="0">
+  <Menu Id="1" Title="商城资讯" DisplaySequence="2" Category="1" Url="AllArticles" Where="" Visible="false" />
+  <Menu Id="2" Title="纽澳直邮" DisplaySequence="1" Category="1" Url="productunslaes" Where="" Visible="false" />
+  <Menu Id="3" Title="团购" DisplaySequence="3" Category="1" Url="GroupBuyProducts" Where="" Visible="true" />
+  <Menu Id="4" Title="捆绑销售" DisplaySequence="4" Category="1" Url="BundlingProducts" Where="" Visible="false" />
+  <Menu Id="5" Title="品牌专卖" DisplaySequence="5" Category="1" Url="brand" Where="" Visible="false" />
+  <Menu Id="6" Title="优惠活动" DisplaySequence="6" Category="1" Url="Promotes" Where="" Visible="false" />
+  <Menu Id="7" Title="玩具" DisplaySequence="1" Category="2" Url="" Where="309,55,2,0,100,1" Visible="false" />
+  <Menu Id="8" Title="食品保健" DisplaySequence="1" Category="1" Url="productunslaes" Where="" Visible="false" />
+  <Menu Id="9" Title="进口零食" DisplaySequence="1" Category="2" Url="" Where="8000036,,,,," Visible="true" />
+  <Menu Id="10" Title="海外直邮" DisplaySequence="1" Category="2" Url="" Where="8000072,,,,," Visible="true" />
+  <Menu Id="11" Title="食品保健" DisplaySequence="1" Category="2" Url="" Where="1000000,,,,," Visible="true" />
+  <Menu Id="12" Title="美妆洗护" DisplaySequence="1" Category="2" Url="" Where="8000038,,,,," Visible="true" />
+  <Menu Id="13" Title="家居日用" DisplaySequence="1" Category="2" Url="" Where="8000040,,,,," Visible="true" />
+  <Menu Id="14" Title="宜和购物" DisplaySequence="1" Category="2" Url="" Where="8000042,,,,," Visible="false" />
+  <Menu Id="15" Title="下架区" DisplaySequence="1" Category="1" Url="productunslaes" Where="" Visible="false" />
+  <Menu Id="16" Title="店铺交流区" DisplaySequence="1" Category="1" Url="LeaveComments" Where="" Visible="false" />
+  <Menu Id="17" Title="公告列表" DisplaySequence="1" Category="1" Url="Affiches" Where="" Visible="false" />
+  <Menu Id="18" Title=" 积分商城" DisplaySequence="1" Category="1" Url="OnlineGifts" Where="" Visible="false" />
+  <Menu Id="19" Title="限时抢购" DisplaySequence="1" Category="1" Url="CountDownProducts" Where="" Visible="false" />
+  <Menu Id="20" Title="43" DisplaySequence="1" Category="3" Url="http://444" Where="" Visible="true" />
+  <Menu Id="21" Title="母婴用品" DisplaySequence="1" Category="2" Url="" Where="5000000,,,,," Visible="true" />
+  <Menu Id="22" Title="kkht" DisplaySequence="1" Category="1" Url="brand" Where="" Visible="true" />
+  <Menu Id="23" Title="捆绑商品" DisplaySequence="1" Category="1" Url="BundlingProducts" Where="" Visible="true" />
+</root>

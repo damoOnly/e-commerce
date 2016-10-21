@@ -1,0 +1,156 @@
+﻿<hi:common_vheader runat="server" />
+<form id="form" role="form" class="pbox clearfix" runat="server">
+    <div class="shouhuoxx1_con">
+    <div id="refund_div" style="display: none">
+        <div class="frame-content" style="overflow: hidden;">
+            <p>
+<!--                 1.您需要选择我们如何将退款返回给您，如果选择预存款，金额将退到预存款，如果选择银行转账，请填写银行账号的相关信息。 -->
+            </p>
+            <p style="color: #cc0000">
+                <span class="frame-span frame-input130"><em>*</em>&nbsp;退款途径：</span> <span>
+                    <abbr class="formselect">
+                        <%<asp:DropDownList id="dropRefundType" runat="server">
+                            <asp:listitem value="3">原路返回</asp:listitem>
+                        </asp:DropDownList>%>
+                    </abbr>
+                </span>
+            </p>
+            <p style="color: #cc0000">
+                <span>>退款备注</span>
+            </p>
+            <p>
+                <span>
+                    <%<asp:TextBox ID="txtRefundRemark" runat="server" TextMode="MultiLine"
+            class="form-control" ClientIDMode="Static" runat="server"></asp:TextBox>%>
+                </span>
+            </p>
+        </div>
+    </div>
+    <div id="return_div" style="display: none">
+        <div class="frame-content" style=" overflow: hidden;">
+            <p>
+                <!--1.请在退货前与客服确认退货，才将商品寄出。务必把物流单号和物流公司填写于备注里面。<br />
+                2、您需要选择我们如何将退款返回给您，如果选择预存款，金额将退到预存款，如果选择银行转账，请填写银行账号的相关信息-->
+            </p>
+            <p style="color: #cc0000">
+                <span class="frame-span frame-input130"><em>*</em>&nbsp;退款途径：</span> <span>
+                    <abbr class="formselect">
+                        <%<asp:DropDownList id="dropReturnRefundType" runat="server">
+                            <asp:listitem value="3">原路返回</asp:listitem>
+                        </asp:DropDownList>%>
+                    </abbr>
+                </span>
+            </p>
+            <p style="color: #cc0000">
+                <!--申请原因，物流公司，物流单号，退款账号等：（银行转账，请填写您的银行账号相关信息）-->
+               退货备注
+            </p>
+            <p>
+                <%<asp:TextBox ID="txtReturnRemark" runat="server" TextMode="MultiLine"
+            class="form-control" ClientIDMode="Static" runat="server"></asp:TextBox>%>
+            </p>
+        </div>
+    </div>
+    <div id="replace_div" style="display: none">
+        <div class="frame-content" style="overflow: hidden;">
+            <p>
+                <!--1.请在换货前仔细阅读换货说明并与客服确认换货，才将商品寄出。务必把物流单号和物流公司填写于备注里面-->
+            </p>
+            <p style="color: #cc0000">换货备注：</p>
+            <p style="color: #cc0000">
+                <span>
+                    <%<asp:TextBox ID="txtReplaceRemark" runat="server" TextMode="MultiLine"
+            class="form-control" ClientIDMode="Static" runat="server"></asp:TextBox>%>
+                </span>
+            </p>
+        </div>
+    </div>
+    <div >
+        <input type="hidden" id="hdorderId" runat="server" />
+        <input type="button" id="btnRefund" value="提交申请" style="display: none" class="btn btn-danger btn-block" onclick="ApplyForRefund()" />
+        <input type="button" id="btnReturn" value="提交申请" style="display: none" class="btn btn-danger btn-block" onclick="ApplyForReturn()" />
+        <input type="button" id="btnReplace" value="提交申请" style="display: none" class="btn btn-danger btn-block" onclick="ApplyForReplace()" />
+    </div>
+    <script type="text/javascript">  
+        var action;
+        $(function () {
+            action = getParam("Action");
+            if (action == "Refund") {
+                $('#refund_div').show();
+                $('#btnRefund').show();
+            } else if (action == "Return") {
+                $('#return_div').show();
+                $('#btnReturn').show();
+            } else if (action == "Replace") {
+                $('#replace_div').show();
+                $('#btnReplace').show();
+            }
+        });
+            var type = "";
+            function validatorForm() {
+                if (action == "Refund") {
+                    if ($("#txtRefundRemark").val().replace(/\s/g, "") == "") {
+                        alert("请输入申请原因以及退款帐号");
+                        return false;
+                    }
+                }
+                else if (action == "Return") {
+                    if ($("#txtReturnRemark").val().replace(/\s/g, "") == "") {
+                        alert("请输入申请原因，物流公司，物流单号，退款账号等");
+                        return false;
+                    }
+                }
+                else if (action == "Replace") {
+                    if ($("#txtReplaceRemark").val().replace(/\s/g, "") == "") {
+                        alert("请输入换货备注");
+                        return false;
+                    }
+                }
+                return true;
+            }
+            function ApplyForRefund(orderId) {
+                if(!validatorForm()){
+                    return false;
+                }
+                $.ajax({
+                    url: "/API/VshopProcess.ashx",
+                    type: 'post', dataType: 'json', timeout: 10000,
+                    data: { action: "ApplyForRefund", orderId: getParam("OrderId"), remark: $.trim($('#txtRefundRemark').val()), refundType: $('#CustomerService_dropRefundType').find("option:selected").val() },
+                    success: function (resultData) {
+                        confirm(resultData.msg);
+                        history.go(-1);
+                    }
+                });
+            }
+            function ApplyForReturn(orderId) {
+                if (!validatorForm()) {
+                    return false;
+                }
+                $.ajax({
+                    url: "/API/VshopProcess.ashx",
+                    type: 'post', dataType: 'json', timeout: 10000,
+                    data: { action: "ApplyForReturns", orderId: getParam("OrderId"), remark: $.trim($('#txtReturnRemark').val()), returnType: $('#CustomerService_dropReturnRefundType').find("option:selected").val() },
+                    success: function (resultData) {
+                        confirm(resultData.msg);
+                        history.go(-1);
+                    }
+                });
+            }
+            function ApplyForReplace(orderId) {
+                if (!validatorForm()) {
+                    return false;
+                }
+                $.ajax({
+                    url: "/API/VshopProcess.ashx",
+                    type: 'post', dataType: 'json', timeout: 10000,
+                    data: { action: "ApplyForReplacement", orderId: getParam("OrderId"), remark: $.trim($('#txtReplaceRemark').val()) },
+                    success: function (resultData) {
+                        confirm(resultData.msg);
+                        history.go(-1);
+                    }
+                });
+            }
+    </script>
+    </div>
+</form>
+<hi:common_vfooter runat="server" />

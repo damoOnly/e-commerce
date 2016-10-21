@@ -1,0 +1,310 @@
+﻿<hi:common_vheader runat="server" />
+<div class="page">
+    <section>
+        <div class="pt10 mb10 fix dis-none" id="dSubmitComment">
+            <div class="ct-list">
+                <ul class="fix">
+                    <li>
+                        <asp:HyperLink id="productLink" runat="server">
+                            <div class="ct-box">
+                                <div class="ct-img"> <img runat="server" id="productImage" /></div>
+                                <div class="specification"></div>
+                                <div class="ct-info">
+                                    <div class="ct-name">
+                                        <asp:Literal runat="server" id="litProdcutName" />
+                                    </div>
+                                    <div class="dis-none">
+                                        <asp:Literal runat="server" id="litShortDescription" />
+                                    </div>
+                                    <div class="fix">
+                                        <span class="ct-price">
+                                            ¥<span>
+                                                <asp:Literal runat="server" id="litSalePrice" />
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="fix">
+                                        <span class="ct-rate">
+                                            已售：
+                                            <asp:Literal runat="server" id="litSoldCount" />
+                                            件
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </asp:HyperLink>
+                    </li>
+                </ul>
+            </div>
+            <div class="com-sumer">
+                <div class="fix">
+                    <label>商品满意度</label>
+                    <div class="star-list fix" id="star-list"><span class="star light"></span><span class="star light"></span><span class="star light"></span><span class="star light"></span><span class="star light"></span></div>
+                    <span class="st-level"><span id="scroe-lev">5</span>分</span>
+                    <input type="hidden" id="scroe" />
+                </div>
+            </div>
+            <div class="sm-con">
+                <dl class="sm-dl fix">
+                    <dd>
+                        <textarea id="review" class="textarea" rows="3" placeholder="请填写您对该商品的评价"></textarea>
+                    </dd>
+                </dl>
+            </div>
+            <div class="pt10 pl10 pr10 mb10 fix">
+                <input type="hidden" clientidmode="Static" value="" runat="server" id="txtTotal" />
+                <button type="button" onclick="Submit()" class="red-btn">提交评价</button>
+            </div>
+        </div>
+        <div id="com-con">
+            <div class="no-data pl10 pr10" id="no-data">
+                <p>该商品暂时没有评论！</p>
+            </div>
+            <div class="fix" id="reviews">
+              
+            </div>
+
+            <div class="more-tip" id="more-tip">下拉加载更多...</div>
+
+
+
+           
+        </div>
+    </section>
+   
+   
+</div>
+<hi:common_vfooter runat="server" />
+<script src="/Utility/common.js" type="text/javascript"></script>
+<script src="/Utility/pager.js" type="text/javascript"></script>
+<script type="text/javascript">
+    function Submit() {
+        var reviewText = $("#review").val();
+        if (!$.trim(reviewText)) {
+            alert_h('请输入评论内容!');
+        }
+        else {
+            var id = getParam("ProductId");
+            var skuId = getParam("SkuId");
+            var data = {};
+            data.ProductId = id;
+            data.OrderId = getParam("OrderId");
+            data.ReviewText = reviewText;
+            data.SkuId = skuId;
+            data.Score = Number($("#scroe-lev").text());
+            $.post("/api/VshopProcess.ashx?action=AddProductReview", data, function (json) {
+                if (json.success === true) {
+                    alert_h("提交成功", function () {
+                        location.reload();
+                    });
+                }
+                else {
+                    alert_h(json.msg);
+                }
+            });
+        }
+    }
+
+    $(function () {
+
+        var postData = GetPostData();
+        $.ajax({
+            url: "/API/ProductReviewsHandler.ashx",
+            type: 'post', dataType: 'json', timeout: 10000,
+            data: postData,
+            async: false,
+            success: function (resultData) {
+                if (resultData.Success == 1) {
+
+                    var str = '';
+                    str += '<div class="com-sumer">';
+                    str += ' <div class="fix"><label>商品满意度</label>';
+                    str += '<div class="star-list fix">';
+                    for (var k = 1.0; k < 6.0; k++) {
+                        if (k > resultData.Avg) {
+                            //半个星星
+                            if (k < (resultData.Avg + 1.0)) {
+                                str += '<span class="star half"></span>';
+                            }
+                                //星星不点亮
+                            else {
+                                str += '<span class="star"></span>';
+                            }
+
+                        }
+                            //星星完全点亮
+                        else {
+                            str += '<span class="star light"></span>';
+
+                        }
+                    }
+                    str += '</div>';
+                    str += '<span class="st-level">' + resultData.Avg + '分</span>';
+                    str += '</div>';
+                    str += '</div>';
+                    var productcomments = resultData.data;
+                    str += '<div class="com-list"><ul class="fix" id="reviewsList">';
+                    for (var i = 0; i < productcomments.length; i++) {
+
+                        str += '<li>'
+                        str += '<div class="com-box">';
+                        str += '<div class="com-head fix">';
+                        str += '<div class="fr fix">';
+                        str += '<div class="star-list fix star-level-' + productcomments[i].Score + '">';
+                        for (var j = 0; j < 5; j++) {
+                            if (j > productcomments[i].Score - 1) {
+                                str += '<span class="star"></span>';
+                            }
+                            else {
+                                str += '<span class="star light"></span>';
+
+                            }
+                        }
+                        str += '</div></div>';
+                        var userName;
+                        if (productcomments[i].IsAnonymous == 1) {
+                            userName = productcomments[i].UserName;
+                            userName = userName.substring(0, 1) + "***" + userName.substring(userName.length - 1, userName.length)
+                        }
+                        else {
+                            userName = productcomments[i].UserName;
+                        }
+                        str += '<div class="ovh">';
+                        str += ' <img class="mb-img" src="' +productcomments[i].HeadImgUrl + '"/>';
+                        str += ' <span class="mb-name">' + userName + '</span></div>';
+                        str += '</div>';
+                        str += '<div class="com-con">';
+                        str += ' <div class="com-inner">' + productcomments[i].ReviewText + '</div>';
+                        str += '<div class="gray"><label class="fl">评论时间：</label>' + productcomments[i].ReviewDate + '</div>';
+                        str += '</div>';
+                        str += '</div>';
+                        str += '</li>';
+                    }
+
+                    str += '</ul></div>';
+                    $(str).appendTo("#reviews");
+                }
+            }
+        });
+
+            //评论没有数据
+        if (!$('#reviewsList li').length){
+            $('#reviews').hide();
+            $("#no-data").show();
+            $("#more-tip").hide();
+        }
+        //评论分页数据
+        //vshopPager('pager', $('#txtTotal').val(), 1, 20);
+        //评分事件
+        $("#star-list .star").on("click",function(){
+            var $ele = $(this);
+            var theme = "light";
+            var index = $ele.index();
+            var scroe = index + 1;
+            $ele.nextAll().removeClass(theme);
+            $ele.addClass(theme).prevAll().addClass(theme);
+            $("#scroe").val(scroe);
+            $("#scroe-lev").text(scroe);
+        })
+
+        //非评价的
+        var $sbc = $("#dSubmitComment");
+        var $comCon = $("#com-con");
+        if (getParam("OrderId") == null || getParam("OrderId") == undefined || getParam("OrderId") =="") {
+            $sbc.hide();
+            $comCon.show();
+
+            $(window).bind("scroll.loadmore", function () {
+                var scrolltop = $(document).scrollTop();
+                var winH = $(window).height();
+                var theme = "show";
+                var $moreTip = $("#more-tip").removeClass(theme);
+                var offset = $moreTip.offset();
+                if ((scrolltop + winH) >= offset.top) {
+                    $moreTip.addClass(theme);
+                    loadMore();
+                }
+            });
+
+        }else{ //评价的
+            $sbc.show();
+            $comCon.hide();
+            $("#more-tip").hide();
+
+
+           
+        }
+    });
+
+
+    //下拉加载更多评论
+    var pageNumber = 0;
+    //var totalPage = 0;
+    var size = 12;
+    function loadMore() {
+        var postData = GetPostData();
+
+        $.ajax({
+            url: "/API/ProductReviewsHandler.ashx",
+            type: 'post', dataType: 'json', timeout: 10000,
+            data: postData,
+            async: false,
+            success: function (resultData) {
+                if (resultData.Success == 1) {
+                    var productcomments = resultData.data;
+                    var str = '';
+                    for (var i = 0; i < productcomments.length; i++) {
+
+                        str += '<li>'
+                        str += '<div class="com-box">';
+                        str += '<div class="com-head fix">';
+                        str += '<div class="fr fix">';
+                        str += '<div class="star-list fix star-level-' + productcomments[i].Score + '">';
+                        for (var j = 0; j < 5; j++) {
+                            if (j > productcomments[i].Score - 1) {
+                                str += '<span class="star"></span>';
+                            }
+                            else {
+                                str += '<span class="star light"></span>';
+
+                            }
+                        }
+                        str += '</div></div>';
+                        var userName;
+                        if (productcomments[i].IsAnonymous == 1) {
+                            userName = productcomments[i].UserName;
+                            userName = userName.substring(0, 1) + "***" + userName.substring(userName.length - 1, userName.length)
+                        }
+                        else {
+                            userName = productcomments[i].UserName;
+                        }
+                        str += '<div class="ovh">';
+                        str += ' <img class="mb-img" src="' +productcomments[i].HeadImgUrl + '"/>';
+                        str += ' <span class="mb-name">' + userName + '</span></div>';
+                        str += '</div>';
+                        str += '<div class="com-con">';
+                        str += ' <div class="com-inner">' + productcomments[i].ReviewText + '</div>';
+                        str += '<div class="gray"><label class="fl">评论时间：</label>' + productcomments[i].ReviewDate + '</div>';
+                        str += '</div>';
+                        str += '</div>';
+                        str += '</li>';
+                    }
+                    $(str).appendTo("#reviewsList");
+                        pageNumber++;
+                       
+                }
+
+                else {
+                    $('.groom-wrap').show();
+                    $('#more-tip').addClass("show").html('没有更多信息了！');
+                    $(window).unbind("scroll.loadmore");
+                }
+            }
+        });
+    }
+    function GetPostData() {
+        var postData = { action: "GetProductReviews", pageNumber: pageNumber + 1, size: size, ProductId: getParam("productId") };
+        return postData;
+    }
+
+</script>

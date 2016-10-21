@@ -1,0 +1,233 @@
+﻿<hi:common_vheader runat="server" />
+<div class="page gray-page">
+    <section>
+        <div class="mt10">
+            <div class="odp-wrap">
+                <div class="odp-head">配送信息</div>
+                <div class="odp-con">
+                    <dl class="odp-dl fix">
+                        <dt>收货人信息：</dt>
+                        <dd>
+                            <asp:Literal runat="server" id="litShipTo" />
+                            <span class="ml10">
+                            <asp:Literal runat="server" id="litPhone" />
+                            </span></dd>
+                    </dl>
+                    <dl class="odp-dl fix">
+                        <dt>收货地址：</dt>
+                        <dd>
+                            <asp:Literal runat="server" id="litAddress" />
+                        </dd>
+                    </dl>
+                    <dl class="odp-dl fix">
+                        <dt>配送时间：</dt>
+                        <dd>
+                            <asp:Literal runat="server" id="litShipToDate" />
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="odp-wrap">
+                <div class="odp-head"><span class="total-p">¥
+                    <asp:Literal runat="server" id="litTotalPrice" />
+                    </span>
+                    <div class="ellipsis">商品清单<span class="small">（点击商品可评价）</span></div>
+                </div>
+                <div class="odp-con">
+                    <div class="ct-list">
+                        <ul class="fix">
+                           <hi:vshoptemplatedrepeater id="rptOrderProducts" templatefile="/Tags/skin-Common_MemberOrderProducts.ascx"
+                runat="server" />
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="odp-wrap">
+                <div class="odp-head">
+                    <div class="ellipsis">费用明细</div>
+                </div>
+                <div class="odp-con">
+                    <dl class="odp-dl fix">
+                        <dt>商品合计：</dt>
+                        <dd>¥
+                            <asp:Literal runat="server" id="litBuildPrice" />
+                        </dd>
+                    </dl>
+                    <dl class="odp-dl fix">
+                        <dt>优惠券抵扣：</dt>
+                        <dd>¥
+                            <asp:Literal runat="server" id="litCounponPrice" />
+                        </dd>
+                    </dl>
+                    <dl class="odp-dl fix">
+                        <dt>价格调整：</dt>
+                        <dd>¥
+                            <asp:Literal runat="server" id="litDisCountPrice" />
+                        </dd>
+                    </dl>
+                    <dl class="odp-dl fix">
+                        <dt>运费：</dt>
+                        <dd>¥
+                            <asp:Literal runat="server" id="litShippingCost" />
+                        </dd>
+                    </dl>
+                    <dl class="odp-dl fix">
+                        <dt>手续费：</dt>
+                        <dd>¥
+                            <asp:Literal runat="server" id="litPayCharge" />
+                        </dd>
+                    </dl>
+                    <dl class="odp-dl fix">
+                        <dt>税金：</dt>
+                        <dd>¥
+                            <asp:Literal runat="server" id="litTax" />
+                        </dd>
+                    </dl>                                       
+                </div>
+            </div>
+            <div class="odp-wrap dis-none" id="ciscount">
+                <div class="odp-head">订单优惠</div>
+                <div class="odp-con">
+                    <hi:vshoptemplatedrepeater id="rptPromotions" templatefile="/Tags/skin-Common_VPromotions.ascx"
+                runat="server" />
+                </div>
+            </div>
+            <div class="odp-wrap">
+                <div class="odp-head">
+                    <div class="ellipsis">订单信息</div>
+                </div>
+                <div class="odp-con">
+                    <dl class="odp-dl fix">
+                        <dt>订单编号：</dt>
+                        <dd>
+                            <asp:Literal runat="server" id="litOrderId" />
+                        </dd>
+                    </dl>
+                    <dl class="odp-dl fix">
+                        <dt>成交时间：</dt>
+                        <dd>
+                            <asp:Literal runat="server" id="litOrderDate" />
+                        </dd>
+                    </dl>
+                    <dl class="odp-dl fix">
+                        <dt>付款时间：</dt>
+                        <dd><span id="payTime">
+                            <asp:Literal runat="server" id="litPayTime" />
+                            </span></dd>
+                    </dl>
+                    <dl class="odp-dl fix">
+                        <dt>订单状态：</dt>
+                        <dd>
+                            <hi:orderstatuslabel id="litOrderStatus" runat="server" />
+                        </dd>
+                    </dl>
+                    <dl class="odp-dl fix">
+                        <dt>订单备注：</dt>
+                        <dd><span id="remark">
+                            <asp:Literal runat="server" id="litRemark" />
+                            </span></dd>
+                    </dl>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="btns-fixed">
+        	<div class="fix osm-wrap dis-none" id="osm-wrap">
+            	 <div class="osm-right"><asp:HyperLink id="LinkNowPay" text="立即支付" target="_blank" runat="server" class="osm-btn"/></div>
+                 <div class="osm-left">实付：<span class="osm-price">￥<asp:Literal runat="server" id="litActualPrice" /></span></div>
+            </div>
+            <div class="btns-group tr p10" style="overflow:hidden;">
+                <input type="hidden" id="orderStatus" runat="server" clientidmode="Static" />
+                <input type="hidden" id="txtOrderId" runat="server" clientidmode="Static" />
+                <input type="hidden" id="txtProductId" runat="server" clientidmode="Static" />
+                  <a id="lookupTrans" class="btn-sm lookfor_sent">查看物流</a> 
+                  <a id="ensureRecieved" href='javascript:void(0)' class="btn-sm btn-r besure_get">确认收货</a>
+              </div>    
+        </div>
+    </section>
+</div>
+<script>
+    //禁用右上角菜单
+    /*document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });*/
+</script>
+<script type="text/javascript">
+    function FinishOrder(orderId) {
+        var data = {};
+        data.orderId = orderId;
+        $.post("/api/VshopProcess.ashx?action=FinishOrder", data, function (json) {
+            if (json.success === true) {
+                alert_h("完成订单", function () {
+                    location.reload();
+                });
+            }
+            else {
+                alert_h(json.msg);
+            }
+        });
+    }
+    $(function () {
+        $.each($(".specification"), function () {
+            var htmString = "";
+            var skuContent = $(this).attr("skuContent");
+            if (skuContent != null) {
+                var skuList = skuContent.split(';');
+                for (i = 0; i < skuList.length - 1; i++) {
+                    htmString += "<span>" + skuList[i].split('：')[1] + "</span>";
+                }
+                $(this).html(htmString);
+                $(this).removeAttr("skuContent");
+            }
+        });
+
+        var orderStatus = $('#orderStatus').val();
+        if (orderStatus != 3 && orderStatus != 5){
+            $('#lookupTrans').hide();
+		}
+        if (orderStatus != 3){
+            $('#ensureRecieved').hide();
+		}
+		if (orderStatus == 1){
+            $('#osm-wrap').show();
+		}
+
+        var orderId = $('#txtOrderId').val();
+        $('#lookupTrans').attr('href', '/vshop/MyLogistics.aspx?orderId=' + orderId);
+        $('#ensureRecieved').click(function () {
+            FinishOrder(orderId);
+        });
+
+        if (!$.trim($('#payTime').html()))
+            $('#payTimeContainer').hide();
+
+        if (!$.trim($('#remark').html()))
+            $('#remarkContainer').hide();
+
+        $('hr.hr').last().hide();
+
+        if (!$.trim($('#promotionDetail').html()))
+            $('#promotionArea').hide();
+
+        var productSkus = $('.specification');
+        $.each(productSkus, function (i, productSKU) {
+            var text = '';
+            productSKU = $(productSKU);
+            var skus = productSKU.find('input[name="skucontent"]');
+            $.each(skus.val().split(';'), function (i, sku) {
+                if ($.trim(sku))
+                    text += '<span class="badge-h">' + sku.split('：')[1] + '</span>';
+            });
+            var promotionShortName = productSKU.find('input[name="promotionShortName"]').val();
+            if (promotionShortName) {
+                var promotionName = productSKU.find('input[name="promotionName"]').val();
+                text += '<span class="badge-h danger" onclick="alert_h(\'' + promotionName + '\')">' + promotionShortName + '</span>';
+            }
+            productSKU.html(text);
+        });
+    });
+	$("body").addClass("order-body");
+</script>
+<script src="/utility/orderShare.js?v=20150708"></script>
+
+<!--<hi:common_vfooter runat="server" />-->

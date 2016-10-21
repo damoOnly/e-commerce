@@ -1,0 +1,190 @@
+﻿<hi:common_vheader runat="server" />
+<!--<hi:vshopTemplatedRepeater id="rptCountDownProducts" templatefile="/Tags/skin-Common_CountDownProducts.ascx"  runat="server" />-->
+<div class="pbox">
+    <div  id="ActiveMessage"><!--1为1栏，2为2栏，3为3栏，最多只有5栏-->
+        
+    </div>
+    <div class="promoation-wrap" id="ActiveProducts"> 
+       
+    </div>
+    <!--<div id="pager">
+    </div>-->
+</div>
+<input type="hidden" id="txtTotal" runat="server" clientidmode="Static" />
+<input type='hidden' value='' class='vpro-promo-time'  id="hidd_times"/>
+<input type='hidden' value='' class='vpro-promo-time'  id="hidd_CateGoryId" />
+<hi:common_vfooter runat="server" />
+<script src="/Utility/common.js" type="text/javascript"></script>
+<script src="/Utility/pager.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    //加载限时管理
+    $(function ()
+    {
+        $.ajax({
+            type: "Get",
+            url: "/Handler/MemberHandler.ashx?action=SelectDownCategories" ,
+            datatype: "json",
+            async: false,
+            success: function (data)
+            {
+                
+                if (data != "" && data.data != null && data.data.length > 0) {
+                    var html = "<ul>";
+                    var div = '';
+                    var fi = {};
+                    $("#ActiveMessage").addClass("clearfix  promoat_list promoat_list" + data.data.length);
+                    $(data.data).each(function (index, item) {
+                        var typeName = "", addclass = '';
+                        if (index == 0) {
+                            addclass = 'be_cur';
+                            fi = {
+                                a: '',
+                                b: item.CateId,
+                                c: item.ActiveTime,
+                                d: item.ActiveType,
+                                e: index
+                            }
+                        }
+                        var UiTitle = "<li class='tc fl " + addclass + "' flag='1' onclick=\"OnLoadProducts($(this),'" + item.CateId + "','" + item.ActiveTime + "','" + item.ActiveType + "','" + index + "')\">";
+                        switch (item.ActiveType) {
+                            case 1:
+                                typeName = "抢购中";
+                                break;
+                            case 2:
+                                typeName = "即将开始";
+                                break;
+                            default:
+                                typeName = "已结束";
+                                break;
+                        }
+                        html += UiTitle;
+                        html += " <span>" + item.Title + "</span><br />";
+                        html += " <span>" + typeName + "</span>";
+                        html += " <input type='hidden' value='" + item.Title + "' class='date'/></li>";
+                        div += "<div></div>";
+                    });
+                    html += "</ul>";
+                    $("#ActiveMessage").html(html);
+                    $("#ActiveProducts").html(div);
+                    OnLoadProducts($("#ActiveMessage li").eq(0), fi.b, fi.c, fi.d, fi.e);
+                }
+                else {
+                    $("<p style='text-align:center;line-height:40px;font-size:16px;'>暂时没有限时抢的活动！</p>").appendTo('#ActiveMessage');
+                   
+                }
+              }
+            });
+    });
+    //加载活动商品
+    function OnLoadProducts(obj,CateGoryId, SmTime,type,i)
+    {
+        $("#ActiveMessage li").removeClass("be_cur").eq(i).addClass('be_cur');
+        var actdate = $('.date').eq(i).val();
+        if (obj.attr('flag') == 1) {
+            $.ajax({
+                type: "Get",
+                url: "/Handler/MemberHandler.ashx?action=GetDownCateProducts&CountDownCateGoryId=" + CateGoryId,
+                datatype: "json",
+                async: false,
+                success: function (data) {
+                    obj.attr('flag', '2');
+                    if (data != "" && data.data != null && data.data.length > 0) {
+                        var html = '';
+                        html += "<div><img src='" + data.data[0].AdImageUrl + "' class='img-responsive'></div>";
+                        html += "<div class='clearfix vpro-promoat-act'>";
+                        if (type == 1) {
+                            html += "<div class='fl'>抢购中&nbsp;&nbsp;&nbsp;&nbsp;" + actdate + "正在抢购</div>";
+                        } else if (type == 2) {
+                            html += "<div class='fl'>即将开始&nbsp;&nbsp;" + actdate + "开始抢购</div>";
+                        }
+                        html += "<div class='fr vpro-promo-spa' s='"+i+"'>";
+                        html += "<input type='hidden' value='" + SmTime + "' class='vpro-promo-time' />";
+                        html += "        <em>剩余时间：</em>";
+                        html += "        <span></span>:";
+                        html += "        <span></span>:";
+                        html += "       <span></span>";
+                        html += "   </div>";
+                        html += "</div>";
+                        $(data.data).each(function (index, item) {
+                            html += " <dl class='clearfix vpro-promoation'>";
+                            html += "    <dt class='fl'>";
+                            html += "        <a href='/vshop/CountDownProductsDetails.aspx?productId=" + item.ProductId + "&CountDownId=" + item.CountDownId + "&time=" + Math.random() + "'><img src='" + item.ThumbnailUrl220 + "' width='170' height='170px' /></a>";
+                            html += "   </dt>";
+                            html += "   <dd class='vpro-promoat-msg'>";
+                            html += "       <h4><a href='/vshop/CountDownProductsDetails.aspx?productId=" + item.ProductId + "&CountDownId=" + item.CountDownId + "&time=" + Math.random() + "'>" + item.Productname + "</a></h4>";
+                            html += "       <div class='clearfix'>";
+                            html += "           <div class='fl'>";
+                            html += "               <p class='promoat_truePrice'><span>&yen;" + item.CountDownPrice + "</span></p>";
+                            html += "               <p class='promoat_faslePrice'><span>&yen;" + item.MarketPrice + "</span></p>";
+                            html += "           </div>";
+                            html += "           <div class='fr'>";
+                            if (item.BuyType == 1 && item.ActiveType == 1) {
+                                html += " <a class='promoat_btn go_promoat' href='/vshop/CountDownProductsDetails.aspx?productId=" + item.ProductId + "&CountDownId=" + item.CountDownId + "&time=" + Math.random() + "'>立即抢购</a>";
+                            } else if (item.ActiveType == 1 && item.BuyType == 0) {
+                                html += "  <a class='promoat_btn promoat_over' href='/vshop/CountDownProductsDetails.aspx?productId=" + item.ProductId + "&CountDownId=" + item.CountDownId + "&time=" + Math.random() + "'>已抢光</a>";
+                            } else {
+                                html += "  <a class='promoat_btn begin_promoat' href='/vshop/CountDownProductsDetails.aspx?productId=" + item.ProductId + "&CountDownId=" + item.CountDownId + "&time=" + Math.random() + "'>即将开始</a>";
+                            }
+                            html += " </div>";
+                            html += " </div>";
+                            html += " </dd>";
+                            html += "</dl>";
+                        });
+                        $("#ActiveProducts>div").eq(i).append(html);
+                        settime.init($("#ActiveProducts>div").eq(i).find(".vpro-promo-spa"));
+                    }
+                    else { $("#ActiveProducts>div").eq(i).append('<p style="line-height:40px;text-align:center">暂时没有限时抢购的商品</p>'); }
+                    
+                }
+            });
+        } 
+          $("#ActiveProducts>div").hide().eq(i).show();
+
+    }
+</script>
+<script type="text/javascript">
+    var settime = {
+        init: function (obj) {
+                var me = obj;
+                var t = me.find(".vpro-promo-time").val();
+                var d = '';
+                var h = me.find('span').eq(0);
+                var m = me.find('span').eq(1);
+                var s = me.find('span').eq(2);
+            setInterval(function () {
+                    settime.rolltime(t, d, h, m, s);
+                    t -= 1;
+            }, 1000);
+        },
+        rolltime: function (t, d, h, m, s) {
+            var day = hours = mins = sec = 0; //t是活动时间和服务器时间相减得到的时间戳
+            if (t > 0) {
+                day = Math.floor(t / 60 / 60 / 24).toString();
+                hours = Math.floor(t / 60 / 60 % 24).toString();
+                mins = Math.floor(t / 60 % 60).toString();
+                sec = Math.floor(t  % 60).toString();
+            }
+            //d.html(day);
+            if (hours < 10) {
+                hours = '0' + hours;
+            }
+            if (mins < 10) {
+                mins = '0' + mins;
+            }
+            if (sec < 10) {
+                sec = '0' + sec;
+            }
+            h.html(settime.madeHtml(hours.toString()));
+            m.html(settime.madeHtml(mins.toString()));
+            s.html(settime.madeHtml(sec.toString()));
+        },
+        madeHtml: function (str) {
+            var li = str.split(''),html='';
+            for (var i = 0; i < li.length; i++) {
+                html += '<em>' + li[i] + '</em>';
+            }
+            return html;
+        }
+    };
+</script>

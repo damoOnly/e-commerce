@@ -1,0 +1,55 @@
+﻿<!---->
+<Hi:Common_vHeader  runat="server" />
+<div class="home-head">
+    <img src="/images/home-head.jpg" class="img-responsive">
+    <div class="info">
+        <div class="title" style="width: 220px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">【<asp:literal runat="server" id="litMemberGrade" />】<asp:literal runat="server" id="litUserName" /></div>
+        <div class="presentExp font-m">
+            <span style=" display: inline-block;min-width: 10px; padding: 3px 7px; font-size: 12px;font-weight: 700; color: #FFF;line-height: 1;vertical-align: baseline; white-space: nowrap;text-align: center; border-radius: 10px; border-color: #8CC152; background-color: #8CC152;">
+                余额：¥<asp:literal runat="server" id="litPaymentBalance" />
+            </span>
+            <span style=" display: inline-block;min-width: 10px; padding: 3px 7px; font-size: 12px;font-weight: 700; color: #FFF;line-height: 1;vertical-align: baseline; white-space: nowrap;text-align: center; border-radius: 10px;  border-color: #DA4453;background-color: #DA4453;">
+                消费：¥<asp:literal runat="server" id="litExpenditure" />
+            </span>
+        </div>
+    </div>
+</div>
+<div class="pbox">
+    <div class="list-group">
+        <a href="SplittinDetails.aspx" class="list-group-item">
+            全部佣金
+        </a>
+        <!--<a href="SplittinDetails.aspx?usestatus=true" class="list-group-item">
+            可用佣金
+        </a>
+        <a href="SplittinDetails.aspx?usestatus=false" class="list-group-item">
+            不可用佣金
+        </a>-->
+        <a href="SplittinDraws.aspx" class="list-group-item">
+            申请提现
+        </a>
+    </div>
+
+    <div class="list-group">
+        <a href="SubReferrals.aspx" class="list-group-item">
+            下级推广员
+        </a>
+        <a href="DevelopReferrals.aspx" class="list-group-item">
+            发展下级推广员
+        </a>
+    </div>
+
+    <div class="list-group">
+        <a href="SubMembers.aspx" class="list-group-item">
+            下级会员
+        </a>
+    </div>
+    <a href="logout.aspx" class="btn btn-danger btn-block">退出登录</a>
+</div>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+<Hi:Common_vFooter  runat="server" />

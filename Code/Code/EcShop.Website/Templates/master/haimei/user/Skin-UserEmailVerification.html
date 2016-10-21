@@ -1,0 +1,92 @@
+﻿<%<Hi:Common_Header runat="server" SkinName="/ascx/tags/Common_UserCenter/Skin-Common_User_Header.ascx" />%>
+<form runat="server">
+<div class="hyzxmain">
+    <div class="hyzxconty">当前位置><a href="/">首页</a>>邮箱验证</div>
+    <div class="hyzxconter">
+        <%<Hi:Common_User_Menu runat="server" />%>
+        <div class="hyzxconterr">
+            <div class="dingdanxx">
+                 
+                    <%<Hi:SmallStatusMessage id="Status" runat="server" Visible="False" />%>
+                    
+                <div class="dingdan_box1">邮箱验证</div>
+                <!--<div class="yanzh_pic off"><span class="col">邮箱验证</span><span>完成</span></div>-->
+                <div class="process-wrap">
+                    <ul class="fix">
+                        <li class="cur">
+                            <div class="line"></div>
+                            <span class="step-ser">1</span>
+                            <p>邮箱验证</p>
+                        </li>
+                        <li>
+                            <div class="line"></div>
+                            <span class="step-ser">2</span>
+                            <p>完成</p>
+                        </li>        
+                    </ul>
+                </div>
+                <div class="yzyouxiang_box1">
+                
+                    
+                    <div class="yzyoux">
+                        <em>我的邮箱:</em> <span>
+                            <input type="text" class="yanzheng_input1" id="txtemail" runat="server" /><input type="button"
+                                class="yanzheng_input2 getcode-btn" value="点击获取验证码" id="btnVerfication" /></span></div>
+                    <div class="yzyoux">
+                        <em>验证码:</em> <span>
+                            <input type="text" class="yanzheng_input1" id="txtcode" runat="server" /></span>
+                    </div>
+                    <div class="btn-password"><%<asp:Button ID="btnSubmit" CssClass="btn_style_bar mt20 ml90" Text="提交" runat="server" /> %></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+<script>
+	var inter;
+	var count = 60;
+	function setVerfiBtn(){
+		var $btn = $("#btnVerfication");
+		$btn.addClass("disabled").attr("disabled","disabled");
+		if(inter){
+			window.clearInterval(inter);
+		}
+		count = 60;
+		inter = window.setInterval(function(){
+			if(count <= 0){
+				window.clearInterval(inter);
+				$btn.removeClass("disabled").removeAttr("disabled").val("点击获取验证码");
+				return;
+			}			
+			$btn.val("("+count+"s)重新获取验证码");
+			count--;
+		},1000);
+	}
+    $("#btnVerfication").bind("click", function () {
+        var tempemail = $("#userEmailVerification_txtemail").val();
+        var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+        if (!myreg.test(tempemail)){
+            alert('请输入正确的邮箱');
+            return false;
+        }
+        $.ajax({
+            type: "POST",
+            url: "../Handler/MemberHandler.ashx?action=VerficationEmail",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            dataType: "json",
+            data: { email: tempemail },
+            success: function (result) {
+                if (result.success) {
+					setVerfiBtn();
+                    alert(result.msg);
+                } else {
+                    alert(result.msg);
+                }
+            }
+        });
+    });
+
+    $("#")
+</script>
+<%<Hi:Common_Footer runat="server" SkinName="/ascx/tags/Common_UserCenter/Skin-Common_User_Footer.ascx" />%>

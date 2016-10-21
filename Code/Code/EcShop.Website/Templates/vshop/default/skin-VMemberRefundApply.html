@@ -1,0 +1,30 @@
+﻿<hi:common_vheader runat="server" />
+<div id="divorderlist" class="pbox">
+    <hi:vshoptemplatedrepeater id="rptApply" templatefile="/Tags/skin-Common_RefundApply.ascx" runat="server" />
+</div>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+<p id="divEmpty" class="text-center list-empty hide">
+    <span class="glyphicon glyphicon-list-alt"></span>订单列表为空
+</p>
+<script type="text/javascript">
+    $(function () {
+		var $eleThumbnails=$('.pic-info ThumbnailsUrl');
+		var info;
+		$eleThumbnails.each(function(n,i){
+			info=$(this).html().split('[$]');
+			$(this).parent().siblings('.a-pic').find('.img-ThumbnailsUrl').attr('src',info[2]);
+			$(this).parent().siblings('.span-desc').html(info[1]);
+		});
+        if (!$.trim($("#divorderlist").html())) {
+            $("#divorderlist").hide();
+            $("#divEmpty").removeClass('hide');
+        }
+    })
+</script>
+
+<hi:common_vfooter runat="server" />

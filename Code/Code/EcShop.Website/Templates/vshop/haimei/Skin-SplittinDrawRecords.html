@@ -1,0 +1,25 @@
+﻿<Hi:Common_vHeader  runat="server" />
+<div class="pbox apply-title search btn-group btn-group-justified">
+    <div class="btn-group">
+        <a href="SplittinDraws.aspx" type="button" class="btn btn-default">申请提现</a>
+    </div>
+    <div class="btn-group">
+        <a href="SplittinDrawRecords.aspx" type="button" class="btn btn-default active">提现记录</a>
+    </div>
+</div>
+<div class="pbox">
+    <hi:VshopTemplatedRepeater id="rptDrawRecodes" templatefile="/Tags/skin-Common_DrawRecords.ascx"
+                               runat="server" />
+    <div id="pager">
+    </div>
+</div>
+<input type="hidden" value="" runat="server" clientidmode="static" id="txtTotal" />
+<Hi:Common_vFooter  runat="server" />
+<script src="/Utility/common.js" type="text/javascript"></script>
+<script src="/Utility/pager.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        vshopPager('pager', $('#txtTotal').val(), 1, 10);
+
+    });
+</script>

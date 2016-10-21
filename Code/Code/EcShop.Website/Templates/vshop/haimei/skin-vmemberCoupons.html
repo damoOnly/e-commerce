@@ -1,0 +1,66 @@
+﻿<hi:common_vheader runat="server" />
+<div class="page gray-page pt-page">
+    <header>
+        <div class="swtab-head cptab-header" id="cptab-header">
+            <ul class="fix">
+                <li><a href="memberCoupons.aspx?usedType=1">未使用</a></li>
+                <li><a href="memberCoupons.aspx?usedType=2">已使用</a></li>
+                <li><a href="memberCoupons.aspx?usedType=3">已过期</a></li>
+            </ul>
+        </div>
+    </header>
+    <section>
+        <div class="cp-list cp-list-1" id="cp-list">
+            <div class="no-data pl10 pr10" id="no-data">
+                <p>您还没有该类型优惠券！</p>               
+                <a class="red-btn mt10" href="/vShop/default.aspx">去首页</a> </div>
+                <ul class="fix">
+                    
+                    <hi:vshoptemplatedrepeater id="rptCoupons" templatefile="/Tags/skin-Common_Coupons.ascx" runat="server" />
+                </ul>
+        </div>
+    </section>
+</div>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+<script src="/Utility/common.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+    $(function () {
+       //设置状态	
+		function setTabStatus(){
+			//标签状态
+			var couponsType = parseInt(getParam('usedType'));
+			if(!couponsType || isNaN(couponsType)){
+				couponsType = 0;
+			}
+			couponsType = parseInt(couponsType) - 1;
+			if(couponsType < 0 || couponsType > 2){
+				couponsType = 0;
+			}
+			$("#cptab-header li").eq(couponsType).addClass("selected");
+			//优惠券 状态
+			var arr = [
+				{theme:"cp-list-1",text:"未使用"},
+				{theme:"cp-list-2",text:"已使用"},
+				{theme:"cp-list-3",text:"已过期"}
+			]
+			var obj = arr[couponsType];
+			$("#cp-list").addClass(obj.theme);
+			$("#cp-list .cp-type").text(obj.text);
+			//没有数据
+			if(!$("#cp-list li").length){
+				$("#no-data").show();
+			}
+		}
+		setTabStatus();
+
+    });
+
+</script>
+<hi:common_vfooter runat="server" />
+

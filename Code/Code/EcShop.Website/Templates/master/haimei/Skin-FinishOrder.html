@@ -1,0 +1,381 @@
+﻿<%<hi:common_header runat="server" skinname="ascx/tags/Skin-Common-Top.ascx" />%>
+<form runat="server">
+    <div class="cart_h">
+        <div id="logo"><Hi:Common_Logo ID="Common_Logo1" runat="server" /></div>
+        <div class="cart_step">
+            <!--<ul class="cart_step3">
+                <li class="step-1"><b></b>1.我的购物车</li>
+                <li class="step-2"><b></b>2.填写核对订单信息</li>
+                <li class="step-3">3.成功提交订单</li>
+            </ul>-->
+            <div class="process-wrap">
+                <ul class="fix">
+                    <li>
+                        <div class="line"></div>
+                        <span class="step-ser">1</span>
+                        <p>我的购物车</p>
+                    </li>
+                    <li>
+                        <div class="line"></div>
+                        <span class="step-ser">2</span>
+                        <p>填写核对订单信息</p>
+                    </li>
+                    <li class="cur">
+                        <div class="line"></div>
+                        <span class="step-ser"><i class="ser-ok"></i></span>
+                        <p>成功提交订单</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="layout cart-cont" style="display:none;">
+    	<div class="mes-tip fix">
+        	<a class="close-tip"></a><p>【重要提醒】：海美生活不会以订单异常、系统升级为由，通过电话、短信等方式要求您点击任何连接进行退款操作。</p>
+        </div>
+        <div class="od-wrap">
+        	<div class="od-con">
+        		<div class="od-tip">订单已提交，请于24小时内完成支付<span class="waring-tip">(逾期订单将被取消)</span></div>
+                <div class="od-addre">
+                	<div class="od-addre-con">
+                		<label class="fix"><span class="od-arrow">展开</span>送货至：<span id="address-text">深圳税发 广东广州市现代风格出发点 1566*****22</span></label>
+                        <div class="add-list">
+                        	<div class="ad-ele fix">            	
+            <label title="广东广州市现代风格出发点"><input type="radio" name="hidShippingId"><span><span>广东广州市现代风格出发点</span><span class="mr5">深圳税发</span><span class="mr5">小飞</span><span class="mr5">15507581772</span></span></label></div>
+                        	<div class="ad-ele fix">            	
+            <label title="江西省 新余市 分宜县 阿萨德发"><input type="radio" name="hidShippingId"><span><span>江西省 新余市 分宜县</span><span class="mr5">阿萨德发</span><span class="mr5">小飞</span><span class="mr5">15507581772</span></span></label></div>
+            			<div class="ad-ele fix">            	
+            <label title="江西省 新余市 分宜县 阿萨德发"><input type="radio" name="hidShippingId"><span><span>江西省 新余市 分宜县</span><span class="mr5">阿萨德发</span><span class="mr5">小飞</span><span class="mr5">15507581772</span></span></label></div>
+            				
+                        </div>
+                    </div>
+                </div>
+                <div class="od-total">
+                	<label>应付金额：</label><strong class="od-price">￥726.70</strong><span>（在线支付）</span>
+                </div>
+                <div class="od-payway">
+                	<div class="od-payway-con">
+                    	<dl class="fix">
+                        	<dt>支付平台</dt>
+                            <dd>
+                            	<div class="payments">
+                                	<ul class="pay-way fix">
+                                    	<li class="selected"><label><input type="radio" name="paymentMode">海美支付</label></li>
+                                        <li><label><input type="radio" name="paymentMode">支付宝支付</label></li>
+                                        <li><label><input type="radio" name="paymentMode">网银支付</label></li>
+                                    </ul>
+                                </div>
+                            </dd>
+                        </dl>
+                        <dl class="fix">
+                        	<dt>快捷支付<span class="mes-tip">现已支持快捷支付啦，开通后支付超方便</span></dt>
+                            <dd>
+                            	<div class="quit-payments payments">
+                                	<ul class="pay-way fix">
+                                    	<li><label><input type="radio" name="bank"><span class="bank-logo bank-icbc"></span></label></li>
+                                        <li><label><input type="radio" name="bank"><span class="bank-logo bank-ccb"></span></label></li>
+                                        <li><label><input type="radio" name="bank"><span class="bank-logo bank-cmb"></span></label></li>
+                                        <li><label><input type="radio" name="bank"><span class="bank-logo bank-abc"></span></label></li>
+                                        
+                                        <li><label><input type="radio" name="bank"><span class="bank-logo bank-bcom"></span></label></li>
+                                        <li><label><input type="radio" name="bank"><span class="bank-logo bank-gdb"></span></label></li>
+                                        <li><label><input type="radio" name="bank"><span class="bank-logo bank-boc"></span></label></li>
+                                        <li><label><input type="radio" name="bank"><span class="bank-logo bank-cmbc"></span></label></li>
+                                        
+                                        <li><label><input type="radio" name="bank"><span class="bank-logo bank-hxb"></span></label></li>
+                                        <li><label><input type="radio" name="bank"><span class="bank-logo bank-cib"></span></label></li>
+                                        <li><label><input type="radio" name="bank"><span class="bank-logo bank-ceb"></span></label></li>
+                                        <li><label><input type="radio" name="bank"><span class="bank-logo bank-psbc"></span></label></li>
+                                        <li><label><input type="radio" name="bank"><span class="bank-logo bank-citic"></span></label></li>
+                                        <li><label><input type="radio" name="bank"><span class="bank-logo bank-spdb"></span></label></li>
+                                        <li><label><input type="radio" name="bank"><span class="bank-logo bank-pab"></span></label></li>
+                                        <!--<li><label><input type="radio" name="paymentMode"><span class="more-bank">更多</span></label></li>-->
+                                        
+                                    </ul>
+                                </div>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+                <a class="od-pay-btn">立即支付</a>
+                <div class="toolbar">
+                	<span class="od-ser">订单号：<span>4704341117029</span></span><a>查看订单</a><a>修改收货地址</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cart_content">
+
+        <div class="cart_payment" style="width:1200px;">
+            <table cellpadding="0" cellspacing="0" border="0" class="cart_payment_table">
+                <tr>
+                    <td width="10%" valign="top"><img src="/images/cart/successico.jpg" /></td>
+                    <td width="90%" class="cart_payment_td">
+                        <p id="orderTs">感谢您，订单提交成功！请您及时付款！</p>
+                        <table cellpadding="0" cellspacing="0" border="0" width="90%">
+                            <tr>
+                                <td width="30%">订单号：<span><%<asp:Literal runat="server" ID="litOrderId" />%></span></td>
+                                <td width="30%">付款方式：<span><%<asp:Literal runat="server" ID="litPaymentName" />%></span></td>
+                                <td width="30%">支付总金额：<em class="emcolor"> ￥<%<Hi:FormatedMoneyLabel runat="server" ID="litOrderPrice"/>%></em></td>
+                            </tr>
+                        </table>
+                        <div>
+                        <asp:HyperLink ID="hlinkOrderDetails" runat="server" Target="_blank" Text="订单详情" />
+                        请您记下订单号，以便您在付款和享受售后服务的时候使用。</div>
+                        <div>完成支付后，您可以：<a href="url:home">继续购物</a> </div>
+                        <div>
+                            <%<asp:Button CssClass="core_order_pay_sub" Text="立刻支付" runat="server" ID="btnSubMitOrder" OnClientClick="CheckIsFirstOrder();" />%>
+                            <div class="w" id="VPay">
+                                <div class="payment">
+                                    <div class="pay-weixin">
+                                        <div class="p-w-hd">微信支付</div>
+                                        <div class="p-w-bd">
+                                            <div class="p-w-box">
+                                                <div class="pw-box-hd">
+                                                    <img src="" id="codePayImg" runat="server" style="width:298px;height:298px;" />
+                                                </div>
+                                                <div class="pw-box-ft">
+                                                    <p style="font-size:15px;color:#fff;padding:0px;margin:3px;" >请使用微信扫一扫</p>
+                                                    <p style="font-size:15px;color:#fff;padding:0px;margin:3px;">扫描二维码支付</p>
+                                                </div>
+                                            </div>
+                                            <div class="p-w-sidebar"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <style type="text/css">
+                                .w {
+                                    width: 990px;
+                                    margin: 0 auto;
+                                    font: 12px/150% Arial,Verdana,"\5b8b\4f53";
+                                    color: #666;
+                                }
+
+                                .payment {
+                                    border-top: 4px solid #4b5b78;
+                                    background-color: #fff;
+                                    padding: 12px 30px 0;
+                                }
+
+                                .p-w-bd, .pay-weixin {
+                                    zoom: 1;
+                                }
+
+                                .p-w-hd {
+                                    margin-bottom: 20px;
+                                    font-size: 18px;
+                                    font-family: "Microsoft Yahei";
+                                }
+
+                                .p-w-bd {
+                                    padding-left: 130px;
+                                    margin-bottom: 30px;
+                                }
+
+                                .p-w-bd, .pay-weixin {
+                                    zoom: 1;
+                                }
+
+                                .p-w-box {
+                                    float: left;
+                                    width: 300px;
+                                }
+
+                                .pw-box-hd {
+                                    margin-bottom: 20px;
+                                    border:1px solid #ccccbc;
+                                    text-align:center;
+                                    vertical-align:middle;
+                                }
+
+                                .pw-box-ft {
+                                    height: 44px;
+                                    padding: 8px 0 8px 125px;
+                                    background: url(/images/icon-red.png) 50px 8px no-repeat #ff7674;
+                                }
+
+                                p {
+                                    display: block;
+                                    -webkit-margin-before: 1em;
+                                    -webkit-margin-after: 1em;
+                                    -webkit-margin-start: 0px;
+                                    -webkit-margin-end: 0px;
+                                    
+                                }
+
+                                .p-w-sidebar {
+                                    float: left;
+                                    width: 379px;
+                                    height: 421px;
+                                    padding-left: 50px;
+                                    margin-top: -20px;
+                                    background: url(/images/phone-bg.png) 50px 0 no-repeat;
+                                }
+                            </style>
+                            <script type="text/javascript">
+                                var orderId = GetQueryString("orderId");
+                                $(function () {
+                                    //var sty = $("#codePayImg");
+                                    //alert(sty);
+                                    //alert("微信支付");
+                                    //alert($("#FinishOrder_codePayImg").attr("style") + "");
+                                    if ($("#FinishOrder_codePayImg").length > 0) {
+
+                                        //alert(orderId);
+                                        setTimeout(getOrderPayState, 10);
+                                    }
+                                    else {
+                                        $("#VPay").remove();
+                                    }
+                                });
+                                function getOrderPayState() {
+                                    $.ajax(
+                                    {
+                                        type: "GET",
+                                        url: "Handler/MemberHandler.ashx?action=GetVCodePayState",
+                                        data: { orderId: orderId },
+                                        datatype: "json",
+                                        cache:false,
+                                        success: function (data)
+                                        {
+                                            if (data.state == "SUCCESS") {
+                                                //判断订单支付完成
+                                                $("#VPay").remove();
+                                                $("#orderTs").html("订单付款成功！");
+                                                //删除该二维码图片
+                                            }
+                                            else if (data.state == "NOTPAY") {
+                                                setTimeout(getOrderPayState, 1000);
+                                            }
+                                        },
+                                        error: function (a, b, c) {
+                                        }
+
+                                    });
+                                }
+                                function GetQueryString(name) {
+                                    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                                    var r = window.location.search.substr(1).match(reg);
+                                    if (r != null) return unescape(r[2]); return null;
+                                }
+
+                                function CheckIsFirstOrder() {
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "Handler/MemberHandler.ashx?action=CheckIsFirstOrder",
+                                        data: { orderId: orderId },
+                                        datatype: "json",
+                                        success: function (result) {
+                                            if (result.success) {
+
+                                            } else {
+                                                alert(result.msg);
+                                                return false;
+                                            }
+                                        },
+                                        error: function (a, b, c) {
+                                        }
+                                    });
+                                }
+                            </script>
+
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <%<hi:bfdscriptlabel runat="server" />%>
+    </div>
+    <input type="hidden" value="" id="AdSendOrder" />
+    <input type="hidden" runat="server" id="hidd_ServerTimel" clientidmode="Static" />
+</form>
+<script type="text/javascript">
+	$(function(){
+		// 支付方式选择触发事件
+		$("input[name='paymentMode'][type='radio']").bind('click', function () {
+			var $ele = $(this).closest("li");
+			var theme = "selected";
+			$ele.addClass(theme).siblings().removeClass(theme);			
+		}).eq(0).click();
+		// 银行选择触发事件
+		$("input[name='bank'][type='radio']").bind('click', function () {
+			var $ele = $(this).closest("li");
+			var theme = "selected";
+			$ele.addClass(theme).siblings().removeClass(theme);			
+		}).eq(0).click();
+		// 关闭提醒事件
+		$("a.close-tip").bind('click', function () {
+			var $ele = $(this).closest(".mes-tip").hide();		
+		})
+		//展开
+		$(".od-wrap .od-addre .od-addre-con > label").bind("click",function(){
+			var $ele = $(this).parent();
+			var theme = "arrow";
+			if($ele.hasClass(theme)){
+				$ele.removeClass(theme);
+				$(this).find(".od-arrow").text("展开");
+			}else{
+				$ele.addClass(theme);
+				$(this).find(".od-arrow").text("收起");
+			}			
+		})
+		//地址改变
+		$(".add-list input[name=hidShippingId]").bind("change",function(){
+			var text = $.trim($(this).closest("label").text());
+			$("#address-text").text(text);	
+		})
+	})
+</script>
+<script type="text/javascript">
+    var orderId = GetQueryString("orderId");
+    var OldOId = $("#AdSendOrder").val();
+    if (orderId != null && orderId != OldOId)
+    {
+        var datetime = new Date() 
+        _adwq.push(['_setDataType', 'order']);
+        _adwq.push(['_setCustomer',
+           $("#hiid_AdUserId").val()   //1234567是一个例子，请换成当前登陆用户ID - 注意不能回传中文
+        ]);
+        _adwq.push(['_setOrder',
+            orderId,             // 请传入订单编号 - 必填项
+            $("#FinishOrder_litOrderPrice").text(),             // 请传入支付金额 – 必填项
+            $("#hidd_ServerTimel").val()              // 请传入下单时间 – 必填项
+        ]);
+        $.ajax(
+        {
+            type: "GET",
+            url: "Handler/MemberHandler.ashx?action=GetOrderItemInfo",
+            data: { orderId: orderId },
+            datatype: "json",
+            cache: false,
+            success: function (data) {
+                if (data.Status == "OK")
+                {
+                    var count = data.data.length;
+                    for (var i = 0; i < count;i++)
+                    {
+                        _adwq.push(['_setItem',
+                                   data.data[i].skuId,            // 请填入商品编号 - 必填项 
+                                   data.data[i].ProductName,            // 请填入商品名称 - 必填项 
+                                   data.data[i].SalePrice.toString(),             // 请填入商品金额 - 必填项 
+                                   "1",             // 请填入商品数量 - 必填项 
+                                   data.data[i].CategoryId,          // 请填入商品分类编号 - 必填项 
+                                   ''           // 请填入商品分类名称 - 必填项 
+                        ]);
+                    }
+                    _adwq.push(['_trackTrans']);  // 触发订单数据提交 - 固定值 - 必填项
+                    $("#AdSendOrder").val(orderId);
+                }
+           
+            },
+            error: function (a, b, c) {
+            }
+        });
+      
+       
+    }
+</script>
+
+ <%<hi:common_footer runat="server" skinname="ascx/tags/Skin-Common_Bottom.ascx" />%>
+

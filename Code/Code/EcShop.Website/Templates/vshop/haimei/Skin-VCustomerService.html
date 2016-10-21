@@ -1,0 +1,328 @@
+﻿<hi:common_vheader runat="server" />
+<div class="page gray-page">
+	<section>
+    	<form id="form" role="form" class="pbox clearfix" runat="server">
+        	<div class="sm-con cs-con">
+            	<div class="ct-list">
+                	<ul id="products-list">
+                	<hi:vshoptemplatedrepeater id="rptOrderProducts" templatefile="/Tags/skin-Common_OrderProducts.ascx"
+                                       runat="server" />
+                                       </ul>
+                </div>
+                <div class="pt10 pl10 pr10 pb10"><label class="checkbox-label"><input type="checkbox" class="checkbox" id="allcheck" />全选</label></div>
+            	<div id="refund_div" class="dis-none cs-panel pt20">
+                    <dl class="sm-dl fix">
+                        <dt><span class="require">*</span>退款途径：</dt>
+                        <dd class="pr10">
+                            <div class="select-wrap">
+                            	<%<asp:DropDownList id="dropRefundType" runat="server">
+                                    <asp:listitem value="3">原路返回</asp:listitem>
+                                </asp:DropDownList>%>
+                            </div>
+                        </dd>
+                    </dl> 
+                    <dl class="sm-dl fix">
+                        <dt><span class="require">*</span>退款原因：</dt>
+                        <dd class="pr10">
+                            <div class="select-wrap">
+                            	<%<asp:DropDownList id="dropRefundReason" runat="server">
+                            	</asp:DropDownList>%>
+                            </div>
+                        </dd>
+                    </dl>                    
+                    <dl class="sm-dl fix">
+                        <dt><span class="require">*</span>退款备注：</dt>
+                        <dd class="pr10 pt5">                           
+                                           <%<asp:TextBox ID="txtRefundRemark" runat="server" TextMode="MultiLine"
+             class="textarea" ClientIDMode="Static" runat="server" onkeypress="back(event);" onkeyup="value = value.replace(/<\/?[^>]*>/g, '');"></asp:TextBox>%>
+                        </dd>
+                    </dl>
+                </div>
+                <div id="return_div" class="dis-none cs-panel pt20">
+                    <dl class="sm-dl fix">
+                        <dt><span class="require">*</span>退款途径：</dt>
+                        <dd class="pr10">
+                            <div class="select-wrap">
+                                <%<asp:DropDownList id="dropReturnRefundType" runat="server">
+                                    <asp:listitem value="3">原路返回</asp:listitem>
+                                </asp:DropDownList>%>
+                            </div>
+                        </dd>
+                    </dl>  
+                    <dl class="sm-dl fix">
+                        <dt><span class="require">*</span>物流公司：</dt>
+                        <dd class="pr10">
+                            <div class="select-wrap">
+                                <%<asp:DropDownList id="dropLogisticsCompany" runat="server">
+                        </asp:DropDownList>%>
+                            </div>
+                        </dd>
+                    </dl>  
+                    <dl class="sm-dl fix">
+                        <dt><span class="require">*</span>物流单号：</dt>
+                        <dd class="pr10">
+                            <div class="select-wrap">
+                                <%<asp:TextBox ID="txtLogisticsId" runat="server"
+                                   ClientIDMode="Static" runat="server" onkeypress="back(event);" onkeyup="value = value.replace(/<\/?[^>]*>/g, '');"></asp:TextBox>%>
+                            </div>
+                        </dd>
+                    </dl> 
+                    <dl class="sm-dl fix">
+                        <dt><span class="require">*</span>退货原因：</dt>
+                        <dd class="pr10">
+                            <div class="select-wrap">
+                                <%<asp:DropDownList id="dropReturnReason" runat="server">
+                        </asp:DropDownList>%>
+                            </div>
+                        </dd>
+                    </dl>                    
+                    <dl class="sm-dl fix">
+                        <dt><span class="require">*</span>退货备注：</dt>
+                        <dd class="pr10"> 
+                            <%<asp:TextBox ID="txtReturnRemark" runat="server" TextMode="MultiLine"
+             class="textarea" ClientIDMode="Static" runat="server" onkeypress="back(event);" onkeyup="value = value.replace(/<\/?[^>]*>/g, '');"></asp:TextBox>%>
+                        </dd>
+                    </dl>
+                </div>
+                <div id="replace_div" class="dis-none cs-panel pt20">
+                    <dl class="sm-dl fix">
+                        <dt><span class="require">*</span>换货备注：</dt>
+                        <dd class="pr10">                            
+                            <%<asp:TextBox ID="txtReplaceRemark" runat="server" TextMode="MultiLine"
+             class="textarea" ClientIDMode="Static" runat="server" onkeypress="back(event);" onkeyup="value = value.replace(/<\/?[^>]*>/g, '');"></asp:TextBox>%>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="fix pl10 pr10 pb10">
+            	<input type="hidden" id="hdorderId" runat="server" />
+                <input type="button" id="btnRefund" value="提交申请" style="display: none" class="red-btn" onclick="ApplyForRefund()" />
+                <input type="button" id="btnReturn" value="提交申请" style="display: none" class="red-btn" onclick="ApplyForReturn()" />
+                <input type="button" id="btnReplace" value="提交申请" style="display: none" class="red-btn" onclick="ApplyForReplace()" />
+            </div>
+        </form>
+    </section>
+</div>
+    <script type="text/javascript">  
+        var action;
+		var skuIds = '';
+		var quantityList = '';
+        $(function () {
+            action = getParam("Action");
+            if (action == "Refund") {
+                $('#refund_div').show();
+                $('#btnRefund').show();
+            } else if (action == "Return") {
+                $('#return_div').show();
+                $('#btnReturn').show();
+            } else if (action == "Replace") {
+                $('#replace_div').show();
+                $('#btnReplace').show();
+            }
+            var SetProduct = function () {
+                    var flag = true;
+                    var tmpSkuIds = '';
+                    var tmpQuantities = '';
+                    $("input[name=goodid]").each(function (index, element) {
+                        //var $ele = $(this);
+                        var $ele = $(this).parents('#products-list').find('[type="tel"]');
+                        if (!this.checked) {
+                            flag = false;
+                        } else {
+                            tmpSkuIds += $ele.attr('skuid') + ',';
+                            tmpQuantities += $ele.attr('value') + ',';
+                            //var quantity = $ele.siblings('.right').find('.ui_textinput').val();
+                            //tmpQuantities += quantity + ',';
+
+                        }
+                    });
+                    skuIds = tmpSkuIds.substr(0, tmpSkuIds.length - 1);
+                    quantityList = tmpQuantities.substr(0, tmpQuantities.length - 1);;
+                    var $allcheck = $("#allcheck")[0].checked = flag;
+                }
+
+
+                //选择商品
+                $("input[name=goodid]").on("change", function (e) {
+                    SetProduct();
+                })
+                //全选
+                $("#allcheck").on("change", function (e) {
+                    var flag = this.checked;
+                    var tmpSkuIds = '';
+                    var tmpQuantities = '';
+                    $("input[name=goodid]").each(function (index, element) {
+                        this.checked = flag;
+                        var $ele = $(this).parents('#products-list').find('[type="tel"]');
+                        if (this.checked) {
+                            tmpSkuIds += $ele.attr('skuid') + ',';
+                            //var quantity = $ele.siblings('.right').find('.ui_textinput').val();
+                            tmpQuantities += $ele.attr('value') + ',';
+                        }
+                    });
+                    skuIds = tmpSkuIds.substr(0, tmpSkuIds.length - 1);
+                    quantityList = tmpQuantities.substr(0, tmpQuantities.length - 1);
+                })
+                //数量 修改
+                $('[name="spAdd"]').bind("click", function () {
+                    var $elem = $(this).parent();
+                    var number = $elem.find('[name="buyNum"]');
+                    var originalNum = parseInt(number.attr('num'));
+                    number.val(parseInt(number.val()) + 1);
+                    SetProduct();
+                    if (parseInt(number.val()) > originalNum) {
+                        number.val(originalNum);
+                        SetProduct();
+                    }
+                });
+                $('[name="spSub"]').bind("click", function () {
+                    var $elem = $(this).parent();
+                    var number = $elem.parent().find('[name="buyNum"]');
+                    var num = parseInt(number.val()) - 1;
+                    if (num > 0) {
+                        number.val(num);
+                        SetProduct();
+                    }
+                });
+                $('[name="buyNum"]').unbind('blur').blur(function () {
+
+                });
+
+            });
+            function validatorForm() {
+                if (action == "Refund") {
+                    if ($("#txtRefundRemark").val().replace(/\s/g, "") == "") {
+                        alert_h("请输入申请原因以及退款帐号");
+                        return false;
+                    }
+                }
+                else if (action == "Return") {
+                    if ($("#CustomerService_dropLogisticsCompany").val() == "") {
+                        alert_h("请选择物流公司");
+                        return false;
+                    }
+                    if ($("#txtLogisticsId").val() == "") {
+                        alert_h("请输入物流单号");
+                        return false;
+                    }
+                    $('#CustomerService_dropReturnReason')
+                    if ($("#txtReturnRemark").val().replace(/\s/g, "") == "") {
+                        alert_h("请输入申请原因，退款账号等");
+                        return false;
+                    }
+                }
+                else if (action == "Replace") {
+                    if ($("#txtReplaceRemark").val().replace(/\s/g, "") == "") {
+                        alert_h("请输入换货备注");
+                        return false;
+                    }
+                }
+                return true;
+            }
+            function ApplyForRefund(orderId) {
+                var refundRemark = $('#CustomerService_dropRefundReason').val();
+                var selectedIndex = $('#CustomerService_dropRefundReason option:selected').index();
+                var count = $('#CustomerService_dropRefundReason option').length;
+                if (selectedIndex == count - 1) {
+                    refundRemark = $.trim($('#txtRefundRemark').val());
+                }
+                if (refundRemark == '') {
+                    alert_h("请选择或输入退款原因");
+                    return false;
+                }
+                $.ajax({
+                    url: "/API/VshopProcess.ashx",
+                    type: 'post', dataType: 'json', timeout: 10000,
+                    data: { action: "ApplyForRefund", orderId: getParam("OrderId"), remark: refundRemark, refundType: $('#CustomerService_dropRefundType').find("option:selected").val() },
+                    success: function (resultData) {
+                        confirm(resultData.msg);
+                        location.href = "/vshop/MemberOrders.aspx";
+                        //history.go(-1);
+                    }
+                });
+            }
+            function ApplyForReturn(orderId) {
+                if ($("#CustomerService_dropLogisticsCompany").val() == "") {
+                    alert_h("请选择物流公司");
+                    return false;
+                }
+                if ($("#txtLogisticsId").val() == "") {
+                    alert_h("请输入物流单号");
+                    return false;
+                }
+                if ($("#txtReturnRemark").val().replace(/\s/g, "") == "") {
+                    alert_h("请输入申请原因，退款账号等");
+                    return false;
+                }
+                var returnRemark = '';
+                var selectedIndex = $('#CustomerService_dropReturnReason option:selected').index();
+                var count = $('#CustomerService_dropReturnReason option').length;
+
+                /*var quantityList = [];
+                
+                $('#products-list').find('li').each(function(){
+                    var $checkBox = $(this).find('[type="checkbox"]');
+                    var isChecked = $checkBox.is(':checked');
+                    if(isChecked){
+                        var $numBtn = $(this).find('[type="tel"]');
+                        quantityList.push($numBtn.attr('value'));
+                        //alert($numBtn.attr('skuid')+','+$numBtn.attr('value'));
+                    }
+                });
+                alert(skuIds+','+quantityList);
+                $('#products-list').find('li').each(function(){
+                    var $checkBox = $(this).find('[type="checkbox"]');
+                    var isChecked = $checkBox.is(':checked');
+                    if(isChecked){
+                        var $numBtn = $(this).find('[type="tel"]');
+                        quantityList.push($numBtn.attr('value'));
+                        //alert($numBtn.attr('skuid')+','+$numBtn.attr('value'));
+                    }
+                });
+                alert(skuIds+','+quantityList);*/
+
+                if (selectedIndex == count - 1) {
+                    returnRemark = $.trim($('#txtReturnRemark').val());
+                } else {
+                    returnRemark = $('#CustomerService_dropReturnReason').val() + '\r\n' + $.trim($('#txtReturnRemark').val());
+                }
+                $.ajax({
+                    url: "/API/VshopProcess.ashx",
+                    type: 'post', dataType: 'json', timeout: 10000,
+                    data: { logisticsCompany: $("#CustomerService_dropLogisticsCompany").val(), logisticsId: $("#txtLogisticsId").val(), action: "ApplyForReturns", skuIds: skuIds, quantityList: quantityList, orderId: getParam("OrderId"), remark: returnRemark, returnType: $('#CustomerService_dropReturnRefundType').find("option:selected").val() },
+                    success: function (resultData) {
+                        confirm(resultData.msg);
+                        location.href = "/vshop/MemberOrders.aspx";
+                    }
+                });
+            }
+            function ApplyForReplace(orderId) {
+                if ($("#txtReplaceRemark").val().replace(/\s/g, "") == "") {
+                    alert_h("请输入换货备注");
+                    return false;
+                }
+				if(!skuIds){
+					 alert_h("请选择商品！");
+                    return false;
+				}
+                $.ajax({
+                    url: "/API/VshopProcess.ashx",
+                    type: 'post', dataType: 'json', timeout: 10000,
+                    data: { action: "ApplyForReplacement", skuIds: skuIds, quantityList: quantityList, orderId: getParam("OrderId"), remark: $.trim($('#txtReplaceRemark').val()) },
+                    success: function (resultData) {
+                        confirm(resultData.msg);
+                        location.href = "/vshop/MemberOrders.aspx";
+                        //history.go(-1);
+                    }
+                });
+            }
+            //收获地址输入回车键(Enter)不能换行
+            function back(event) {
+                event = event || window.event;
+                if (event.keyCode == 13) {
+                    event.returnValue = false;
+                    return false;
+                }
+            }
+    </script>
+<hi:common_vfooter runat="server" />

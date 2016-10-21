@@ -1,0 +1,441 @@
+﻿<hi:common_vheader runat="server" />
+<link rel="stylesheet" type="text/css" href="/templates/vshop/haimei/resource/default/css/lib/swiper.min.css" />
+<div class="page pt-page gray-page">
+    <header>
+        <div class="fix">
+            <form action="/Vshop/ProductList.aspx">
+                <div class="drop-list" id="drop-list">
+                    <div class="drop-value">商品</div>
+                    <div class="drop-option">
+                        <div class="dr-op" data-value="1">商品</div>
+                        <div class="dr-op" data-value="2">店铺</div>
+                    </div>
+                    <input type="hidden" id="conti" value="1" />
+                </div>
+                <div class="search-box">
+                    <div class="btn-bar"> <a class="msg-btn"></a> </div>
+                    <div class="search-input">
+                        <a class="qcs" id="qrcode-btn"></a><a class="search-btn" id="search-btn"></a>
+                        <div class="input-con">
+                            <input id="txtKeywords" type="search" name="keyWord" placeholder="搜索您想要的商品" />
+                            <input type="hidden" name="categoryId" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </header>
+    <div class="sh-panel" id="sh-panel">
+        <div class="sh-clumn">
+            <h5 class="fix"><a class="sh-btn" onclick="GetOtherHotSearch()">换一批</a><span>热搜</span></h5>
+            <div class="sh-con">
+                <ul class="fix" id="hotserchlist">
+                    <!--<li><a>热水壶</a></li>
+                     <li><a>喜宝</a></li>
+                     <li><a>儿童</a></li>
+                     <li><a>自行车</a></li>
+                     <li><a>奶粉</a></li>-->
+                </ul>
+            </div>
+        </div>
+        <div class="sh-clumn brt-none">
+            <h5 class="fix"><a class="sh-btn" onclick="DelHistorySearch()">清空记录</a><span>历史搜索记录</span></h5>
+            <div class="sh-con">
+                <ul class="fix" id="historysearchList">
+                    <!--<li><a>热水壶</a></li>
+                    <li><a>喜宝</a></li>
+                    <li><a>儿童</a></li>
+                    <li><a>自行车</a></li>
+                    <li><a>奶粉</a></li>-->
+                    <hi:vshoptemplatedrepeater id="rpthistorysearch" templatefile="/Tags/skin-Common_HistorySearch.ascx" runat="server" />
+                </ul>
+            </div>
+        </div>
+        <a class="sh-close" id="sh-close">收起</a>
+    </div>
+    <section>
+        <div class="banner">
+            <div class="swiper-container" id="banner">
+                <div class="swiper-wrapper">
+                    <hi:vshoptemplatedrepeater id="rptSlide" templatefile="/Tags/skin-Common_Slide.ascx" runat="server" />
+                </div>
+            </div>
+            <div class="slider-bar"></div>
+        </div>
+        <div class="icon-btns clearfix">
+            <hi:vshoptemplatedrepeater id="rptNavigate" templatefile="/Tags/skin-Common_Navigate.ascx"
+                                       runat="server" />
+        </div>
+        <!--<div class="clumn">
+            <h3>热卖商品</h3>
+            <div class="clumn-con">
+                <table class="clumn-table" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td colspan="2"><a href="#"><img class="lazyload" src="/images/lazy.png" data-original="/images/temp/hg1.png" /></a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#"><img class="lazyload" src="/images/lazy.png" data-original="/images/temp/hg2.png" /></a></td>
+                        <td><a href="#"><img class="lazyload" src="/images/lazy.png" data-original="/images/temp/hg3.png" /></a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#"><img class="lazyload" src="/images/lazy.png" data-original="/images/temp/hg4.png" /></a></td>
+                        <td><a href="#"><img class="lazyload" src="/images/lazy.png" data-original="/images/temp/hg5.png" /></a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="clumn">
+            <h3>新上商品</h3>
+            <div class="clumn-con">
+                <table class="clumn-table" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td colspan="3"><a href="#"><img class="lazyload" src="/images/lazy.png" data-original="/images/temp/xs1.png" /></a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#"><img class="lazyload" src="/images/lazy.png" data-original="/images/temp/xs2.png" /></a></td>
+                        <td><a href="#"><img class="lazyload" src="/images/lazy.png" data-original="/images/temp/xs3.png" /></a></td>
+                        <td><a href="#"><img class="lazyload" src="/images/lazy.png" data-original="/images/temp/xs4.png" /></a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#"><img class="lazyload" src="/images/lazy.png" data-original="/images/temp/xs5.png" /></a></td>
+                        <td><a href="#"><img class="lazyload" src="/images/lazy.png" data-original="/images/temp/xs6.png" /></a></td>
+                        <td><a href="#"><img class="lazyload" src="/images/lazy.png" data-original="/images/temp/xs7.png" /></a></td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+        <div class="clumn theme-clumn">
+            <h3>主题馆</h3>
+            <div class="clumn-con">
+                <div class="theme-list">
+                    <ul class="clearfix">
+                        <li><a href="#"><img class="lazyload" src="/images/lazy.png" data-original="/images/temp/theme6.png" /></a></li>
+                        <li><a href="#"><img class="lazyload" src="/images/lazy.png" data-original="/images/temp/theme6.png" /></a></li>
+                        <li><a href="#"><img class="lazyload" src="/images/lazy.png" data-original="/images/temp/theme6.png" /></a></li>
+                        <li><a href="#"><img class="lazyload" src="/images/lazy.png" data-original="/images/temp/theme6.png" /></a></li>
+                        <li><a href="#"><img class="lazyload" src="/images/lazy.png" data-original="/images/temp/theme6.png" /></a></li>
+                        <li><a href="#"><img class="lazyload" src="/images/lazy.png" data-original="/images/temp/theme6.png" /></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="clumn">
+            <h3>特惠专区</h3>
+            <div class="clumn-con">
+                <table class="clumn-table" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td colspan="4"><a href="#"><img class="lazyload" src="/images/lazy.png" data-original="/images/temp/th/th1.png" /></a></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" rowspan="2"><a href="#"><img class="lazyload" src="/images/lazy.png" data-original="/images/temp/th/th2.png" /></a></td>
+                        <td colspan="2"><a href="#"><img class="lazyload" src="/images/lazy.png" data-original="/images/temp/th/th3.png" /></a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#"><img class="lazyload" src="/images/lazy.png" data-original="/images/temp/th/th4.png" /></a></td>
+                        <td><a href="#"><img class="lazyload" src="/images/lazy.png" data-original="/images/temp/th/th5.png" /></a></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" rowspan="2"><a href="#"><img class="lazyload" src="/images/lazy.png" data-original="/images/temp/th/th6.png" /></a></td>
+                        <td colspan="2"><a href="#"><img class="lazyload" src="/images/lazy.png" data-original="/images/temp/th/th7.png" /></a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#"><img class="lazyload" src="/images/lazy.png" data-original="/images/temp/th/th8.png" /></a></td>
+                        <td><a href="#"><img class="lazyload" src="/images/lazy.png" data-original="/images/temp/th/th9.png" /></a></td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>-->
+        <div class="clumn theme-clumn" id="index-promopwap">
+        </div>
+        <div class="clumn">
+            <h3>热卖商品</h3>
+            <div class="clumn-con">
+                <table class="clumn-table" cellpadding="0" cellspacing="0">
+                    <hi:vshoptemplatedrepeater id="rptHotSaleTop" templatefile="/Tags/skin_Common_HotSaleTop.ascx" runat="server" />
+                </table>
+                <hi:VshopTemplatedDataList id="rptHotSale" templatefile="/Tags/skin_Common_HotSale.ascx" runat="server" />
+            </div>
+        </div>
+        <div class="clumn">
+            <h3>新上商品</h3>
+            <div class="clumn-con">
+                <table class="clumn-table" cellpadding="0" cellspacing="0">
+                    <hi:vshoptemplatedrepeater id="rptNewProTop" templatefile="/Tags/skin-Common_NewProTop.ascx" runat="server" />
+                </table>
+                <table class="clumn-table" cellpadding="0" cellspacing="0">
+                    <hi:VshopTemplatedDataList id="rptNewPro" templatefile="/Tags/skin-Common_NewPro.ascx" runat="server" />
+                </table>
+            </div>
+        </div>
+        <div class="clumn theme-clumn">
+            <h3>主题馆</h3>
+            <div class="clumn-con">
+                <div class="theme-list">
+                    <ul class="clearfix">
+                        <hi:vshoptemplatedrepeater id="rptTopics" templatefile="/Tags/skin-Common_Topics1.ascx" runat="server" />
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="clumn">
+            <h3>特惠专区</h3>
+            <div class="clumn-con">
+                <table class="clumn-table" cellpadding="0" cellspacing="0" id="pref">
+                    <tr>
+                        <td colspan="4"><a href="#"><img class="lazy" src="/images/lazy.png" data-original="/images/lazy.png" /></a></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" rowspan="2"><a href="#"><img class="lazy" src="/images/lazy.png" data-original="/images/lazy.png" /></a></td>
+                        <td colspan="2"><a href="#"><img class="lazy" src="/images/lazy.png" data-original="/images/lazy.png" /></a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#"><img class="lazy" src="/images/lazy.png" data-original="/images/lazy.png" /></a></td>
+                        <td><a href="#"><img class="lazy" src="/images/lazy.png" data-original="/images/lazy.png" /></a></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" rowspan="2"><a href="#"><img class="lazy" src="/images/lazy.png" data-original="/images/lazy.png" /></a></td>
+                        <td colspan="2"><a href="#"><img class="lazy" src="/images/lazy.png" data-original="/images/lazy.png" /></a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#"><img class="lazy" src="/images/lazy.png" data-original="/images/lazy.png" /></a></td>
+                        <td><a href="#"><img class="lazy" src="/images/lazy.png" data-original="/images/lazy.png" /></a></td>
+                    </tr>
+                </table>
+                <!--<div class="theme-list">
+                    <ul class="clearfix">
+                        <hi:vshoptemplatedrepeater id="rptPromotional" templatefile="/Tags/skin-Common_Promotional.ascx" runat="server" />
+                    </ul>
+                </div>-->
+            </div>
+        </div>
+        
+        <div class="clumn">
+            <h3>猜你喜欢</h3>
+            <div class="clumn-con">
+                <div class="gd-list gd-list-three">
+                    <ul class="fix">
+                        <hi:vshoptemplatedrepeater id="rptProducts" templatefile="/Tags/skin-Common_DefaultProducts.ascx"
+                                                   runat="server" />
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+<!--<div class="pbox" id="productListContainer">
+    <div class="goods-list-grid clearfix" id="goodslist">
+
+    </div>
+    <div id="pager"> </div>
+</div>-->
+<!--<div class="clumn">
+    <h3>猜你喜欢</h3>
+    <div class="clumn-con">
+        <div class="theme-list">
+            <ul class="fix">
+                <hi:vshoptemplatedrepeater id="rptThinkProducts" templatefile="/Tags/skin-Common_DefaultProductsNew.ascx"
+                                           runat="server" />
+            </ul>
+        </div>
+    </div>
+</div>-->
+<div class="up-wrap" id="up-wrap">
+    <div class="up-con">
+        <div class="close-btn" id="up-close"></div>
+        <img src="/images/up-img.jpg" />
+        <h1>系统升级中</h1>
+        <p>尊敬的客户：</p>
+        <p class="tin">
+            您好！
+            为了更好的为您服务，我们将于2015年6月17日00:00至08:00对数据中心优化升级，正常情况下不会造成中断，但不排除影响访问、下单和支付。建议您在升级期间不要进行下单和支付操作，如果有问题，请与客服联系！
+        </p>
+    </div>
+</div>
+<footer class="sku-wrap" id="sku-wrap">
+    <section class="sku-con" id="sku-con">
+        <div class="sku-inner">
+            <div class="sku-info clearfix">
+                <img id="control_item_info_img" width="50" height="50" src="/images/lazy.png"> <span class="price">¥<span id="spSalaPrice">0.00</span></span>
+                <div class="sku-close">&nbsp;</div>
+            </div>
+            <div class="control-wrap">
+                <input type="hidden" runat="server" id="hidden_skus" clientidmode="Static" />
+                <div class="specification-box">
+                    <div class="skus-info"></div>
+                    <div class="buy-num">
+                        <div class="text-muted">购买数量</div>
+                        <div class="list clearfix">
+                            <div class="goods-num clearfix">
+                                <div class="n-options clearfix">
+                                    <a class="op-btn reduce" id="spSub"><span></span></a> <a class="op-btn plus" id="spAdd"><span></span></a>
+                                    <div class="input-con">
+                                        <input type="tel" id="buyNum" class="form-control" value="1">
+                                    </div>
+                                </div>
+                                <div class="info font-s text-muted">（剩余可购买数量：<span id="spStock">3000</span>件）</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="control-btns"> <a class="btn btn-danger buy-btn" id="control-ok">确定</a> </div>
+    </section>
+</footer>
+<script type="text/javascript" src="/script/swipe.js"></script>
+<script src="/script/iscroll.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var mySwiper = new Swiper('#banner', {
+        autoplay: 5000,
+        speed: 200,
+        width: window.innerWidth,
+        autoplayDisableOnInteraction: false,
+        visibilityFullFit: true,
+        loop: true,
+        onClick: function (swiper) {
+            var url = $(swiper.clickedSlide).attr("data-src");
+            if (url) {
+                window.location = url;
+            }
+        },
+        pagination: '.slider-bar',
+        paginationClickable: true
+    });
+</script>
+<script src="/utility/vproduct.helper.js" type="text/javascript"> </script>
+<script src="/script/addcart.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        //导航图标
+        $.each($('[name="icon"]'), function (i, item) {
+            var $span = $(item).find('>span');
+            var url = $span.attr("data-src");
+            var dot = url.indexOf(".");
+            if (dot == -1) {//表示字体
+                $(item).addClass("no-img");
+                var slashIndex = url.lastIndexOf('/');
+                url = url.substring(slashIndex + 1);
+                $span.addClass(url);
+            } else {
+                $(item).html('<img src="' + url + '" width="100%"/>');
+            }
+        });
+        //升级 关闭
+        $("#up-close").click(function () {
+            $("#up-wrap").hide();
+        })
+        ////特惠专区 数据
+        $.ajax({
+            url: "/api/VshopProcess.ashx?action=GetVshopPromotional",
+            type: "get",
+            async: false,
+            success: function (data) {
+                $("#pref td img.lazy").each(function (index, element) {
+                    var $a = $(this).parent();
+                    var obj = data[index];
+                    if (obj) {
+                        $a.attr("href", obj.LoctionUrl);
+                        $(this).attr("data-original", obj.ImageUrl);
+                    }
+                });
+                //图片懒加载
+                $("#pref img.lazy").lazyload();
+            },
+            error: function (ex) {
+
+            }
+        });
+        //限时抢购
+        $.ajax({
+            type: "Get",
+            url: "/Handler/MemberHandler.ashx?action=GetActiveProducts&t="+ Math.random() ,
+            datatype: "json",
+            async: false,
+            success: function (data) {
+                if (data != "" && data.data != null && data.data.length > 0) {
+                    var html = '<h3  style="color:#999">限时抢购<a href="/vshop/CountDownProducts.aspx?time=' + Math.random() +'" class="fr">更多抢购>></a></h3>';
+                    html+='<div class="clumn-con promopwap"><div class="theme-list index-promopwap"><ul class="clearfix index-promoplist">';
+                    $(data.data).each(function (index, item) {
+                        html += '<li class="fl">';
+                        if (item.ActiveType == 1) {
+                            html += '<p style="text-align:center;"><span style="color:#d21676;border-radius:9px;padding:1px 5px;">' + item.Startdate.substring(11, 16) + '抢购中</span></p>';
+                        }
+                        else if (item.ActiveType == 2) {
+                            html += '<p style="text-align:center;"><span style="border-radius:9px;padding:2px 5px;">' + item.Startdate.substring(11, 16) + '开抢</span></p>';
+                        }
+                        html+='<dl class="index-promop">';
+                        html+=' <dt>';
+                        html += "<a href='/vshop/CountDownProductsDetails.aspx?productId=" + item.ProductId + "&CountDownId=" + item.CountDownId + "&time=" + Math.random() + "'><img src='" + item.ThumbnailUrl220 + "'/></a>";//
+                        html+='</dt><dd>';
+                        html += "<p class='gd-name'><a href='/vshop/CountDownProductsDetails.aspx?productId=" + item.ProductId + "&CountDownId=" + item.CountDownId + "&time=" + Math.random() + "'>" + item.Productname + "</a></p>";
+                        html += '<div><div><span class="gd-price">¥<span>' + item.CountDownPrice + '</span>&nbsp;&nbsp;</span><span class="gd-rate">¥<s>' + item.MarketPrice + '</s></span>';
+                        html += '</div><div style="text-align:center">';
+                        var gotoinfo = '立即抢购', css ='background:#d21676;color:#fff;padding:2px 6px;border-radius:6px;margin:5px 0px;font-size:12px;';
+                        if (item.ActiveType == 2 ) {
+                            gotoinfo = '即将开始';
+                            css = 'background:#2fb06d;color:#fff;padding:2px 6px;border-radius:6px;margin:5px 0px;font-size:12px;';
+                        }
+                        html += "<a href='/vshop/CountDownProductsDetails.aspx?productId=" + item.ProductId + "&CountDownId=" + item.CountDownId + "&time=" + Math.random() + "' style='"+css+"'>" + gotoinfo + "</a></div></div>";
+                        html+='</dd>';
+                        html+= '</dl></li>';
+                    })
+                    html+= '</ul></div></div>';
+                    $("#index-promopwap").html(html);
+                    var prowidth = $(".promopwap").width() / 3;
+                    $(".index-promoplist").width($(".index-promoplist li").length * prowidth);
+                    $(".index-promoplist li").width(prowidth);
+                    $(".promopwap").height($(".promopwap").width()*21/32);
+                    myScroll = new IScroll('.promopwap', { eventPassthrough: true, scrollX: true, scrollY: false, preventDefault: false });
+                }
+            }
+        });
+    });   
+    function getCookie(c_name) {
+        if (document.cookie.length > 0) {
+            c_start = document.cookie.indexOf(c_name + '=')
+            if (c_start != -1) {
+                c_start = c_start + c_name.length + 1
+                c_end = document.cookie.indexOf(';', c_start)
+                if (c_end == -1) c_end = document.cookie.length
+                return unescape(document.cookie.substring(c_start, c_end))
+            }
+        }
+        return ''
+    }
+    function setCookie(c_name, value, expiredays) {
+        var exdate = new Date()
+        exdate.setDate(exdate.getDate() + expiredays);
+        document.cookie = c_name + '=' + escape(value) +
+        ((expiredays == null) ? '' : ';expires=' + exdate.toGMTString())
+    }
+    function checkCookie(name,fn1,fn2) {
+        username = getCookie(name)
+        if (username != null && username != '') {
+            if (fn1 && $.isFunction(fn1)) { fn1(); }//有cookie时执行的方法
+        }
+        else {
+            if (fn2 && $.isFunction(fn2)) { fn2(); }//没有cookie时执行的方法
+        }
+    }
+    //赠送优惠券
+    function setphonefi() {
+        var nowtime = new Date();
+        if (nowtime > new Date(Date.parse("2016/3/6 10:00"))) {
+            var htm = "<div><div style='background:#000;opacity:0.5;filter:alpha(opacity=80);width:100%;height:100%;position:fixed;top:0px;left:0px;z-index:1000'></div>";
+                htm += "<div style='position:fixed;left:50%;top:50%;width:80%;max-width:660px;margin-left:-40%;margin-top:-135px;z-index:5000'>";
+                htm += "<div  style='position:absolute;width:50px;height:50px;top:-3px;right:-3px;cursor:pointer;z-index:6000;background:#fff;opacity:0;' onclick='$(this).parent().parent().detach();'></div>";
+                htm += "<a href='/Vshop/BindPhoneNumber.aspx' style='position:absolute;width:230px;height:36px;top:56%;left:50%;margin-left:-115px;cursor:pointer;z-index:6000;background:#fff;opacity:0;'></a>";
+                htm += "<a href='/Vshop/ActivityShowMain.aspx' style='position:absolute;width:230px;height:36px;bottom:0px;left:50%;margin-left:-115px;cursor:pointer;z-index:6000;background:#fff;opacity:0;'></a><img src='/images/weixin_tanchuang1.png' style='width:100%'></div></div>";
+               $(htm).appendTo('body');
+               setCookie('codeqfirst', '11', '30');
+        }
+        
+    }
+    checkCookie('codeqfirst', '', function () { setphonefi() });
+</script>
+<hi:common_vfooter runat="server" />

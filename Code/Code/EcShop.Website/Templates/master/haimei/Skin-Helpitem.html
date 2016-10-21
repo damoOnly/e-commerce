@@ -1,0 +1,241 @@
+﻿<%<hi:common_header runat="server" skinname="/ascx/tags/Skin-Common_Header3.ascx" />%>
+<!--<div id="main1" class="main">
+<div class="tqj"></div>
+<div class="container articleshelp">
+  <div class="cssleft">
+  <h6><img src="/images/process/bzzx.gif" width="182" height="45" /></h6>
+  <div class="csslist">
+
+  </div>
+  </div>
+  <div class="cssright">
+      <div class="cssright_h1"><a href="url:home">首页</a> > 帮助中心 </div>
+    <ul class="cssborder">
+        <%<Hi:ThemedTemplatedRepeater ID="rptHelps" runat="server" TemplateFile="/ascx/tags/Common_Comment/Skin-Common_HelpCenter_Help.ascx"  />%>
+    </ul>
+    <div class="csspage">            <div class="page">
+                           <%<UI:Pager runat="server" ShowTotalPages="true" ID="pager" />%>
+                </div></div>
+  </div>
+</div>
+</div>-->
+<div class="crum">
+    当前位置：<span><a href="/">首页</a></span>&gt;<span><a href="/Helps.aspx">帮助中心</a></span>&gt;<span><span id="cur-pitem"></span>&gt;<span id="cur-hitem"></span>
+    </span>
+</div>
+<div class="helps-main">
+    <div class="help-menu">
+        <div class="help-menulist">
+        	<h2>帮助中心</h2>
+            <%<hi:common_helpcategory templatefile="/ascx/tags/Common_Comment/Skin-Common_HelpCenter_Category.ascx" runat="server" />%>
+            <!--         	<dl class="selected">
+                            <dt><i></i><span>新手指南</span></dt>
+                            <dd class="show">
+                                <ul class="help-submenu">
+                                    <li><a>注册新用户</a></li>
+                                    <li><a>帐号密码</a></li>
+                                    <li><a>买家入门</a></li>
+                                    <li><a>购物流程</a></li>
+                                </ul>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><i></i><span>海美学堂</span></dt>
+                            <dd>
+                                <ul class="help-submenu">
+                                    <li><a>海美学堂</a></li>
+                                </ul>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><i></i><span>我的海美</span></dt>
+                            <dd>
+                                <ul class="help-submenu">
+                                    <li><a>我的海美</a></li>
+                                </ul>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><i></i><span>支付方式</span></dt>
+                            <dd>
+                                <ul class="help-submenu">
+                                    <li><a>支付方式</a></li>
+                                </ul>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><i></i><span>关于配送</span></dt>
+                            <dd>
+                                <ul class="help-submenu">
+                                    <li><a>关于配送</a></li>
+                                </ul>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><i></i><span>货物验收</span></dt>
+                            <dd>
+                                <ul class="help-submenu">
+                                    <li><a>货物验收</a></li>
+                                </ul>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><i></i><span>交易安全</span></dt>
+                            <dd>
+                                <ul class="help-submenu">
+                                    <li><a>交易安全</a></li>
+                                </ul>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><i></i><span>掌上海美</span></dt>
+                            <dd>
+                                <ul class="help-submenu">
+                                    <li><a>掌上海美</a></li>
+                                </ul>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><i></i><span>常见问题</span></dt>
+                            <dd>
+                                <ul class="help-submenu">
+                                    <li><a>常见问题</a></li>
+                                </ul>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><i></i><span>售后服务</span></dt>
+                            <dd>
+                                <ul class="help-submenu">
+                                    <li><a>售后服务</a></li>
+                                </ul>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><i></i><span>联系客服</span></dt>
+                            <dd>
+                                <ul class="help-submenu">
+                                    <li><a>联系客服</a></li>
+                                </ul>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><i></i><span>服务条款</span></dt>
+                            <dd>
+                                <ul class="help-submenu">
+                                    <li><a>服务条款</a></li>
+                                </ul>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><i></i><span>联系海美</span></dt>
+                            <dd>
+                                <ul class="help-submenu">
+                                    <li><a>联系海美</a></li>
+                                </ul>
+                            </dd>
+                        </dl> -->
+        </div>
+    </div>
+    <div class="help-con">
+        <!--<div class="h-module">
+            <div class="fix">                
+                <div class="cs-img"></div>
+                <div class="cs-search">
+                    <form>
+                        <div class="cs-search-box fix">
+                            <div class="cs-search-btn">
+                                <input type="button" onclick="SearchHelp();" value="" class="cs-submit" />
+                            </div>
+                            <div class="cs-search-input">
+                                <input id="searchcontent" type="text" />
+                            </div>
+                        </div>
+                    </form>
+                    <div class="hot-search">
+                        <label>热门搜索：</label><a>配送范围</a><a>关税表</a><a>退换货</a><a>购物流程</a><a>新手引导</a><a>海美客服</a>
+                    </div>
+                </div>
+                <div class="cs-hot">
+                    <p>海美客服热线</p>
+                    <div class="hot-line">400-663-9898</div>
+                </div>
+            </div>
+        </div>-->
+        <div class="h-module">
+            <!--<div class="current-wrap">
+                <a href="/helps.aspx">帮助中心</a><span>&gt;</span><span><%<asp:Label id="lblCategory" runat="server" />%></span><span>&gt;</span><span><%<asp:Label id="lblhelpName" runat="server" />%></span>
+            </div>-->
+            <div class="help-detail">
+                <%<asp:literal id="lblhelpcontent" runat="server" />%>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+
+
+
+<script type="text/javascript">
+    $(function () {
+        var theme = "selected";
+        /*//菜单伸缩
+        $(".helps-main .help-menulist dt").bind("click", function () {
+            var $dl = $(this).parent();
+            var time = 500;
+            $dl.toggleClass(theme);
+            $dl.find("dd").slideToggle(time);
+            $dl.siblings().removeClass(theme);
+            $dl.siblings().find("dd").slideUp(time);
+        })*/
+        //标签页 切换
+        $(".tab-wrap .tab-header li").hover(function (e) {
+            var index = $(this).index();
+            $(this).addClass(theme).siblings().removeClass(theme);
+            var $curItem = $(".tab-wrap .tab-main .tab-con").eq(index);
+            $curItem.addClass(theme).siblings().removeClass(theme);
+        })
+
+        expanH(GetQueryString("helpid"));
+
+        $('#searchcontent').keydown(function (e) {
+            if (e.keyCode == 13) {
+                SearchHelp();
+                return false;
+            }
+        })
+    })
+
+
+    function expanH(pid) {
+        pid = "help" + pid;
+        //$("#" + pid).closest("dl").find("dt").click();
+		$("#" + pid).addClass("selected");
+		//设置文字
+		$("#cur-pitem").text($("#" + pid).closest("dl").find("dt").text());
+		$("#cur-hitem").text($("#" + pid).text());
+    }
+
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return (r[2]); return null;
+    }
+
+    function SearchHelp() {
+        var content = $("#searchcontent").attr("value").trim();
+        if (content == null || content == undefined || content == "") {
+            window.location.href = '/HelpSearch.aspx';
+        }
+        else {
+            window.location.href = '/HelpSearch.aspx?searchcontent=' + encodeURI(content);
+        }
+
+    }
+
+</script>
+<%<hi:common_footer runat="server" />%>
+

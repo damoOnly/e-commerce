@@ -1,0 +1,644 @@
+﻿<%<hi:common_header runat="server" />%>
+<input type="hidden" runat="server" id="hidden_skus" clientidmode="Static" />
+<input type="hidden" runat="server" id="hidden_skuItem" clientidmode="Static" />
+<div class="main" id="main1">
+    <script src="/utility/cloud-zoom.1.0.2.js" type="text/javascript"></script>
+    <link href="/utility/cloud-zoom.css" rel="stylesheet" type="text/css" media="screen" />
+
+    <div id="divshow" class="dialog">
+        <div class="dialog_title">
+            <div class="dialog_title_l"><span>成功添加到购物车</span></div>
+            <div class="dialog_title_r"> </div>
+        </div>
+        <div class="dialog_cartitem">
+            <p>目前选购商品共<span id="spcounttype">0</span>件　合计：<span>￥<span id="sptotal">0.00</span></span>元</p>
+            <div class="btnbar"><a class="btn-viewcart" href="#" target="_self"></a><a class="btn-continue"></a></div>
+        </div>
+    </div>
+
+    <div id="divbefore" class="dialog">
+        <div class="dialog_title">
+            <div class="dialog_title_l"> <span>添加到购物车</span></div>
+        </div>
+        <div class="dialog_cartitem">正在添加到购物车……</div>
+    </div>
+    <input id="hiddeSkuId" clientidmode="Static" runat="server" type="hidden" />
+    <input id="hiddeCategoryId" clientidmode="Static" runat="server" type="hidden" />
+    <input id="hiddeCategoryName" clientidmode="Static" runat="server" type="hidden" />
+    <input id="hiddeProductName" clientidmode="Static" runat="server" type="hidden" />
+    <input id="hiddeProductCode" clientidmode="Static" runat="server" type="hidden" />
+    <input id="hiddeUserId" clientidmode="Static" runat="server" type="hidden" />
+    <%<input id="hiddenpid" clientidmode="Static" runat="server" type="hidden" /> %>
+    <%<input type="hidden" id="txCartQuantity" value="" clientidmode="Static" runat="server" /> %>
+    <%<input id="hiddensupplierid" clientidmode="Static" runat="server" type="hidden" /> %>
+    <%<input type="hidden" id="buyCardinality" value="0" clientidmode="Static" runat="server" /> %>
+    <div id="divAlready" class="dialog">
+        <div class="dialog_title">
+            <div class="dialog_title_l">
+                <span>你已经收藏过该商品</span>
+            </div>
+            <div class="Favorite_title_r">
+            </div>
+        </div>
+        <div class="dialog_cartitem">
+            请点此<a href="/user/favorites.aspx">查看我的收藏>></a>
+        </div>
+    </div>
+    <div id="divFavorite" class="dialogFavorite">
+        <div class="Favorite_title">
+            <div class="Favorite_title_l">
+                <span>成功加入收藏</span>
+            </div>
+            <div class="Favorite_title_r">
+            </div>
+        </div>
+        <div id="reset" class="tips">
+            <h2>
+                收藏成功！
+            </h2>
+            <p>
+                <em>
+                    您已收藏了<span id="favoriteCount">1</span>个商品， <a target="_blank" href="url:user_Favorites">
+                        <font color="blue">查看我的收藏&gt;&gt;</font>
+                    </a>
+                </em>
+            </p>
+        </div>
+        <div id="attention-tags">
+            <div class="mt">
+                <h4>
+                    加标签<em>（最多可选3个）</em>
+                </h4>
+            </div>
+            <div class="mc" id="tagDiv">
+                <ul class="att-tag-list" id="tag_num"></ul>
+                <ul class="att-tag-list att-tag-list-save" id="tag_num2">
+                    <li class="att-tag-new">
+                        <input id="txttags" maxlength="10" type="text" onkeydown="javascript:if(event.keyCode==13) AppendTags();"
+                               onkeyup="return checkLength(this)" placeholder="自定义" onfocus="if (this.value==this.defaultValue){this.value=''};this.style.color='#333333'"
+                               onblur="if (this.value==''){this.value=this.defaultValue;};this.style.color='#9C9A9C'"
+                               value="自定义" class="text" style="height: 25; color: rgb(156, 154, 156);" /><span onclick="javascript:return AppendTags();">添加</span>
+                    </li>
+                </ul>
+                <div id="tishi" class="att-tag-btn">
+                    <a onclick="return SaveTags();" href="javascript:void(0);" class="att-btn-ok">确定</a><a class="att-btn-cancal" href="javascript:void(0);" onclick="CloseFavorite();">取消</a>
+                    <span class="hl_red fl hide">最多可选不超过三个标签</span>
+                    <span class="hl_red fl hide">请至少选择1个标签</span>
+                    <span class="hl_green fl hide">设置成功</span>
+                    <span class="hl_red fl hide">请输入自定义标签名称！</span>
+                    <span class="hl_red fl hide">标签由数字、字母、汉字组成</span>
+                    <span class="hl_red fl hide">存在该标签的收藏商品，无法删除</span>
+                    <span class="hl_red fl hide">请选择要删除的收藏标签</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="login_tan" id="loginForBuy" style="display:none;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td colspan="4">
+                    <table class="loginForBuytit" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="400">
+                                <h2>您尚未登录，请登录</h2>
+                            </td>
+                            <td width="39"><p><img id="imgCloseLogin" src="/images/sub/close2.jpg" width="25" height="24" /></p></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr><td colspan="4">&nbsp;</td></tr>
+            <tr>
+                <td width="25" valign="middle" w>&nbsp;</td>
+                <td valign="middle" width="65" class="fB">用户名：</td>
+                <td width="250" valign="middle">
+                    <label>
+                        <input type="text" name="textfield" id="textfieldusername" class="login_tan_input1" />
+                    </label>
+                </td>
+                <td valign="middle" width="104">&nbsp;</td>
+            </tr>
+            <tr>
+                <td height="45" valign="middle">&nbsp;</td>
+                <td valign="middle" class="fB">密　码：</td>
+                <td valign="middle"><input type="password" name="textfield2" id="textfieldpassword" class="login_tan_input2" /></td>
+                <td valign="middle"><a href="url:ForgotPassword">忘记密码了?</a></td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <table>
+                        <tr>
+                            <td width="85" valign="middle">&nbsp;</td>
+                            <td width="140">
+                                <label>
+                                    <input type="button" name="button" id="btnLoginAndBuy" value=" " class="login_tan_input3" />
+                                </label>
+                            </td>
+                            <td width="79" align="center"><a href="url:register">我要注册</a></td>
+                            <!--<td width="135"><input id="btnAmoBuy" type="button" value="匿名购买" /></td>-->
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    <a name="top_name" id="top1"></a>
+    <div class="nav_info"><%<hi:common_location runat="server" />%></div>
+    <div class="pd-wrap fix">
+        <div class="product_intro">
+            
+            <div class="product-wrap fix">
+                <div class="product_preview">
+                    <%<Hi:Common_ProductImages ID="images" Is410Image="true" Is60Image="true" runat="server" />%>
+                    <div class="product-source"><Hi:HiImage runat="server" ID="imgIcon1" CssClass="imporsourceType-img" /><span class="litCnArea"><asp:Literal runat="server" id="litCnArea1" /></span></div>
+                    <div class="fix">
+                        <div class="share-wrap fix">
+                            <h2 class="share-label">分享到：</h2>
+                            <div class="jiathis_style">
+                                <a class="jiathis_button_qzone"></a><a class="jiathis_button_tsina"></a><a class="jiathis_button_tqq"></a><a class="jiathis_button_renren"></a><a class="jiathis_button_kaixin001"></a>
+                                <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a><a class="jiathis_counter_style"></a>
+                            </div>
+                            <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1350294149446525" charset="utf-8"></script>
+                        </div>
+                        <div class="addfav-wrap"><a id="addFavorite" href="javascript:void(0)" onclick="AddToFavorite()" class="addfav-btn">收藏该商品</a></div>
+                    </div>
+                    <div style=" margin-top:15px;"><Hi:Common_ProductImageAlbum ID="hlinkmoreImage" ImageUrl="/images/more_img_icon.jpg" runat="server" /></div>
+                </div>
+                <div class="product_parameter">
+                	<div class="product-name" id="bfdProductTitle">
+                    	<%<asp:Literal id="litProductName" runat="server" />%>
+                    </div>
+                    <div class="product-smalltitle"><strong><!--朱古力买一送一限时抢购，卖完即止，等你快来抢购--><asp:Label ID="lblsmalltitle" runat="server" /></strong></div>                                      
+                    <div class="product-des des1">                    	
+                        <dl class="des-item fix">
+                            <dt>海美价：</dt>
+                            <dd>
+                            	<span class="pro-pram"><span class="des-price">￥<%<asp:Label ID="lblBuyPrice" runat="server" />%></span><span class="mark-price"><%<asp:Literal runat="server" ID="litMarkPrice" />%></span></span>
+                                <span class="free-ship">全场满99免邮</span>
+                                <!--<span><label class="pro-label">税率：</label><span class="pro-value"><span></span>%</span></span>
+                                <span class="rate-tip">关税低于50元（含50），免征</span>-->
+                            </dd>
+                        </dl>
+                        <!--<dl class="des-item fix">
+                            <dt>总金额：</dt>
+                            <dd>
+                                <span class="pro-pram des-price">￥<strong><%<Hi:TotalLabel ID="lblTotalPrice" runat="server" /> %></strong></span>
+                                <div class="view-rate">
+                                    <span style="cursor:pointer;">查看关税表</span>
+                                    <div class="rate-wrap">
+                                        <div class="rate-con">
+                                            <p>个人邮寄进境物品， 海关依法征收进口税，应征进口税税额在人民币50元（含50元）以下的海关予以免征，包裹货值每次限值1000元，税率为：奶粉10%，洗护50%，服装20%，食品10%，具体税率请查看<a class="link" href="helpItem.aspx?helpid=64" target="_blank">详情>></a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </dd>
+                        </dl>-->
+                    </div>
+                    
+                    <div class="product-des des2 fix">
+                    	 <div class="gd-code-wrap fix" style="display:none;">
+                            <div class="fix">
+                                <div class="gd-code-left"><img id="productImg" src="" runat="server" class="gd-code-img" /></div>
+                                <div class="gd-code-right">
+                                    <p>立刻扫码手机购买</p>
+                                    <p>立享手机优惠价</p>
+                                </div>
+                            </div>
+                        </div>
+                    	<div class="fix" style="overflow:hidden;">
+                            <dl class="des-item fix" style="display:none">
+                                <dt>配送范围</dt>
+                                <dd>全国</dd>
+                                <dd style="display:none;"><span class="mr20"><em><%<asp:Literal ID="litItemNumber" runat="server" />%></em>件成交</span><span><em><%<asp:Literal ID="litReviewCount" runat="server" />%></em>条评价</span></dd>
+                            </dl>                                                                                                           
+                            <dl class="des-item fix">
+                                <dt>品牌</dt>
+                                <dd>
+                                	<span id="bfdBrand"><%<asp:Literal ID="litBrand" runat="server" />%></span>
+                                    <a class="enter-store" target="_blank"></a>
+                                </dd>
+                            </dl>
+                            <dl class="des-item fix">
+                                <dt>配送</dt>
+                                <dd><asp:Literal runat="server" id="litShipping" /></dd>
+                            </dl>
+                            <dl class="des-item fix">
+                                <dt>关税</dt>  
+                                <dd>本商品税率<asp:Literal runat="server" id="litTaxRate" />，订单关税≤50免征<a class="link" href="helpItem.aspx?helpid=83" target="_blank">查看关税>></a></dd>
+                            </dl>
+                            <dl class="des-item fix">
+                                <%<hi:productpromote runat="server" isvshop="false" isanonymous="true" />%>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="product-des last no-padding-des">                        
+                        <%<hi:skuselector runat="server" cssclass="Product_WareFun_bg" />%>
+                        <dl class="des-item fix des-num">
+                            <dt>数量</dt>
+                            <dd>
+                                <div class="num-wrap fix">
+                                    <div class="num-bar" style="border-right:none;">
+                                        <div class="btn-reduce disabled" name="spSub"></div>
+                                    </div>
+                                    <div class="num-con">
+                                        <!--<input type="text" value="1" old-v="1">-->
+                                        <%<Hi:BuyAmountBox id="txtBuyAmount" CssClass="Product_input" runat="server"></Hi:BuyAmountBox>%>
+                                    </div>
+                                    <div class="num-bar" style="border-left:none;">
+                                        <div class="btn-add" name="spAdd"></div>
+                                    </div>
+                                </div>
+                                <div class="ovh">
+                                    <div style="display:none;">
+                                        <%<Hi:BuyButton runat="server" id="btnBuy"><img src="/images/sub/mai_buttom_btn.jpg" /></Hi:BuyButton>%>
+                                    </div><span class="stock"><span><%<Hi:StockLabel ID="lblStock" runat="server" />%><%<asp:Literal ID="litUnit" runat="server" />%></span>可售&nbsp;<span id="buyCardinalityTip" title="购买数量不能小于起购数" style="cursor:pointer;color:#ff0000;"><%<asp:Literal ID="litBuyCardinality" runat="server" />%></span></span>
+                                </div>
+                            </dd>
+                        </dl>
+                        <dl class="des-item fix">
+                            <dt></dt>
+                            <dd class="pos-rt">
+                            	<div class="success-tip" id="success-tip">+1</div>
+                                <a class="buy-btn" id="nowBuyBtn" runat="server">立即购买</a><%<Hi:AddCartButton runat="server" id="btnaddgouwu">加入购物车</Hi:AddCartButton>%>                               
+                               
+                            </dd>
+                        </dl>
+                    </div>
+                    <div style="display:none;">
+                        <div class="imporsourceTypediv">
+                            <Hi:HiImage runat="server" ID="imgIcon" CssClass="imporsourceType-img" />
+                            &nbsp;&nbsp;<span class="litCnArea"><asp:Literal runat="server" id="litCnArea" /></span>
+                        </div>
+                        <div>商品编号：<span id="bfdProductCode"><%<asp:Literal runat="server" id="lblProductCode" />%></span></div>
+                        <div><%<hi:rankpricename pricename="售&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价" runat="server" />%>：<b>￥<span></span></b></div>
+                        <%<Hi:UserProductReferLabel ID="lbUserProductRefer" runat="server" />%>
+                        <div>市&nbsp;&nbsp;场&nbsp;&nbsp;价：<del>￥<%<Hi:FormatedMoneyLabel ID="lblMarkerPrice" runat="server" />%></del></div>
+                        <div style=" display:none;">品牌：</span></div>
+                        <div style=" display:none;">商品货号：<span><%<Hi:SkuLabel runat="server" id="lblSku" />%></span></div>
+                        <div style=" display:none;">浏览次数：<span><%<asp:Literal ID="litBrosedNum" runat="server" />%> 次</span></div>
+                        <div style=" display:none;">重量：<span><%<asp:Label ID="litWeight" runat="server" />%></span></div>
+                        <div style=" display:none;">已经出售：<span></span></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height:30px; overflow:hidden; clear:both;"></div>
+    <div class="tde-wrap fix">
+        <div class="tde-left">
+            <div class="pro-wrap">
+                <h4>热门推荐</h4>
+                <div class="pro-list">
+                    <ul>
+                        <%
+                        <hi:common_goodslist_hotsale templatefile="/ascx/tags/Common_GoodsList/Skin-Common_GoodsList_HotSale.ascx" maxnum="6" runat="server" />%>
+                    </ul>
+                </div>
+            </div>
+            <asp:Literal runat="server" id="litCategoryNotes3" />
+        </div>
+        <div class="tde-right">
+            <div class="product_detail">
+                <ul class="product_nav_wrap">
+                    <li class="curr"><a href="#mc1">图文详情</a></li>
+                    <li><a href="#mc2">用户评价<span class="cmt-num">(<asp:Literal ID="litviewcount" runat="server" />)</span></a></li>
+                    <li><a href="#mc3">成交记录</a></li>
+                    <!--<li><a>商品咨询</a></li>-->
+                </ul>
+
+                <div class="product_mc" id="mc1">
+                    <div class="pro-desc-top"><img src="/images/product_msg.jpg" /></div>
+                    <div class="pro-desc-wrap">
+                        <div class="pro-desc">
+                            <%<Hi:Common_ExpandAttributes1 id="expandAttributes" runat="server" />%>  <!--海美生活使用新模版-->
+                        </div>
+
+                        <div style="overflow:hidden;height:auto">
+                            <ul>
+                                <!--原属性控件已去掉-->
+                            </ul>
+                        </div>
+                        <div style="height:auto;overflow:hidden;"><%<asp:Literal ID="litDescription" runat="server" />%></div>
+                    </div>
+                    <!--<div class="notice-wrap">
+                        <h5><div class="notice-tit">消费者须知</div></h5>
+                        <div class="notice-con fix">
+                            <div class="n-module">
+                                <p><strong>一旦您在本店下单，我们即认为您已知晓本条款，请您谨慎购买。</strong></p>
+                            </div>                           
+                            <div class="n-module">
+                                <p><strong>1)发货时间</strong></p>
+                                <p>首次购买海美商品请务必填写收件人的真实姓名及身份证号码，否则货品无法办理海关清关。海关清关需要1-3天，预计发货时间是付款后的<span class="exp">3-5个工作日</span>（节假日除外）。</p>
+                            </div>
+                            <div class="n-module">
+                                <p><strong>2)订单限额</strong></p>
+                                <p>寄自或寄往其他国家或地区的物品，单个包裹含多件商品，则总额<span class="exp">不可超过1000元人民币</span>，多买请分单预订，同一收货人，不同订单间隔1个工作日发货。若单次购买仅有一件商品且不可分割的（如一台按摩椅）虽超出规定限值，经海关审核确属个人自用的，可以参照个人物品规定办理通关手续。</p>
+                            </div>
+                            <div class="n-module">
+                                <p><strong>3)免税额度</strong></p>
+                                <p>中国海关根据相关法律，对个人包裹征收税费。税额由消费者支付给商家，商家统一代收代缴。每笔订单税金在<span class="exp">50元以下</span>（含50）即可享受<span class="exp">免税</span>，税金在<span class="exp">50元以上</span>则海关会<span class="exp">征税</span>。</p>
+                            </div>
+                            <div class="n-module">
+                                <p><strong>4)其他事项</strong></p>
+                                <p>①您下单后相关信息将直接倍推送至海关系统进行报关审核，故订单预订无法取消，敬请谅解。</p>
+                                <p>②您在海美商城购买的境外商品为产地直销商品，仅限个人自用不得再次销售，商品本身可能无中文标签，您可以查看网站的翻译或者联系我们客服。</p>
+                                <p>③您购买的境外商品适用的品质、健康、标识等项目使用标准符合原产国使用标准，但是可能与我国标准有所不同，所以在使用过程中由此产生的危害或者损失以及其他风险，将由个人承担。</p>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+
+                <div class="product_mc" id="mc2">
+                    <ul id="ulProductreview">
+                        <%
+                        <hi:common_productreview runat="server" templatefile="/ascx/tags/Common_ViewProduct/Skin-Common_ProductReview.ascx" maxnum="5" />%>
+                    </ul>
+                    <div class="details_plzx">
+                        <span class="colorF"><%<asp:HyperLink ID="hpkProductReviews" runat="server" CssClass="Product_b" />%></span>
+                        <%<hi:common_viewproduct_review runat="server" cssclass="Product_a" />%>
+                    </div>
+                </div>
+
+                <div class="product_mc" id="mc3">
+                    <%<hi:common_productsales runat="server" />%>
+                    <div class="details_plzx">
+                        <span class="colorF"><%<asp:HyperLink ID="hpkProductSales" runat="server" CssClass="Product_b" />%></span>
+                    </div>
+                </div>
+
+                <div class="product_mc">
+                    <!--商品咨询-->
+                    <%<hi:common_productconsultations runat="server" templatefile="/ascx/tags/Common_ViewProduct/Skin-Common_ProductConsultations.ascx" maxnum="5" />%>
+                    <div class="details_plzx">
+                        <span class="colorF"><%<asp:HyperLink ID="hpkProductConsultations" runat="server" CssClass="Product_b" />%></span>
+                        <%<hi:common_viewproduct_consultation runat="server" cssclass="Product_a" />%>
+                    </div>
+                </div>
+
+            </div>
+            <script type="text/javascript">
+                var number = $("#buyAmount");
+                var theme = "disabled";
+                $(function () {
+                    var imgsrc = $("#ProductDetails_productImg").attr("src");
+                    if (imgsrc == undefined || imgsrc == "" || imgsrc == null) {
+                        $(".gd-code-wrap").css("display", "none");
+                    } else {
+                        if (Number($("#productDetails_Stock").text()) == 0) {
+                        } else {
+                            $(".gd-code-wrap").css("display", "");
+                        }
+                    }
+ 
+                    if (number.val() >= parseInt($("#productDetails_Stock").text())) {
+                        $('div[name="spAdd"]').addClass(theme);
+                    }
+                    $('div[name="spAdd"]').bind("click", function () {
+                        if ($(this).hasClass(theme)) {
+                            return;
+                        }
+                        var stock = parseInt($("#productDetails_Stock").text());
+                        var val = number.val();
+                        if (isNaN(val) || val == "") {
+                            val = 1;
+                        }
+                        var num = parseInt(val) + 1;
+                        var $btnSub = $('div[name="spSub"]');
+                        if (num <= stock) {
+                            number.val(num).attr("old-v", num);
+                            ChangeBuyAmount();
+                            if (num > 1) {
+                                $btnSub.removeClass(theme);
+                            }
+                            if (num == stock) {
+                                $(this).addClass(theme);
+                            }
+                        }
+                    });
+                    $('div[name="spSub"]').bind("click", function () {
+                        if ($(this).hasClass(theme)) {
+                            return;
+                        }
+                        var stock = parseInt($("#productDetails_Stock").text());
+                        var $btnAdd = $('div[name="spAdd"]');
+                        var val = number.val();
+                        if (isNaN(val) || val == "") {
+                            val = 1;
+                        }
+                        var num = parseInt(val) - 1;
+                        var cardinalityQ = $("#buyCardinality").val();
+                        if (num >= cardinalityQ) {
+                            number.val(num).attr("old-v", num);
+                            ChangeBuyAmount();
+                            if (num == cardinalityQ) {
+                                $(this).addClass(theme);
+                            }
+                            if (num < stock) {
+                                $btnAdd.removeClass(theme);
+                            }
+                        }
+                    });
+
+                    /*$(".product_nav_wrap li").click(function () {
+                        var li_index = $(".product_nav_wrap li").index(this);
+                        $(".product_mc").hide().eq(li_index).show();
+                        $(this).addClass("curr").siblings().removeClass("curr");
+                    });*/
+
+                    if (!$("#hiddensupplierid").val()) {
+                        $(".enter-store").hide();
+                    }
+                    else {
+                        $(".enter-store").attr('href', 'store.aspx?supplierid=' + $("#hiddensupplierid").val() + '');
+                    }
+					//滑动 超过 图文的 ，图文的标签 显示在上面
+					var $wrap = $(".product_detail");
+					var theme = "fixed";									
+					$wrap.find(".product_nav_wrap").css({width:$wrap.width(),left:$wrap.offset().left});
+					var mcInter;
+					function setMc() {
+						var top = $(window).scrollTop();						
+						var theme = "curr";						
+						//判断 到 哪一个
+						$wrap.find(".product_mc").each(function (index, element) {
+							var offset = $(this).offset();
+							var arr = $(this).attr("class").split(" ");
+							var sp = offset.top;
+							if (top >= sp) {
+								var $cur = $wrap.find(".product_nav_wrap li").eq(index);
+								$cur.addClass(theme).siblings().removeClass(theme);
+								return;
+							}
+						});
+					}
+					$(window).bind("scroll.op",function(){
+						var scrolltop = $(this).scrollTop();
+						if(scrolltop>= $wrap.offset().top){
+							$wrap.addClass(theme);
+						}else{
+							$wrap.removeClass(theme);
+						}
+						
+						if (mcInter) {
+							window.clearTimeout(mcInter);
+						}
+						mcInter = window.setTimeout(setMc, 0);
+					})
+                });
+            </script>
+            <script src="/utility/product.helper.js?v=20150914" type="text/javascript"></script>
+            <div class="clearboth"></div>
+            <!-- 相关商品-->
+            <div class="product_related" style="display:none;">
+                <h2><b>热销推荐</b></h2>
+                <div class="pr-relist">
+                    <ul>
+                        <!--相关商品-->
+                        <%
+                        <hi:common_goodslist_correlative templatefile="/ascx/tags/Common_GoodsList/Skin-Common_GoodsList_Correlative.ascx" maxnum="6" runat="server" />%>
+                        
+                    </ul>
+                </div>
+            </div>
+            <%<hi:bfdscriptlabel runat="server" />%>
+        </div>
+    </div>
+</div>
+<%<hi:common_footer runat="server" />%>
+<script type="text/javascript">
+    //保存 cookies
+    function setMyCookie(key, value) {
+        if (arguments.length == 1) {
+            if (window.localStorage) {
+                return localStorage[key];
+            } else {
+                var objValue = null;
+                var arrStr = document.cookie.split("; ");
+                for (var i = 0; i < arrStr.length; i++) {
+                    var temp = arrStr[i].split("=");
+                    if (temp[0] == key) {
+                        objValue = unescape(temp[1]);
+                        break;
+                    }
+                }
+                return objValue;
+            }
+        } else {
+            if (window.localStorage) {
+                if (typeof value != "string") {
+                    value = JSON.stringify(value);
+                }
+                localStorage[key] = value;
+            } else {
+                var str = key + "=" + escape(value);
+                var expires = 0;
+                if (expires > 0) {//为0时不设定过期时间，浏览器关闭时cookie自动消失
+                    var date = new Date();
+                    var ms = expires * 3600 * 1000;
+                    date.setTime(date.getTime() + ms);
+                    str += "; expires=" + date.toGMTString();
+                }
+                document.cookie = str;
+            }
+        }
+    }
+
+    //浏览页面之后,记录浏览历史记录
+    var url = document.location.href;
+    var productId = $("#hiddenpid").val();
+    var historyObj;
+
+
+    //var
+    function BrowerHistory() {
+        //分享操作
+        $.ajax({
+            url: "/API/VshopProcess.ashx",
+            type: 'post', dataType: 'json', timeout: 10000,
+            data: { action: "GetBrowserPDetailsHistory", Url: url, PlatType: 1, ProductId: productId },
+            success: function (resultData) {
+                if (resultData.Status != "NO") {
+                    //成功 设值
+                    setMyCookie("DataCachePC_UserScanHistroysHtml", resultData);
+
+                    //取值，setMyCookie("DataCacheWX_UserScanHistroysHtml");
+                }
+                else {
+                    //失败
+                }
+            }
+        });
+    }
+
+    $(function () {
+
+        //浏览历史记录
+        BrowerHistory();
+
+        if ($("#ulProductreview").find('li').length == 0) {
+
+            var msg = "<li class='product_reviews_list_ask product_reviews_list'><div>该商品暂时没有评论</div></li>";
+            $("#ulProductreview").append(msg);
+        }
+    });
+//左侧分类高度
+$(function(){
+	/*function setHeight(){
+		height = $('.my_left_category').height();
+		$('.shadow_border').height(height);
+	};
+	$('.my_left_category>div').filter('.my_left_category>div:gt(6)').hide ();
+	$('.my_left_category>div').filter ('.my_left_category>div:nth-child(14)').mouseover(function(){
+		$(this).siblings ('.my_left_category>div:gt(6)').show();
+		setHeight();
+	})
+	$('.my_left_category>div').filter ('.my_left_category>div:nth-child(14)').mouseout(function(){
+		$(this).siblings ('.my_left_category>div:gt(6)').hide();
+		setHeight();
+	})
+	$('.my_left_category>div').filter ('.my_left_category>div:nth-child(14)').siblings ('.my_left_category>div:gt(6)').mouseover(function(){
+		$('.my_left_category>div').filter ('.my_left_category>div:nth-child(6)').siblings ('.my_left_category>div:gt(6)').show();
+		setHeight();
+	})
+	$('.my_left_category>div').filter ('.my_left_category>div:nth-child(14)').siblings ('.my_left_category>div:gt(6)').mouseout(function(){
+		$('.my_left_category>div').filter ('.my_left_category>div:nth-child(14)').siblings ('.my_left_category>div:gt(6)').hide();
+		setHeight();
+	})*/
+
+    $('.product_nav_wrap li a').click(function(){
+        var toplace = $(this).attr('href');
+        var scrTop = $(toplace).offset().top;
+        $('html,body').animate({scrollTop:scrTop});
+    });
+});
+
+</script>
+<script type="text/javascript">
+    _adwq.push(['_setDataType', 'view']);
+    _adwq.push(['_setCustomer', $("#hiid_AdUserId").val()]); //用户ID
+    _adwq.push(['_setItem',
+        $("#hiddeProductCode").val(),       // 电视是一个例子，请填入商品名称  - 必填项
+        $("#hiddeProductName").val(),    // 09890是一个例子，请填入商品编号  - 必填项
+        $("#ProductDetails_lblBuyPrice").html(),    // 12.00是一个例子，请填入商品现价  - 必填项
+        '1',     // 商品数量，默认传1即可
+        $("#hiddeCategoryId").val(),      // A123是一个例子，请填入商品分类编号，填写最小的分类级别  - 必填项
+        $("#hiddeCategoryName").val(),      // 家电是一个例子，请填入商品分类名称，填写最小的分类级别  - 必填项
+        $("#sp_MarketPrice").html().replace("￥", ""),      // 10.00是一个例子，请填入商品原价，可以等于商品现价 - 必填项
+        "http://www.haimylife.com" + $("#zoom1").attr("href"),      // 请填入素材图片地址，注意是完整地址 - 必填项
+        'Y',             // 请填入商品状态，Y代表有效，N代表无效（缺货和下架） - 必填项
+        window.location.href,     //请填入商品url地址 - 必填项
+        '',        //请填入商品下架时间，秒级别的时间戳 - 选填项
+        '',        //请填入品牌id - 选填项
+        ''        //请填入品牌名称  - 选填项
+    ]);
+    _adwq.push(['_trackTrans']);
+</script>
+
+

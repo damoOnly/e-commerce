@@ -1,0 +1,280 @@
+﻿<hi:common_vheader runat="server" />
+<script type="text/javascript" src="/script/iscroll-zoom.js"></script>
+
+<div class="page pt-page gray-page">
+    <header> 
+    	<div class="fix">
+            <form action="/Vshop/ProductList.aspx">
+                <div class="drop-list" id="drop-list">
+                    <div class="drop-value">商品</div>
+                    <div class="drop-option">
+                        <div class="dr-op" data-value="1">商品</div>
+                        <div class="dr-op" data-value="2">店铺</div>
+                    </div>
+                    <input type="hidden" id="conti" value="1" />
+                </div>
+                <div class="search-box">
+                    <div class="btn-bar"> <a class="msg-btn"></a> </div>
+                    <div class="search-input"> <a class="qcs" id="qrcode-btn"></a> <a class="search-btn" id="search-btn"></a>
+                        <div class="input-con">
+                            <input id="txtKeywords" type="search" name="keyWord" placeholder="搜索您想要的商品"/>
+                            <input type="hidden" name="categoryId"/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </header>
+    <div class="sh-panel" id="sh-panel">
+        <div class="sh-clumn">
+            <h5 class="fix"><a class="sh-btn" onclick="GetOtherHotSearch()">换一批</a><span>热搜</span></h5>
+            <div class="sh-con">
+                <ul class="fix" id="hotserchlist">
+                    <!--<li><a>热水壶</a></li>
+                     <li><a>喜宝</a></li>
+                     <li><a>儿童</a></li>
+                     <li><a>自行车</a></li>
+                     <li><a>奶粉</a></li>-->
+                </ul>
+            </div>
+        </div>
+        <div class="sh-clumn brt-none">
+            <h5 class="fix"><a class="sh-btn" onclick="DelHistorySearch()">清空记录</a><span>历史搜索记录</span></h5>
+            <div class="sh-con">
+                <ul class="fix" id="historysearchList">
+                    <!--<li><a>热水壶</a></li>
+                    <li><a>喜宝</a></li>
+                    <li><a>儿童</a></li>
+                    <li><a>自行车</a></li>
+                    <li><a>奶粉</a></li>-->
+                    <hi:vshoptemplatedrepeater id="rpthistorysearch" templatefile="/Tags/skin-Common_HistorySearch.ascx" runat="server" />
+                </ul>
+            </div>
+        </div>
+        <a class="sh-close" id="sh-close">收起</a>
+    </div>
+    <section>
+        <div class="classify clearfix">
+            <div class="classify-left" id="wrapper">
+                <div id="scroller">
+                    <ul>
+                        <!--            <li>
+                <a onclick="ShowSubCategory(this,'ImportSourceType','true')" attrCategoryId="ImportSourceType">
+                    <span class="img">--> 
+                        <!--  <img src="" class="img-resp" />  --> 
+                        <!-- </span>
+                    <span>原产地</span>
+                </a>
+            </li> -->
+                        <hi:vshoptemplatedrepeater id="rptCategories" templatefile="/Tags/skin-Common_Categories.ascx" runat="server" />
+                        
+                        <!--<li class="selected">
+                <a href="#">
+                    <span class="img">
+                        <img src="/images/hot.png" class="img-resp" />
+                    </span>
+                    <span>热门推荐</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="img">
+                        <img src="/images/hot.png" class="img-resp" />
+                    </span>
+                    <span>热门推荐</span>
+                </a>
+            </li>-->
+                    </ul>
+                </div>
+            </div>
+            <div class="classify-right">
+                <div class="classify-item"> 
+                    <!-- 三级情况保留备份使用 -->
+                    <!--<dl>
+                        <dt><a href="#"><span>过家家</span></a></dt>
+                        <dd>
+                            <ul class="clearfix">
+                                <li> <a href="#"><img src="/templates/vshop/haimei/resource/default/image/temp/t3.png"/>儿童桌面游</a> </li>
+                                <li> <a href="#">膨化食品</a> </li>
+                                <li> <a href="#">进口豆奶</a> </li>
+                                <li> <a href="#">软包抽纸</a> </li>
+                                <li> <a href="#">卫生巾</a> </li>
+                                <li> <a href="#">卫生巾</a> </li>
+                            </ul>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt><a>小资派</a></dt>
+                        <dd>
+                            <ul class="clearfix">
+                                <li> <a href="#">儿童桌面游</a> </li>
+                                <li> <a href="#">膨化食品</a> </li>
+                                <li> <a href="#">进口豆奶</a> </li>
+                                <li> <a href="#">软包抽纸</a> </li>
+                                <li> <a href="#">卫生巾</a> </li>
+                            </ul>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt><a>有品未</a></dt>
+                        <dd>
+                            <ul class="clearfix">
+                                <li> <a href="#">儿童桌面游</a> </li>
+                                <li> <a href="#">膨化食品</a> </li>
+                                <li> <a href="#">进口豆奶</a> </li>
+                                <li> <a href="#">软包抽纸</a> </li>
+                                <li> <a href="#">卫生巾</a> </li>
+                            </ul>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt><a><img src="/templates/vshop/ebec/resource/default/image/temp/t4.png"/>人情味</a></dt>
+                        <dd>
+                            <ul class="clearfix">
+                                <li> <a href="#">儿童桌面游</a> </li>
+                                <li> <a href="#">膨化食品</a> </li>
+                                <li> <a href="#">进口豆奶</a> </li>
+                                <li> <a href="#">软包抽纸</a> </li>
+                                <li> <a href="#">卫生巾</a> </li>
+                            </ul>
+                        </dd>
+                    </dl>-->
+                    <!-- 三级情况保留备份使用  结束-->
+                    <ul class="classsify-ul clearfix" id="classsify-ul">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<hi:common_vfooter runat="server" />
+<script type="text/javascript">
+    //隐藏右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+
+    //隐藏底部菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideToolbar');
+    });
+
+
+    function goUrl(url) {
+//        alert(url);
+        location.href = url;
+
+    }
+
+    $(function () {
+        /*var categoryItems = $('a.categoryItem');
+        var cateogryId, url;
+        $.each(categoryItems, function (i, item) {
+            cateogryId = $(item).attr('value');
+            if ($(item).attr('name') == "True") {
+               url = '?categoryId=' + cateogryId;
+            }
+            else{
+               url = '/Vshop/ProductList.aspx?categoryId=' + cateogryId;
+            }
+            $(item).attr('onclick', 'goUrl("'+url+'")').attr('href', 'javascript:;');
+
+        });*/
+		
+		//生成滑动
+		var myScroll;
+		function loaded () {
+			myScroll = new IScroll('#wrapper', {
+				zoom: false,
+				scrollX: true,
+				scrollY: true,
+				mouseWheel: false,
+				click:true
+			});
+		}
+		loaded();	  
+	   //判断 之前是否 有点击
+	   var categoryLocal = setMyCookie("categoryLocal");
+	   var $a;
+	   if(categoryLocal){
+		   $a = $(".classify-left a[attrCategoryId='"+categoryLocal+"']");
+	   }else{
+		   //给分类第一个li默认为选中
+		   $a = $(".classify-left a:eq(0)");
+	   }
+	   if(!$a.length){
+		  $a = $(".classify-left a:eq(0)"); 
+	   }
+	   if($a.length){		   
+		  $a.trigger("click"); 
+	   }
+       
+       /* $(".classify-left li:eq(0)").addClass("selected");
+        var categoryId = $(".classify-left a:eq(0)").attr("attrCategoryId");
+        var hasChildren = $(".classify-left a:eq(0)").attr("name");
+        ShowSubCategory(null, categoryId, hasChildren);*/
+    });
+
+    function ShowSubCategory(ele, categoryId, hasChildren) {
+        $ele = $(ele);
+        $ele.parent().addClass("selected").siblings().removeClass("selected");
+        if ($ele.length > 0) {
+            categoryId = $ele.attr("attrCategoryId");
+        }
+		//保存到 本地 缓存
+		setMyCookie("categoryLocal",categoryId);
+        $.ajax({
+            url: "/API/VshopProcess.ashx",
+            type: 'post', dataType: 'json', timeout: 10000,
+            data: { action: "ShowSubCategory", categoryId: categoryId },
+            success: function (resultData) {
+                if (resultData != null) {
+                    if (resultData.Status == "-1") {
+                        alert_h("没有分类, 请重试");
+                    }
+                    else {
+                        var strs = "";
+                        if (categoryId == "ImportSourceType")
+                        {
+                            for (var a = 0; a < resultData.length; a++) {
+                                strs += "<li><a class='link source-link' href='/Vshop/ProductList.aspx?importSourceId=" + resultData[a]["ImportSourceId"] + "'><img src='" + resultData[a]["Icon"] + "'/>" + resultData[a]["CnArea"] + "</a></li>";
+                            }
+                        }
+                        else {
+                            if (hasChildren == "True") {
+                                for (var i = 0; i < resultData.length; i++) {
+                                    //二级
+                                    /*if (resultData[i]["Depth"] == 2 && resultData[i]["ParentCategoryId"] == categoryId) {
+                                        strs += "<li><a class='link' href='/Vshop/ProductList.aspx?categoryId=" + resultData[i]["CategoryId"] + "'>" + resultData[i]["Name"] + "</a></li>";
+                                    }*/
+
+                                    //三级
+                                    if (resultData[i]["Depth"] == 2 && resultData[i]["ParentCategoryId"] == categoryId) {
+                                        if (i != 0) {
+                                            strs += "</ul></dd></dl>";
+                                        }
+                                        strs += "<dl><dt><a class='link' href='/Vshop/ProductList.aspx?categoryId=" + resultData[i]["CategoryId"] + "&Depth=" + resultData[i]["Depth"] + "'>" + resultData[i]["Name"] + "</a></dt>";
+                                        strs += "<dd><ul class='clearfix'>";
+                                        var tmpCid = resultData[i]["CategoryId"];
+                                        /*if (!resultData[i]["HasChildren"]) {
+                                            strs += "<li><a href='/Vshop/ProductList.aspx?categoryId=" + resultData[i]["CategoryId"] + "'>" + resultData[i]["Name"] + "</a></li>";
+                                            continue;
+                                        }*/
+                                        for (var j = 0; j < resultData.length; j++) {
+                                                if (resultData[j]["Depth"] == 3 && resultData[j]["ParentCategoryId"] == tmpCid) {
+                                                    strs += "<li><a href='/Vshop/ProductList.aspx?categoryId=" + resultData[j]["CategoryId"] + "&Depth=" + resultData[j]["Depth"] + "'>" + '<img src="' + resultData[j]["Icon"] + '">' + resultData[j]["Name"] + "</a></li>";
+                                                }
+                                            }
+                                    }
+
+
+                                }
+                            }
+                        }
+                        $("#classsify-ul").html(strs);
+                    }
+                }
+            }
+        });
+    }
+</script> 

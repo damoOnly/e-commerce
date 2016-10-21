@@ -1,0 +1,15 @@
+﻿<hi:common_vheader runat="server" />
+<img src="/images/tuan.jpg" class="img-responsive">
+<div class="pbox">
+    <hi:vshopTemplatedRepeater id="rptCountDownProducts" templatefile="/Tags/skin-Common_CountDownProducts.ascx"
+                               runat="server" />
+    <div id="pager">
+    </div>
+</div>
+<input type="hidden" id="txtTotal" runat="server" clientidmode="Static" />
+<hi:common_vfooter runat="server" />
+<script src="/Utility/common.js" type="text/javascript"></script>
+<script src="/Utility/pager.js" type="text/javascript"></script>
+<script type="text/javascript">
+    vshopPager('pager', $('#txtTotal').val(), 1, 10);
+</script>

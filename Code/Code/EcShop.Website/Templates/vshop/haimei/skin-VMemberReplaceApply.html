@@ -1,0 +1,36 @@
+﻿<hi:common_vheader runat="server" />
+<div class="page gary-page">
+    <section>
+    	<div class="no-data pl10 pr10" id="no-data">
+            <p>您还没有换货单</p>                
+            <a class="red-btn" href="default.aspx">去首页逛逛</a>
+        </div>
+    	<div class="od-list" id="od-list">            
+            <ul>
+                <hi:vshoptemplatedrepeater id="rptApply" templatefile="/Tags/skin-Common_MemberReplaceApply.ascx" runat="server" />
+            </ul>
+        </div>
+    </section>
+</div>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+<script type="text/javascript">
+    $(function () {
+		var $eleThumbnails=$('.pic-info ThumbnailsUrl');
+		var info;
+		$eleThumbnails.each(function(n,i){
+			info=$(this).html().split('[$]');
+			$(this).parent().siblings('.a-pic').find('.img-ThumbnailsUrl').attr('src',info[2]);
+			$(this).parent().siblings('.span-desc').html(info[1]);
+		});
+        //表示没有订单
+		if (!$("#od-list li").length) {
+			$("#no-data").show();
+		}
+    })
+</script>
+<hi:common_vfooter runat="server" />

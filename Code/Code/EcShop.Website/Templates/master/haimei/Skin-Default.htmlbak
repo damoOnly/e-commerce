@@ -1,0 +1,626 @@
+﻿<%<hi:common_header runat="server" skinname="/ascx/tags/Skin-Common_Header1.ascx" />%>
+<style type="text/css">
+    .my_left_category {
+        display: block !important;
+    }
+</style>
+
+<div class="main_index" id="main_index">
+    <div class="mainlunbo">
+        <hi:common_customad runat="server" adid="11" />
+    </div>
+    <div class="main1 fix">
+        <div class="box1 mt20">
+            <table class="banner-table" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td>
+                        <div class="adv_image1 cssEdite" type="image" id="newads_002"><a><img src="/images/ba/banner1.jpg" style="width:171px;height:180px;" /></a></div>
+                    </td>
+                    <td>
+                        <div class="adv_image1 cssEdite" type="image" id="newads_003"><a><img src="/images/ba/banner2.jpg" style="width:171px;height:180px;" /></a></div>
+                    </td>
+                    <td>
+                        <div class="adv_image1 cssEdite" type="image" id="newads_004"><a href=""><img src="/templates/master/haimei/UploadImage/advertimg/20130911163039_7395.jpg" style="width:171px;height:180px;"></a></div>
+                    </td>
+                    <td>
+                        <div class="adv_image1 cssEdite" type="image" id="newads_005"><a href=""><img src="/templates/master/haimei/UploadImage/advertimg/20140211160840_4689.jpg" style="width:171px;height:180px;"></a></div>
+                    </td>
+                    <td>
+                        <div class="adv_image1 cssEdite" type="image" id="newads_006"><a href=""><img src="/templates/master/haimei/UploadImage/advertimg/20140224152819_5950.jpg" style="width:171px;height:180px;"></a></div>
+                    </td>
+                    <td>
+                        <div class="adv_image1 cssEdite" type="image" id="newads_007"><a href=""><img src="/templates/master/haimei/UploadImage/advertimg/20140211160800_6867.jpg" style="width:171px;height:180px;"></a></div>
+                    </td>
+                    <td>
+                        <div class="adv_image1 cssEdite" type="image" id="newads_008"><a href=""><img src="/templates/master/haimei/UploadImage/advertimg/20140211160809_3001.jpg" style="width:171px;height:180px;"></a></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="floor fav-floor" style="display:none;">
+            <div class="floor_hd">
+                <div class="title cssEdite" type="title">
+                    <div><span class="icon"><img src="/images/common/like.png"></span><span class="title">猜你喜欢</span> </div>
+                </div>
+            </div>
+            <div class="floor-main">
+                <table class="fav-table" cellpadding="0" cellspacing="0">
+                    <tbody>
+                        <tr class="border-top-none">
+                            <td class="w1">
+                                <div class="adv_image cssEdite" type="image" id="newads_01">
+                                    <a href="/product_detail-1633.aspx"><img src="/images/lazy.png" data-original="/images/temp/t1.jpg" class="lazyload img-resp" /></a>
+                                </div>
+                            </td>
+                            <td rowspan="2" class="w2">
+                                <div class="banner">
+                                    <div id="swiper-container" class="flexslider">
+                                        <ul class="slides">
+                                            <li>
+                                                <div class="img cssEdite" id="newads_02"><a href="/product_detail-1563.aspx"><img src="/images/temp/t3.jpg" width="100%" /></a></div>
+                                            </li>
+                                            <li>
+                                                <div class="img cssEdite" id="newads_03"><a href="/product_detail-1563.aspx"><img src="/images/temp/t3.jpg" width="100%" /></a></div>
+                                            </li>
+                                            <li>
+                                                <div class="img cssEdite" id="newads_04"><a href="/product_detail-1563.aspx"><img src="/images/temp/t3.jpg" width="100%" /></a></div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="w3"><div class="cssEdite" id="newads_05"><a href="/product_detail-1552.aspx"><img src="/images/lazy.png" data-original="/images/temp/t4.jpg" class="lazyload img-resp" /></a></div></td>
+                            <td rowspan="2" class="w4"><div class="cssEdite" id="newads_06"><a href="/product_detail-1619.aspx"><img src="/images/lazy.png" data-original="/images/temp/t6.jpg" class="lazyload img-resp" /></a></div></td>
+                            <td class="w5"><div class="cssEdite" id="newads_07"><a href="/product_detail-2111.aspx"><img src="/images/lazy.png" data-original="/images/temp/t7.jpg" class="lazyload img-resp" /></a></div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="cssEdite" id="newads_08"><a href="/product_detail-391.aspx"><img src="/images/lazy.png" data-original="/images/temp/t2.jpg" class="lazyload img-resp" /></a></div></td>
+                            <td><div class="cssEdite" id="newads_09"><a href="/product_detail-1549.aspx"><img src="/images/lazy.png" data-original="/images/temp/t5.jpg" class="lazyload img-resp" /></a></div></td>
+                            <td><div class="cssEdite" id="newads_10"><a href="/product_detail-1967.aspx"><img src="/images/lazy.png" data-original="/images/temp/t8.jpg" class="lazyload img-resp" /></a></div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="floor floor-1">
+            <div class="floor_hd">
+                <div class="title cssEdite" type="title">
+                    <div><span class="icon">1F</span><span class="title">母婴用品</span> </div>
+                </div>
+                <div class="morelink" type="morelink"> <em><a href="/browse/category-5000000.aspx">更多</a></em> </div>
+            </div>
+            <div class="floor-main">
+                <table class="fav-table floor-table bd-top-none" cellpadding="0" cellspacing="0">
+                    <tbody>
+                        <tr class="border-top-none">
+                            <td class="m1"><div class="cssEdite" id="newads_11"><a href="/product_detail-2120.aspx"><img src="/images/lazy.png" data-original="/images/temp/m1.jpg" class="lazyload" /></a></div></td>
+                            <td rowspan="2">
+                                <table class="fav-table floor-table border-none" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                        <tr class="border-top-none">
+                                            <td rowspan="2" class="bd-left-none bd-bottom-none m3"><div class="cssEdite" id="newads_12"><a href="/browse/category-5000000.aspx"><img src="/images/lazy.png" data-original="/images/temp/m3.jpg" class="lazyload" /></a></div></td>
+                                            <td class="m4"><div class="cssEdite" id="newads_13"><a><img src="/images/lazy.png" data-original="/images/temp/m4.jpg" class="lazyload" /></a></div></td>
+                                            <td colspan="2"><div class="cssEdite" id="newads_14"><a href="/product_detail-1616.aspx"><img src="/images/lazy.png" data-original="/images/temp/m6.jpg" class="lazyload" /></a></div></td>
+                                            <td class="bd-right-none"><div class="cssEdite" id="newads_15"><a href="/product_detail-1653.aspx"><img src="/images/lazy.png" data-original="/images/temp/m9.jpg" class="lazyload" /></a></div></td>
+                                        </tr>
+                                        <tr class="border-bottom-none">
+                                            <td class="m4"><div class="cssEdite" id="newads_16"><a href="/product_detail-2247.aspx"><img src="/images/lazy.png" data-original="/images/temp/m5.jpg" class="lazyload" /></a></div></td>
+                                            <td class="m5"><div class="cssEdite" id="newads_17"><a href="/product_detail-2106.aspx"><img src="/images/lazy.png" data-original="/images/temp/m7.jpg" class="lazyload" /></a></div></td>
+                                            <td class="m6"><div class="cssEdite" id="newads_18"><a href="/product_detail-1310.aspx"><img src="/images/lazy.png" data-original="/images/temp/m8.jpg" class="lazyload" /></a></div></td>
+                                            <td class="bd-right-none"><div class="cssEdite" id="newads_19"><a href="/product_detail-2200.aspx"><img src="/images/lazy.png" data-original="/images/temp/m10.jpg" class="lazyload" /></a></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><div class="cssEdite" id="newads_20"><a href="/product_detail-2050.aspx"><img src="/images/lazy.png" data-original="/images/temp/m2.jpg" class="lazyload" /></a></div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="floor floor-2">
+            <div class="floor_hd">
+                <div class="title cssEdite" type="title">
+                    <div><span class="icon">2F</span><span class="title">海外直邮</span> </div>
+                </div>
+                <div class="morelink" type="morelink"> <em><a href="/browse/category-8000072.aspx">更多</a></em> </div>
+            </div>
+            <div class="floor-main">
+                <table class="fav-table floor-table bd-top-none" cellpadding="0" cellspacing="0">
+                    <tbody>
+                        <tr class="border-top-none">
+                            <td class="m1"><div class="cssEdite" id="newads_201"><a href="/product_detail-1602.aspx"><img src="/images/lazy.png" data-original="/images/temp/n1.jpg" class="lazyload" /></a></div></td>
+                            <td rowspan="2">
+                                <table class="fav-table floor-table border-none" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                        <tr class="border-top-none">
+                                            <td rowspan="2" class="bd-left-none bd-bottom-none m3"><div class="cssEdite" id="newads_202"><a href="/browse/category-8000072.aspx"><img src="/images/lazy.png" data-original="/images/temp/n3.jpg" class="lazyload" /></a></div></td>
+                                            <td class="m4"><div class="cssEdite" id="newads_203"><a href="/product_detail-1551.aspx"><img src="/images/lazy.png" data-original="/images/temp/n4.jpg" class="lazyload" /></a></div></td>
+                                            <td colspan="2"><div class="cssEdite" id="newads_204"><a href="/product_detail-2363.aspx"><img src="/images/lazy.png" data-original="/images/temp/n6.jpg" class="lazyload" /></a></div></td>
+                                            <td class="bd-right-none"><div class="cssEdite" id="newads_205"><a href="/product_detail-2359.aspx"><img src="/images/lazy.png" data-original="/images/temp/n9.jpg" class="lazyload" /></a></div></td>
+                                        </tr>
+                                        <tr class="border-bottom-none">
+                                            <td class="m4"><div class="cssEdite" id="newads_206"><a href="/product_detail-1565.aspx"><img src="/images/lazy.png" data-original="/images/temp/n5.jpg" class="lazyload" /></a></div></td>
+                                            <td class="m5"><div class="cssEdite" id="newads_207"><a href="/product_detail-1969.aspx"><img src="/images/lazy.png" data-original="/images/temp/n7.jpg" class="lazyload" /></a></div></td>
+                                            <td class="m6"><div class="cssEdite" id="newads_208"><a href="/product_detail-1550.aspx"><img src="/images/lazy.png" data-original="/images/temp/n8.jpg" class="lazyload" /></a></div></td>
+                                            <td class="bd-right-none"><div class="cssEdite" id="newads_209"><a href="/product_detail-2364.aspx"><img src="/images/lazy.png" data-original="/images/temp/n10.jpg" class="lazyload" /></a></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><div class="cssEdite" id="newads_210"><a href="/product_detail-2439.aspx"><img src="/images/lazy.png" data-original="/images/temp/n2.jpg" class="lazyload" /></a></div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="floor floor-3">
+            <div class="floor_hd">
+                <div class="title cssEdite" type="title">
+                    <div><span class="icon">3F</span><span class="title">食品保健</span> </div>
+                </div>
+                <div class="morelink" type="morelink"> <em><a href="/browse/category-1000000.aspx">更多</a></em> </div>
+            </div>
+            <div class="floor-main">
+                <table class="fav-table floor-table bd-top-none" cellpadding="0" cellspacing="0">
+                    <tbody>
+                        <tr class="border-top-none">
+                            <td class="m1"><div class="cssEdite" id="newads_301"><a href="/product_detail-2044.aspx"><img src="/images/lazy.png" data-original="/images/temp/a1.jpg" class="lazyload" /></a></div></td>
+                            <td rowspan="2">
+                                <table class="fav-table floor-table border-none" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                        <tr class="border-top-none">
+                                            <td rowspan="2" class="bd-left-none bd-bottom-none m3"><div class="cssEdite" id="newads_302"><a href="/browse/category-1000000.aspx"><img src="/images/lazy.png" data-original="/images/temp/a3.jpg" class="lazyload" /></a></div></td>
+                                            <td class="m4"><div class="cssEdite" id="newads_303"><a href="/product_detail-2038.aspx"><img src="/images/lazy.png" data-original="/images/temp/a4.jpg" class="lazyload" /></a></div></td>
+                                            <td colspan="2"><div class="cssEdite" id="newads_304"><a href="/product_detail-1547.aspx"><img src="/images/lazy.png" data-original="/images/temp/a6.jpg" class="lazyload" /></a></div></td>
+                                            <td class="bd-right-none"><div class="cssEdite" id="newads_305"><a href="/product_detail-1237.aspx"><img src="/images/lazy.png" data-original="/images/temp/a9.jpg" class="lazyload" /></a></div></td>
+                                        </tr>
+                                        <tr class="border-bottom-none">
+                                            <td class="m4"><div class="cssEdite" id="newads_306"><a href="/product_detail-2032.aspx"><img src="/images/lazy.png" data-original="/images/temp/a5.jpg" class="lazyload" /></a></div></td>
+                                            <td class="m5"><div class="cssEdite" id="newads_307"><a href="/product_detail-998.aspx"><img src="/images/lazy.png" data-original="/images/temp/a7.jpg" class="lazyload" /></a></div></td>
+                                            <td class="m6"><div class="cssEdite" id="newads_308"><a href="/product_detail-975.aspx"><img src="/images/lazy.png" data-original="/images/temp/a8.jpg" class="lazyload" /></a></div></td>
+                                            <td class="bd-right-none"><div class="cssEdite" id="newads_309"><a href="/product_detail-449.aspx"><img src="/images/lazy.png" data-original="/images/temp/a10.jpg" class="lazyload" /></a></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><div class="cssEdite" id="newads_310"><a href="/product_detail-2043.aspx"><img src="/images/lazy.png" data-original="/images/temp/a2.jpg" class="lazyload" /></a></div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="floor floor-4">
+            <div class="floor_hd">
+                <div class="title cssEdite" type="title">
+                    <div><span class="icon">4F</span><span class="title">美妆洗护</span> </div>
+                </div>
+                <div class="morelink" type="morelink"> <em><a href="/browse/category-8000038.aspx">更多</a></em> </div>
+            </div>
+            <div class="floor-main">
+                <table class="fav-table floor-table bd-top-none" cellpadding="0" cellspacing="0">
+                    <tbody>
+                        <tr class="border-top-none">
+                            <td class="m1"><div class="cssEdite" id="newads_401"><a href="/product_detail-2144.aspx"><img src="/images/lazy.png" data-original="/images/temp/b1.jpg" class="lazyload" /></a></div></td>
+                            <td rowspan="2">
+                                <table class="fav-table floor-table border-none" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                        <tr class="border-top-none">
+                                            <td rowspan="2" class="bd-left-none bd-bottom-none m3"><div class="cssEdite" id="newads_402"><a href="/browse/category-8000038.aspx"><img src="/images/lazy.png" data-original="/images/temp/b3.jpg" class="lazyload" /></a></div></td>
+                                            <td class="m4"><div class="cssEdite" id="newads_403"><a href="/product_detail-1928.aspx"><img src="/images/lazy.png" data-original="/images/temp/b4.jpg" class="lazyload" /></a></div></td>
+                                            <td colspan="2"><div class="cssEdite" id="newads_404"><a href="/product_detail-1589.aspx"><img src="/images/lazy.png" data-original="/images/temp/b6.jpg" class="lazyload" /></a></div></td>
+                                            <td class="bd-right-none"><div class="cssEdite" id="newads_405"><a><img src="/images/lazy.png" data-original="/images/temp/b9.jpg" class="lazyload" /></a></div></td>
+                                        </tr>
+                                        <tr class="border-bottom-none">
+                                            <td class="m4"><div class="cssEdite" id="newads_406"><a href="/product_detail-1752.aspx"><img src="/images/lazy.png" data-original="/images/temp/b5.jpg" class="lazyload" /></a></div></td>
+                                            <td class="m5"><div class="cssEdite" id="newads_407"><a href="/product_detail-1774.aspx"><img src="/images/lazy.png" data-original="/images/temp/b7.jpg" class="lazyload" /></a></div></td>
+                                            <td class="m6"><div class="cssEdite" id="newads_408"><a href="/product_detail-1766.aspx"><img src="/images/lazy.png" data-original="/images/temp/b8.jpg" class="lazyload" /></a></div></td>
+                                            <td class="bd-right-none"><div class="cssEdite" id="newads_409"><a href=" http://tempusmall.ecdev.cn/product_detail-1745.aspx"><img src="/images/lazy.png" data-original="/images/temp/b10.jpg" class="lazyload" /></a></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><div class="cssEdite" id="newads_410"><a href="/product_detail-2339.aspx"><img src="/images/lazy.png" data-original="/images/temp/b2.jpg" class="lazyload" /></a></div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="floor floor-5">
+            <div class="floor_hd">
+                <div class="title cssEdite" type="title">
+                    <div><span class="icon">5F</span><span class="title">家居日用</span> </div>
+                </div>
+                <div class="morelink" type="morelink"> <em><a href="/browse/category-8000040.aspx">更多</a></em> </div>
+            </div>
+            <div class="floor-main">
+                <table class="fav-table floor-table bd-top-none" cellpadding="0" cellspacing="0">
+                    <tbody>
+                        <tr class="border-top-none">
+                            <td class="m1">
+                                <div class="cssEdite" id="newads_501">
+                                    <a href="/product_detail-408.aspx
+"><img src="/images/lazy.png" data-original="/images/temp/c1.jpg" class="lazyload" /></a>
+                                </div>
+                            </td>
+                            <td rowspan="2">
+                                <table class="fav-table floor-table border-none" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                        <tr class="border-top-none">
+                                            <td rowspan="2" class="bd-left-none bd-bottom-none m3"><div class="cssEdite" id="newads_502"><a href="/browse/category-8000040.aspx"><img src="/images/lazy.png" data-original="/images/temp/c3.jpg" class="lazyload" /></a></div></td>
+                                            <td class="m4"><div class="cssEdite" id="newads_503"><a href="/product_detail-1425.aspx"><img src="/images/lazy.png" data-original="/images/temp/c4.jpg" class="lazyload" /></a></div></td>
+                                            <td colspan="2"><div class="cssEdite" id="newads_504"><a href="/product_detail-393.aspx"><img src="/images/lazy.png" data-original="/images/temp/c6.jpg" class="lazyload" /></a></div></td>
+                                            <td class="bd-right-none"><div class="cssEdite" id="newads_505"><a href="/product_detail-389.aspx"><img src="/images/lazy.png" data-original="/images/temp/c9.jpg" class="lazyload" /></a></div></td>
+                                        </tr>
+                                        <tr class="border-bottom-none">
+                                            <td class="m4"><div class="cssEdite" id="newads_506"><a href="/product_detail-403.aspx"><img src="/images/lazy.png" data-original="/images/temp/c5.jpg" class="lazyload" /></a></div></td>
+                                            <td class="m5"><div class="cssEdite" id="newads_507"><a href="/product_detail-404.aspx"><img src="/images/lazy.png" data-original="/images/temp/c7.jpg" class="lazyload" /></a></div></td>
+                                            <td class="m6"><div class="cssEdite" id="newads_508"><a href="/product_detail-492.aspx"><img src="/images/lazy.png" data-original="/images/temp/c8.jpg" class="lazyload" /></a></div></td>
+                                            <td class="bd-right-none"><div class="cssEdite" id="newads_509"><a href="/product_detail-508.aspx"><img src="/images/lazy.png" data-original="/images/temp/c10.jpg" class="lazyload" /></a></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><div class="cssEdite" id="newads_510"><a href="/product_detail-388.aspx"><img src="/images/lazy.png" data-original="/images/temp/c2.jpg" class="lazyload" /></a></div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="floor floor-6">
+            <div class="floor_hd">
+                <div class="title cssEdite" type="title">
+                    <div><span class="icon">6F</span><span class="title">宜和购物</span> </div>
+                </div>
+                <div class="morelink" type="morelink"> <em><a href="/browse/category-8000042.aspx">更多</a></em> </div>
+            </div>
+            <div class="floor-main">
+                <table class="fav-table floor-table bd-top-none" cellpadding="0" cellspacing="0">
+                    <tbody>
+                        <tr class="border-top-none">
+                            <td class="m1"><div class="cssEdite" id="newads_601"><a href="/product_detail-1717.aspx"><img src="/images/lazy.png" data-original="/images/temp/e1.jpg" class="lazyload" /></a></div></td>
+                            <td rowspan="2">
+                                <table class="fav-table floor-table border-none" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                        <tr class="border-top-none">
+                                            <td rowspan="2" class="bd-left-none bd-bottom-none m3"><div class="cssEdite" id="newads_602"><a href="/browse/category-8000042.aspx"><img src="/images/lazy.png" data-original="/images/temp/e3.jpg" class="lazyload" /></a></div></td>
+                                            <td class="m4"><div class="cssEdite" id="newads_603"><a href="/product_detail-1965.aspx"><img src="/images/lazy.png" data-original="/images/temp/e4.jpg" class="lazyload" /></a></div></td>
+                                            <td colspan="2"><div class="cssEdite" id="newads_604"><a href="/product_detail-1734.aspx"><img src="/images/lazy.png" data-original="/images/temp/e6.jpg" class="lazyload" /></a></div></td>
+                                            <td class="bd-right-none"><div class="cssEdite" id="newads_605"><a href="/product_detail-1735.aspx"><img src="/images/lazy.png" data-original="/images/temp/e9.jpg" class="lazyload" /></a></div></td>
+                                        </tr>
+                                        <tr class="border-bottom-none">
+                                            <td class="m4"><div class="cssEdite" id="newads_606"><a href="/product_detail-1732.aspx"><img src="/images/lazy.png" data-original="/images/temp/e5.jpg" class="lazyload" /></a></div></td>
+                                            <td class="m5"><div class="cssEdite" id="newads_607"><a href="/product_detail-1718.aspx"><img src="/images/lazy.png" data-original="/images/temp/e7.jpg" class="lazyload" /></a></div></td>
+                                            <td class="m6"><div class="cssEdite" id="newads_608"><a href="/product_detail-1045.aspx"><img src="/images/lazy.png" data-original="/images/temp/e8.jpg" class="lazyload" /></a></div></td>
+                                            <td class="bd-right-none"><div class="cssEdite" id="newads_609"><a href="/product_detail-1039.aspx"><img src="/images/lazy.png" data-original="/images/temp/e10.jpg" class="lazyload" /></a></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><div class="cssEdite" id="newads_610"><a href="http://www.youku.com"><img src="/images/lazy.png" data-original="/templates/master/haimei/UploadImage/advertimg/20150728104504_2028.jpg" class="lazyload"></a></div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="floor floor-7">
+            <div class="floor_hd">
+                <div class="title cssEdite" type="title">
+                    <div><span class="icon">7F</span><span class="title">进口汽车</span> </div>
+                </div>
+                <div class="morelink" type="morelink"> <em><a href="/browse/category-8000044.aspx">更多</a></em> </div>
+            </div>
+            <div class="floor-main">
+                <table class="fav-table floor-table bd-top-none" cellpadding="0" cellspacing="0">
+                    <tbody>
+                        <tr class="border-top-none">
+                            <td class="m1"><div class="cssEdite" id="newads_701"><a href="/product_detail-2365.aspx"><img src="/images/lazy.png" data-original="/images/temp/f1.jpg" class="lazyload" /></a></div></td>
+                            <td rowspan="2">
+                                <table class="fav-table floor-table border-none" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                        <tr class="border-top-none">
+                                            <td rowspan="2" class="bd-left-none bd-bottom-none m3"><div class="cssEdite" id="newads_702"><a href="/browse/category-8000044.aspx"><img src="/images/lazy.png" data-original="/images/temp/f3.jpg" class="lazyload" /></a></div></td>
+                                            <td class="m4"><div class="cssEdite" id="newads_703"><a href="/product_detail-973.aspx"><img src="/images/lazy.png" data-original="/images/temp/f4.jpg" class="lazyload" /></a></div></td>
+                                            <td colspan="2"><div class="cssEdite" id="newads_704"><a href="/product_detail-2366.aspx"><img src="/images/lazy.png" data-original="/images/temp/f6.jpg" class="lazyload" /></a></div></td>
+                                            <td class="bd-right-none"><div class="cssEdite" id="newads_705"><a href="/product_detail-2366.aspx"><img src="/images/lazy.png" data-original="/images/temp/f9.jpg" class="lazyload" /></a></div></td>
+                                        </tr>
+                                        <tr class="border-bottom-none">
+                                            <td class="m4"><div class="cssEdite" id="newads_706"><a href="/product_detail-2367.aspx"><img src="/images/lazy.png" data-original="/images/temp/f5.jpg" class="lazyload" /></a></div></td>
+                                            <td class="m5"><div class="cssEdite" id="newads_707"><a href="/product_detail-2367.aspx"><img src="/images/lazy.png" data-original="/images/temp/f7.jpg" class="lazyload" /></a></div></td>
+                                            <td class="m6"><div class="cssEdite" id="newads_708"><a href="/product_detail-2367.aspx"><img src="/images/lazy.png" data-original="/images/temp/f8.jpg" class="lazyload" /></a></div></td>
+                                            <td class="bd-right-none"><div class="cssEdite" id="newads_709"><a href="/product_detail-2367.aspx"><img src="/images/lazy.png" data-original="/images/temp/f10.jpg" class="lazyload" /></a></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><div class="cssEdite" id="newads_710"><a href="/product_detail-1286.aspx"><img src="/images/lazy.png" data-original="/images/temp/f2.jpg" class="lazyload" /></a></div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="floor floor-8" id="common_default_productlist">
+            <script type="text/javascript">
+                var pageindex = 0;
+                function HuanClicek() {
+                    pageindex++;
+                    $.ajax({
+                        type: "get",
+                        url: "/Common_Default_ProductList_AJAX.aspx",
+                        data: { pageIndex: pageindex },
+                        success: function (data) {
+                            $("#common_default_productlist").html(data);
+                        },
+                        error: function () {
+                            alert("error");
+                            pageindex--;
+                        }
+                    });
+                }</script>
+            <hi:common_default_productlist id="rp_guest" MaxNum="6" runat="server" />
+            <!--<div class="floor_hd">
+                <div class="title cssEdite" type="title">
+                    <div><span class="icon"><img src="/images/common/like2.png" /></span><span class="title">猜你喜欢</span> </div>
+                </div>
+                <div class="morelink tab-next" type="morelink"> <em><a href="">换一批</a></em> </div>
+            </div>-->
+            <!--<div class="floor-main">
+                <table class="fav-table floor-table bd-top-none" cellpadding="0" cellspacing="0">
+                    <tbody>
+                        <tr class="border-top-none">
+                            <td>
+                                <div class="gd-box">
+                                    <div class="gd-img">
+                                        <a href="#" target="_blank"><img src="/images/temp/rt.jpg"></a>
+                                    </div>
+                                    <div class="gd-info">
+                                        <div class="gd-name">
+                                            <a href="#" target="_blank">纽澳直邮【2罐装】新西兰原装进口Karicare可瑞康婴幼儿奶粉金装加强</a>
+                                        </div>
+                                        <div class="gd-price">￥<span>99.60</span></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="gd-box">
+                                    <div class="gd-img">
+                                        <a href="#" target="_blank"><img src="/images/temp/rt.jpg"></a>
+                                    </div>
+                                    <div class="gd-info">
+                                        <div class="gd-name">
+                                            <a href="#" target="_blank">纽澳直邮【2罐装】新西兰原装进口Karicare可瑞康婴幼儿奶粉金装加强</a>
+                                        </div>
+                                        <div class="gd-price">￥<span>99.60</span></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="gd-box">
+                                    <div class="gd-img">
+                                        <a href="#" target="_blank"><img src="/images/temp/rt.jpg"></a>
+                                    </div>
+                                    <div class="gd-info">
+                                        <div class="gd-name">
+                                            <a href="#" target="_blank">纽澳直邮【2罐装】新西兰原装进口Karicare可瑞康婴幼儿奶粉金装加强</a>
+                                        </div>
+                                        <div class="gd-price">￥<span>99.60</span></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="gd-box">
+                                    <div class="gd-img">
+                                        <a href="#" target="_blank"><img src="/images/temp/rt.jpg"></a>
+                                    </div>
+                                    <div class="gd-info">
+                                        <div class="gd-name">
+                                            <a href="#" target="_blank">纽澳直邮【2罐装】新西兰原装进口Karicare可瑞康婴幼儿奶粉金装加强</a>
+                                        </div>
+                                        <div class="gd-price">￥<span>99.60</span></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="gd-box">
+                                    <div class="gd-img">
+                                        <a href="#" target="_blank"><img src="/images/temp/rt.jpg"></a>
+                                    </div>
+                                    <div class="gd-info">
+                                        <div class="gd-name">
+                                            <a href="#" target="_blank">纽澳直邮【2罐装】新西兰原装进口Karicare可瑞康婴幼儿奶粉金装加强</a>
+                                        </div>
+                                        <div class="gd-price">￥<span>99.60</span></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="gd-box">
+                                    <div class="gd-img">
+                                        <a href="#" target="_blank"><img src="/images/temp/rt.jpg"></a>
+                                    </div>
+                                    <div class="gd-info">
+                                        <div class="gd-name">
+                                            <a href="#" target="_blank">纽澳直邮【2罐装】新西兰原装进口Karicare可瑞康婴幼儿奶粉金装加强</a>
+                                        </div>
+                                        <div class="gd-price">￥<span>99.60</span></div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>-->
+        </div>
+        <div class="tb-wrap" id="tb-wrap">
+            <div class="tb-con">
+                <div class="tb-list">
+                    <a class="tb-flr f1" data-sc="floor-1">
+                        <em></em>
+                        <span>母婴用品</span>
+                    </a>
+                    <a class="tb-flr f2" data-sc="floor-2">
+                        <em></em>
+                        <span>海外直邮</span>
+                    </a>
+                    <a class="tb-flr f3" data-sc="floor-3">
+                        <em></em>
+                        <span>食品保健</span>
+                    </a>
+                    <a class="tb-flr f4" data-sc="floor-4">
+                        <em></em>
+                        <span>美妆洗护</span>
+                    </a>
+                    <a class="tb-flr f5" data-sc="floor-5">
+                        <em></em>
+                        <span>家居日用</span>
+                    </a>
+                    <a class="tb-flr f6" data-sc="floor-6">
+                        <em></em>
+                        <span>宜和购物</span>
+                    </a>
+                    <a class="tb-flr f7" data-sc="floor-7">
+                        <em></em>
+                        <span>进口汽车</span>
+                    </a>
+                    <a class="tb-flr f8" data-sc="top">
+                        <em></em>
+                        <span>返回顶部</span>
+                    </a>
+                    <a class="tb-flr f9">
+                        <em></em>
+                        <span>用户反馈</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/utility/jquery.lazyload.min.js"></script>
+    <script type="text/javascript" src="/utility/slider.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //猜你喜欢 滑动
+            $('#swiper-container').flexslider({
+                animation: "slide",
+                direction: "horizontal",
+                easing: "swing",
+                directionNav: false,
+                animationLoop: true,
+                slideshowSpeed: 5000, // 自动播放速度毫秒
+                animationSpeed: 200 //滚动效果播放时长
+            });
+            //关闭 头部 广告
+            $("#guild-close").bind("click", function () {
+                $(this).parents(".guild-wrap").hide();
+            })
+            //图片懒加载
+            $("img.lazyload").lazyload({ failure_limit: 1 });
+            //顶部间隙
+            var mt = $(window).height() / 2;
+            var $floor = $(".floor:not(.fav-floor)");
+            function setFloor() {
+                var top = $(window).scrollTop();
+                var winH = $(window).height();
+                var theme = "hover";
+                //判断 到 哪一个楼层
+                $floor.each(function (index, element) {
+                    var offset = $(this).offset();
+                    var arr = $(this).attr("class").split(" ");
+                    var sp = offset.top - mt;
+                    if (top >= sp) {
+                        var $curFloor = $("#tb-wrap .tb-flr[data-sc=" + arr[1] + "]");
+                        $curFloor.addClass(theme).siblings().removeClass(theme);
+                        return;
+                    }
+                });
+            }
+            var scInter;
+            //滚动
+            $(window).bind("scroll.tb", function () {
+                var $tbWrap = $("#tb-wrap");
+                var scrooltop = $(this).scrollTop();
+                var winH = $(window).height();
+                var top = $(".floor-1").offset().top;
+				
+				
+                if ((scrooltop + mt + 1) >= top) {
+                    $tbWrap.show();
+                } else {
+                    $tbWrap.hide();
+                }
+                if (scInter) {
+                    window.clearTimeout(scInter);
+                }
+                scInter = window.setTimeout(setFloor, 0);
+            })
+            // 右侧工具条
+            $("#tb-wrap a").bind("click", function () {
+                var st = 0;
+                var sc = $(this).attr("data-sc");
+                if (sc == "top") {
+
+                } else {
+                    var $floor = $("." + sc);
+                    var offset = $floor.offset();
+                    st = offset.top - mt + 1;
+                    if (st < 0) {
+                        st = 0;
+                    }
+                }
+                $('html,body').stop().animate({ scrollTop: st }, 200);
+            })
+        })
+    </script>
+    <script type=text/javascript>
+        var _c = _h = 0;
+        $(function () {
+            $('#play > li').click(function () {
+                var i = $(this).attr('alt') - 1;
+                clearInterval(_h);
+                _c = i;
+                play();
+                change(i);
+            })
+            $("#pic div").hover(function () { clearInterval(_h) }, function () { play() });
+            play();
+        })
+        function play() {
+            _h = setInterval("auto()", 6000);
+        }
+        var tit;
+        function change(i) {
+            var $curLi = $("#li" + i);
+            $curLi.addClass("active").siblings().removeClass("active");
+            var $curItem = $("#pic a").eq(i);
+            var $siblings = $curItem.siblings();
+            var theme = "active-ele";
+            $siblings.removeClass(theme).stop().animate({ opacity: 0 }, 500);
+            $curItem.stop().animate({ opacity: 1 }, 500, function () {
+                window.clearTimeout(tit);
+                tit = window.setTimeout(function () {
+                    $curItem.addClass(theme);
+                }, 10);
+            });
+        }
+        function auto() {
+            _c = _c > 2 ? 0 : _c + 1;
+            change(_c);
+        }
+
+    </script>
+    <%<hi:bfdscriptlabel runat="server" />%>
+    <%<hi:common_footer runat="server" skinname="ascx/tags/Skin-Common_DefaultFooter.ascx" />%>

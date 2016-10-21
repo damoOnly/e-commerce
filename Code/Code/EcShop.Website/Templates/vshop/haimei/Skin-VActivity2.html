@@ -1,0 +1,262 @@
+﻿<hi:common_vheader runat="server" />
+<div class="page gray-page">
+    <section>
+        <div class="act-wrap">
+            <img src="/templates/vshop/haimei/resource/default/image/temp/topics/4.jpg" class="img-responsive" />
+            <div class="act-con">
+                <h3>活动规则</h3>
+                <div class="act-des">
+                    <p>1.每款商品售价均为市场价的1折，限量100份，先购先得，购完为止。</p>
+                    <p>2.每天10点、15点、21点准点开抢！</p>
+                    <p>3.每个ID限购1件1折秒杀产品。 </p>
+                    <p>4.此专场商品不支持退换货。</p>
+                    <p>5.此专场不能使用优惠券、现金券。</p>
+                </div>
+            </div>
+        </div>
+        <div class="act-main">
+            <!--<div class="act-panel">
+                <h3>1月1日</h3>
+                <div class="act-list">
+                    <ul>
+                        <li>
+                            <div class="act-box">
+                                <div class="act-opentime">15点开抢</div>
+                                <div class="fix">
+                                    <div class="act-img"> <img src="/templates/vshop/haimei/resource/default/image/lazy.png" data-original="/templates/vshop/haimei/resource/default/image/temp/act.png" class="lazyload"></div>
+                                    <div class="act-info">
+                                        <div class="act-name">秒杀商品</div>
+                                        <div class="act-date" start-date="2015-12-22 00:00:00" end-date="2016-1-1 00:00:00">还剩：<span></span>天<span></span>时<span></span>分<span></span>秒</div>
+                                        <div class="fix mt20"> <a class="buy-now">立即抢购</a> <span class="act-price">￥<span>59.00</span></span> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="act-box">
+                                <div class="act-opentime">18点开抢</div>
+                                <div class="fix">
+                                    <div class="act-img"> <img src="/templates/vshop/haimei/resource/default/image/lazy.png" data-original="/templates/vshop/haimei/resource/default/image/temp/act.png" class="lazyload"></div>
+                                    <div class="act-info">
+                                        <div class="act-name">秒杀商品</div>
+                                        <div class="act-date" start-date="2015-12-27 00:00:00" end-date="2015-12-29 00:00:00">还剩：<span></span>天<span></span>时<span></span>分<span></span>秒</div>
+                                        <div class="fix mt20"> <a class="buy-now">立即抢购</a> <span class="act-price">￥<span>59.00</span></span> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="act-box">
+                                <div class="act-opentime">21点开抢</div>
+                                <div class="fix">
+                                    <div class="act-img"> <img src="/templates/vshop/haimei/resource/default/image/lazy.png" data-original="/templates/vshop/haimei/resource/default/image/temp/act.png" class="lazyload"></div>
+                                    <div class="act-info">
+                                        <div class="act-name">秒杀商品</div>
+                                        <div class="act-date" start-date="2015-12-22 00:00:00" end-date="2015-12-26 00:00:00">还剩：<span></span>天<span></span>时<span></span>分<span></span>秒</div>
+                                        <div class="fix mt20"> <a class="buy-now">立即抢购</a> <span class="act-price">￥<span>59.00</span></span> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>-->
+
+            <!--<div class="act-panel">
+                <h3>1月2日</h3>
+                <div class="act-list">
+                    <ul>
+                        <li>
+                            <div class="act-box">
+                                <div class="act-opentime">15点开抢</div>
+                                <div class="fix">
+                                    <div class="act-img"> <img src="/templates/vshop/haimei/resource/default/image/lazy.png" data-original="/templates/vshop/haimei/resource/default/image/temp/act.png" class="lazyload"></div>
+                                    <div class="act-info">
+                                        <div class="act-name">秒杀商品</div>
+                                        <div class="act-date" start-date="2015-12-22 00:00:00" end-date="2015-12-24 00:00:00">还剩：<span></span>天<span></span>时<span></span>分<span></span>秒</div>
+                                        <div class="fix mt20"> <a class="buy-now" href="/VShop/CountDownProductsDetails.aspx?countDownId=">立即抢购</a> <span class="act-price">￥<span>59.00</span></span> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>-->
+
+        </div>
+    </section>
+</div>
+
+<script src="/templates/vshop/haimei/js/lib/groupbuytimes.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        ShowActivity2Info();
+        //图片懒加载
+        $("img.lazyload").lazyload({ failure_limit: 1 });
+
+    })
+    function ShowActivity2Info() {
+        $.ajax({
+            url: "/API/VshopProcess.ashx",
+            type: 'post', dataType: 'json', timeout: 10000,
+            data: { action: "ShowShopActivityData", times: "2016-01-01,2016-01-02,2016-01-03,2016-01-04,2016-01-05" },
+            success: function (resultData) {
+                if (resultData.Success == false) {
+                    $(".act-main").html("暂时没有抢购数据");
+                }
+                else {
+                    var strs = "";
+                    if (resultData.Activity1Status == true) {
+                        strs += "<div class=\"act-panel\">";
+                        strs += "<h3>1月1日</h3>";
+                        strs += "<div class=\"act-list\">";
+                        strs += "<ul>";
+                        for (var i = 0; i < resultData.ActivityData1.length; i++) {
+                            var data1 = resultData.ActivityData1[i];
+                            strs += "<li>";
+                            strs += "<div class=\"act-box\">";
+                            strs += "<div class=\"act-opentime\">" + data1.CurHours + "点开抢</div>";
+                            strs += "<div class=\"fix\">";
+                            strs += "<div class=\"act-img\"> <img src=" + data1.ThumbnailUrl220 + " class=\"lazyload\"></div>";
+                            strs += "<div class=\"act-info\">";
+                            strs += "<div class=\"act-name\">" + data1.ProductName + "</div>";
+                            strs += "<div class='act-date' start-date='"+ data1.StartDate + "' end-date='" + data1.EndDate + "'>还剩：<span></span>天<span></span>时<span></span>分<span></span>秒</div>";
+                            strs += "<div class=\"fix mt20\"> <a class=\"buy-now\" href='/VShop/CountDownProductsDetails.aspx?countDownId=" + data1.CountDownId + "'>立即抢购</a> <span class=\"act-price\">￥<span>" + data1.CountDownPrice + "</span>￥<s>" + data1.MarketPrice + "</s></span> </div>";
+                            strs += " </div>";
+                            strs += " </div>";
+                            strs += "</div>";
+                            strs += " </li> ";
+                        }
+                        strs += "</ul>";
+                        strs += "</div>";
+                        strs += "</div>";
+                    }
+                    if (resultData.Activity2Status == true) {
+                        strs += "<div class=\"act-panel\">";
+                        strs += "<h3>1月2日</h3>";
+                        strs += "<div class=\"act-list\">";
+                        strs += "<ul>";
+                        for (var i = 0; i < resultData.ActivityData2.length; i++) {
+                            var data2 = resultData.ActivityData2[i];
+                            strs += "<li>";
+                            strs += "<div class=\"act-box\">";
+                            strs += "<div class=\"act-opentime\">" + data2.CurHours + "点开抢</div>";
+                            strs += "<div class=\"fix\">";
+                            strs += "<div class=\"act-img\"> <img src=" + data2.ThumbnailUrl220 + " class=\"lazyload\"></div>";
+                            strs += "<div class=\"act-info\">";
+                            strs += "<div class=\"act-name\">" + data2.ProductName + "</div>";
+                            strs += "<div class=\"act-date\" start-date='" + data2.StartDate + "' end-date='" + data2.EndDate + "'>还剩：<span></span>天<span></span>时<span></span>分<span></span>秒</div>";
+                            strs += "<div class=\"fix mt20\"> <a class=\"buy-now\" href='/VShop/CountDownProductsDetails.aspx?countDownId=" + data2.CountDownId + "'>立即抢购</a><span class=\"act-price\">￥<span>" + data2.CountDownPrice + "</span></span> </div>";
+                            strs += " </div>";
+                            strs += " </div>";
+                            strs += "</div>";
+                            strs += " </li> ";
+                        }
+                        strs += "</ul>";
+                        strs += "</div>";
+                        strs += "</div>";
+                    }
+                    if (resultData.Activity3Status == true) {
+                        strs += "<div class=\"act-panel\">";
+                        strs += "<h3>1月3日</h3>";
+                        strs += "<div class=\"act-list\">";
+                        strs += "<ul>";
+                        for (var i = 0; i < resultData.ActivityData3.length; i++) {
+                            var data3 = resultData.ActivityData3[i];
+                            strs += "<li>";
+                            strs += "<div class=\"act-box\">";
+                            strs += "<div class=\"act-opentime\">" + data3.CurHours + "点开抢</div>";
+                            strs += "<div class=\"fix\">";
+                            strs += "<div class=\"act-img\"> <img src=" + data3.ThumbnailUrl220 + " class=\"lazyload\"></div>";
+                            strs += "<div class=\"act-info\">";
+                            strs += "<div class=\"act-name\">" + data3.ProductName + "</div>";
+                            strs += "<div class=\"act-date\" start-date='" + data3.StartDate + "' end-date='" + data3.EndDate + "'>还剩：<span></span>天<span></span>时<span></span>分<span></span>秒</div>";
+                            strs += "<div class=\"fix mt20\"><a class=\"buy-now\" href='/VShop/CountDownProductsDetails.aspx?countDownId=" + data3.CountDownId + "'>立即抢购</a><span class=\"act-price\">￥<span>" + data3.CountDownPrice + "</span></span> </div>";
+                            strs += " </div>";
+                            strs += " </div>";
+                            strs += "</div>";
+                            strs += " </li> ";
+                        }
+                        strs += "</ul>";
+                        strs += "</div>";
+                        strs += "</div>";
+                    }
+                    if (resultData.Activity4Status == true) {
+                        strs += "<div class=\"act-panel\">";
+                        strs += "<h3>1月4日</h3>";
+                        strs += "<div class=\"act-list\">";
+                        strs += "<ul>";
+                        for (var i = 0; i < resultData.ActivityData4.length; i++) {
+                            var data4 = resultData.ActivityData4[i];
+                            strs += "<li>";
+                            strs += "<div class=\"act-box\">";
+                            strs += "<div class=\"act-opentime\">" + data4.CurHours + "点开抢</div>";
+                            strs += "<div class=\"fix\">";
+                            strs += "<div class=\"act-img\"> <img src=" + data4.ThumbnailUrl220 + " class=\"lazyload\"></div>";
+                            strs += "<div class=\"act-info\">";
+                            strs += "<div class=\"act-name\">" + data4.ProductName + "</div>";
+                            strs += "<div class=\"act-date\" start-date='" + data4.StartDate + " end-date=" + data4.EndDate + "'>还剩：<span></span>天<span></span>时<span></span>分<span></span>秒</div>";
+                            strs += "<div class=\"fix mt20\"> <a class=\"buy-now\" href='/VShop/CountDownProductsDetails.aspx?countDownId=" + data4.CountDownId + "'>立即抢购</a><span class=\"act-price\">￥<span>" + data4.CountDownPrice + "</span></span> </div>";
+                            strs += " </div>";
+                            strs += " </div>";
+                            strs += "</div>";
+                            strs += " </li> ";
+                        }
+                        strs += "</ul>";
+                        strs += "</div>";
+                        strs += "</div>";
+                    }
+                    if (resultData.Activity5Status == true) {
+                        strs += "<div class=\"act-panel\">";
+                        strs += "<h3>1月5日</h3>";
+                        strs += "<div class=\"act-list\">";
+                        strs += "<ul>";
+                        for (var i = 0; i < resultData.ActivityData5.length; i++) {
+                            var data5 = resultData.ActivityData5[i];
+                            strs += "<li>";
+                            strs += "<div class=\"act-box\">";
+                            strs += "<div class=\"act-opentime\">" + data5.CurHours + "点开抢</div>";
+                            strs += "<div class=\"fix\">";
+                            strs += "<div class=\"act-img\"> <img src=" + data5.ThumbnailUrl220 + " class=\"lazyload\"></div>";
+                            strs += "<div class=\"act-info\">";
+                            strs += "<div class=\"act-name\">" + data5.ProductName + "</div>";
+                            strs += "<div class=\"act-date\" start-date='" + data5.StartDate + "' end-date='" + data5.EndDate + "'>还剩：<span></span>天<span></span>时<span></span>分<span></span>秒</div>";
+                            strs += "<div class=\"fix mt20\"> <a class=\"buy-now\" href='/VShop/CountDownProductsDetails.aspx?countDownId=" + data5.CountDownId + "'>立即抢购</a><span class=\"act-price\">￥<span>" + data5.CountDownPrice + "</span></span> </div>";
+                            strs += " </div>";
+                            strs += " </div>";
+                            strs += "</div>";
+                            strs += " </li> ";
+                        }
+                        strs += "</ul>";
+                        strs += "</div>";
+                        strs += "</div>";
+                    }
+                    $(".act-main").html(strs);
+
+                    //开始 活动 计时
+                    var $actDate = $(".act-list .act-date");
+                    var now = new Date();
+                    function interTime(now) {
+                        $actDate.each(function (index, element) {
+                            var $ele = $(element);
+
+                            var startDate = $ele.attr("start-date");
+                            var endDate = $ele.attr("end-date");
+                            var id = $ele.attr("id");
+                            showTimeList(endDate, $ele, "1", startDate, now);
+                        });
+                        setTimeout(function () {
+                            now.setSeconds(now.getSeconds() + 1);
+                            interTime(now);
+                        }, 1000);
+                    }
+                    interTime(now);
+                }
+            }
+        });
+    }
+</script>
+<hi:common_vfooter runat="server" />
+
+
+

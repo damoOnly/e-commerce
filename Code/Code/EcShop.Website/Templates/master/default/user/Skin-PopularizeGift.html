@@ -1,0 +1,73 @@
+﻿<%<Hi:Common_Header runat="server" SkinName="/ascx/tags/Common_UserCenter/Skin-Common_User_Header.ascx" />%>
+<form runat="server">
+<div class="hyzxmain">
+<div class="hyzxconty">当前位置><span><%<Hi:SiteUrl UrlName="home" runat="server">首页</Hi:SiteUrl>%></span>><span><%<Hi:SiteUrl UrlName="user_UserDefault" runat="server">会员中心</Hi:SiteUrl>%></span>><span><a href="#">推广有礼</a></span></div>
+<div class="hyzxconter">
+<div class="hyzxconterl">
+<%<Hi:Common_User_Menu runat="server" />%>
+<div class="hyzxconterl1">
+</div>
+</div>
+
+<div class="hyzxconterr">
+<div class="dingdanxx">
+<div class="dingdan_box1">推广有礼</div>
+
+
+<div class="tg_youli_con">
+<div class="gift"><img src="../images/users/gift.jpg" /></div>
+<div class="youli1">当您在享受本商城的网购服务时，我们欢迎您通过QQ/微信、微博、社区、论坛、博客、
+邮件等媒介推荐您的好友来购物！</div>
+
+<div class="youli2">
+<b>为了感谢您的推荐，如果以下的条件符合，您将获得返佣</b>
+<span>1.您是本商城的推广员</span>
+<span>2.您的好友点击了带有您ID的推荐链接后，注册成为本商城的会员或申请成为推广员</span>
+<span>3.您的好友注册后在本商城进行下单购物，或者你的好友成为推广员后推广的商品被购买</span>
+</div>
+
+<div class="youli3">快快行动，让您的好友分享您在本商城享受的优质服务和购物乐趣！</div>
+
+</div>
+
+
+<div class="tg_lianjie">
+<h2>推广链接</h2>
+<span><%<asp:TextBox ID="litUserLink" runat="server" class="t_input" readonly></asp:TextBox>%> 
+    <input id="btnCopy"   type="button" value="复制"  onclick="success()" data-clipboard-target="popularizeGift_litUserLink"/></span> 
+<span>复制此链接通过QQ、邮件等发送给其他人即可</span>
+<h2>推广二维码</h2>
+<span><img id="imgQRCode" runat="server" width="93" height="93" /></span> 
+<span>推广此二维码给其他人扫描即可</span>
+</div>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+</div>
+
+<script type="text/javascript" src="/Utility/ZeroClipboard.min.js"></script>
+<script type="text/javascript">
+    var copy = new ZeroClipboard(document.getElementById("btnCopy"), {
+        moviePath: "/Utility/ZeroClipboard.swf"
+    });
+    function success() {
+        alert("复制成功，复制内容为：" + document.getElementById("popularizeGift_litUserLink").value);
+    }
+</script>
+
+<div class="hyzxfooter"></div>
+</form>
+<%<Hi:Common_Footer runat="server" SkinName="/ascx/tags/Common_UserCenter/Skin-Common_User_Footer.ascx" />%>

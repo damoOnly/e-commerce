@@ -1,0 +1,61 @@
+﻿<Hi:Common_vHeader  runat="server" />
+<form id="form" role="form" class="pbox clearfix" runat="server">
+    <div class="form-group">
+        <label for="username">姓名（必填）：</label>
+        <%<asp:TextBox ID="txtRealName" runat="server" ClientIDMode="Static" class="form-control" placeholder="填写你的姓名" />%>
+    </div>
+    <div class="form-group">
+        <label for="phone">联系电话（必填）：</label>
+        <%<asp:TextBox ID="txtCellPhone" runat="server" ClientIDMode="Static" class="form-control" placeholder="填写你的联系电话" />%>
+    </div>
+    <!--<div class="form-group">
+        <label>性别：</label>
+        <select class="form-control">
+            <option>男</option>
+            <option>女</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="weixin">微信：</label>
+        <input type="text" class="form-control" id="weixin" placeholder="" />
+    </div>-->
+    <div class="form-group">
+        <label for="reason">申请理由：</label>
+        <%<asp:TextBox ID="txtReferralReason" ClientIDMode="Static" runat="server" TextMode="MultiLine" class="form-control" />%>
+    </div>
+    <br />
+    <input type="button" id="btnReferral" value="提交申请" class="btn btn-danger btn-block" />
+
+</form>
+
+<script type="text/javascript">
+    $(document).ready(function (e) {
+        $("#btnReferral").click(function (e) {
+            if ($("#txtRealName").val().trim().length == 0 || $("#txtCellPhone").val().trim().length == 0) {
+                alert_h("姓名或联系电话不能为空！"); return false;
+            }
+            if ($("#txtReferralReason").val().trim().length <= 0 || $("#txtReferralReason").val().trim().length >= 300) {
+                alert_h("请填写申请理由,字符控制在300字以内。"); return false;
+            }
+            var data = {};
+            var realname = $("#txtRealName").val().trim();
+            var cellphone = $("#txtCellPhone").val().trim();
+            var reason = $("#txtReferralReason").val().trim();
+            data.RealName = realname;
+            data.CellPhone = cellphone;
+            data.ReferralReason = reason;
+            $.post("/api/VshopProcess.ashx?action=ReferralRegister", data, function (json) {
+                if (json.success === true) {
+                    alert_h("提交成功", function () {
+                        location.reload();
+                    });
+                }
+                else {
+                    alert_h(json.msg);
+                }
+            });
+        })
+    });
+</script>
+
+<Hi:Common_vFooter  runat="server" />

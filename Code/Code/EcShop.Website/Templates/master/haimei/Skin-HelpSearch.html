@@ -1,0 +1,115 @@
+﻿<%<hi:common_header runat="server" skinname="/ascx/tags/Skin-Common_Header3.ascx" />%>
+<div class="helps-main">
+    <div class="help-menu">
+        <div class="help-menulist">
+            <%<hi:common_helpcategory templatefile="/ascx/tags/Common_Comment/Skin-Common_HelpCenter_Category.ascx" runat="server" />%>
+        </div>
+    </div>
+    <div class="help-con">
+        <div class="h-module">
+            <div class="fix">
+                <div class="cs-hot">
+                    <p>海美客服热线</p>
+                    <div class="hot-line">400-663-9898</div>
+                </div>
+                <div class="cs-img"></div>
+                <div class="cs-search">                    
+                        <div class="cs-search-box fix">
+                            <div class="cs-search-btn">
+                                <input type="button" onclick="SearchHelp();" value="" class="cs-submit" />
+                            </div>
+                            <div class="cs-search-input">
+                                <input id="searchcontent" type="text" />
+                            </div>
+                        </div>                    
+                    <div class="hot-search">
+                        <label>热门搜索：</label><a href="HelpSearch.aspx?searchcontent=配送范围">配送范围</a><a href="HelpSearch.aspx?searchcontent=关税表">关税表</a><a href="HelpSearch.aspx?searchcontent=退换货">退换货</a><a href="HelpSearch.aspx?searchcontent=购物流程">购物流程</a><a href="HelpSearch.aspx?searchcontent=新手引导">新手引导</a><a href="HelpSearch.aspx?searchcontent=海美客服">海美客服</a>
+                    </div>
+            </div>
+        </div>
+        <div class="h-module">
+            <!--<div class="current-wrap">
+                <a href="/helps.aspx">帮助中心首页</a><span>&gt;</span><span><%<asp:Label id="lblCategory" runat="server" />%></span><span>&gt;</span><span><%<asp:Label id="lblhelpName" runat="server" />%></span>
+            </div>-->
+            <div class="help-detail">
+                <ul id="ulSearchdetail" class="cssborder">
+                    <%
+                    <Hi:ThemedTemplatedRepeater runat="server" ID="rptHelpSearch" TemplateFile="/ascx/tags/Common_Comment/Skin-Common_HelpSearch.ascx" />%>
+                </ul>
+                <div class="csspage">
+                    <div class="pagination">
+                        <%<UI:Pager runat="server" ShowTotalPages="true" ID="pager" />%>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+
+
+
+<script type="text/javascript">
+    $(function () {
+        var theme = "selected";
+        //菜单伸缩
+        $(".helps-main .help-menulist dt").bind("click", function () {
+            var $dl = $(this).parent();
+            var time = 500;
+            $dl.toggleClass(theme);
+            $dl.find("dd").slideToggle(time);
+            $dl.siblings().removeClass(theme);
+            $dl.siblings().find("dd").slideUp(time);
+        })
+        //标签页 切换
+        $(".tab-wrap .tab-header li").hover(function (e) {
+            var index = $(this).index();
+            $(this).addClass(theme).siblings().removeClass(theme);
+            var $curItem = $(".tab-wrap .tab-main .tab-con").eq(index);
+            $curItem.addClass(theme).siblings().removeClass(theme);
+        })
+
+        var searchinput = GetQueryString('searchcontent');
+        if (searchinput != null) {
+            $("#searchcontent").val(decodeURI(searchinput));
+        }
+
+        $('#searchcontent').keydown(function (e) {
+            if (e.keyCode == 13) {
+                SearchHelp();
+                return false;
+            }
+        })
+
+        if ($("#ulSearchdetail").find('li').length == 0) {
+
+            var msg = "<li><div>没有搜索结果</div></li>";
+            $("#ulSearchdetail").append(msg);
+        }
+
+
+
+    })
+
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return (r[2]); return null;
+    }
+
+    function SearchHelp() {
+        var content = $.trim($("#searchcontent").attr("value"));
+        if(content == null || content == undefined || content =="") { 
+            window.location.href = '/HelpSearch.aspx';
+        }
+        else {
+            window.location.href = '/HelpSearch.aspx?searchcontent=' + encodeURI(content);
+        }
+
+    }
+</script>
+<%<hi:common_footer runat="server" />%>
+

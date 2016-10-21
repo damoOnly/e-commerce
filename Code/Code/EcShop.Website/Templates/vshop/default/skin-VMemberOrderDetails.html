@@ -1,0 +1,167 @@
+﻿<hi:common_vheader runat="server" />
+<div class="pbox">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                配送信息</h3>
+        </div>
+        <div class="panel-body ship-info">
+            <div>
+                <span class="span-r-80">收货人信息:</span><asp:literal runat="server" id="litShipTo" />&nbsp;<span
+                    class="phone"><asp:literal runat="server" id="litPhone" /></div>
+            <div>
+                <span class="span-r-80">收货地址:</span><asp:literal runat="server" id="litAddress" /></div>
+            <div>
+                <span class="span-r-80">配送时间:</span><asp:literal runat="server" id="litShipToDate" /></div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading order-shopcart">
+            <h3 class="panel-title">
+                商品清单<span class="font-s">（点击商品可评价）</span></h3>
+            <span class="badge-h badge-danger order-amount">¥<asp:literal runat="server" id="litTotalPrice" />
+            </span>
+        </div>
+        <div class="panel-body goods-list-p">
+            <hi:vshoptemplatedrepeater id="rptOrderProducts" templatefile="/Tags/skin-Common_MemberOrderProducts.ascx"
+                runat="server" />
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                费用明细</h3>
+        </div>
+        <div class="panel-body ship-info">
+            <div>
+                <span class="span-r-80">商品合计:</span>¥<asp:literal runat="server" id="litBuildPrice" /></div>
+            <div>
+                <span class="span-r-80">优惠券抵扣:</span>¥<asp:literal runat="server" id="litCounponPrice" /></div>
+            <div>
+                <span class="span-r-80">价格调整:</span>¥<asp:literal runat="server" id="litDisCountPrice" /></div>
+            <div>
+                <span class="span-r-80">运费:</span>¥<asp:literal runat="server" id="litShippingCost" /></div>
+            <div>
+                <span class="span-r-80">手续费:</span>¥<asp:literal runat="server" id="litPayCharge" /></div>
+            <div>
+                <span class="span-r-80">税金:</span>¥<asp:literal runat="server" id="litTax" /></div>
+            <div>
+                <span class="span-r-80">实付:</span>¥<asp:literal runat="server" id="litActualPrice" /></div>
+        </div>
+    </div>
+    <div id="promotionArea" class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                订单优惠</h3>
+        </div>
+        <div class="panel-body order-amount-info" id="promotionDetail">
+            <hi:vshoptemplatedrepeater id="rptPromotions" templatefile="/Tags/skin-Common_VPromotions.ascx"
+                runat="server" />
+        </div>
+    </div>
+    <div class="panel panel-default btns-fixed-margin">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                订单信息</h3>
+        </div>
+        <div class="panel-body">
+            <div>
+                订单编号：<asp:literal runat="server" id="litOrderId" /></div>
+            <div>
+                成交时间：<asp:literal runat="server" id="litOrderDate" /></div>
+            <div id="payTimeContainer">
+                付款时间：<span id="payTime"><asp:literal runat="server" id="litPayTime" /></span></div>
+            <div>
+                订单状态：<hi:orderstatuslabel id="litOrderStatus" runat="server" /></div>
+            <div id="remarkContainer">
+                订单备注：<span id="remark"><asp:literal runat="server" id="litRemark" /></span></div>
+        </div>
+    </div>
+</div>
+<div class="btns-fixed">
+    <input type="hidden" id="orderStatus" runat="server" clientidmode="Static" />
+    <input type="hidden" id="txtOrderId" runat="server" clientidmode="Static" />
+    <input type="hidden" id="txtProductId" runat="server" clientidmode="Static" />
+    <a id="lookupTrans" class="btn btn-warning">查看物流</a> <a id="ensureRecieved" href='javascript:void(0)'
+        onclick='' class="btn btn-danger">确认收货</a>
+</div>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+<script type="text/javascript">
+    function FinishOrder(orderId) {
+        var data = {};
+        data.orderId = orderId;
+        $.post("/api/VshopProcess.ashx?action=FinishOrder", data, function (json) {
+            if (json.success === true) {
+                alert_h("完成订单", function () {
+                    location.reload();
+                });
+            }
+            else {
+                alert_h(json.msg);
+            }
+        });
+    }
+
+    $(function () {
+        $.each($(".specification"), function () {
+            var htmString = "";
+            var skuContent = $(this).attr("skuContent");
+            if (skuContent != null) {
+                var skuList = skuContent.split(';');
+                for (i = 0; i < skuList.length - 1; i++) {
+                    htmString += "<span>" + skuList[i].split('：')[1] + "</span>";
+                }
+                $(this).html(htmString);
+                $(this).removeAttr("skuContent");
+            }
+        });
+
+        var orderStatus = $('#orderStatus').val();
+        if (orderStatus != 3 && orderStatus != 5)
+            $('#lookupTrans').hide();
+
+        if (orderStatus != 3)
+            $('#ensureRecieved').hide();
+
+
+        var orderId = $('#txtOrderId').val();
+        $('#lookupTrans').attr('href', '/vshop/MyLogistics.aspx?orderId=' + orderId);
+        $('#ensureRecieved').click(function () {
+            FinishOrder(orderId);
+        });
+
+        if (!$.trim($('#payTime').html()))
+            $('#payTimeContainer').hide();
+
+        if (!$.trim($('#remark').html()))
+            $('#remarkContainer').hide();
+
+        $('hr.hr').last().hide();
+
+        if (!$.trim($('#promotionDetail').html()))
+            $('#promotionArea').hide();
+
+        var productSkus = $('.specification');
+        $.each(productSkus, function (i, productSKU) {
+            var text = '';
+            productSKU = $(productSKU);
+            var skus = productSKU.find('input[name="skucontent"]');
+            $.each(skus.val().split(';'), function (i, sku) {
+                if ($.trim(sku))
+                    text += '<span class="badge-h">' + sku.split('：')[1] + '</span>';
+            });
+            var promotionShortName = productSKU.find('input[name="promotionShortName"]').val();
+            if (promotionShortName) {
+                var promotionName = productSKU.find('input[name="promotionName"]').val();
+                text += '<span class="badge-h danger" onclick="alert_h(\'' + promotionName + '\')">' + promotionShortName + '</span>';
+            }
+            productSKU.html(text);
+        });
+    });
+</script>
+<hi:common_vfooter runat="server" />

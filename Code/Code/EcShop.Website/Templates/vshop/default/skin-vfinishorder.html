@@ -1,0 +1,54 @@
+﻿<hi:common_vheader runat="server" />
+<form id="myorder" runat="server">
+    <input type="hidden" runat="server" clientidmode="Static" id="litPaymentType" />
+    <div class="pbox">
+        <div id="orderSuccess" class="well text-center orderMsg">
+            <div class="font-xl">
+                <span class="glyphicon glyphicon-ok"></span>恭喜，订单提交成功！
+            </div>
+            <div class="">
+                您需要支付<asp:literal runat="server" id="litPaymentText" />：<span class="text-danger">
+                    ¥<asp:literal runat="server" id="litOrderTotal" />
+                </span>
+                <br />
+                付款方式：<span><%<asp:Literal runat="server" ID="litPaymentName" />%></span>
+            </div>
+            <div class="btns">
+                <a id="linkToDetail" class="btn btn-success" role="button">查看该订单</a>
+                <a href="/Vshop/Default.aspx" class="btn btn-default" role="button">继续逛逛</a>
+                <a href="#" class="btn btn-danger" role="button" id="btnToPay" runat="server">立即支付</a>
+            </div>
+        </div>
+        <div class="panel panel-default order-list" id="helper" runat="server">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    线下支付帮助
+                </h3>
+            </div>
+            <div class="panel-body offline-help">
+                <asp:literal runat="server" id="litHelperText" />
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+
+<script type="text/javascript">
+
+    $(function () {
+        if ($('#litPaymentType').val() == '0')
+            $('#helper').hide();
+
+        $('#linkToDetail').attr('href', '/Vshop/MemberOrderDetails.aspx?OrderId=' + getParam('OrderId'));
+        if (getParam('onlyHelp'))
+            $('#orderSuccess').hide();
+
+    });
+
+</script>
+<hi:common_vfooter runat="server" />

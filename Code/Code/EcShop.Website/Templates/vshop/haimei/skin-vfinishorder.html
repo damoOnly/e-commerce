@@ -1,0 +1,44 @@
+﻿<hi:common_vheader runat="server" />
+<form id="myorder" runat="server">
+    <input type="hidden" runat="server" clientidmode="Static" id="litPaymentType" />
+<div class="pay-msg">
+	<div id="orderSuccess">
+    	<div class="od-success">恭喜，订单提交成功！</div>
+        <div class="od-info">
+        	您需要支付<asp:Literal runat="server" id="litPaymentText" />：<span class="price">¥<asp:Literal runat="server" id="litOrderTotal" /></span>
+             <br />
+                付款方式：<span><%<asp:Literal runat="server" ID="litPaymentName" />%></span>
+        </div>
+        <div class="btns">
+        	<a id="linkToDetail" class="gr-btn" role="button">查看该订单</a>
+            <a href="/vShop/Default.aspx" class="" role="button">继续逛逛</a>
+            <a href="#" class="pay-btn" role="button" id="btnToPay" runat="server">立即支付</a>
+        </div>
+    </div>
+    <div class="hp-con" id="helper" runat="server">
+    	<label>线下支付帮助</label>
+        <div class="fix"><asp:Literal runat="server" id="litHelperText" /></div>
+    </div>
+</div>
+</form>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+
+<script type="text/javascript">
+
+    $(function () {
+        if ($('#litPaymentType').val() == '0')
+            $('#helper').hide();
+
+        $('#linkToDetail').attr('href', '/Vshop/MemberOrderDetails.aspx?OrderId=' + getParam('OrderId'));
+        if (getParam('onlyHelp'))
+            $('#orderSuccess').hide();
+
+    });
+
+</script>
+<hi:common_vfooter runat="server" />

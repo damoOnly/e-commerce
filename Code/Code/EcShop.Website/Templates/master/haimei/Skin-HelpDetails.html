@@ -1,0 +1,203 @@
+﻿<%<Hi:Common_Header runat="server"  SkinName="/ascx/tags/Skin-Common_Header3.ascx"/>%>
+
+<!--<div id="main1" class="main">
+<div class="tqj"></div>
+<div class="container articleshelp">
+  <div class="cssleft">
+  <h6><img src="/images/process/bzzx.gif" width="182" height="45" /></h6>
+  <div class="csslist2">
+ <%<Hi:Common_HelpCategory runat="server" TemplateFile="/ascx/tags/Common_Comment/Skin-Common_HelpCategory.ascx"  />%>
+  </div>
+  </div>
+  <div class="cssright">
+      <div class="cssright_h1"><a href="url:home">首页</a> > 帮助详细 </div>
+    <div class="cssborder">
+      <h2 class="cssright_h2"><%<asp:Literal ID="litHelpTitle" runat="server" />%></h2>
+      <div class="art_add_date">发布日期<%<Hi:FormatedTimeLabel ID="litHelpAddedDate" runat="server" />%> <strong class="spanB" style="cursor:pointer;" onclick="window.close();">【关闭】 </strong></div>
+      <div style="display:none;">摘要：<span class="cRed"><%<asp:Literal ID="litHelpDescription" runat="server"  />%></span></div>
+      <div class="art_add_c"><%<asp:Literal ID="litHelpContent" runat="server"  />%></div>
+    </div>
+    <div class="csspage_content">	  	<b><%<asp:Label ID="lblFront" runat="server" Text="上一篇帮助："></asp:Label>%><a target="_self" runat="server" id="front" ><%<asp:Label ID="lblFrontTitle" runat="server" ></asp:Label>%></a></b>
+        <div><%<asp:Label ID="lblNext" runat="server" Text="下一篇帮助："></asp:Label>%><a target="_self" runat="server" id="next" ><%<asp:Label ID="lblNextTitle" runat="server" ></asp:Label>%> </a></div></div>
+  </div>
+</div>
+</div>-->
+<div class="helps-main">
+	<div class="help-menu">
+    	<div class="help-menulist">
+        	<dl class="selected">
+            	<dt><i></i><span>新手指南</span></dt>
+                <dd>
+                	<ul class="help-submenu">
+                    	<li><a>注册新用户</a></li>
+                        <li><a>帐号密码</a></li>
+                        <li><a>买家入门</a></li>
+                        <li><a>购物流程</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+            	<dt><i></i><span>海美学堂</span></dt>
+                <dd>
+                	<ul class="help-submenu">
+                    	<li><a>海美学堂</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+            	<dt><i></i><span>我的海美</span></dt>
+                <dd>
+                	<ul class="help-submenu">
+                    	<li><a>我的海美</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+            	<dt><i></i><span>支付方式</span></dt>
+                <dd>
+                	<ul class="help-submenu">
+                    	<li><a>支付方式</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+            	<dt><i></i><span>关于配送</span></dt>
+                <dd>
+                	<ul class="help-submenu">
+                    	<li><a>关于配送</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+            	<dt><i></i><span>货物验收</span></dt>
+                <dd>
+                	<ul class="help-submenu">
+                    	<li><a>货物验收</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+            	<dt><i></i><span>交易安全</span></dt>
+                <dd>
+                	<ul class="help-submenu">
+                    	<li><a>交易安全</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+            	<dt><i></i><span>掌上海美</span></dt>
+                <dd>
+                	<ul class="help-submenu">
+                    	<li><a>掌上海美</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+            	<dt><i></i><span>常见问题</span></dt>
+                <dd>
+                	<ul class="help-submenu">
+                    	<li><a>常见问题</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+            	<dt><i></i><span>售后服务</span></dt>
+                <dd>
+                	<ul class="help-submenu">
+                    	<li><a>售后服务</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+            	<dt><i></i><span>联系客服</span></dt>
+                <dd>
+                	<ul class="help-submenu">
+                    	<li><a>联系客服</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+            	<dt><i></i><span>服务条款</span></dt>
+                <dd>
+                	<ul class="help-submenu">
+                    	<li><a>服务条款</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+            	<dt><i></i><span>联系海美</span></dt>
+                <dd>
+                	<ul class="help-submenu">
+                    	<li><a>联系海美</a></li>
+                    </ul>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="help-con">
+    	<div class="h-module">
+        	<div class="fix">
+            	<div class="cs-hot">
+                	<p>海美客服热线</p>
+                    <div class="hot-line">400-663-9898</div>
+                </div>
+                <div class="cs-img"></div>
+                <div class="cs-search">
+                	<form>
+                    	<div class="cs-search-box fix">
+                            <div class="cs-search-btn">
+                                <input type="submit" value="" class="cs-submit"/>
+                            </div>
+                            <div class="cs-search-input">
+                                <input type="text"/>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="hot-search"><label>热门搜索：</label><a>配送范围</a><a>关税表</a><a>退换货</a><a>购物流程</a><a>新手引导</a><a>海美客服</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="h-module">
+        	<div class="current-wrap">
+            	<a href="/helps.aspx">帮助中心首页</a><span>&gt;</span><span>新手指南</span><span>&gt;</span><span>注册新用户</span>
+            </div>
+            <div class="help-detail">
+            	<p>欢迎注册1号店</p>
+                <p>请点击“免费注册"，按照以下注册提示操作即可！</p>
+                <p>注册步骤详解如下：</p>
+                <p>1.进入1号店首页，点击页面上方的"注册"</p>
+                <p>2.按照网页提示，填写准确的注册信息后点击"提交注册"作即可！</p>
+                <p>温馨提示：</p>
+                <p>（1）请务必填写正确有效的注册邮箱地址，否则当您忘记注册密码时，将无法成功找回，只能重新注册新顾客</p>
+                <p>（2）注册成功后，您可以修改EMAIL地址、修改昵称、修改密码等个人信息。</p>
+                <p>3.系统会提示注册成功，并发送验证邮件到您的注册邮箱中，若您长时间未收到，请点击"重发一封"</p>
+                <p>4.登陆到您的个人邮箱，找到标题为"恭喜你加入1号店"的邮件，打开后点击"验证邮箱" 即可</p>
+                <p>温馨提示：</p>
+                <p>为确保您的帐户安全，以及确认您能享受到更周到、更周全的服务，建议注册时就进行邮箱/手机验证</p>
+                <p>Q：验证邮箱/手机后，您可以享受到什么服务？</p>
+                <p>A：验证邮箱/手机后，除了可以提高您的账户安全性的同时，请还可以享受如下服务</p>
+                <p>（1）及时准确地接收到订单处理通知邮件</p>
+            </div>
+        </div>       
+    </div>
+</div>
+<script type="text/javascript">
+	$(function(){
+		var theme = "selected";
+		//菜单伸缩
+		$(".helps-main .help-menulist dt").bind("click",function(){
+			var $dl = $(this).parent();
+			$dl.toggleClass(theme);
+		})
+		//标签页 切换		
+		$(".tab-wrap .tab-header li").hover(function(e){
+			var index = $(this).index();
+			$(this).addClass(theme).siblings().removeClass(theme);
+			var $curItem = $(".tab-wrap .tab-main .tab-con").eq(index);
+			$curItem.addClass(theme).siblings().removeClass(theme);
+		})
+	})
+</script>
+<%<Hi:Common_Footer runat="server"   />%>
+

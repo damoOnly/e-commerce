@@ -1,0 +1,64 @@
+﻿<%<Hi:Common_Header runat="server" SkinName="/ascx/tags/Common_UserCenter/Skin-Common_User_Header.ascx" />%>
+<form runat="server" id="form1">
+    <script src="/utility/validate/pagevalidator.js" type="text/javascript"></script>
+    <div class="hyzxmain">
+        <div class="hyzxconty">当前位置><span><a href="url:home">首页</a></span>><span><a href="url:user_UserDefault">会员中心</a></span>><span><a href="#">我的佣金</a></span></div>
+        <div class="hyzxconter">
+            <div class="hyzxconterl">
+                <div class="hyzxconterl1">
+                <%<Hi:Common_User_Menu runat="server" />%>
+                </div>
+            </div>
+            <div class="hyzxconterr">
+                <div class="dingdanxx">
+                <div class="dingdan_box1">我的佣金</div>
+                <div class="yfu_chongzhi">
+                    <div class="yfu_chongzhi_l">
+                    <span>历史佣金：<em><%<Hi:FormatedMoneyLabel ID="litAllSplittin" runat="server"  />%></em></span>
+                    <span>可提现：<em><%<Hi:FormatedMoneyLabel ID="litUseSplittin" runat="server"  />%></em></span>
+                    <span>不可提现：<em><%<Hi:FormatedMoneyLabel ID="litNoUseSplittin" runat="server"  />%></em></span></div>
+                <div class="yfu_chongzhi_r">
+                <span><a href="url:user_SplittinDraws" style="color:blue;text-decoration:underline;">申请提现</a></span></div>
+                </div>
+                <div class="tuikuan_con1">
+                    <span>订单号： <%<asp:TextBox ID="txtOrderId" runat="server"  Width="80px" />%></span>
+                    <span>起始时间：<%<UI:WebCalendar CalendarType="StartDate" ID="calendarStart" runat="server" class="input-text2" style="border:1px solid  #ababab; height:18px; padding:2px; " Width="70px" />%> </span>
+                    <span>至：<%<UI:WebCalendar CalendarType="EndDate" ID="calendarEnd" runat="server" class="input-text2" style="border:1px solid  #ababab; height:18px; padding:2px;" Width="70px"/>%></span>
+                    <span>类型： <%<asp:DropDownList ID="dropSplittingType" runat="server" class="select_text" Width="65px" />%></span>
+                    <span>状态：<%<asp:DropDownList ID="dropUseStatus" runat="server" class="select_text" Width="60px" />%></span>
+                    <span><%<asp:ImageButton  ImageUrl="/images/users/d_btn1.jpg" ID="imgbtnSearch" runat="server" /> %></span>
+                </div>
+                <div class="shouhuoxx1_con">
+                <%<Hi:Common_Referral_Splitin runat="server" />%>
+                </div>
+                <div class="page">
+                <%<UI:Pager runat="server" ShowTotalPages="true" ID="pager" />%>
+                </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script type="text/javascript">
+    function nTabs(thisObj, Num) {
+        if (thisObj.className == "active") return;
+        var tabObj = thisObj.parentNode.id;
+        var tabList = document.getElementById(tabObj).getElementsByTagName("li");
+        for (i = 0; i < tabList.length; i++) {
+            if (i == Num) {
+                thisObj.className = "active";
+                document.getElementById(tabObj + "_Content" + i).style.display = "block";
+            } else {
+                tabList[i].className = "normal";
+                document.getElementById(tabObj + "_Content" + i).style.display = "none";
+            }
+        }
+    }
+</script>
+
+<div class="hyzxfooter"></div>
+</form>
+<%<Hi:Common_Footer runat="server" SkinName="/ascx/tags/Common_UserCenter/Skin-Common_User_Footer.ascx" />%>

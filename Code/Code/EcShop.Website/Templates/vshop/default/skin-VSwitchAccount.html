@@ -1,0 +1,313 @@
+﻿<hi:common_vheader runat="server" />
+<script src="../../../Utility/vshopSelector/vshopSelector.js" type="text/javascript"></script>
+<style type="text/css">
+#divSwitch {
+        display:block;table-layout:fixed;
+        width:100%;
+        margin-top:8px;
+        border-top:solid #ccc 1px;
+    }
+.tbswitch {
+        width:100%;border:solid 1px #ccc;margin-top:10px;
+}
+.switchTop {
+    width:100%;
+    height:150px;
+    border-bottom:solid #ccc 1px;
+}
+.swithHead {
+       float:left;
+       width:30%;
+       text-align:left;
+       padding-left:10px;
+       height:148px;
+       line-height:148px;
+    }
+    .swithHead img {
+      width:80px;
+      height:80px;
+      border-radius:40px;
+    }
+
+.swithMid {
+    float:left;
+    width:60%;
+    text-align:left;
+    height:148px;
+    padding-top:50px;
+}
+
+.switchRight {
+    float:right;
+    width:10%;
+    text-align:right;
+    padding-right:10px;
+    height:148px;
+    line-height:148px;
+}
+
+.logdvi {
+      padding:15px 0;
+}
+.loginp {
+    height:40px;
+    line-height:40px;
+    display:block;
+    padding-left:10px;
+    }
+</style>
+<div id="divLogin" class="pbox logdvi">
+    <p class="loginp">您当前有多个账号，可选择不同账号登录</p>
+    <div class="input-group" id="divSwitch">
+
+        <!--<div class="switchTop">
+            <div class="swithHead">
+                <img src="/images/headerimg.png">
+            </div>
+
+            <div class="swithMid">
+                <ul>
+                    <li>微信账号：昵称</li>
+                    <li></li>
+                </ul>
+            </div>
+
+
+            <div class="switchRight">
+                <input type="radio" value="" name="istest" />
+            </div>
+
+        </div>
+
+        <div class="switchTop">
+            <div class="swithHead">
+                <img src="/images/headimage.gif">
+            </div>
+
+            <div class="swithMid">
+                <ul>
+                    <li>PC账号：tan-huahero</li>
+                    <li>邮箱:tan-huahero@163.com</li>
+                </ul>
+            </div>
+
+
+            <div class="switchRight">
+                <input type="radio" value="" name="istest" />
+            </div>
+
+        </div>-->
+
+
+</div>
+    <input type="hidden" id="currentUserId" />
+    <button type="button" id="btnSwithUser" class="btn btn-success btn-block btn-blue">确认切换这个账号</button>
+</div>
+<div id="divRegister" class="pbox" style="display:none;">
+    <p>微信用户，您好！首次登录需绑定商城账号。</p>
+    <input type="url" id="txtRegisterUserName" class="form-control" placeholder="请输入您的用户名" onkeyup="$('#text_mail').val($(this).val());">
+    <div class="input-group mail">
+        <input id="text_mail" type="url" class="form-control" placeholder="请输入您的邮箱">
+        <div id="emailList" class="input-group-btn"></div>
+        <input type="hidden" id="text_email_domain" />
+    </div>
+
+    <div class="input-group">
+        <input id="text_password" type="password" class="form-control" placeholder="请输入您的密码">
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="button" ontouchstart="javascript:$('#text_password').attr('type','text');" ontouchend="javascript:$('#text_password').attr('type','password');"><span class="glyphicon glyphicon-eye-open"></span></button>
+        </span>
+    </div>
+
+    <button type="button" id="btnRegisterUser" class="btn btn-danger btn-block">注册并绑定这个账号</button>
+</div>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var action = getParam("action");
+        if (action != "" && action.toLowerCase() == "register") {
+            $("#divRegister").show();
+            $("#divLogin").hide();
+        }
+        else {
+            $("#divRegister").hide();
+            $("#divLogin").show();
+
+            SwitchUser();
+        }
+        $("#btnSwithUser").bind("click", function () { SwitchAccount(); }); //切换账号
+        $("#btnRegisterUser").bind("click", function () { RegisterUser(); }); //绑定商城账号
+        $("#aRegister").bind("click", function () { $("#divLogin").hide(); $("#divRegister").show(); });
+        $("#aLogin").bind("click", function () { $("#divLogin").show(); $("#divRegister").hide(); });
+
+        var emails = [
+          { text: '@qq.com', selected: true },
+          { text: '@163.com' },
+          { text: '@126.com' },
+          { text: '@sina.com.cn' },
+          { text: '@gmail.com' },
+          { text: '@sohu.com' },
+          { text: '@hotmail.com' },
+          { type: 'divider' },
+          { text: '手动输入', href: "javascript:$('.input-group.mail').after($('#text_mail'));$('.input-group.mail').remove();" }
+        ];
+
+        $('#emailList').vshopSelector({
+            data: emails, height: '34',
+            onchanged: function (item) {
+                $('#text_email_domain').val(item.text);
+            }
+        });
+        $('#emailList .btn-group').removeClass('btn-group').addClass('input-group-btn');
+    });
+
+    function SwitchAccount() {
+        //选择要切换的用户
+        var radiocheck = $(".switchTop input[type='radio']");
+        //当前的用户
+        var currentUserid = $("#currentUserId").val();
+        var userId;
+
+        var isCheck = 0;
+        if (radiocheck != null && radiocheck.length > 0) {
+            for (var i = 0; i < radiocheck.length; i++) {
+                if (radiocheck[i].checked) {
+                    isCheck++;
+                    userId = radiocheck[i].value;
+                }
+            }
+        }
+
+        if (isCheck == 0) {
+           alert_h('没有选择要切换的账号');
+        }
+        else if ((userId != null && currentUserid != null) && userId == currentUserid)
+        {
+            alert_h('选择要切换的账号不能为自己');
+        }
+        else {
+            $.ajax({
+                url: "/API/VshopProcess.ashx",
+                type: 'post', dataType: 'json', timeout: 10000,
+                data: { action: "SwitchAccount", currentUserId: currentUserid, userId: userId },
+                success: function (resultData) {
+                    if (resultData.Status == "OK") {
+                        alert_h("切换成功！", function () {
+                            var returnUrl = getParam("returnUrl");
+                            if (returnUrl != "" && returnUrl.toLowerCase().indexOf("login.aspx") == -1 && returnUrl.toLowerCase().indexOf("logout.aspx") == -1)
+                                location.href = returnUrl;
+                            else
+                                location.href = "MemberCenter.aspx";
+                        });
+                    }
+                    else if (resultData.Status == "-1") {
+                        alert_h("切换账号，修改现在账号或切换的当前状态失败, 请重试");
+                    }
+                    else {
+                        alert_h("切换账号失败, 请重试");
+                    }
+                }
+            });
+        }
+    }
+
+    function SwitchUser() {
+        $.ajax({
+            url: "/API/VshopProcess.ashx",
+            type: 'post', dataType: 'json', timeout: 10000,
+            data: { action: "SwitchUser"},
+            success: function (resultData) {
+                if (resultData != null) {
+                    if (resultData.Status == "-1") {
+                        alert_h("没有获取到OpenId, 请重试");
+                        //window.location.href = "MemberCenter.aspx";
+                    }
+                    else if (resultData.Status == "-2") {
+                        alert_h("没有获取到切换的账号, 请重试");
+                        //window.location.href = "MemberCenter.aspx";
+                    }
+                    else {
+                        var strs = "";
+                        var index;
+                        for (var i = 0; i < resultData.Users.length; i++) {
+                            strs += "<div class='switchTop'><div class='swithHead'><img src='" + resultData.Users[i].HeadImgUrl + "'></div><div class='swithMid'><ul>";
+                           
+                            //用户类型：1为PC端用户,0为微信端用户
+                            if (resultData.Users[i].UserType == 1) {
+                                strs += " <li>账号：" + resultData.Users[i].UserName + "</li><li>邮箱：" + resultData.Users[i].Email + "</li>";
+                            }
+                            else if(resultData.Users[i].UserType == 0) {
+                                strs += " <li>微信账号：" + resultData.Users[i].RealName + "</li><li></li>";
+                            }
+                            strs += "</ul></div><div class='switchRight'><input type='radio' value='" + resultData.Users[i].UserId + "'";
+                            //1为当前用户
+                            if (resultData.Users[i].UserCurrent == 1) {
+                                strs += "checked = 'true'";
+                                index = i;
+                                $("#currentUserId").val(resultData.Users[i].UserId);
+                            }
+                            strs += "name='istest'/></div></div>";
+                        }
+                        $("#divSwitch").html(strs);
+                        $(".switchTop").click(function () {
+                            var $this = $(this).css("background", "#fffef2");
+                            $this.siblings().css("background", "none");
+                            $this.find("input").prop("checked", true);
+                        }).eq(index).click();
+                    }
+                }
+            }
+        });
+    }
+
+    function RegisterUser() {
+        var username = $.trim($("#txtRegisterUserName").val()),
+           email = $.trim($("#text_mail").val() + ($('.input-group.mail').length > 0 ? $('#text_email_domain').val() : '')),
+           password = $.trim($("#text_password").val());
+
+        var emailReg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+        if (!username || username.length < 2)
+            alert_h('用户名不能为空并且至少要2个字符');
+        else if (!email)
+            alert_h('邮箱地址不能为空');
+        else if (!emailReg.test(email)) {
+            alert_h('邮箱地址格式不正确');
+        }
+        else if (!password || password.length < 6)
+            alert_h('密码不能为空并且至少要6个字符');
+        else {
+            $.ajax({
+                url: "/API/VshopProcess.ashx",
+                type: 'post', dataType: 'json', timeout: 10000,
+                data: { action: "RegisterUser", openId: getParam("sessionId"), userName: username, email: email, password: password, nickName: getParam("nickname") },
+                success: function (resultData) {
+                    if (resultData.Status == "OK") {
+                        alert_h("注册成功！", function () {
+                            var returnUrl = getParam("returnUrl");
+                            if (returnUrl != "" && returnUrl.toLowerCase().indexOf("login.aspx") == -1 && returnUrl.toLowerCase().indexOf("logout.aspx") == -1)
+                                location.href = returnUrl;
+                            else
+                                location.href = "MemberCenter.aspx";
+                        });
+                    }
+                    else if (resultData.Status == "-1") {
+                        alert_h("用户名已被注册过, 请重试");
+                    }
+                    else if (resultData.Status == "-2") {
+                        alert_h("邮箱已经被注册过, 请重试");
+                    }
+                    else {
+                        alert_h("注册失败, 请重试");
+                    }
+                }
+            });
+        }
+    }
+</script>
+<hi:common_vfooter runat="server" />
+

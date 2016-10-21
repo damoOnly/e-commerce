@@ -1,0 +1,183 @@
+﻿<hi:common_vheader runat="server" />
+<style>
+    .img-responsive {
+        width: 100%;
+    }
+
+    .pager .disabled > a {
+        pointer-events: none;
+    }
+    .cfooter .scrolltop {
+        display:none !important;
+    }
+</style>
+<div class="page gray-page">
+    <section>
+        <Hi:HiImage runat="server" ID="imgUrl" class="img-responsive" />
+        <div class="no-data pl10 pr10" id="no-data">
+            <p>没有找到相关商品</p>
+            <a class="red-btn mt10" href="/vshop/default.aspx">去逛逛</a>
+        </div>
+        <div class="clumn mt10" id="gd-list">
+            <h3>
+                <span class="hot">
+                    <asp:Literal runat="server" ID="litContent" />
+                </span>
+            </h3>
+            <div class="clumn-con">
+                <div class="gd-list gd-list-one">
+                    <ul class="fix" id="topicproductlist">
+
+                      
+                    </ul>
+                </div>
+                <div class="more-tip" id="more-tip">下拉加载更多...</div>
+              
+            </div>
+        </div>
+    </section>
+</div>
+<footer class="sku-wrap" id="sku-wrap">
+    <section class="sku-con" id="sku-con">
+        <div class="sku-inner">
+            <div class="sku-info clearfix">
+                <img id="control_item_info_img" width="50" height="50" src="Templates/vshop/haimei/images/lazy.png"> <span class="price">¥<span id="spSalaPrice">0.00</span></span>
+                <div class="sku-close">&nbsp;</div>
+            </div>
+            <div class="control-wrap">
+                <input type="hidden" runat="server" id="hidden_skus" clientidmode="Static" />
+                <div class="specification-box">
+                    <div class="skus-info"></div>
+                    <div class="buy-num">
+                        <div class="text-muted">购买数量</div>
+                        <div class="list clearfix">
+                            <div class="goods-num clearfix">
+                                <div class="n-options clearfix">
+                                    <a class="op-btn reduce" id="spSub"><span></span></a> <a class="op-btn plus" id="spAdd"><span></span></a>
+                                    <div class="input-con">
+                                        <input type="tel" id="buyNum" class="form-control" value="1">
+                                    </div>
+                                </div>
+                                <div class="info font-s text-muted">（剩余可购买数量：<span id="spStock">3000</span>件）</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="control-btns">
+            <a class="btn btn-danger buy-btn" id="control-ok">确定</a>
+        </div>
+    </section>
+</footer>
+<script src="/utility/vproduct.helper.js" type="text/javascript"> </script>
+<script src="/script/addcart.js" type="text/javascript"></script>
+<script src="/script/productlist.js?v=20150708" type="text/javascript"></script>
+<hi:common_vfooter runat="server" />
+
+<script type="text/javascript">
+    $(function () {
+
+        loadMore();
+
+        //专题商品没有数据
+        if (!$('#topicproductlist li').length){
+            $('#gd-list').hide();
+            $("#no-data").show();
+            
+        }
+
+
+        $(window).bind("scroll.loadmore", function () {
+            var scrolltop = $(document).scrollTop();
+            var winH = $(window).height();
+            var theme = "show";
+            var $moreTip = $("#more-tip").removeClass(theme);
+            var offset = $moreTip.offset();
+            if ((scrolltop + winH) >= offset.top) {
+                $moreTip.addClass(theme);
+                loadMore();
+            }
+        });
+
+
+    });
+
+
+    //下拉加载更多评论
+    var pageNumber = 0;
+    //var totalPage = 0;
+    var size = 12;
+    function loadMore() {
+        var postData = GetPostData();
+
+        $.ajax({
+            url: "/API/VshopProcess.ashx",
+            type: 'post', dataType: 'json', timeout: 10000,
+            data: postData,
+            async: false,
+            success: function (resultData) {
+                if (resultData.Success == 1) {
+                    var productlist = resultData.productlist;
+                    var str = '';
+                    for (var i = 0; i < productlist.length; i++) {
+
+                        str += '<li>'
+                        str += '<div class="gd-box fix" style="position: relative;">';
+                        str+='<span style="position: absolute;left: -1px;top:-1px; display: block;z-index:10;">';
+                        str+='<img src="/images/hot_vshop.png" width="30"> ';
+                        str+='</span>';
+                        str+='<a href="/Vshop/ProductDetails.aspx?ProductId='+ productlist[i].ProductId+'" target="_self">';
+                        str+='<div class="gd-img"><img src="'+productlist[i].ThumbnailUrl220+'" style="border-width:0px;">';
+                        if(productlist[i].ActivityId>0)
+                        {
+                            str+='<div class="gd-promote">促</div>';
+                        }
+                        str+='</div>';
+                        str+='<div class="gd-info">'
+
+
+                        str+='<p class="gd-price">￥<span>'+productlist[i].SalePrice.toFixed(2)+'</span>';
+
+                        str+='<s>';
+                        if(productlist[i].MarketPrice!="" && productlist[i].MarketPrice!=null && productlist[i].MarketPrice!=undefined)
+                        {
+                            str+='¥'+productlist[i].MarketPrice.toFixed(2);
+                        }
+
+                        str+='</s></p>';
+
+                         str+='<p class="gd-name">'+productlist[i].ProductName+'</p>';
+
+                         str+= '<div class="dis-none">';
+                         str+='<p class="gd-sales">已售'+productlist[i].SaleCounts+'件</p>';
+                         str+='<p class="gd-sales">'+productlist[i].ShortDescription+'</p>';
+                         str+='</div>';
+                         str+="</div>";
+
+                         str+='</a>';
+                         str+='<a class="cart-btn fast-add show-skus" title="加入购物车" fastbuy_skuid="'+productlist[i].fastbuy_skuid+'" productid="'+productlist[i].ProductId+'" price="'+productlist[i].SalePrice.toFixed(2)+'"></a></div>';
+                       
+                        str += '</li>';
+                    }
+                    $(str).appendTo("#topicproductlist");
+                    pageNumber++;
+
+                }
+
+                else {
+                    $('#more-tip').addClass("show").html('没有更多信息了！');
+                    $(window).unbind("scroll.loadmore");
+                }
+            }
+        });
+    }
+    function GetPostData() {
+        var postData = { action: "GetTopicProduct", pageNumber: pageNumber + 1, size: size, topicId: getParam("TopicId") };
+        return postData;
+    }
+
+</script>
+
+
+

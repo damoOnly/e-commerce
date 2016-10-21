@@ -1,0 +1,129 @@
+﻿<%<Hi:Common_Header runat="server" SkinName="/ascx/tags/Common_UserCenter/Skin-Common_User_Header.ascx" />%>
+<div class="hyzxmain">
+    <div class="hyzxconty">
+        当前位置><a href="url:home">首页</a>>会员中心</div>
+    <div class="hyzxconter">
+        <%<Hi:Common_User_Menu runat="server" />%>
+        <script>
+        $(function(){
+			var str = '<h2 class="user-h2">会员中心</h2>'
+			$(str).insertBefore($('.hyzxconterl1'));
+		})
+        </script>
+        <div class="hyzxconterr">
+            <div class="hyzxconterr1">
+                <div class="hyzxconterr11">
+                    <div class="hyzxconterr11l">
+                        <img src="/images/users/hyzx_25.jpg" width="93" height="93" /></div>
+                    <div class="hyzxconterr11r">
+                        <p>
+                            欢迎您：<b><%<asp:Literal ID="litUserName" runat="server"></asp:Literal>%></b>
+                            <%<asp:Literal ID="litUserRank" runat="server"></asp:Literal>%>
+                        </p>
+                        <div class="panquandu">
+                            <div>
+                                账户安全度：</div>
+                            <div class="panquandu1">
+                                <%<Hi:MemberSafeGradeLiteral ID="litSafeGrade" runat="server" /> %>
+                            </div>
+                        </div>
+                        <div class="shoujiyanzheng">
+                            <div class="shoujiyanzhengl">
+                                <%<asp:Literal ID="litcellphoneverfice" runat="server" /> %>
+                            </div>
+                            <div class="shoujiyanzhengr">
+                                <%<asp:Literal ID="litemmailverfice" runat="server" /> %>
+                            </div>
+                        </div>
+                        <div class="shoujiyanzheng">
+                            <div class="shoujiyanzhengl">
+                                <%<asp:Literal ID="litIdentityCardverfice" runat="server" /> %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hyzxconterr12">
+                    <ul>
+                        <li style="display:none;">
+                            <div class="hyzxconterrcont">
+                                您目前账户积分： <span class="lvse">
+                                    <%<asp:Literal ID="litUserPoint" runat="server"></asp:Literal>%>
+                                </span>
+                            </div>
+                            <div class="hyzxconterrcontr">
+                                <a href="url:user_MyChangeCoupons">兑换优惠券</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="hyzxconterrcont">
+                                您的未读消息： <span class="lvse">
+                                    <%<asp:HyperLink ID="hpMes" runat="server" ForeColor="Blue"  Font-Underline="true" Target="_self"></asp:HyperLink>%></span>
+                            </div>
+                            <div class="hyzxconterrcontr">
+                                <a href="url:user_UserReceivedMessages">查看</a></div>
+                        </li>
+                        <li style="display:none;">
+                            <div class="hyzxconterrcont">
+                                预存款余额：<em style="color: Red">&yen;<%<Hi:FormatedMoneyLabel ID="litAccountAmount" runat="server" />%></em>
+                            </div>
+                            <div class="hyzxconterrcontr">
+                                可用余额(<em>￥<%<Hi:FormatedMoneyLabel ID="litUseableBalance" runat="server" />%></em>)
+                                冻结金额(<em>￥<%<Hi:FormatedMoneyLabel ID="litRequestBalance" runat="server" />%></em>)
+                                充值
+                                我要现提
+                                <!--<%<Hi:SiteUrl UrlName="user_RechargeRequest" runat="server">充值</Hi:SiteUrl>%>
+            <%<Hi:SiteUrl UrlName="user_RequestBalanceDraw" runat="server">我要提现</Hi:SiteUrl>%>-->
+                                <%<hi:siteurl urlname="user_MyAccountSummary" runat="server">查看</hi:siteurl>%>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="hyzxconterrcont">
+                                订单消息提醒：</div>
+                            <div class="hyzxconterrcontr">
+                                待付款订单(<em><%<asp:Literal ID="litNoPayOrderNum" runat="server"></asp:Literal>%></em>)
+                                待确认收货订单(<em><%<asp:Literal ID="litPayOrderNum" runat="server"></asp:Literal>%></em>)
+                                待评价商品(<em><a href="/User/UserOrders.aspx?orderStatus=5"><%<asp:Literal ID="litFineshOrderNum" runat="server"></asp:Literal>%></a></em>)
+                            </div>
+                        </li>
+                        <li>
+                            <div class="hyzxconterrcont">
+                                商品咨询</div>
+                            <div class="hyzxconterrcontr">
+                                已回复咨询(<em><a href="url:user_UserConsultations"><%<asp:Literal ID="litNoReplyLeaveWordNum" runat="server"></asp:Literal>%></a></em>)</div>
+                        </li>
+                       
+                    </ul>
+                </div>
+            </div>
+            <%<Hi:Common_UserDefault_ProductList runat="server"/>%>
+        </div>
+    </div>
+</div>
+<%<Hi:Common_Footer runat="server" SkinName="/ascx/tags/Common_UserCenter/Skin-Common_User_Footer.ascx" />%>
+<script>
+//左侧导航start
+$(function(){
+	function setHeight(){
+		height = $('.my_left_category').height();
+		$('.shadow_border').height(height+2);
+	};
+	$('.my_left_category>div').filter('.my_left_category>div:gt(6)').hide ();
+	$('.my_left_category>div').filter ('.my_left_category>div:nth-child(14)').mouseover(function(){
+		$(this).siblings ('.my_left_category>div:gt(6)').show();
+		setHeight();
+	})
+	$('.my_left_category>div').filter ('.my_left_category>div:nth-child(14)').mouseout(function(){
+		$(this).siblings ('.my_left_category>div:gt(6)').hide();
+		setHeight();
+	})
+	$('.my_left_category>div').filter ('.my_left_category>div:nth-child(14)').siblings ('.my_left_category>div:gt(6)').mouseover(function(){
+		$('.my_left_category>div').filter ('.my_left_category>div:nth-child(6)').siblings ('.my_left_category>div:gt(6)').show();
+		setHeight();
+	})
+	$('.my_left_category>div').filter ('.my_left_category>div:nth-child(14)').siblings ('.my_left_category>div:gt(6)').mouseout(function(){
+		$('.my_left_category>div').filter ('.my_left_category>div:nth-child(14)').siblings ('.my_left_category>div:gt(6)').hide();
+		setHeight();
+	})
+});
+//左侧导航over
+</script>

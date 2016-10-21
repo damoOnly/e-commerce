@@ -1,0 +1,87 @@
+﻿<footer id="footer" class="cfooter">
+	<ul class="fix">
+    	<li>
+        	<a href="javascript:void(0)" onclick="window.location.href = '/vshop'">
+                <span class="ft-icon ft-home"></span>
+                <label>首页</label>
+            </a>
+        </li>
+        <li>
+        	<a href="ProductSearch.aspx">
+                <span class="ft-icon ft-list"></span>
+                <label>分类</label>
+            </a>
+        </li>
+        <li>
+        	<a href="HotSupplierList.aspx">
+                <span class="ft-icon ft-brand"></span>
+                <label>店铺</label>
+            </a>
+        </li>
+        <li>
+        	<a href="ShoppingCart.aspx">
+                <span class="ft-icon ft-cart"><em class="cf-count" id="cart-num">0</em></span>
+                <label>购物车</label>
+            </a>
+        </li>
+        <li>
+        	<a href="MemberCenter.aspx">
+                <span class="ft-icon ft-personal"></span>
+                <label>我的海美</label>
+            </a>
+        </li>
+    </ul>   
+    <div class="scrolltop glyphicon glyphicon-chevron-up" id="scrolltop"></div>
+</footer>
+<script type="text/javascript">
+    //隐藏底部菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideToolbar');
+    });
+	//设置状态
+	function setFooterNavStatus(){
+		var pathname = window.location.pathname.toLowerCase();
+		var index;
+		if(pathname == "/vshop/" || pathname == "/vshop/default.aspx"){
+			index = 1;
+		}else if(pathname == "/vshop/productsearch.aspx"){
+			index = 2;
+		}else if(pathname == "/vshop/hotsupplierlist.aspx"){
+			index = 3;
+		}else if(pathname == "/vshop/shoppingcart.aspx"){
+			index = 4;
+		}else if(pathname == "/vshop/membercenter.aspx"){
+			index = 5;
+		}else{
+			/*index = 3;*/
+		}
+		
+		var key = "footerNavIndex";
+		if(!index){
+			//读取缓存
+			index = setMyCookie(key);
+		}
+		//保存
+		setMyCookie(key,index);
+		var theme = "selected";
+		$("#footer > ul > li:eq("+(Number(index)-1)+")").addClass(theme);
+		
+		//禁用底部第二个图标
+		if(index == 2){
+			$('.'+ theme).css('pointer-events','none');
+		}
+	}
+	setFooterNavStatus();
+	
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?4d35a99853f12e55bb76639cc97344ee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html> 

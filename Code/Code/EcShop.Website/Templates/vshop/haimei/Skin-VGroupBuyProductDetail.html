@@ -1,0 +1,143 @@
+﻿<hi:common_vheader runat="server" />
+<link rel="stylesheet" href="/style/swiper.min.css" rev="stylesheet" type="text/css">
+<div class="banner de-banner">
+    <div class="swiper-container" id="banner">
+        <div class="swiper-wrapper">
+            <hi:vshoptemplatedrepeater id="rptProductImages" templatefile="/Tags/skin-Common_Slide.ascx" runat="server" />
+        </div>
+    </div>
+    <div class="slider-bar"></div>
+</div>
+<div class="pbox bgColor-white">
+    <div class="goods-info">
+        <div class="name font-xl">
+            <asp:Literal runat="server" id="litProdcutName" />
+        </div>
+        <div class="intro text-muted">
+            <asp:Literal runat="server" id="litShortDescription" />
+        </div>
+        <div class="price text-danger font-l">
+
+            ¥<asp:Literal runat="server" id="price" /><del class="text-muted font-s">¥<asp:Literal
+                runat="server" id="salePrice" /></del> <span class="text-muted font-s info">已团<asp:Literal runat="server" id="soldCount" />件（<span id="maxCount">团购最多可团：<asp:Literal runat="server"
+                        id="litMaxCount" />件</span> <span id="minCount">还需<asp:Literal runat="server" id="minSuccessCount" />件成团</span>
+                    ）</span>
+        </div>
+        <div class="well">
+            <div class="progress progress-striped active">
+                <div class="progress-bar progress-bar-success" role="progressbar" id="progress" aria-valuenow="40"
+                     aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                    <span class="sr-only">40% Complete (success)</span>
+                </div>
+            </div>
+            <p class="text-center text-muted">
+                <span id="tuan_time"></span><span id="t_d"></span><span id="t_h"></span></span><span
+                    id="t_m"></span><span id="t_s"></span></p>
+        </div>
+    </div>
+</div>
+<div class="specification-box">
+    <div class="specification">
+        <hi:common_skuselector id="skuSelector" runat="server" />
+    </div>
+    <div class="buy-num">
+        <div class="text-muted">
+            购买数量
+        </div>
+        <div class="goods-num clearfix">
+                        <div id="spSub" class="shopcart-add">
+                <span class="glyphicon glyphicon-minus-sign"></span>
+            </div>
+            <input type="tel" id="buyNum" class="form-control" value="1" />
+            <div id="spAdd" class="shopcart-minus">
+                <span class="glyphicon glyphicon-plus-sign"></span>
+            </div>
+            <div class="info font-s text-muted">
+                （剩余可购买数量：<asp:Literal runat="server" id="leftCount" />件）
+            </div>
+        </div>
+    </div>
+    
+</div>
+<div class="goods-detail pbox bgColor-white btns-fixed-padding">
+    <div class="panel panel-default" id="gbContentContainer">
+        <div class="panel-heading">
+            <h3 class="panel-title">团购说明</h3>
+        </div>
+        <div class="panel-body" id="gbContent">
+            <asp:Literal runat="server" id="litGroupbuyDescription" />
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            属性
+        </div>
+        <table class="table" id="attrtable">
+            <tbody>
+                <hi:common_expandattributes id="ExpandAttributes" runat="server" />
+            </tbody>
+        </table>
+    </div>
+    <div class="list-group">
+        <a href="javascript:;" class="list-group-item" onclick="javascript:location.href='ProductConsultations.aspx?ProductId='+$('#txtProductId').val();">
+            商品咨询 <span class="badge-h"><asp:Literal runat="server" id="litConsultationsCount" /></span>
+        </a><a href="javascript:;" class="list-group-item"
+               onclick="javascript:location.href='ProductReview.aspx?ProductId='+$('#txtProductId').val();">
+            商品评价 <span class="badge-h"><asp:Literal runat="server" id="litReviewsCount" /></span>
+        </a>
+    </div>
+    <asp:Literal runat="server" id="litDescription" />
+</div>
+<div class="btns-fixed">
+    <button id="buyButton" class="btn btn-danger">立刻参团</button>
+</div>
+<input type="text" style="display: none;" runat="server" id="txtProductId" clientidmode="Static" />
+<input type="hidden" runat="server" clientidmode="Static" id="litGroupbuyId" />
+<input type="hidden" value="2014/04/23 9:27:46" id="startTime" runat="server" clientidmode="Static">
+<input type="hidden" value="2014/04/23 9:28:56" id="endTime" runat="server" clientidmode="Static">
+<input type="hidden" id="groupBuySoldCount" runat="server" clientidmode="Static">
+<input type="hidden" id="groupBuyMaxCount" runat="server" clientidmode="Static">
+<input type="hidden" id="groupBuyMinCount" runat="server" clientidmode="Static">
+<input type="hidden" id="nowTime" runat="server" clientidmode="Static">
+<script src="/script/carousel.js"></script>
+<hi:common_vfooter runat="server" />
+<script src="/utility/vgroupbuy.helper.js" type="application/javascript"> </script>
+<script type="text/javascript" src="/script/swipe.js"></script>
+<script type="text/javascript">
+    var mySwiper = new Swiper('#banner',{
+        autoplay:5000,
+        speed:200,
+        width:window.innerWidth,
+        autoplayDisableOnInteraction:false,
+        visibilityFullFit : true,
+        loop:true,
+        onClick: function(swiper){
+            var url = $(swiper.clickedSlide).attr("data-src");
+            if(url){
+                window.location = url;
+            }
+        },
+        pagination : '.slider-bar',
+        paginationClickable :true
+    });
+    $(function () {
+        var soldCount = parseInt($('#groupBuySoldCount').val());
+        var minCount = parseInt($('#groupBuyMinCount').val());
+        if (soldCount < minCount)
+            $('#maxCount').hide();
+        else
+            $('#minCount').hide();
+
+        if (!$.trim($('#gbContent').html())) {
+            $('#gbContentContainer').hide();
+        }
+    });
+
+
+
+    $(".slidesjs-play, .slidesjs-stop, .slidesjs-previous, .slidesjs-next").remove();
+    setInterval(GetRTime, 1000);
+    if ($("#attrtable tr").length <= 0) {
+        $("#attrtable").parent().hide();
+    }
+</script>

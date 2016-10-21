@@ -1,0 +1,67 @@
+﻿<hi:common_vheader runat="server" />
+    <div id="slides">
+        <hi:vshoptemplatedrepeater id="rptSlide" templatefile="/Tags/skin-Common_Slide.ascx"
+            runat="server" />
+    </div>
+
+    <div class="icon-btns clearfix">
+      <hi:vshoptemplatedrepeater id="rptNavigate" templatefile="/Tags/skin-Common_Navigate.ascx"
+            runat="server" />
+    </div>
+    
+    <div class="pbox">
+        <div class="well act">
+           <hi:vshoptemplatedrepeater id="rptTopics" templatefile="/Tags/skin-Common_Topics.ascx"
+            runat="server" />
+        </div>
+    </div>
+    
+    <p class="text-center"><span class="label-h ">热卖中...</span></p>
+
+    <div class="pbox">        
+       <hi:vshoptemplatedrepeater id="rptProducts" templatefile="/Tags/skin-Common_DefaultProducts.ascx"
+            runat="server" />
+    </div>
+<p class="text-center" style="margin-bottom:10px;"><hi:LicenseControl runat="server" /></p>
+<script type="text/javascript">
+    $(function () {
+
+        var slidesImg = $('#slides img');
+        var width = 650, height = 320;
+        if (slidesImg.length > 1) {
+            $('#slides').slidesjs({
+                width: width,
+                height: height,
+                play: {
+                    active: true,
+                    auto: true,
+                    interval: 4000,
+                    swap: true
+                }
+            });
+            $(".slidesjs-play, .slidesjs-stop, .slidesjs-previous, .slidesjs-next").remove();
+        }
+        else {
+            var link = slidesImg.parent();
+            $('#slides').css('display', 'block').html('<div style="width:100%;"></div>');
+            $('#slides div').append(link);
+        }
+
+
+
+        $.each($('[name="icon"]'), function (i, item) {
+            var img = $($(item).find('img')[0]);
+            var url = img.attr('src');
+            if (url.indexOf('.') == -1) { //不包含.则为字体
+                img.remove();
+                var slashIndex = url.lastIndexOf('/');
+                url = url.substring(slashIndex + 1);
+                $(item).html('<span class="' + url + '"></span>');
+            }
+        });
+    });
+
+
+
+</script>
+    <hi:common_vfooter runat="server" />

@@ -1,0 +1,349 @@
+﻿<hi:common_vheader runat="server" />
+<link rel="stylesheet" type="text/css" href="/templates/vshop/haimei/resource/default/css/lib/swiper.min.css" />
+<div class="page pl-page gray-page">
+    <header>
+    	<div class="fix">
+            <form action="/Vshop/ProductList.aspx">
+                <div class="drop-list" id="drop-list">
+                    <div class="drop-value">商品</div>
+                    <div class="drop-option">
+                        <div class="dr-op" data-value="1">商品</div>
+                        <div class="dr-op" data-value="2">店铺</div>
+                    </div>
+                    <input type="hidden" id="conti" value="1" />
+                </div>
+                <div class="search-box">
+                    <div class="btn-bar"> <a class="msg-btn"></a> </div>
+                    <div class="search-input">
+                        <a class="qcs" id="qrcode-btn"></a> <a class="search-btn" id="search-btn"></a>
+                        <div class="input-con">
+                            <input id="txtKeywords" type="search" name="keyWord" placeholder="搜索您想要的商品" />
+                            <input type="hidden" name="categoryId" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </header>
+    <div class="sh-panel" id="sh-panel">
+        <div class="sh-clumn">
+            <h5 class="fix"><a class="sh-btn" onclick="GetOtherHotSearch()">换一批</a><span>热搜</span></h5>
+            <div class="sh-con">
+                <ul class="fix" id="hotserchlist">
+                    <!--<li><a>热水壶</a></li>
+                     <li><a>喜宝</a></li>
+                     <li><a>儿童</a></li>
+                     <li><a>自行车</a></li>
+                     <li><a>奶粉</a></li>-->
+                </ul>
+            </div>
+        </div>
+        <div class="sh-clumn brt-none">
+            <h5 class="fix"><a class="sh-btn" onclick="DelHistorySearch()">清空记录</a><span>历史搜索记录</span></h5>
+            <div class="sh-con">
+                <ul class="fix" id="historysearchList">
+                    <!--<li><a>热水壶</a></li>
+                    <li><a>喜宝</a></li>
+                    <li><a>儿童</a></li>
+                    <li><a>自行车</a></li>
+                    <li><a>奶粉</a></li>-->
+                    <hi:vshoptemplatedrepeater id="rpthistorysearch" templatefile="/Tags/skin-Common_HistorySearch.ascx" runat="server" />
+                </ul>
+            </div>
+        </div>
+        <a class="sh-close" id="sh-close">收起</a>
+    </div>
+    <section>
+        <div class="neworderlist">
+            <div class="newcategory dis-none">
+            </div>
+            <div class="thirdcatagory">
+            </div>
+            <div class="order-list">
+                <ul class="fix">
+                    <li><a name="default" href="javascript:void(0)">综合排序</a></li>
+                    <li><a name="saleprice" href="javascript:void(0)">价格</a></li>
+                    <li><a name="addedDate" href="javascript:void(0)">上架</a></li>
+                    <li><a name="VistiCounts" href="javascript:void(0)">浏览量</a></li>
+                    <li><a name="showsaleCounts" href="javascript:void(0)">销量</a></li>
+                    <!--<li id="liabrush" class="dis-none"><a class="search-arrow" id="search-arrow" href="javascript:void(0);" onclick="ShowCategory();">筛选</a></li>-->
+                </ul>
+            </div>
+        </div>
+        <!--<div class="no-data pl10 pr10" id="no-data">
+            <p>没有找到相关商品</p>
+        </div>-->
+        <section class="gd-listwrap" id="slider">
+            <div class="gd-list">
+                <ul class="goods-list-grid clearfix" id="goodslist">
+                    <hi:vshoptemplatedrepeater id="rptProducts" templatefile="/Tags/skin-Common_Prodcts.ascx" runat="server" />
+                </ul>
+                <div class="more-tip" id="more-tip">正在加载更多商品或点击分类搜索...</div>
+                <!--<div id="pager"> </div>-->
+                <div class="groom-wrap">
+                    <div class="groom-con">
+                        <h3 style="text-align:center">暂时没有相关商品，请搜索相似商品其他分类</h3>
+                        <div class="classify clearfix">
+                            <ul class="classsify-ul fix" id="classsify-ul">
+                                <asp:Literal runat="server" ID="litSiblingsCategories" />
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="dis-none">
+            <hi:vshoptemplatedrepeater id="rptCategories" templatefile="/Tags/skin-Common_VProductListCategory.ascx" runat="server" />
+        </div>
+    </section>
+    <div class="brush-wrap" id="brush-wrap" name="brush">
+        <!--<div class="brush-cover"></div>
+        <div class="brush-con fix">
+            <div class="brush-header fix"><a class="cancel-btn">取消</a>筛选</div>
+            <div class="brush-list fix">
+                <ol class="fix">
+                    <h4>品牌</h4>
+                    <div class="fix brand-list"><a><img src="/templates/vshop/haimei/resource/default/image/temp/brand/b1.png" /></a><a><img src="/templates/vshop/haimei/resource/default/image/temp/brand/b2.png" /></a></div>
+                </ol>
+                <ol class="fix">
+                    <h4>进口奶粉</h4>
+                    <div class="fix"><a name="8000109">新生儿</a><a name="8000110">0-6个月宝宝</a><a name="8000111">6-12个月宝宝</a><a name="8000112">1-2岁宝宝</a><a name="8000113">2岁以上宝宝</a></div>
+                </ol>
+                <ol class="fix">
+                    <h4>进口奶粉</h4>
+                    <div class="fix"><a name="8000109">新生儿</a><a name="8000110">0-6个月宝宝</a><a name="8000111">6-12个月宝宝</a><a name="8000112">1-2岁宝宝</a><a name="8000113">2岁以上宝宝</a></div>
+                </ol>
+            </div>
+            <div class="brush-footer fix"><div class="brush-btns"><a class="reset-btn">重置</a><a class="cancel-btn ok-btn">确定</a></div><div class="brush-count">有<span>123456</span>件商品</div></div>
+        </div>-->
+    </div>
+</div>
+<input type="hidden" value="" runat="server" clientidmode="static" id="txtTotal" />
+<footer class="sku-wrap" id="sku-wrap">
+    <section class="sku-con" id="sku-con">
+        <div class="sku-inner">
+            <div class="sku-info clearfix">
+                <img id="control_item_info_img" width="50" height="50" src="/Templates/vshop/haimei/images/lazy.png"> <span class="price">¥<span id="spSalaPrice">0.00</span></span>
+                <div class="sku-close">&nbsp;</div>
+            </div>
+            <div class="control-wrap">
+                <input type="hidden" runat="server" id="hidden_skus" clientidmode="Static" />
+                <div class="specification-box">
+                    <div class="skus-info"></div>
+                    <div class="buy-num">
+                        <div class="text-muted">购买数量</div>
+                        <div class="list clearfix">
+                            <div class="goods-num clearfix">
+                                <div class="n-options clearfix">
+                                    <a class="op-btn reduce" id="spSub"><span></span></a> <a class="op-btn plus" id="spAdd"><span></span></a>
+                                    <div class="input-con">
+                                        <input type="tel" id="buyNum" class="form-control" value="1">
+                                    </div>
+                                </div>
+                                <div class="info font-s text-muted">（剩余可购买数量：<span id="spStock">3000</span>件）</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="control-btns"> <a class="btn btn-danger buy-btn" id="control-ok">确定</a> </div>
+    </section>
+</footer>
+<script src="/utility/vproduct.helper.js" type="text/javascript"> </script>
+<script src="/script/iscroll.js" type="text/javascript"></script>
+<script src="/script/addcart.js" type="text/javascript"></script>
+<script src="/script/productlist.js?v=2016102600" type="text/javascript"></script>
+<script src="/Utility/common.js" type="text/javascript"></script>
+<script type="text/javascript">
+  //  $(function () {
+        //设置 排序 状态
+        //setStatus();
+    //    function setStatus() {
+    //        var sort = getParam('sort');
+    //        var order = getParam('order');
+    //        if (sort && order) {
+    //            var $link = $('.order-list a[name="' + sort + '"]');
+    //            var $curLi = $link.parent();
+    //            var theme = "selected ";
+    //            var theme2 = "selected down up";
+    //            if (order == 'desc') {
+    //                theme += 'down';
+    //            } else {
+    //                theme += 'up';
+    //            }
+    //            $curLi.addClass(theme).siblings().removeClass(theme + theme2);
+    //        } else {
+    //            var $link = $('.order-list a[name=default]');
+    //            var $curLi = $link.parent();
+    //            var theme = "selected ";
+    //            $curLi.addClass(theme).siblings().removeClass(theme + theme2);
+    //        }
+    //        var categoryId = getParam('categoryId');
+    //        var keyWords = getParam('keyWord');
+
+    //        var brandid = getParam('brandid');
+    //        var importsourceid = getParam('importsourceid');
+
+    //        var TopicId = getParam('TopicId');
+    //        if (categoryId == null || categoryId == undefined) {
+    //            categoryId = "";
+    //        }
+
+    //        if (keyWords == null || keyWords == undefined) {
+    //            keyWords = "";
+    //        }
+
+    //        if (brandid == null || brandid == undefined) {
+    //            brandid = "";
+    //        }
+
+    //        if (importsourceid == null || importsourceid == undefined) {
+    //            importsourceid = "";
+    //        }
+
+
+    //        if (TopicId == null || TopicId == undefined) {
+    //            TopicId = "";
+    //        }
+
+    //        var SupplierId = getParam('SupplierId');
+
+    //        if (SupplierId == null || SupplierId == undefined) {
+    //            SupplierId = "";
+    //        }
+
+    //        $(".order-list > ul > li a:not(.search-arrow)").each(function (i, ele) {
+    //            $link = $(ele);
+    //            var $li = $link.parent();
+    //            url = '/vshop/productList.aspx?categoryId=' + categoryId + '&keyWord=' + keyWords + '&brandid=' + brandid + "&TopicId=" + TopicId + "&importsourceid=" + importsourceid + "&SupplierId=" + SupplierId;// escape(keyWords);
+    //            if (i > 0) {//第一个为默认面，不设置排序
+    //                url += '&sort=' + $link.attr('name');
+    //                if ($li.hasClass('up')) {
+    //                    url += '&order=desc';
+    //                } else {
+    //                    url += '&order=asc';
+    //                }
+    //            }
+    //            $link.attr('href', url);
+    //        });
+    //    }
+    //    //没有数据
+    //    if (!$('#gd-list > ul > li').length) {
+    //        $('#gd-list').hide();
+    //        $('#no-data').show();
+    //    }
+    //    //vshopPager('pager', $('#txtTotal').val(), 1, 20);
+    //    // 筛选
+    //    $("#search-arrow").on("click", function () {
+    //        $("#brush-wrap").addClass("show");
+    //        $("html,body").addClass("ovh");
+    //    })
+    //    // 关闭筛选
+    //    $(document).delegate("#brush-wrap .cancel-btn,#brush-wrap .brush-cover", "click", function () {
+    //        $("#brush-wrap").removeClass("show");
+    //        $("html,body").removeClass("ovh");
+    //    })
+    //    // 重置筛选
+	//	$(document).delegate("#brush-wrap .reset-btn","click", function () {       
+    //        $("#brush-wrap .brush-list a").removeClass("selected");
+    //    })
+    //    // 点击 选项
+	//	$(document).delegate("#brush-wrap .brush-list a","click", function () {       
+    //        var theme = "selected";
+    //        $(this).addClass(theme).siblings().removeClass(theme);
+    //    })
+    //    // 点击 标题
+	//	$("#brush-wrap").delegate("h4", "click", function () {
+	//	    var theme = "up";
+    //        $(this).parent().toggleClass(theme);
+    //        $(this).next().slideToggle();
+    //    })
+	//	// 确定
+	//	$(document).delegate("#brush-wrap .ok-btn","click", function () {   
+	//	    var tempcategoryId, tempimportsourceid, tempbrandid;
+	//		var $cateA = $("#brush-wrap a[name=CategoryId].selected");
+	//		var $imporA = $("#brush-wrap a[name=ImportSourceId].selected");
+	//		var $brandA = $("#brush-wrap a[name=BrandId].selected");
+	//		if($cateA.length){
+	//			tempcategoryId = $cateA.attr("categoryid");
+	//		}
+	//		if($imporA.length){
+	//			tempimportsourceid = $imporA.attr("importsourceid");
+	//		}
+	//		if($brandA.length){
+	//		    tempbrandid = $brandA.attr("brandid");
+	//		}     
+	//		loadshop(tempcategoryId, tempimportsourceid, tempbrandid)
+    //    })
+
+    //    //点击确认
+    //    function loadshop(tempcategoryId, tempimportsourceid, tempbrandid) {
+    //        var sort = getParam('sort');
+    //        var order = getParam('order');
+    //        if (sort && order) {
+    //            var $link = $('.order-list a[name="' + sort + '"]');
+    //            var $curLi = $link.parent();
+    //            var theme = "selected ";
+    //            var theme2 = "selected down up";
+    //            if (order == 'desc') {
+    //                theme += 'down';
+    //            } else {
+    //                theme += 'up';
+    //            }
+    //            $curLi.addClass(theme).siblings().removeClass(theme + theme2);
+    //        } else {
+    //            var $link = $('.order-list a[name=default]');
+    //            var $curLi = $link.parent();
+    //            var theme = "selected ";
+    //            $curLi.addClass(theme).siblings().removeClass(theme + theme2);
+    //        }
+    //        var categoryId = getParam('categoryId');
+    //        var keyWords = getParam('keyWord');
+
+    //        var brandid = getParam('brandid');
+    //        var importsourceid = getParam('importsourceid');
+
+    //        var TopicId = getParam('TopicId');
+
+
+    //        if (categoryId == null || categoryId == undefined) {
+    //            categoryId = "";
+    //        }
+    //        //筛选的类别
+    //        if (tempcategoryId != null && tempcategoryId != "" && tempcategoryId != undefined) {
+    //            categoryId = tempcategoryId;
+    //        }
+
+    //        if (keyWords == null || keyWords == undefined) {
+    //            keyWords = "";
+    //        }
+
+           
+    //        if (brandid == null || brandid == undefined) {
+    //            brandid = "";
+    //        }
+    //        //筛选的品牌
+    //        if (tempbrandid != null && tempbrandid != "" && tempbrandid != undefined) {
+    //            brandid = tempbrandid;
+    //        }
+    //        if (importsourceid == null || importsourceid == undefined) {
+    //            importsourceid = "";
+    //        }
+    //        //筛选的原产地
+    //        if (tempimportsourceid != null && tempimportsourceid != "" && tempimportsourceid != undefined) {
+    //            importsourceid = tempimportsourceid;
+    //        }
+
+    //        if (TopicId == null || TopicId == undefined) {
+    //            TopicId = "";
+    //        }
+
+    //        window.location.href = '/vshop/productList.aspx?categoryId=' + categoryId + '&keyWord=' + keyWords + '&brandid=' + brandid + "&TopicId=" + TopicId + "&importsourceid=" + importsourceid;// escape(keyWords);
+    //    }
+    //});
+</script>
+<hi:common_vfooter runat="server" />
+<footer id="footer" class="cfooter">
+    <div class="scrolltop glyphicon glyphicon-chevron-up" id="scrolltop"></div>
+</footer>

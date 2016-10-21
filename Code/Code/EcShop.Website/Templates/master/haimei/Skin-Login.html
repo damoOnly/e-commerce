@@ -1,0 +1,69 @@
+﻿<%<Hi:Common_Header runat="server" SkinName="/ascx/tags/Skin-Common_loginHeader.ascx" />%>
+<form runat="server">
+    <div class="main" id="main1">        
+        <div class="logindiv">
+            <div class="loginimg">
+                <Hi:Common_ImageAd runat="server" AdId="13" />
+            </div>
+            <div class="logingbj">
+                <div class="logingfome">
+                    <h1><span class="regist-link">还没有账号，<a  href="/Register.aspx">注册</a></span>海美会员</h1>                  
+                    <div class="form">
+                    	<div class="tip-wrap">
+                            <%<Hi:SmallStatusMessage id="Status" runat="server" Visible="False" />%>
+                        </div>
+                        <div class="item item-fore1">
+                            <label for="loginname" class="login-label name-label"></label>
+                            <%<asp:TextBox ID="txtUserName"  runat="server" CssClass="itxt"/>%>
+                            <!--<input id="loginname" type="text" class="itxt" name="loginname" tabindex="1" autocomplete="off" placeholder="邮箱/用户名/已验证手机">--> 
+                        </div>
+                        <div id="entry" class="item item-fore2">
+                            <label class="login-label pwd-label" for="nloginpwd"></label>
+                            <!--<input type="password" id="nloginpwd" name="nloginpwd" class="itxt itxt-error" tabindex="2" autocomplete="off" placeholder="密码">-->
+                            <%<asp:TextBox Button="btnLogin" ID="txtPassword" runat="server" CssClass="itxt itxt-error" TextMode="Password"/>%>
+                        </div>
+                        <div class="item item-fore3">
+                            <div class="safe"> <span>
+                                <label>
+                                    <input id="autoLogin" name="chkRememberMe" type="checkbox" class="jdcheckbox" tabindex="3"><!-- checked="checked" -->
+                                    自动登录</label>
+                                </span><span class="forget-pw-safe"> <a href="url:ForgotPassword" class="" target="_blank">忘记密码?</a> </span> </div>
+                        </div>
+                        <div class="item">
+                            <%<asp:Button ID="btnLogin" CssClass="btncss"  runat="server" Text="登录"  />%>
+                            <%<asp:HiddenField runat="server" ID="currFlag" value="Yes" /> %>
+                            <!--第三方登录 -->
+                            <div class="other-way" style="display:none;">
+                                <p>使用第三方账号登录</p>
+                                <div class="fix">
+                                    <a><img src="/images/lg-wx.png" /></a><a><img src="/images/lg-xl.png" /></a><a><img src="/images/lg-qq.png" /></a>
+                                </div>
+                            </div>
+                            <div style="display:none;">
+                            	<%<Hi:Common_Link_OpenId runat="server"  /> %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lgb"></div>
+    </div>
+    
+</form>
+<script type="text/javascript">
+	$(function(){
+		$(".itxt").focus(function(){
+			$(this).closest(".item").addClass("item-focus");
+		}).blur(function(){
+			$(this).closest(".item").removeClass("item-focus");
+		})
+		if ($("#login_currFlag").val() == "No")
+		{
+		    $("#login_btnLogin").attr('disabled', 'disabled');
+		}
+	});
+</script>
+<div class="login-footer">
+    <%<Hi:Common_Footer runat="server"   />%>
+</div>

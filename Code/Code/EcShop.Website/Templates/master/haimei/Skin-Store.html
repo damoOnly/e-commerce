@@ -1,0 +1,531 @@
+﻿ <%<hi:common_supplierheader runat="server" skinname="/ascx/tags/Skin-Common_Header5.ascx" />%>
+<input type="hidden" runat="server" id="search_text" />
+<input type="hidden" runat="server" id="search_Subtext" />
+<style>
+    body {
+        background-color: #2090bf;
+    }
+
+    .footer {
+        background-color: #f5f5f5;
+    }
+
+    #header {
+        background-color: #fafafa;
+    }
+
+    .store-nav {
+        background-color: #000;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $("#txt_Search_Keywords").val($("#store_search_text").val());
+        $("#txt_Search_SubKeywords").val($("#store_search_Subtext").val());
+    });
+</script>
+<!--<a class="store-ad" href="#">
+    <img src="/images/banner_mom.jpg" width="100%" />
+</a>-->
+<div class="store-nav">
+    <ul class="fix">
+        <li class="cur-page">
+            <a id="defaultPage" href="/default.aspx">首页</a>
+        </li>
+        <li>
+            <a id="allproduct">全部商品</a>
+        </li>
+    </ul>
+</div>
+<div class="big-banner">
+    <div class="flexslider" id="banner">
+        <ul class="slides fix">
+            <!--<li><a href="http://www.jd.com" style="background:url(/templates/master/haimei/UploadImage/AdvertImg/20151214131904_2019.jpg) no-repeat center top;"></a></li>-->
+            <hi:supplier_banner runat="server" />
+        </ul>
+    </div>
+</div>
+<script type="text/javascript" src="/utility/slider.js"></script>
+<script>
+    function GetCoupon(couponid) {
+        if (couponid > 0) {
+            $.ajax({
+                url: "/Handler/ReceivecouponsHandler.ashx",
+                type: 'post', dataType: 'json', timeout: 10000,
+                data: { action: "GetSupplierCoupons", CouponId: couponid },
+                async: false,
+                success: function (resultData) {
+                    alert(resultData.Message);
+                }
+            });
+        }
+    }
+    //banner轮播
+    $(function () {
+        //$.ajax({
+        //    url: "/Handler/SupplierHandler.ashx",
+        //    type: 'post', dataType: 'json', timeout: 10000,
+        //    data: { action: "GetBanner", supplierId: getParam("supplierid") },
+        //    async: false,
+        //    success: function (resultData) {
+        //        if (resultData.Success == 1) {
+        //            var data = resultData.Banners;
+        //            var str = "";
+        //            for (var i = 0; i < data.length; i++) {
+        //				var obj = data[i];
+        //				var url = obj.Url?obj.Url:"javascript:void(0);";
+        //				str += '<li><a href="'+url+'" style="background:url('+ obj.ImageUrl+') no-repeat center top;"></a></li>';
+        //            }
+        //            $("#banner .slides").html(str);
+        //			//大 banner
+        //			$('#banner').flexslider({
+        //				directionNav: false, //Boolean:  (true/false)是否显示左右控制按钮
+        //				animationLoop: true, //  "disable" classes at either end 是否循环滚动 循环播放
+        //				slideshowSpeed: 5000, // 自动播放速度毫秒
+        //				animationSpeed: 500 //滚动效果播放时长
+        //			});
+        //        }
+        //    }
+        //});
+        //大 banner
+        $('#banner').flexslider({
+            directionNav: false, //Boolean:  (true/false)是否显示左右控制按钮
+            animationLoop: true, //  "disable" classes at either end 是否循环滚动 循环播放
+            slideshowSpeed: 5000, // 自动播放速度毫秒
+            animationSpeed: 500 //滚动效果播放时长
+        });
+    })
+</script>
+<div class="fix">
+    <div class="mom-tips"><%<asp:Literal ID="litSupplierDescribe" runat="server" />%></div>
+    <hi:common_suppliercouponlist id="rptsuppliercouponlist" runat="server" />
+    <!--<div class="coupon-wrap">
+        <div class="coupon-list">
+            <ul class="fix">
+                <li>
+                    <a class="coupon-box fix">
+                        <span class="coupon-ex">
+                            <span class="coupon-date">活动时间<br/>16.1.1-16.1.5</span>
+                            <span class="coupon-get">领取<br/>优惠</span>
+                        </span>
+                        <span class="coupon-as">
+                            <span class="coupon-price">￥<strong>10</strong></span>
+                            <span class="coupon-des"><span class="coupon-tit">满99使用</span>优惠券</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a class="coupon-box fix">
+                        <span class="coupon-ex">
+                            <span class="coupon-date">活动时间<br/>16.1.1-16.1.5</span>
+                            <span class="coupon-get">领取<br/>优惠</span>
+                        </span>
+                        <span class="coupon-as">
+                            <span class="coupon-price">￥<strong>30</strong></span>
+                            <span class="coupon-des"><span class="coupon-tit">满99使用</span>优惠券</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a class="coupon-box fix">
+                        <span class="coupon-ex">
+                            <span class="coupon-date">活动时间<br/>16.1.1-16.1.5</span>
+                            <span class="coupon-get">领取<br/>优惠</span>
+                        </span>
+                        <span class="coupon-as">
+                            <span class="coupon-price">￥<strong>50</strong></span>
+                            <span class="coupon-des"><span class="coupon-tit">满99使用</span>优惠券</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>-->
+</div>
+<hi:common_pchotproductlist id="rptHotSale" MaxNum="5" runat="server" />
+<!--<div class="hot-pro fix" id="showhotsale" runat="server">
+    <h2>热销商品</h2>
+    <div class="hot-pro-con">
+        <div class="hot-pro-list">
+            <ul class="fix">
+
+                <li>
+                    <a href="/countdownproduct_detail-103.aspx" target="_blank" class="panic">
+                        <span class="panic-name">日本花王 乐而雅夜用卫生巾瞬吸超薄1mm （35CM 13片）</span>
+                        <span class="panic-des"></span>
+                        <img src="/images/temp/g1.png">
+                        <span class="buynow">立即抢购</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/countdownproduct_detail-103.aspx" target="_blank" class="panic">
+                         <span class="panic-name">日本花王 乐而雅夜用卫生巾瞬吸超薄1mm （35CM 13片）</span>
+                         <span class="panic-des"></span>
+                         <img src="/images/temp/g1.png">
+                         <span class="buynow">立即抢购</span>
+                   </a>
+                </li>
+                <li>
+                    <a href="/countdownproduct_detail-103.aspx" target="_blank" class="panic">
+                         <span class="panic-name">日本花王 乐而雅夜用卫生巾瞬吸超薄1mm （35CM 13片）</span>
+                         <span class="panic-des"></span>
+                         <img src="/images/temp/g1.png">
+                         <span class="buynow">立即抢购</span>
+                   </a>
+                </li>
+                <li>
+                    <a href="/countdownproduct_detail-103.aspx" target="_blank" class="panic">
+                         <span class="panic-name">日本花王 乐而雅夜用卫生巾瞬吸超薄1mm （35CM 13片）</span>
+                         <span class="panic-des"></span>
+                         <img src="/images/temp/g1.png">
+                         <span class="buynow">立即抢购</span>
+                   </a>
+                </li>
+                <li>
+                    <a href="/countdownproduct_detail-103.aspx" target="_blank" class="panic">
+                         <span class="panic-name">日本花王 乐而雅夜用卫生巾瞬吸超薄1mm （35CM 13片）</span>
+                         <span class="panic-des"></span>
+                         <img src="/images/temp/g1.png">
+                         <span class="buynow">立即抢购</span>
+                   </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>-->
+
+<div class="rank-box">
+    <div class="rank-blank"></div>
+    <div class="rank" id="rank">
+        <span>排序：</span>
+        <a sortby="DisplaySequence">默认</a>
+        <a sortby="AddedDate">最新</a>
+        <a sortby="ShowSaleCounts">最热</a>
+        <div class="pager-wrap"><%<asp:Literal ID="litProductCount" runat="server" />%></div>
+    </div>
+</div>
+<div class="main cate-main" id="main1">
+    <form runat="server" style="display:none;">
+        <div class="category_search">
+            <div class="category_sequence">
+                <%<hi:common_searchlist runat="server" />%>
+                <div class="pager-wrap">
+                    <%<asp:Literal ID="litSearchResultPage" runat="server" />%>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="main-con fix">
+        <div class="main-conr">
+            <div class="category">
+                <div class="category_pro_list cp-list">
+                    <ul>
+                        <%
+                        <Hi:ThemedTemplatedRepeater ID="rptProducts" TemplateFile="/ascx/Tags/Common_GoodsList/Skin-Common_GoodsList_Supplier.ascx" runat="server" />%>
+
+
+                        <li style="display:none">
+                            <div class="category_pro_pic">
+                                <a href="/product_detail-3328.aspx" target="_blank"><img customtooltip="ProductName" src="/Storage/master/product/thumbs220/220_4cdd4d12bfcf4ee79ac553c1b98ff7d4.jpg" style="border-width:0px;"></a>
+                            </div>
+                            <div class="category_pro_name"><a href="/product_detail-3328.aspx" target="_blank">法国柏格 薰香灯 瓷器-流金岁月4346Lampe Berger</a></div>
+                            <div class="category_pro_price"><p>￥<strong><span>85.00</span></strong></p><em>￥:<span>-</span></em><span class="discount">5.6折</span></div>
+                            <div class="bars fix cart-tip">
+
+                                <span>保税仓直发</span>
+                                <span>401</span>
+                                <div class="pd-size">
+                                    <div class="pd-size-tit">请选择商品规格<div class="arrow-btn">收起∨</div></div>
+                                </div>
+                                <div class="num-wrap fix" style="display:none;">
+                                    <div class="num-con">
+                                        <input type="text" value="1" old-v="1" class="">
+                                    </div>
+                                    <div class="num-bar">
+                                        <a class="btn-add"></a>
+                                        <a class="btn-reduce disabled"></a>
+                                    </div>
+                                </div>
+                                <a class="addcartButton cart-btn" productid="3328" price="85.00" fastbuy_skuid="3328_0"></a>
+
+                            </div>
+                        </li>
+
+                    </ul>
+
+                    <div class="page-box" style="overflow:visible">
+                        <div class="page">
+                            <%<UI:Pager runat="server" ShowTotalPages="true" DefaultPageSize="20" ID="pager" />%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%<Hi:BuyButton runat="server" id="btnBuy"><img src="/images/sub/mai_buttom_btn.jpg" /></Hi:BuyButton>%>
+</div>
+
+<div class="login_tan" id="loginForBuy" style="display:none;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td colspan="4">
+                <table class="loginForBuytit" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="400">
+                            <h2>您尚未登录，请登录</h2>
+                        </td>
+                        <td width="39"><p><img id="imgCloseLogin" src="/images/sub/close2.jpg" width="25" height="24" /></p></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr><td colspan="4">&nbsp;</td></tr>
+        <tr>
+            <td width="25" valign="middle" w>&nbsp;</td>
+            <td valign="middle" width="65" class="fB">用户名：</td>
+            <td width="250" valign="middle">
+                <label>
+                    <input type="text" name="textfield" id="textfieldusername" class="login_tan_input1" />
+                </label>
+            </td>
+            <td valign="middle" width="104">&nbsp;</td>
+        </tr>
+        <tr>
+            <td height="45" valign="middle">&nbsp;</td>
+            <td valign="middle" class="fB">密　码：</td>
+            <td valign="middle"><input type="password" name="textfield2" id="textfieldpassword" class="login_tan_input2" /></td>
+            <td valign="middle"><a href="url:ForgotPassword">忘记密码了?</a></td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <table>
+                    <tr>
+                        <td width="85" valign="middle">&nbsp;</td>
+                        <td width="140">
+                            <label>
+                                <input type="button" name="button" id="btnLoginAndBuy" value=" " class="login_tan_input3" />
+                            </label>
+                        </td>
+                        <td width="79" align="center"><a href="url:register">我要注册</a></td>
+                        <!--<td width="135"><input id="btnAmoBuy" type="button" value="匿名购买" /></td>-->
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="bars success-tip" id="success-tip">+1</div>
+<div class="login-shadow"></div>
+<script>
+    $(function () {
+        $("#btnLoginAndBuy").bind("click", function () { LoginAndBuy(); });
+        var $input = $(".num-wrap input");
+        if ($input != null && $input != undefined && $input != "") {
+            $input.each(function (i, elem) {
+                var theme = "disabled";
+                var elem = $(elem);
+                if (elem.hasClass(theme)) {
+                    elem.attr("disabled", "disabled");
+                } else {
+                    elem.removeAttr("disabled");
+                }
+            });
+        }
+
+        $(".category_pro_list li").hover(function () {
+            if ($(".category_pro_list").index(this) != 0) {
+                $(".category_pro_list li:first").removeClass("listhover");
+            }
+            $(this).addClass("listhover");
+        }, function () {
+            $(this).removeClass("listhover");
+        });
+        $(".category_pro_list li:first").addClass("listhover");
+
+        /*
+        //点击 分类菜单 标题
+        $(".sub-cate h3 a").bind("click",function(){
+            $(this).parents(".sub-cate").toggleClass("expand");
+        })
+        //点击 分类菜单 展开 图标
+        $(".sub-cate a.arrow").bind("click",function(){
+            $(this).closest("li").toggleClass("show");
+        })*/
+        //点击 刷选 更多
+        $("a.more-attr").bind("click", function () {
+            $(this).closest(".attribute_val").toggleClass("show");
+        })
+        //购物车 输入框 失去焦点
+        $(".num-wrap input").blur(function () {
+            var theme = "disabled";
+            if ($(this).hasClass(theme)) {
+                $(this).attr("disabled", "disabled");
+                return;
+            }
+            var $ele = $(this);
+            var val = $ele.val();
+            var oldV = $ele.attr("old-v");
+            var $btnReduce = $(this).parents(".num-wrap").find(".btn-reduce");
+            if (isNaN(val)) {
+                $ele.val(oldV);
+                if (oldV <= 1) {
+                    $btnReduce.addClass("disabled");
+                } else {
+                    $btnReduce.removeClass("disabled");
+                }
+                return;
+            }
+            if (val <= 1) {
+                val = 1;
+                $ele.val(val);
+                $btnReduce.addClass("disabled");
+            } else {
+                $btnReduce.removeClass("disabled");
+            }
+            $ele.attr("old-v", val);
+        })
+        //购物车 数量 添加
+        $(".num-wrap .btn-add").unbind("click").bind("click", function () {
+            var theme = "disabled";
+            if ($(this).hasClass(theme)) {
+                return;
+            }
+            var $ele = $(this).parents(".num-wrap").find("input");
+            var val = $ele.val();
+            if (isNaN(val) || val == "") {
+                val = $ele.attr("old-v");
+                if (!val) {
+                    val = 1;
+                }
+            }
+            val = parseInt(val);
+            val += 1;
+            if (val > 1) {
+                $(this).parents(".num-wrap").find(".btn-reduce").removeClass("disabled");
+            }
+            $ele.val(val).attr("old-v", val);
+        })
+        //购物车 数量 添加
+        $(".num-wrap .btn-reduce").unbind("click").bind("click", function () {
+            var theme = "disabled";
+            if ($(this).hasClass(theme)) {
+                return;
+            }
+            var $ele = $(this).parents(".num-wrap").find("input");
+            var val = $ele.val();
+            if (isNaN(val) || val == "") {
+                val = $ele.attr("old-v");
+                if (!val) {
+                    val = 1;
+                }
+            }
+            val = parseInt(val);
+            val -= 1;
+            if (val <= 1) {
+                val = 1;
+                $(this).addClass(theme);
+            }
+            $ele.val(val).attr("old-v", val);
+        })
+    });
+    function AddToFav(productid) {
+        if ($("#hiddenIsLogin").val() == "nologin") {
+            $("#loginForBuy").fadeIn();
+            $('.login-shadow').fadeIn();
+            $('html,body').css('overflow', 'hidden');
+            return false;
+        }
+        var data = {};
+        data.ProductId = productid;
+        $.post("/Handler/MemberHandler.ashx?action=AddFavorite", data, function (result) {
+            if (result.success) {
+                alert("收藏成功");
+                $("#" + productid).text(result.CollectNum);
+            }
+            else {
+                if (!result.success && result.CollectNum != undefined) {
+                    alert("该商品已经收藏");
+                }
+            }
+        });
+    }
+    // 登录后再购买
+    function LoginAndBuy() {
+        var username = $("#textfieldusername").val();
+        var password = $("#textfieldpassword").val();
+        var thisURL = document.URL;
+
+        if (username.length == 0 || password.length == 0) {
+            alert("请输入您的用户名和密码!");
+            return;
+        }
+
+        $.ajax({
+            url: "Login.aspx",
+            type: "post",
+            dataType: "json",
+            timeout: 10000,
+            data: { username: username, password: password, action: "Common_UserLogin" },
+            async: false,
+            success: function (data) {
+                if (data.Status == "Succes") {
+                    $("#loginForBuy").hide('hide');
+                    $("#hiddenIsLogin").val('logined');
+                    window.location.reload();
+
+                }
+                else {
+                    alert(data.Msg);
+                }
+            }
+        });
+    }
+
+    $('#imgCloseLogin').click(function () {
+        $("#loginForBuy").fadeOut(100);
+        $(".login-shadow").fadeOut(100);
+        $('html,body').css('overflow', 'auto');
+    });
+</script>
+
+
+
+<script>
+    $(function () {
+        //$("#defaultPage").bind("click", function () {
+        //    window.location.href = "/Store.aspx?supplierId=" + getParam("supplierId");
+        //})
+
+        $("#allproduct").bind("click", function () {
+            window.location.href = "/StoreSubCategory.aspx?supplierid=" + getParam("supplierid");
+        })
+
+        $('#rank').find('a').click(function () {
+            $(this).addClass('select').siblings('a').removeClass('select');
+
+            var url = "";
+            url += "/Store.aspx";
+            url += "?supplierid=" + getParam("supplierid");
+            url += "&sortOrderBy=" + $(this).attr("sortby");
+            url += "&sortOrder=Desc";
+
+            window.location.href = url;
+        });
+
+        var hasrank = false;
+        $('#rank').find('a').each(function (i) {
+
+            if ($(this).attr("sortby") == getParam("sortOrderBy")) {
+                $(this).addClass('select');
+                hasrank = true;
+            }
+        });
+
+        if (!hasrank) {
+            $('#rank').find('a:first').addClass('select');
+        }
+    })
+</script>
+
+<script src="/Utility/productlist.helper.js?v=20150825" type="text/javascript"></script>
+    <%<hi:common_footer runat="server" />%>

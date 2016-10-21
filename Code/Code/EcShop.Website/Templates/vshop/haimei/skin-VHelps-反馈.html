@@ -1,0 +1,109 @@
+﻿<hi:common_vheader runat="server" />
+<div class="page">
+    <section>
+        <section>
+            <div class="draw-con sm-con fix">
+                <dl class="sm-dl fix">
+                    <dt class="fn">反馈类型：</dt>
+                    <dd>
+                        <div class="select-wrap">
+                            <select id="selectShipToDate">
+                                <option value="0">配送服务</option>
+                                <option value="">支付问题</option>
+                            </select>
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="sm-dl fix">
+                    <dt class="fn">反馈内容：</dt>
+                    <dd>
+                        <div class="lhn">
+                            <textarea class="textarea"></textarea>
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="sm-dl fix">
+                    <dt class="fn"><span class="upload-tip">上传图片</span>（提供图片以便我们清楚了解到问题点）：</dt>
+                    <dd>
+                        <div class="wg-img fix">
+                            <div class="wg-img-list">                    	
+                                <ul class="fix">
+                                    <li>
+                                        <img src="/images/lazy.png" id="pre-img"/>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="add-img-file">
+                                <input type="file" id="img" accept="image/*" />
+                            </div>
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="sm-dl fix">
+                    <dt class="fn">联系方式：</dt>
+                    <dd>
+                        <div class="input-con">
+                            <input class="inputbox" type="text" id="txtAccount" placeholder="qq/手机/邮箱"/>
+                        </div>
+                    </dd>
+                </dl>
+                <div class="tc p10 mb20 fix"> <a class="red-btn" id="btnDraws">提交</a> </div>
+            </div>
+        </section>
+    </section>
+</div>
+<script type="text/javascript">
+	//图片上传预览
+	function imagePreview(evt,file,imgEle,callback) {	
+		/*var $parent = $(imgEle).parent().show();	
+		var files = evt.target.files;
+			for(var i = 0, f; f = files[i]; i++){
+				if(!f.type.match('image.*')) {
+					continue;
+				}
+				var reader = new FileReader();
+				reader.onload = (function(theFile){
+					return function(e){					
+						imgEle.title = theFile.name;
+						imgEle.src = e.target.result;					
+					}
+				})(f);
+				reader.readAsDataURL(f);
+			}  
+			if($.isFunction(callback)){
+				callback();
+			}*/
+	
+		var $parent = $(imgEle).parent();
+		if(file.files &&file.files[0]){
+			$parent.show();
+			imgEle.src = window.URL.createObjectURL(file.files[0]);
+			if($.isFunction(callback)){
+				callback();
+			}
+		}else{
+			//IE下，使用滤镜
+			file.select();
+			var imgSrc = document.selection.createRange().text;
+			var localImagId = $parent[0];		
+			//图片异常的捕捉，防止用户修改后缀来伪造图片
+			try{
+				localImagId.style.filter="progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+				localImagId.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = imgSrc;
+			}catch(e){
+				alert("您上传的图片格式不正确，请重新选择!");
+				return false;
+			}
+			$parent.hide();
+			document.selection.empty();
+		}
+		return true;
+	}
+	$(function(){
+		//图片 预览
+		$("#img").on("change",function(evt){
+			imagePreview(evt,this,$("#pre-img")[0]);
+		})
+	})
+</script>
+<hi:common_vfooter runat="server" />

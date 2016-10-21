@@ -1,0 +1,124 @@
+﻿<hi:common_vheader runat="server" />
+<div class="page gray-page">
+    <section>
+        <div class="mt10">
+            <div class="odp-wrap">
+                <div class="odp-head">退换申请单</div>
+                <div class="odp-con">
+                    <dl class="odp-dl fix">
+                        <dt>订单编号：</dt>
+                        <dd>
+                            <asp:Literal runat="server" id="txtOrderId" />
+                        </dd>
+                    </dl>
+                    <dl class="odp-dl fix">
+                        <dt>处理状态：</dt>
+                        <dd>
+                            <asp:Literal runat="server" id="handleStatus" />
+                        </dd>
+                    </dl>
+                    <dl class="odp-dl fix">
+                        <dt>申请时间：</dt>
+                        <dd>
+                            <hi:FormatedTimeLabel runat="server" id="litAddDate" />
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="odp-wrap">
+                <div class="odp-head"><span class="total-p">¥
+                    <Hi:FormatedMoneyLabel runat="server" id="litTotalPrice" />
+                    </span>
+                    <div class="ellipsis">商品清单<span class="small">（点击商品可评价）</span></div>
+                </div>
+                <div class="odp-con">
+                    <div class="ct-list">
+                        <ul class="fix">
+                            <hi:vshoptemplatedrepeater id="rptOrderProducts" templatefile="/Tags/skin-Common_MemberReturnsProducts.ascx"
+                                                       runat="server" />
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="odp-wrap">
+                <div class="odp-head">详细信息</div>
+                <div class="odp-con">
+                    <dl class="odp-dl fix">
+                        <dt>货物总重量：</dt>
+                        <dd>
+                            <asp:Literal runat="server" id="litWeight" />
+                        </dd>
+                    </dl>
+                    <dl class="odp-dl fix">
+                        <dt>物流公司：</dt>
+                        <dd>
+                            <asp:Literal runat="server" id="litLogisticsCompany" />
+                        </dd>
+                    </dl>
+                    <dl class="odp-dl fix">
+                        <dt>物流单号：</dt>
+                        <dd>
+                            <asp:Literal runat="server" id="litLogisticsId" />
+                        </dd>
+                    </dl>
+
+                    <dl class="odp-dl fix">
+                        <dt>退货留言：</dt>
+                        <dd>
+                            <asp:Literal runat="server" id="litRemark" />
+                        </dd>
+                    </dl>
+                    <dl class="odp-dl fix">
+                        <dt>退款途径：</dt>
+                        <dd>
+                            <asp:Literal runat="server" id="litType" />
+                        </dd>
+                    </dl>
+                    <dl class="odp-dl fix">
+                        <dt>订单总金额：</dt>
+                        <dd> ¥
+                            <Hi:FormatedMoneyLabel runat="server" id="litOrderTotal" />
+                        </dd>
+                    </dl>
+                    <dl class="odp-dl fix">
+                        <dt>退款金额：</dt>
+                        <dd> ¥
+                            <Hi:FormatedMoneyLabel runat="server" id="litRefundTotal" />
+                        </dd>
+                    </dl>
+                    <dl class="odp-dl fix">
+                        <dt>管理员备注：</dt>
+                        <dd>
+                            <asp:Literal runat="server" id="litAdminRemark" />
+                        </dd>
+                    </dl>
+                    <dl class="odp-dl fix">
+                        <dt>收取清关费：</dt>
+                        <dd>
+                            <asp:Literal runat="server" id="litCustomsClearanceFee" />
+                        </dd>
+                    </dl>
+                    <dl class="odp-dl fix">
+                        <dt>收取快递费：</dt>
+                        <dd>
+                            <asp:Literal runat="server" id="litExpressFee" />
+                        </dd>
+                    </dl>
+                    <dl class="odp-dl fix">
+                        <dt>费用归属：</dt>
+                        <dd>
+                            <asp:Literal runat="server" id="litFeeAffiliation" />
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+<hi:common_vfooter runat="server" />

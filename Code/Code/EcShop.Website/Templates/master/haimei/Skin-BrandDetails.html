@@ -1,0 +1,226 @@
+﻿<%<hi:common_header runat="server" />%>
+<script src="/Utility/productlist.helper.js?v=20150825" type="text/javascript"></script>
+
+<div id="main1" class="main cate-main">
+    <div class="nav_info"><%<asp:Literal ID="litBrandRemark" runat="server" />%></div>
+    <div id="categorymain" class="category">
+        <div class="brand_othermore">
+            <div>当前位置：<span><a href="url:home">首页</a></span>>><span><a href="url:brand">品牌专题</a></span>>><span><%<asp:Literal ID="litBrandName" runat="server" />%></span></div>
+        </div>
+        <div class="sub_property">
+            <h2>其它品牌</h2>
+            <hi:common_subjectbrand runat="server" commentid="18" />
+        </div>
+        <p class="sub_shrink" style="display:none"><span id="sp_showbrand">展开搜索</span></p>
+        <script language="javascript">
+            $(function () {
+                if ($(".sub_property li").size() <= 21) {
+                    $(".sub_shrink").hide();
+                } else {
+                    $(".sub_property li:gt(20)").hide();
+                }
+
+                $("#sp_showbrand").toggle(function () {
+                    $(".sub_property li:gt(20)").show();
+                    $(this).find("span").text('收缩');
+                }, function () {
+                    $(".sub_property li:gt(20)").hide();
+                    $(this).find("span").text('展开搜索');
+                });
+            });
+        </script>
+
+        <div class="main-con fix">
+            <div class="main-conl hide-show">
+                <div class="sub-cate">
+                    <div class="tde-wrap fix" style="margin-top:20px;">
+                        <div class="tde-left">
+                            <div class="pro-wrap second-page">
+                                <h4>销量排行</h4>
+                                <div class="pro-list">
+                                    <ul>
+                                        <%
+                                        <hi:common_goodslist_hotsale templatefile="/ascx/tags/Common_GoodsList/Skin-Common_GoodsList_HotSale.ascx" maxnum="10" runat="server" />%>
+                                    </ul>
+                                </div>
+                            </div>
+                            <asp:Literal runat="server" id="litCategoryNotes3" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-conr">
+                    <div class="category">
+                        <form runat="server">
+                            <div class="category_search">
+                                <!--<%<hi:common_cutdownsearch runat="server" />%>-->
+                                <div class="category_sequence">
+                                    <!--<em>排序方式：</em>
+                                       <ul>
+                                          <li class="c_sel"><span><%<Hi:Common_Search_SortPrice ID="Common_Search_SortPrice1" DefaultImageUrl="/images/fixed/SortByPriceUpStop.gif" AscImageUrl="/images/fixed/SortByPriceUp.gif" DescImageUrl="/images/fixed/SortByPriceDown.gif" runat="server"  Alt="按价格排序" />%></span></li>
+                                          <li><span><%<Hi:Common_Search_SortSaleCounts ID="Common_Search_SortSaleCounts1" DefaultImageUrl="/images/fixed/xiao1.gif" AscImageUrl="/images/fixed/xiao2.gif" DescImageUrl="/images/fixed/xiao3.gif" runat="server" Alt="按销量排序"  />%></span></li>
+                                          <li><span><%<Hi:Common_Search_SortPopularity ID="Common_Search_SortPopularity1" DefaultImageUrl="/images/fixed/ren1.gif" AscImageUrl="/images/fixed/ren2.gif" DescImageUrl="/images/fixed/ren3.gif" runat="server" Alt="按人气排序"  />%></span></li>
+                                          <li><span><%<Hi:Common_Search_SortTime ID="Common_Search_SortTime1" DefaultImageUrl="/images/fixed/SortByTimeUpStop.gif" AscImageUrl="/images/fixed/SortByTimeUp.gif" DescImageUrl="/images/fixed/SortByTimeDown.gif" runat="server" Alt="按时间排序"  />%></span></li>
+                                       </ul>-->
+                                    <%<hi:common_searchlist runat="server" />%>
+                                    <!---过滤条件价格、销量、最新上架
+                                    <div class="pager-wrap"><span class="fb">共<span class="total-count">51</span>件商品</span><span class="pager"><span class="cur-page">1</span>/<span class="total-page">3页</span><a class="prev-page disabled">上一页</a><a class="next-page">下一页</a></span></div>-->
+                                    <div class="pager-wrap"><%<asp:Literal ID="litSearchResultPage" runat="server" />%></div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="category_pro_list cp-list">
+                            <ul>
+                                <%
+                                <Hi:ThemedTemplatedRepeater ID="rptProducts" TemplateFile="/ascx/Tags/Common_GoodsList/Skin-Common_GoodsList_SubClass.ascx" runat="server" />%>
+
+                            </ul>
+                        </div>
+                        <script>
+                        $(function () {
+
+                            var $input = $(".num-wrap input");
+                            if ($input != null && $input != undefined && $input != "") {
+                                $input.each(function (i, elem) {
+                                    var theme = "disabled";
+                                    var elem = $(elem);
+                                    if (elem.hasClass(theme)) {
+                                        elem.attr("disabled", "disabled");
+                                    } else {
+                                        elem.removeAttr("disabled");
+                                    }
+                                });
+                            }
+
+                            $(".category_pro_list li").hover(function () {
+                                if ($(".category_pro_list").index(this) != 0) {
+                                    $(".category_pro_list li:first").removeClass("listhover");
+                                }
+                                $(this).addClass("listhover");
+                            }, function () {
+                                $(this).removeClass("listhover");
+                            });
+                            $(".category_pro_list li:first").addClass("listhover");
+
+                            /*
+                            //点击 分类菜单 标题
+                            $(".sub-cate h3 a").bind("click",function(){
+                                $(this).parents(".sub-cate").toggleClass("expand");
+                            })
+                            //点击 分类菜单 展开 图标
+                            $(".sub-cate a.arrow").bind("click",function(){
+                                $(this).closest("li").toggleClass("show");
+                            })*/
+                            //点击 刷选 更多
+                            $("a.more-attr").bind("click", function () {
+                                $(this).closest(".attribute_val").toggleClass("show");
+                            })
+                            //购物车 输入框 失去焦点
+                            $(".num-wrap input").blur(function () {
+                                var theme = "disabled";
+                                if ($(this).hasClass(theme)) {
+                                    $(this).attr("disabled", "disabled");
+                                    return;
+                                }
+                                var $ele = $(this);
+                                var val = $ele.val();    
+                                var oldV = $ele.attr("old-v");
+                                var $btnReduce = $(this).parents(".num-wrap").find(".btn-reduce");
+                                if (isNaN(val)) {
+                                    $ele.val(oldV);
+                                    if (oldV <= 1) {
+                                        $btnReduce.addClass("disabled");
+                                    } else {
+                                        $btnReduce.removeClass("disabled");
+                                    }
+                                    return;
+                                }
+                                if (val <= 1) {
+                                    val = 1;
+                                    $ele.val(val);
+                                    $btnReduce.addClass("disabled");
+                                } else {
+                                    $btnReduce.removeClass("disabled");
+                                }
+                                $ele.attr("old-v", val);
+                            })
+                            //购物车 数量 添加
+                            $(".num-wrap .btn-add").unbind("click").bind("click", function () {
+                                var theme = "disabled";
+                                if ($(this).hasClass(theme)) {
+                                    return;
+                                }
+                                var $ele = $(this).parents(".num-wrap").find("input");
+                                var val = $ele.val();
+                                var sku_id = $(this).parent().parent().siblings('a').attr('fastbuy_skuid');
+
+                                if (isNaN(val) || val == "") {
+                                    val = $ele.attr("old-v");
+                                    if (!val) {
+                                        val = 1;
+                                    }
+                                }
+                                val = parseInt(val);
+                                val += 1;
+                                if (val > 1) {
+                                    $(this).parents(".num-wrap").find(".btn-reduce").removeClass("disabled");
+                                }
+                                $ele.val(val).attr("old-v", val);
+                            })
+                            //购物车 数量 添加
+                            $(".num-wrap .btn-reduce").unbind("click").bind("click", function () {
+                                var theme = "disabled";
+                                if ($(this).hasClass(theme)) {
+                                    return;
+                                }
+                                var $ele = $(this).parents(".num-wrap").find("input");
+                                var val = $ele.val();
+                                if (isNaN(val) || val == "") {
+                                    val = $ele.attr("old-v");
+                                    if (!val) {
+                                        val = 1;
+                                    }
+                                }
+                                val = parseInt(val);
+                                val -= 1;
+                                if (val <= 1) {
+                                    val = 1;
+                                    $(this).addClass(theme);
+                                }
+                                $ele.val(val).attr("old-v", val);
+                            })
+                        });
+                        </script>
+                        <div class="page">
+                            <%<UI:Pager runat="server" ShowTotalPages="true" DefaultPageSize="20" ID="pager" />%>
+                        </div>
+
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+<div class="bars success-tip" id="success-tip">+1</div>
+<script>
+    $(function(){
+        var offTop = $('.category_search').offset().top;
+        $(window).scroll(function(){
+            var scrTop = $(window).scrollTop();
+            if(scrTop>=offTop+300)
+            {
+                $('.category_search').addClass('fixed-bar');
+                $('.jf_ad4').addClass('fixed-cart');
+                $('.jf_ad4').appendTo('.category_search');
+                //$('.category_search').height(0).animate({'height':'40px'},200);
+            }
+            else
+            {
+                $('.category_search').removeClass('fixed-bar');
+                $('.jf_ad4').removeClass('fixed-cart');
+                $('.jf_ad4').appendTo('.header1_p1');
+            }
+        })
+    })
+</script>
+<%<hi:common_footer runat="server" />%>

@@ -1,0 +1,115 @@
+﻿<%<hi:common_header runat="server" skinname="/ascx/tags/Skin-Common_Header3.ascx" />%>
+<link rel="stylesheet" href="/style/banner-enter.css" type="text/css">
+<style>
+body{
+    background-color: #e63259;
+}
+</style>
+<!--<div id="main1" class="main">
+<div class="tqj"></div>
+<div class="container articleshelp">
+  <div class="cssleft">
+  <h6><img src="/images/process/bzzx.gif" width="182" height="45" /></h6>
+  <div class="csslist">
+
+  </div>
+  </div>
+  <div class="cssright">
+      <div class="cssright_h1"><a href="url:home">首页</a> > 帮助中心 </div>
+    <ul class="cssborder">
+        <%<Hi:ThemedTemplatedRepeater ID="rptHelps" runat="server" TemplateFile="/ascx/tags/Common_Comment/Skin-Common_HelpCenter_Help.ascx"  />%>
+    </ul>
+    <div class="csspage">            <div class="page">
+                           <%<UI:Pager runat="server" ShowTotalPages="true" ID="pager" />%>
+                </div></div>
+  </div>
+</div>
+</div>-->
+<div class="banner-bg-1920">
+  <a href="">
+    <img src="/images/bannerone.jpg">
+  </a>
+</div>
+<div class="cash-bonus">
+    <div class="cash-bonus-img">
+        <img src="/images/cash_bonus.png" usemap="#planetmap">
+        <map name="planetmap" id="planetmap">
+          <area shape="rect" coords="270,0,543,83" href ="" />
+          <area shape="rect" coords="544,0,864,83" href ="" />
+          <area shape="rect" coords="865,0,1199,83" href ="" />
+        </map>
+    </div>
+    <a href="javascript:;" class="get-bonus">
+        <img src="/images/get_bonus.png">
+    </a>
+</div>
+<div class="wrap" style="margin-bottom: 0;">
+    <div class="side-bar">
+        <img src="/images/side_bar.png">
+        <ul class="side-bar-content">
+            <li><a href="">热卖推荐</a></li>
+            <li><a href="">领取优惠券</a></li>
+            <li><a href="">母婴用品专场</a></li>
+            <li><a href="">美食保健专场</a></li>
+            <li><a href="">洗护日用专场</a></li>
+            <li><a href="">家居清洁专场</a></li>
+            <li><a href="">活动说明</a></li>
+        </ul>
+    </div>
+    <div class="hot-sale-title">
+        <img src="/images/hot_sale.png">
+    </div>
+    <img src="/images/demo_prolist.jpg">
+    <img src="/images/demo_prolist.jpg">
+    <img src="/images/demo_prolist.jpg">
+    <img src="/images/demo_prolist.jpg">
+    <ul class="imglist">
+        <li>
+            <a href=""><img src="/images/imglist_03.jpg"></a>
+        </li>
+        <li>
+            <a href=""><img src="/images/imglist_05.jpg"></a>
+        </li>
+        <li>
+            <a href=""><img src="/images/imglist_10.jpg"></a>
+        </li>
+        <li>
+            <a href=""><img src="/images/imglist_12.jpg"></a>
+        </li>
+    </ul>
+    
+    <div id="active-description" class="active-description">
+        <h2>活动说明：</h2>
+        <p>1. 活动时间：<span class="stress">2016.1.1 - 2016.1.5</span></p>
+        <p>2. 全场购物，商品总金额<span class="stress">满99元免邮费</span>。</p>
+        <p>3. 活动期间，新用户注册立<span class="stress">送60元现金大礼包</span>（每个礼包包括：5元现金券2张，无门槛使用；10元现金券2张，
+   单笔订单满99元可用，订单金额不含运费；30元现金券1张，单笔订单满289元可用，订单金额不含运费），
+   优惠券有效期为：2016.1.1-2016.1.30，请在有效期内使用，每笔订单只能使用一张优惠券，每张优惠券只能
+   使用一次。</p>
+        <p>
+            <span>4. (1) <span class="stress">1.1-1.5日每日3款不同商品100份限量抢购。每款商品售价均为市场价的1折，先购先得，购完为止。</span></span>
+            <span class="indent">(2) 每天10点、15点、21点准点开抢！</span>
+            <span class="indent">(3) 每个ID每款商品限购1件。</span>
+            <span class="indent">(4) 秒杀商品不支持退换货。</span>
+            <span class="indent">(5) 秒杀商品不能使用优惠券、现金券。</span>
+        </p>
+        <p>5. 此活动最终解释权归海美生活网所有</p>
+        <p>6. 如有任何问题，可咨询客服电话：400-663-9898</p>
+    </div>
+</div>
+<div class="guarantee">
+  <div class="guart">
+    <img src="/images/guarantee.jpg">
+  </div>
+</div>
+<script>
+    $(function(){
+        $('.active-des').click(function(){
+            var toHere = $(this).attr('href');
+            var scrTop = $(toHere).offset().top;
+            $('html,body').animate({scrollTop:scrTop},200);
+        });
+    })
+</script>
+<%<hi:common_footer runat="server" />%>
+

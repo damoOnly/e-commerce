@@ -1,0 +1,338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="js/dist/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="resource/default/css/core/basic.css"/>
+<link rel="stylesheet" type="text/css" href="resource/default/css/core/base.css"/>
+<link rel="stylesheet" type="text/css" href="resource/default/css/lib/swiper.min.css"/>
+<link rel="stylesheet" type="text/css" href="resource/default/css/ui/app.css"/>
+<script src="js/lib/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/lib/swipe.js"></script>
+</head>
+<body>
+<div class="page layout">
+    <header class="layout"> <a class="list-btn" href="#"></a>
+        <form action="">
+            <div class="search-box">
+                <div class="btn-bar"> <a class="msg-btn">消息</a> </div>
+                <div class="search-input"> <a class="qcs" id="qrcode-btn">扫一扫</a> <a class="search-btn" id="search-btn"></a>
+                    <div class="input-con">
+                        <input type="search" name="keyWord">
+                        <input type="hidden" name="categoryId">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </header>
+    <section>
+        <div class="fix">
+            <div class="banner">
+                <div class="swiper-container" id="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" data-src='url'><img src="resource/default/image/banner/b1.png" width="100%"/></div>
+                        <div class="swiper-slide" data-src='url'><img src="resource/default/image/banner/b1.png" width="100%"/></div>
+                        <div class="swiper-slide" data-src='url'><img src="resource/default/image/banner/b1.png" width="100%"/></div>
+                    </div>
+                </div>
+                <div class="slider-bar"></div>
+            </div>
+            <script type="text/javascript">
+              var mySwiper = new Swiper('#swiper-container',{
+                  autoplay:5000,
+                  speed:200,
+                  width:window.innerWidth,
+                  autoplayDisableOnInteraction:false,
+                  visibilityFullFit : true,
+                  loop:true,
+                  onClick: function(swiper){
+                      var url = $(swiper.clickedSlide).attr("data-src");
+                      if(url){
+                         window.location = url;
+                      }
+                  },
+                  pagination : '.slider-bar',
+                  paginationClickable :true
+              });
+            </script> 
+        </div>
+        <div class="nav-wrap">
+            <ul class="clearfix">
+                <li> <a href="#"> <img src="resource/default/image/nav/n1.png"/><span>母婴专区</span> </a> </li>
+                <li> <a href="#"> <img src="resource/default/image/nav/n2.png"/><span>美妆洗护</span> </a> </li>
+                <li> <a href="#"> <img src="resource/default/image/nav/n3.png"/><span>纽澳直邮</span> </a> </li>
+                <li> <a href="#"> <img src="resource/default/image/nav/n4.png"/><span>宜和购物</span> </a> </li>
+                <li> <a href="#"> <img src="resource/default/image/nav/n5.png"/><span>进口食品</span> </a> </li>
+                <li> <a href="#"> <img src="resource/default/image/nav/n6.png"/><span>营养保健</span> </a> </li>
+                <li> <a href="#"> <img src="resource/default/image/nav/n7.png"/><span>世界名酒</span> </a> </li>
+                <li> <a href="#"> <img src="resource/default/image/nav/n8.png"/><span>家居日用</span> </a> </li>
+            </ul>
+        </div>
+        <div class="box">
+            <div class="clumn">
+                <h3>热卖商品</h3>
+                <div class="clumn-con">
+                    <table class="clumn-table mb10" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td><a href="#" class="mr5"><img src="resource/default/image/theme/t1.png"/></a></td>
+                            <td><a href="#" class="ml5"><img src="resource/default/image/theme/t2.png"/></a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="clumn">
+                <div class="clumn-con">
+                    <table class="clumn-table" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td rowspan="2"><a href="#" class="mr5"><img src="resource/default/image/theme/t3.png"/></a></td>
+                            <td><a href="#" class="ml5"><img src="resource/default/image/theme/t4.png"/></a></td>
+                        </tr>
+                        <tr>
+                            <td class="vb"><a href="#" class="ml5"><img src="resource/default/image/theme/t5.png"/></a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="clumn">
+                <h3>主题馆</h3>
+                <div class="clumn-con"> 
+                    <!--<ul class="theme clearfix">
+                        <li> <a class="mr5" href="#"><img src="resource/default/image/t/t1.png"/></a> </li>
+                        <li> <a class="ml5" href="#"><img src="resource/default/image/t/t1.png"/></a> </li>
+                        <li> <a class="mr5" href="#"><img src="resource/default/image/t/t1.png"/></a> </li>
+                        <li> <a class="ml5" href="#"><img src="resource/default/image/t/t1.png"/></a> </li>
+                        <li> <a class="mr5" href="#"><img src="resource/default/image/t/t1.png"/></a> </li>
+                        <li> <a class="ml5" href="#"><img src="resource/default/image/t/t1.png"/></a> </li>
+                    </ul>-->
+                    <table class="clumn-table" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td><a class="mr5 mb10" href="#"><img src="resource/default/image/t/t1.png"/></a></td>
+                            <td><a class="ml5 mb10" href="#"><img src="resource/default/image/t/t1.png"/></a></td>
+                        </tr>
+                        <tr>
+                            <td><a class="mr5 mb10" href="#"><img src="resource/default/image/t/t1.png"/></a></td>
+                            <td><a class="ml5 mb10" href="#"><img src="resource/default/image/t/t1.png"/></a></td>
+                        </tr>
+                        <tr>
+                            <td><a class="mr5 mb10" href="#"><img src="resource/default/image/t/t1.png"/></a></td>
+                            <td><a class="ml5 mb10" href="#"><img src="resource/default/image/t/t1.png"/></a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="clumn">
+                <h3>推荐商品</h3>
+                <div class="clumn-con">
+                    <table class="clumn-table" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td class="w100" colspan="4"><a href="#" class="mb10"><img src="resource/default/image/temp/h1.png"/></a></td>
+                        </tr>
+                        <tr>
+                            <td class="w25"><a href="#"><img src="resource/default/image/temp/h2.png"/></a></td>
+                            <td class="w25"><a href="#"><img src="resource/default/image/temp/h3.png"/></a></td>
+                            <td class="w25"><a href="#"><img src="resource/default/image/temp/h4.png"/></a></td>
+                            <td class="w25"><a href="#"><img src="resource/default/image/temp/h5.png"/></a></td>
+                        </tr>
+                    </table>
+                    <!--<ul class="theme theme-p4 clearfix">
+                        <li class="wp100"> <a href="#" class="ml0"><img src="resource/default/image/temp/h1.png"/></a> </li>
+                        <li> <a href="#" class="ml0"><img src="resource/default/image/temp/h2.png"/></a> </li>
+                        <li> <a href="#"><img src="resource/default/image/temp/h3.png"/></a> </li>
+                        <li> <a href="#"><img src="resource/default/image/temp/h4.png"/></a> </li>
+                        <li> <a href="#"><img src="resource/default/image/temp/h5.png"/></a> </li>
+                    </ul>--> 
+                </div>
+            </div>
+            <div class="clumn">
+                <h3>猜你喜欢</h3>
+                <div class="clumn-con">
+                    <table class="clumn-table" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td rowspan="2"><a href="#" class="mr5"><img src="resource/default/image/theme/t3.png"/></a></td>
+                            <td><a href="#" class="ml5"><img src="resource/default/image/theme/t4.png"/></a></td>
+                        </tr>
+                        <tr>
+                            <td class="vb"><a href="#" class="ml5"><img src="resource/default/image/theme/t5.png"/></a></td>
+                        </tr>
+                    </table>
+                    <ul class="theme clearfix mt10">
+                        <li>
+                            <div class="good-wrap mr5"> <a href="#">
+                                <div class="good-img"> <img src="resource/default/image/temp/g1.png"/> </div>
+                                <div class="good-detail">
+                                    <p class="good-title">日本妃明妮 抹茶精华华美容皂30g</p>
+                                    <div class="good-info">
+                                        <p class="good-price">￥<strong>28.80</strong></p>
+                                        <p class="rate">完税<span></span></p>
+                                    </div>
+                                </div>
+                                </a> <a class="add-cart" href="#"></a> </div>
+                        </li>
+                        <li>
+                            <div class="good-wrap ml5"> <a href="#">
+                                <div class="good-img"> <img src="resource/default/image/temp/g1.png"/> </div>
+                                <div class="good-detail">
+                                    <p class="good-title">日本妃明妮 抹茶精华华美容皂30g</p>
+                                    <div class="good-info">
+                                        <p class="good-price">￥<strong>28.80</strong></p>
+                                        <p class="rate">完税<span></span></p>
+                                    </div>
+                                </div>
+                                </a> <a class="add-cart" href="#"></a> </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clumn">
+                <h3>一大两小</h3>
+                <div class="clumn-con">
+                    <ul class="theme clearfix mt10">
+                        <li class="w100">
+                            <div class="good-wrap"> <a href="#">
+                                <div class="good-img"> <img src="resource/default/image/temp/g1.png"/> </div>
+                                <div class="good-detail">
+                                    <p class="good-title">日本妃明妮 抹茶精华华美容皂30g</p>
+                                    <div class="good-info">
+                                        <p class="good-price">￥<strong>28.80</strong></p>
+                                        <p class="rate">完税<span></span></p>
+                                    </div>
+                                </div>
+                                </a> <a class="add-cart" href="#"></a> </div>
+                        </li>
+                        <li>
+                            <div class="good-wrap mr5"> <a href="#">
+                                <div class="good-img"> <img src="resource/default/image/temp/g1.png"/> </div>
+                                <div class="good-detail">
+                                    <p class="good-title">日本妃明妮 抹茶精华华美容皂30g</p>
+                                    <div class="good-info">
+                                        <p class="good-price">￥<strong>28.80</strong></p>
+                                        <p class="rate">完税<span></span></p>
+                                    </div>
+                                </div>
+                                </a> <a class="add-cart" href="#"></a> </div>
+                        </li>
+                        <li>
+                            <div class="good-wrap ml5"> <a href="#">
+                                <div class="good-img"> <img src="resource/default/image/temp/g1.png"/> </div>
+                                <div class="good-detail">
+                                    <p class="good-title">日本妃明妮 抹茶精华华美容皂30g</p>
+                                    <div class="good-info">
+                                        <p class="good-price">￥<strong>28.80</strong></p>
+                                        <p class="rate">完税<span></span></p>
+                                    </div>
+                                </div>
+                                </a> <a class="add-cart" href="#"></a> </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clumn">
+                <h3>大图</h3>
+                <div class="clumn-con">
+                    <ul class="theme clearfix mt10">
+                        <li class="w100">
+                            <div class="good-wrap"> <a href="#">
+                                <div class="good-img"> <img src="resource/default/image/temp/g1.png"/> </div>
+                                <div class="good-detail">
+                                    <p class="good-title">日本妃明妮 抹茶精华华美容皂30g</p>
+                                    <div class="good-info">
+                                        <p class="good-price">￥<strong>28.80</strong></p>
+                                        <p class="rate">完税<span></span></p>
+                                    </div>
+                                </div>
+                                </a> <a class="add-cart" href="#"></a> </div>
+                        </li>
+                        <li class="w100">
+                            <div class="good-wrap"> <a href="#">
+                                <div class="good-img"> <img src="resource/default/image/temp/g1.png"/> </div>
+                                <div class="good-detail">
+                                    <p class="good-title">日本妃明妮 抹茶精华华美容皂30g</p>
+                                    <div class="good-info">
+                                        <p class="good-price">￥<strong>28.80</strong></p>
+                                        <p class="rate">完税<span></span></p>
+                                    </div>
+                                </div>
+                                </a> <a class="add-cart" href="#"></a> </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clumn">
+                <h3>详细列表</h3>
+                <div class="clumn-con">
+                    <ul class="theme theme2 clearfix mt10">
+                        <li>
+                            <div class="good-wrap"> <a href="#">
+                                <div class="good-img"> <img src="resource/default/image/temp/g1.png"/> </div>
+                                <div class="good-detail">
+                                    <p class="good-title">日本妃明妮 抹茶精华华美容皂30g</p>
+                                    <div class="good-info">
+                                        <p class="good-price">￥<strong>28.80</strong></p>
+                                        <p class="rate">完税<span></span></p>
+                                    </div>
+                                </div>
+                                </a> <a class="add-cart" href="#"></a> </div>
+                        </li>
+                        <li>
+                            <div class="good-wrap"> <a href="#">
+                                <div class="good-img"> <img src="resource/default/image/temp/g1.png"/> </div>
+                                <div class="good-detail">
+                                    <p class="good-title">日本妃明妮 抹茶精华华美容皂30g</p>
+                                    <div class="good-info">
+                                        <p class="good-price">￥<strong>28.80</strong></p>
+                                        <p class="rate">完税<span></span></p>
+                                    </div>
+                                </div>
+                                </a> <a class="add-cart" href="#"></a> </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clumn">
+                <h3>精简详细列表</h3>
+                <div class="clumn-con">
+                    <ul class="theme theme2 min-theme clearfix mt10">
+                        <li>
+                            <div class="good-wrap"> <a href="#">
+                                <div class="good-img"> <img src="resource/default/image/temp/g1.png"/> </div>
+                                <div class="good-detail">
+                                    <p class="good-title">日本妃明妮 抹茶精华华美容皂30g</p>
+                                    <div class="good-info">
+                                        <p class="good-price">￥<strong>28.80</strong></p>
+                                        <p class="rate">完税<span></span></p>
+                                    </div>
+                                </div>
+                                </a> <a class="add-cart" href="#"></a> </div>
+                        </li>
+                        <li>
+                            <div class="good-wrap"> <a href="#">
+                                <div class="good-img"> <img src="resource/default/image/temp/g1.png"/> </div>
+                                <div class="good-detail">
+                                    <p class="good-title">日本妃明妮 抹茶精华华美容皂30g</p>
+                                    <div class="good-info">
+                                        <p class="good-price">￥<strong>28.80</strong></p>
+                                        <p class="rate">完税<span></span></p>
+                                    </div>
+                                </div>
+                                </a> <a class="add-cart" href="#"></a> </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer id="footer" class="cfooter"> <a href="default.aspx" class="selected"> <span> <i class="glyphicon glyphicon-home"></i>
+        <label>首页</label>
+        </span> </a> <a href="ProductSearch.aspx"> <span> <i class="glyphicon glyphicon-th-list"></i>
+        <label>分类</label>
+        </span> </a> <a href="ShoppingCart.aspx"> <span> <i class="glyphicon glyphicon-shopping-cart"><em class="cf-count" id="cart-num"></em></i>
+        <label>购物车</label>
+        </span> </a> <a href="MemberCenter.aspx"> <span> <i class="glyphicon glyphicon-user"><em class="cf-count" id="wait-pay-num"></em></i>
+        <label>我的海美生活</label>
+        </span> </a>
+        <div class="scrolltop glyphicon glyphicon-chevron-up" id="scrolltop" style="display: block;"></div>
+    </footer>
+</div>
+</body>
+</html>

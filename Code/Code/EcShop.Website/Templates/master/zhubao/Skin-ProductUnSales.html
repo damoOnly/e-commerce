@@ -1,0 +1,43 @@
+﻿<%<Hi:Common_Header runat="server"  />%>
+<form runat="server">
+    <div class="main">
+        <div class="nav_info">
+            &nbsp;<%<Hi:Common_Location runat="server" />%>&nbsp;</div>
+        <div class="category">
+           
+           
+         
+                <div class="category_search" style="margin-top:0px;">
+                    <%<Hi:Common_CutDownSearch runat="server" />%>
+                    <div class="category_sequence">
+                        <p><%<asp:Literal ID="litSearchResultPage" runat="server"  />%></p>
+                    </div>
+                </div>
+                
+                <div class="category_pro_list">
+                    <ul>
+                        <%<Hi:ThemedTemplatedRepeater ID="rptProducts"  runat="server" TemplateFile="/ascx/tags/Common_GoodsList/Skin-Common_GoodListUnSales.ascx" />%>
+                    </ul>
+                </div>
+                <script>
+                    $(function () {
+                        $(".category_pro_list li").hover(function () {
+                            if ($(".category_pro_list").index(this) != 0) {
+                                $(".category_pro_list li:first").removeClass("listhover");
+                            }
+                            $(this).addClass("listhover");
+                        }, function () {
+                            $(this).removeClass("listhover");
+                        });
+                        $(".category_pro_list li:first").addClass("listhover");
+                    });
+                </script>
+                <div class="page">
+                    <%<UI:Pager runat="server" ShowTotalPages="true" ID="pager" DefaultPageSize="21" />%>
+                </div>
+            </div>
+        </div>
+  
+</form>
+ <%<Hi:Common_Footer runat="server"   />%>
+

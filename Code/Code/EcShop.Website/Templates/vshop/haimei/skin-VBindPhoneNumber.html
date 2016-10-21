@@ -1,0 +1,75 @@
+﻿<hi:common_vheader runat="server" />
+<script type="text/javascript" src="/templates/vshop/haimei/js/bussiness/BindPhoneNumber.js?v=20160229"></script>
+<form runat="server" clientidmode="Static" id="aspnetForm">
+    <div class="page">
+        <section>
+            <%<hi:common_token runat="server" skinname="/templates/vshop/haimei/tags/Skin-Common_Token.ascx" />%>
+            <div class="lg-panel" id="divBindPhoneNumber">
+                <p class="pl10" style="color:#ff1010;text-align:center;font-size:18px;"> <label id="ads_atare"><asp:literal runat="server" id="litAD" /></label></p>
+                <div class="lg-logo">
+                    <img src="/templates/vshop/haimei/resource/default/image/lg-logo.png" />
+                </div>
+                
+                <div class="fix sm-con mt10 pl10 pr10">
+                    <dl class="sm-dl fix">
+                        <dt><span class="require">*</span>手机号码：</dt>
+                        <dd>
+                            <div class="input-con bor">
+                                <input name="txtName" type="text" id="txtPhoneNumber" class="inputbox fl" tabindex="1" placeholder="请输入手机号码" style="width:55%">
+                                <input type="button" id="btnGetSMSCode" value="获取验证码" style="width:43%" class="fr" />
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl class="sm-dl fix">
+                        <dt><span class="require">*</span>验证码：</dt>
+                        <dd>
+                            <div class="input-con bor">
+                                <input name="txtName" type="text" id="txtsmscode" class="inputbox" tabindex="1" placeholder="请输入验证码">
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl class="sm-dl fix">
+                        <dt><span class="require">*</span>密码：</dt>
+                        <dd>
+                            <div class="input-con">
+                                <input class="inputbox" type="password" tabindex="2" name="txtPassword" id="txtPassword" placeholder="请输入密码">
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl class="sm-dl fix" id="inputboxwrap" style="display:none">
+                        <dt>邀请码：</dt>
+                        <dd>
+                            <div class="input-con bor">
+                                <input name="txtName" type="text" id="txtinvitecode" class="inputbox" tabindex="1" placeholder="请输入邀请码(选填)">
+                            </div>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="pt20 pl10 pr10 mb20 fix">
+                    <div class="fix">
+                        <a class="red-btn"  tabindex="4" id="btnBindPhoneNumber" name="btnLogin">确定</a>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+</form>
+    <script>
+        //禁用右上角菜单
+        document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+            WeixinJSBridge.call('hideOptionMenu');
+        });
+        $(function () {
+            if ($("#ads_atare").html().trim() != "") {
+                $("#ads_atare").html("新用户注册即送50元现金大礼包，<br/>数量有限，先到先得！")
+            }
+            var nowtime = new Date();
+            if (nowtime > new Date(Date.parse("2016/3/5"))) {
+                $("#inputboxwrap").show();
+            }
+        })
+    </script>
+    <!--<hi:common_vfooter runat="server" />-->
+
+

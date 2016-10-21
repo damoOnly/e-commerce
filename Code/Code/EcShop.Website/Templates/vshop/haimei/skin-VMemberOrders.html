@@ -1,0 +1,129 @@
+﻿<hi:common_vheader runat="server" />
+<div class="page gary-page">
+    <section>
+    	<div class="no-data pl10 pr10" id="no-data">
+            <p>您还没有相关订单</p>
+        </div>
+        <div class="mt10 mb10" id="od-list">            
+            <ul>
+               <hi:vshoptemplatedrepeater id="rptOrders" templatefile="/Tags/skin-Common_MemberCenterOrders.ascx"
+        runat="server" />
+            </ul>
+        </div>
+    </section>
+</div>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+<script type="text/javascript">	
+    function RefundOrder(orderid,SourceId)
+    {
+        var data = {};
+        var msg = "您确定要申请退款吗？";
+        if (SourceId != "")//拆单
+        {
+            msg = "同一付款订单：";
+            $.ajax({
+                url: "/api/VshopProcess.ashx?action=Getlistofchildren&SourceOrderId=" + SourceId,
+                type: 'post', dataType: 'json', timeout: 10000,
+                error: function (e)
+                {
+                    alert_h("网络异常，请确认网络是否连接！");
+                },
+                success: function (data)
+                {
+                    if (data.Success == -1)
+                    {
+                        alert_h("退款异常，请稍后再试！");
+                        return;
+                    }
+                    msg += data.data + "会同步取消，是否确定取消所有订单？";
+                    rqsubmit(msg, orderid, SourceId);
+                }
+
+            });
+        } else
+        {
+            rqsubmit(msg, orderid, SourceId);
+        }
+       
+    }
+    //执行退款
+    function rqsubmit(msg, orderid, SourceId)
+    {
+        myConfirm('询问', msg, '确定', function ()
+        {
+
+            $.ajax({
+                url: "/api/VshopProcess.ashx?action=RqRefundOrder&SourceOrderId=" + SourceId + "&orderid=" + orderid,
+                type: 'post', dataType: 'json', timeout: 10000,
+                error: function (e) {
+                    alert_h("网络异常，请确认网络是否连接！");
+                },
+                success: function (data)
+                {
+                    if (data.success ==="0") {
+                        alert_h('申请退款成功！', function () {
+                            location.reload();
+                        });
+                    }
+                    else {
+                        alert_h("申请退款失败，请重试！");
+                    }
+                }
+
+            });
+
+        });
+
+    }
+
+
+    function CancelOrder(orderId) {  
+        var data = {};
+        data.orderId = orderId;
+        myConfirm('询问', '您确定要取消订单吗？', '确定', function ()
+        {
+            $.post("/api/VshopProcess.ashx?action=CancelOrder", data, function (json) {
+                if (json.success === true)
+                {
+                    alert_h('取消成功！', function ()
+                    {
+                        location.reload();
+                    });
+                }
+                else {
+                    alert_h(json.msg);
+                }
+            });
+        });
+    }
+    function FinishOrder(orderId) {
+        var data = {};
+        data.orderId = orderId;
+        myConfirm('询问', '您确定已经收到货物了吗？', '确定收货', function () {
+            var url = "/api/VshopProcess.ashx?action=FinishOrder&radmon="+Date.now();
+            $.post(url, data, function (json) {
+                if (json.success === true) {
+                    alert_h('确认收货成功！', function () {
+                        location.href = "user/UserOrders.aspx";
+                    });
+                }
+                else {
+                    alert_h(json.msg);
+                }
+            });
+        });   
+    }
+    $(function () {
+         //表示没有订单
+		if (!$("#od-list li").length) {
+			$("#no-data").show();
+		}
+    })
+</script>
+
+<hi:common_vfooter runat="server" />
