@@ -1,0 +1,150 @@
+﻿
+.product-mes{
+    margin: 0px 5px 0px 5px;
+}
+.product-mes table.product-table{
+    width:100%;}
+.product-mes table{
+    border-collapse:collapse;
+    border-spacing:0;
+}
+.product-mes table td{
+    border:#9DBEDC solid 1px;
+    /**
+    height:25px; */
+    line-height:30px;
+    padding:0 3px;
+}
+.product-mes table td.product-title{
+    background:#e6eef6;
+    text-align:right;
+}
+.product-mes table td.product-content{
+    text-align:left;
+    background:#fff;
+}
+/*���б?*/
+.bank-mes{
+    background:#e5eef6;
+    border:#99bbda dotted 1px;
+    margin-left: 53px;
+    padding: 10px 8px;
+    width:300px;
+}
+.bank-mes ul li{
+    height:30px;
+    line-height:30px;
+    float:left;
+}
+.bank-mes ul li label{
+    width:88px;
+    text-align:right;
+    display:inline-block;
+    height:30px;
+}
+.bank-mes ul li input.bank-input{
+    border-color: #ABADB3 #DBDFE6 #E3E9EF #ABADB3;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 12px;
+    height: 14px;
+    line-height: 15px;
+    margin: 0 3px;
+    padding: 3px 0 3px 3px;
+    width:195px;
+}
+
+
+.product-mes table td.my_title{
+    background:#e6eef6;
+    text-align:right;
+    width:50px;
+}
+.product-mes table td.my_content{
+    text-align:left;
+    background:#fff;
+    width:250px;
+}
+
+
+table.formtable{
+    table-layout:fixed;
+    width:100%;
+}
+table.formtable td.titletd{
+    text-align:right;
+    width:60px;
+}
+table.formtable td.texttd {
+    width: 220px;
+}
+
+
+
+#logistic_box{
+	border:2px solid #ECECEC;
+	border-radius: 10px;
+	box-shadow: 3px 3px 1px #888;
+	background: #f5f5f5;
+	width:850px;
+	height: 300px;
+	position: fixed;
+	left: 50%;
+	margin-left: -400px;
+	top: 50%;
+	margin-top: -150px;
+	z-index: 99999;
+	padding:5px;
+	display:none; 
+}
+
+#logistic_box .close{
+	width: 100%;
+	height: 20px;
+	line-height: 20px;
+}
+
+#logistic_box .close span.close_btn{
+	float:right;
+	cursor: pointer;
+}
+
+#logistic_box .close span.title{
+	font-weight: bold;
+	font-size: 14px;
+	color: #1D71EF;
+}
+
+#logistic_box .info{
+	width: 100%;
+	height: 270px;
+	overflow: auto;
+}
+
+#logistic_box .info table{
+	width: 100%;
+	height: auto;
+	border:1px solid #EAEAEA;
+}
+
+#logistic_box .info table th{
+	background: #64AADB;
+	color: white;
+	font-weight: bold;
+}
+
+#logistic_box .info table td{
+	font-size:14px;
+}
+
+#logistic_box .info table tbody{
+	background: white;
+}
+
+#logistic_box .info table td,#logistic_box .info table th{
+	border-left:1px solid #EAEAEA;
+	height: 30px;
+	line-height: 30px;
+	text-align: left;
+	padding-left: 15px;
+}

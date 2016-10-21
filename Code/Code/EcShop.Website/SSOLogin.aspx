@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SSOLogin.aspx.cs" Inherits="EcShop.UI.Web.SSOLogin" %>

@@ -1,0 +1,1 @@
+﻿<%@ WebHandler Language="C#" CodeBehind="ReceivecouponsHandler.ashx.cs" Class="EcShop.UI.Web.Handler.ReceivecouponsHander" %>

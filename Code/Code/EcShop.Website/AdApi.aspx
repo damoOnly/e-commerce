@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdApi.aspx.cs" Inherits="EcShop.UI.Web.Admin.AdApi" %>

@@ -1,0 +1,9 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <wxlogin>
+    <OperTime>2015/5/27 15:30:36</OperTime>
+    <ErrorMsg>跳转到通用登陆接口</ErrorMsg>
+    <OpenId />
+    <PageUrl>http://localhost/vshop/MemberCenter.aspx</PageUrl>
+  </wxlogin>
+</DocumentElement>

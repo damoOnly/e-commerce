@@ -1,0 +1,1 @@
+﻿<%@ WebHandler Language="C#" CodeBehind="WapProcess.ashx.cs" Class="EcShop.UI.Web.API.WapProcess" %>

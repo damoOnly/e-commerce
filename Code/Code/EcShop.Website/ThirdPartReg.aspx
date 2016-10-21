@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ThirdPartReg.aspx.cs" Inherits="EcShop.UI.Web.ThirdPartReg" %>

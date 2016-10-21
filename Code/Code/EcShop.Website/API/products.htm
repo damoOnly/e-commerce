@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+</head>
+<body>
+<h1>商品列表查询</h1>
+<form id="formproductlist" method="post" action="ProductsHandler.ashx?action=productview">
+安全校验码：<input type="text" value="27B52F8316500208FD0965AE23D83A954054C6CA" /><br />
+加密码:<input type="text" id="sign" name="sign" value="47d64e16c696f836ca4c16a03c91ea52" /><br /><!--加密字符串-->
+商品状态<select id="state" name="state">
+<option value="-1">---所有---</option>
+<option value="1">---上架---</option>
+<option value="2">---下架---</option>
+<option value="3">---库存---</option>
+</select><br />
+每页<input type="text" value="20"  id="pagesize" name="pagesize"/>条<br />
+当前第<input type="text" value="1" id="pageindex" name="pageindex" />页<br />
+<input type="submit" id="btnproductview" value="获取商品列表" />
+</form>
+
+<h1>商品详细查询</h1>
+<form id="form1" method="post" action="ProductsHandler.ashx?action=stockview">
+安全校验码：<input type="text" value="27B52F8316500208FD0965AE23D83A954054C6CA" /><br />
+加密码:<input type="text" name="sign" value="23e98ebf53a1e3b043df2642cab12255" /><br />
+商品编号<input type="text" id="productId" name="productId" value="1" /><br />
+<input type="submit" id="Submit1" value="获取商品详细信息" />
+</form>
+
+
+<h1>库存更新</h1>
+<form id="form2" method="post" action="ProductsHandler.ashx?action=quantity">
+安全校验码：<input type="text" value="27B52F8316500208FD0965AE23D83A954054C6CA" /><br />
+加密码:<input type="text" name="sign" value="4845c25788dc029fc4f2bb25c4342648" /><br />
+商品编号<input type="text" name="productId" value="5" /><br />
+规格编号<input type="text" name="sku_id" /><br />
+货号<input type="text" name="outer_id" /><br />
+库存<input type="text" name="quantity" value="91" /><br />
+类型<input type="text" name="type" value="1" />默认为1表示批量修，2为增量修<br />
+<input type="submit" id="Submit2" value="获取商品详细信息" />
+</form>
+
+<h1>商品上下架</h1>
+<form id="form3" method="post" action="ProductsHandler.ashx?action=statue">
+安全校验码：<input type="text" value="27B52F8316500208FD0965AE23D83A954054C6CA" /><br />
+加密码:<input type="text" name="sign" value="23e2d4b23c4a8e2bd1d3103ea62a8aed" /><br />
+商品编号<input type="text" name="productId" value="5" /><br />
+商品状态<select id="Select1" name="state">
+<option value="-1">---所有---</option>
+<option value="1">---上架---</option>
+<option value="2">---下架---</option>
+<option value="3">---库存---</option>
+</select><br />
+<input type="submit" id="Submit3" value="修改商品状态" />
+</form>
+
+
+<h1>淘宝商品详情</h1>
+<form id="form4" method="post" action="TaoBaoProductHandler.ashx">
+商品编号<input type="text" name="productId" value="5" /><br />
+<input name="action" value="ProductDetails" /><br />
+<input type="submit" id="Submit4" value="查询" />
+</form>
+</body>
+</html>

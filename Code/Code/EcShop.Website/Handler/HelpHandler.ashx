@@ -1,0 +1,1 @@
+﻿<%@ WebHandler Language="C#" CodeBehind="HelpHandler.ashx.cs" Class="EcShop.UI.Web.Handler.HelpHandler" %>

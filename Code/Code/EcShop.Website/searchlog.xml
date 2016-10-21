@@ -1,0 +1,6 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <orderxml>
+    <search>SELECT OrderId FROM Ecshop_Orders WHERE 1 = 1  ORDER BY OrderDate Desc------------</search>
+  </orderxml>
+</DocumentElement>

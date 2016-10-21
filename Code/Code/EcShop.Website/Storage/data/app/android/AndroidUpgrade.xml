@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<AppName>tempusmall</AppName>
+	<ApkName>201509012101tempusmall.apk</ApkName>
+	<Version>3.00</Version>
+	<VersionCode>3</VersionCode>
+	<Description>aa</Description>
+	<UpgradeInfo>tempusmall_v1.02.txt</UpgradeInfo>
+	<IsForcibleUpgrade>true</IsForcibleUpgrade>
+</root>

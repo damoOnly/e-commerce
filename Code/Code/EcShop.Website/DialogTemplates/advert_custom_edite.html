@@ -1,0 +1,59 @@
+﻿<style>
+.tableform{width:980px;}
+.tableform td{padding-right:0px;}
+</style>
+<div class="tableform">
+     <table>
+         <tr><td><iframe id="customframe" name="customframe" scrolling="no" frameborder="0" style="display: inline; height: 450px;width:960px"  scrolling="no" frameborder="0" style="display: inline; height: 300px;"></iframe></td></tr>
+     </table>
+</div>
+<script>
+   // var customnencode = null;
+    var encodehtml = null;
+    function loadEditDialogData() {
+        EcShop_Dialog.dialogContent = $(taboverlaycontent).html();
+        EcShop_Dialog.dialogShow();
+        EcShop_Dialog.dialogTitle($(ctrnamediv).html());
+        BindCustomEvent();
+    }
+
+    function BindCustomEvent() {
+        if (EcShop_designer.ElementValues != null) {
+            if (EcShop_designer.ElementValues.Id && EcShop_designer.CurrentContentID!="") {
+                $("#customframe").attr("src", "DialogTemplates/CustomContent.aspx?id=" + EcShop_designer.CurrentContentID + "&type=custom&name=Html&x=" + Math.random());
+            }
+        }
+    }
+
+    function SaveElmentValue() {
+        $("#customframe")[0].contentWindow.KE.sync('content_customDescription');
+        var description = $("#customframe").contents().find("#content_customDescription").val();
+//        if (description== "") {
+//            EcShop_Dialog.dialogTip('error', '请输入自定义内容');
+//            return false;
+//        }
+        var customnencode = $("#customframe")[0].contentWindow.HTMLEncode(description);
+        $.ajax({
+            url: "Handler/DesigAdvert.ashx",
+            async: false,
+            type: "post",
+            data: {
+                ModelId: "editeadvertcustom",
+                Param: "{\"Id\":\"" + EcShop_designer.CurrentContentID +
+                            "\",\"Html\": \"" + customnencode + "\"}"
+            },
+            dataType: "json",
+            success: function (msg) {
+                if (msg.success) {
+                    $("#" + EcShop_designer.CurrentContentID).replaceWith(msg.Result.AdCustom);
+                    EcShop_Dialog.dialogTip("succeed", "自定义内容更新成功");
+                } else {
+                    EcShop_Dialog.dialogTip("error", msg.Result);
+                }
+            },
+            complete: function () {
+                EcShop_designer.BindSingleEvent(EcShop_designer.CurrentContentID, true);
+            }
+        });
+    }
+</script>

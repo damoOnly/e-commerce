@@ -1,0 +1,180 @@
+/* display */
+.dis-none { display: none; }
+.dis-inline { display: inline; }
+.dis-block { display: block; }
+.dis-inline-blo { display: inline-block; *display: inline;*zoom:1;} 
+.dis-cell { display: table-cell;vertical-align: top;}
+.dis-table { display: table; width: 100%; table-layout: fixed; word-wrap: break-word; }
+.dis-box { display:-webkit-box;display:-moz-box;display:-o-box;display:box;}
+/*css3 box-orient*/
+.bor-v{-webkit-box-orient: vertical;-moz-box-orient: vertical;-o-box-orient: vertical;box-orient: vertical;}
+.bor-h{-webkit-box-orient: horizontal;-moz-box-orient: horizontal;-o-box-orient: horizontal;box-orient: horizontal;}
+.vbox-flex{display:-webkit-box;display:-moz-box;display:-o-box;display:box;-webkit-box-orient: vertical;-moz-box-orient: vertical;-o-box-orient: vertical;	box-orient: vertical;-webkit-box-flex: 1;-moz-box-flex: 1;-o-box-flex: 1;box-flex: 1;}
+.hbox-flex{display:-webkit-box;display:-moz-box;display:-o-box;display:box;-webkit-box-orient: horizontal;-moz-box-orient: horizontal;-o-box-orient: horizontal;box-orient: horizontal;-webkit-box-flex: 1;-moz-box-flex: 1;-o-box-flex: 1;box-flex: 1;}
+/* height*/
+.hpt100 { height:100%;}
+/* line-height */
+.lh14 { line-height: 14px; }
+.lh16 { line-height: 16px; }
+.lh18 { line-height: 18px; }
+.lh20 { line-height: 20px; }
+.lh22 { line-height: 22px; }
+.lh24 { line-height: 24px; }
+.lh30 { line-height: 30px; }
+/* margin */
+.m0 { margin: 0; }
+.ml1 { margin-left: 1px; }
+.ml2 { margin-left: 2px; }
+.ml5 { margin-left: 5px; }
+.ml10 { margin-left: 10px; }
+.ml15 { margin-left: 15px; }
+.ml20 { margin-left: 20px; }
+.ml25 { margin-left: 25px; }
+.ml30 { margin-left: 30px; }
+.mr1 { margin-right: 1px; }
+.mr2 { margin-right: 2px; }
+.mr5 { margin-right: 5px; }
+.mr10 { margin-right: 10px; }
+.mr15 { margin-right: 15px; }
+.mr20 { margin-right: 20px; }
+.mr25 { margin-right: 25px; }
+.mr30 { margin-right: 30px; }
+.mt1 { margin-top: 1px; }
+.mt2 { margin-top: 2px; }
+.mt5 { margin-top: 5px; }
+.mt10 { margin-top: 10px; }
+.mt15 { margin-top: 15px; }
+.mt20 { margin-top: 20px; }
+.mt25 { margin-top: 25px; }
+.mt30 { margin-top: 30px; }
+.mt40 { margin-top: 40px; }
+.mb1 { margin-bottom: 1px; }
+.mb2 { margin-bottom: 2px; }
+.mb5 { margin-bottom: 5px; }
+.mb10 { margin-bottom: 10px; }
+.mb15 { margin-bottom: 15px; }
+.mb20 { margin-bottom: 20px; }
+.mb25 { margin-bottom: 25px; }
+.mb30 { margin-bottom: 30px; }
+/* margin */
+.ml-1 { margin-left: -1px; }
+.mr-1 { margin-right: -1px; }
+.mt-1 { margin-top: -1px; }
+.mb-1 { margin-bottom: -1px; }
+/* padding */
+.p0 { padding: 0; }
+.p1 { padding: 1px; }
+.pl1 { padding-left: 1px; }
+.pt1 { padding-top: 1px; }
+.pr1 { padding-right: 1px; }
+.pb1 { padding-bottom: 1px; }
+.p2 { padding: 2px; }
+.pl2 { padding-left: 2px; }
+.pt2 { padding-top: 2px; }
+.pr2 { padding-right: 2px; }
+.pb2 { padding-bottom: 2px; }
+.pl5 { padding-left: 5px; }
+.p5 { padding: 5px; }
+.pt5 { padding-top: 5px; }
+.pr5 { padding-right: 5px; }
+.pb5 { padding-bottom: 5px; }
+.p10 { padding: 10px; }
+.pl10 { padding-left: 10px; }
+.pt10 { padding-top: 10px; }
+.pr10 { padding-right: 10px; }
+.pb10 { padding-bottom: 10px; }
+.p15 { padding: 15px; }
+.pl15 { padding-left: 15px; }
+.pt15 { padding-top: 15px; }
+.pr15 { padding-right: 15px; }
+.pb15 { padding-bottom: 15px; }
+.p20 { padding: 20px; }
+.pl20 { padding-left: 20px; }
+.pt20 { padding-top: 20px; }
+.pr20 { padding-right: 20px; }
+.pb20 { padding-bottom: 20px; }
+.p30 { padding: 30px; }
+.pl30 { padding-left: 30px; }
+.pt30 { padding-top: 30px; }
+.pr30 { padding-right: 30px; }
+.pb30 { padding-bottom: 30px; }
+/* font-size */
+.f0 { font-size: 0; }
+.f10 { font-size: 10px; }
+.f12 { font-size: 12px; }
+.f13 { font-size: 13px; }
+.f14 { font-size: 14px; }
+.f16 { font-size: 16px; }
+.f18 { font-size: 18px; }
+.f20 { font-size: 20px; }
+.f24 { font-size: 24px; }
+/*border-radius*/
+.br3{ -webkit-border-radius:3px;-moz-border-radius:3px;-o-border-radius:3px;border-radius:3px;}
+.br5{ -webkit-border-radius:5px;-moz-border-radius:5px;-o-border-radius:5px;border-radius:5px;}
+/* font-family */
+.fa { font-family: Arial; }
+.ft { font-family: Tahoma; }
+.fv { font-family: Verdana; }
+.fs { font-family: Simsun; }
+/* font-style */
+.n { font-weight: normal; font-style: normal; }
+.b { font-weight: bold; }
+.i { font-style: italic; }
+/* text-align */
+.tc { text-align: center; }
+.tr { text-align: right; }
+.tl { text-align: left; }
+.tj { text-align: justify; }
+/* text-decoration */
+.tdl { text-decoration: underline; }
+/* letter-spacing */
+.lt-1 { letter-spacing: -1px; }
+.lt0 { letter-spacing: 0; }
+.lt1 { letter-spacing: 1px; }
+/* white-space */
+.nowrap { white-space: nowrap; }
+/* word-wrap */
+.brea-work { word-wrap: break-word; }
+/* vertical-align */
+.vm { vertical-align: middle; }
+.vtb { vertical-align: text-bottom; }
+.vb { vertical-align: bottom; }
+.vt { vertical-align: top; }
+/* float */
+.fl { float: left; }
+.fr { float: right; }
+/* clear */
+.clear-both { clear: both; }
+/* position */
+.pos-rel { position: relative; }
+.pos-abs { position: absolute; }
+/* cursor */
+.cur-pointer { cursor: pointer; }
+.cur-default { cursor: default; }
+/* overflow */
+.ovh { overflow: hidden; }
+.ova { overflow: auto; }
+/* visibility */
+.vh { visibility: hidden; }
+.vv { visibility: visible; }
+/* zoom */
+.zoom1 { *zoom: 1; }
+/* block ele auto */
+.auto { margin-left: auto; margin-right: auto; }
+/* clear float*/
+.fix { *zoom: 1; }
+.fix:before,.fix:after { display: table; content: ''; clear: both; font-size:0;line-height:0; }
+.clearfix {zoom:1;}
+.clearfix:after {content:".";display:block;height:0;font-size:0;clear:both;visibility:hidden;}
+/* text-overflow*/
+.ellipsis { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+/* no border no outline*/
+.bd-none { border: none !important; outline: none !important; }
+/* list-none*/
+.list-none ,.list-none > *{ list-style:none;padding:0;}
+/* visi*/
+.visi-v{visibility:visible;}
+.visi-h{visibility:hidden;}
+/*img*/
+.img-responsive {display: block;height: auto;max-width: 100%; margin:auto;}
+.img-line-responsive {display: inline;height: auto;max-width: 100%;}

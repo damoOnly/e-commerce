@@ -1,0 +1,194 @@
+﻿html,body {
+	color: black;
+	background: white;
+	-webkit-text-size-adjust:none;	
+	height: 100%;	
+	background:#f0f0f0;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	margin: 0;
+	padding: 0;
+}
+ul,li{
+	list-style: none;
+}
+.layout{
+	position:relative;
+	z-index:2;
+	margin:0 auto;
+	width:1200px;
+}
+.lg-body{
+	font-family:微软雅黑;	
+	/*background: -webkit-linear-gradient(top, #5793c9 0%, #4771a0 100%);
+	background: -moz-linear-gradient(top, #5793c9 0%,#4771a0 100%);
+	background: -o-linear-gradient(top, #5793c9 0%,#4771a0 100%);
+	background: -ms-linear-gradient(top, #5793c9 0%,#4771a0 100%);
+	background: linear-gradient(top, #5793c9 0%,#4771a0 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5793c9', endColorstr='#4771a0',GradientType=0 );*/
+}
+body{	
+	position: relative;
+	min-width:1200px;	
+}
+.lg-header{
+	padding:80px 0px 40px;
+	font-size:20px;
+	color:#333;
+}
+.lg-header > span{
+	margin:0 5px;
+	color:#333;
+}
+.lg-header .logo{
+	padding-left:200px;
+	height:66px;
+	line-height:66px;
+	background:url(../images/logo-haimei.png) no-repeat left center;
+}
+.top-bg{
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:1;
+	width:100%;
+	height:500px;
+	background:#88baea;
+}
+.logo-wrap{
+	padding:10px 0;
+}
+.logo-img {
+   min-height:30px;
+}
+h1.title {
+    font-size: 30px;
+    color: #fff;
+    text-align: center;   
+    margin: 0 auto;
+    padding-top: 110px;
+    padding-bottom: 30px;
+    font-weight: normal;
+	background:url(../images/lg-tit.png) no-repeat center top;
+}
+.lg-header .logo span{
+	margin-top:20px;
+	vertical-align:middle;
+}
+.lg-section{
+	border:1px solid #e2e2e2;
+	border-radius:5px;
+	margin:0 auto;
+	width:500px;
+	height:460px;
+	background:#fff;
+	overflow:hidden;
+}
+.lg-section .s-left{
+	width:500px;
+	height:100%;
+}
+.s-left form{
+	display:block;
+}
+.lg-tip{	
+	font-size: 18px;
+    color: #ef0505;
+    line-height: 20px;
+    display: block;
+    text-align: left;
+    height: 20px;
+    margin-left: 90px;
+}
+.lg-section .lg-ul li label{
+	width: 350px;
+    margin: 25px auto 18px auto;
+    display: block;
+    font-size: 18px;
+    color: #555555;
+}
+.lg-section .lg-ul li .input-con{
+    width: 350px;
+    margin: 0 auto;
+    position: relative;
+}
+.lg-section .lg-ul li .input-con img {
+    position: absolute;
+    top: 50%;
+    margin-top: -13px;
+    left: 10px;
+}
+.lg-section .lg-ul .inputbox {
+    border: 1px solid #bcbcbc;
+    width: 348px;
+    height: 43px;
+    line-height: 43px;
+    font-size: 18px;
+    color: #333;
+    text-indent: 50px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    background: none;
+}
+.lg-section .lg-ul li .input-con .codeimg img{
+	position:static;
+	margin-left:20px;
+}
+.lastInput {
+    width: 350px;
+    margin: 15px auto 0 auto;
+}
+.lg-section .lg-ul .codeinput{
+	width:148px;
+	height:43px;
+}
+.lg-section .lg-ul .codeimg{
+	cursor:pointer;
+	display:inline-block;
+	height:40px;
+}
+.lg-section .lg-ul .codeimg .codeimg-i{	
+	border:none;
+	height:30px;
+}
+.lg-section .lg-ul .codeimg .check-img{
+	margin-right:15px;
+	width:18px;
+	height:auto;
+	vertical-align:top;	
+}
+.lg-section .lg-ul .submit-btn {
+    outline: none;
+    border: none;
+    width: 102px;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    line-height: 40px;
+    vertical-align: top;
+    cursor: pointer;
+    width: 350px;
+    margin: 0 auto;
+    height: 40px;
+    background-color: #5fa9f0;
+}
+.lg-section .s-right{
+	height:100%;
+	font-size:18px;
+	color:#6c6b6b;
+	background:#e6eff8;
+	overflow:hidden;
+}
+.lg-section .s-right > p{
+	margin:90px 40px 0;
+}
+.lg-copyright{
+	margin-top:30px;
+	font-size:18px;
+	color:#999;
+	text-align:center;
+	line-height:30px;
+}

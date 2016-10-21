@@ -1,0 +1,356 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Menu>
+  <Module Title="商城配置" Link="store/sitecontent.aspx">
+    <Item Title="基本设置" privilege="1001" Link="store/sitecontent.aspx">
+      <PageLink Title="基本设置" Link="store/sitecontent.aspx"/>
+      <PageLink Title="消息提醒设置" privilege="1022" Link="tools/sendmessagetemplets.aspx"/>
+    </Item>
+    <Item Title="支付设置" privilege="5011" Link="sales/paymenttypes.aspx">
+      <PageLink  Title="支付方式列表" Link="sales/paymenttypes.aspx"/>
+      <PageLink  Title="添加新支付方式" Link="sales/addpaymenttype.aspx"/>
+      <PageLink  Title="微信扫码支付设置" Link="sales/WxPayQrCodeSet.aspx"/>
+    </Item>
+    <Item Title="配送设置" privilege="5012" Link="sales/shippingtypes.aspx">
+      <PageLink  Title="配送方式列表" Link="sales/shippingtypes.aspx"/>
+      <PageLink  Title="运费模板" Link="sales/manageshippingtemplates.aspx"/>
+      <PageLink  Title="物流公司" privilege="5026" Link="sales/expresscomputerpes.aspx"/>
+    </Item>
+    <Item Title="安全中心"  Link="store/managers.aspx">
+      <PageLink  Title="部门管理" Link="store/roles.aspx"/>
+      <PageLink  Title="管理员管理"  Link="store/managers.aspx"/>
+      <PageLink  Title="操作日志" Link="store/managelogs.aspx"/>
+    </Item>
+    <Item Title="数据库管理"  Link="tools/backup.aspx">
+      <PageLink  Title="数据库备份" Link="tools/backup.aspx"/>
+      <PageLink  Title="数据库恢复"  Link="tools/restoredatabase.aspx"/>
+    </Item>
+    <Item Title="图库管理">
+      <PageLink  Title="图片库" Link="store/imagedata.aspx"/>
+      <PageLink  Title="上传图片" Link="store/imageftp.aspx"/>
+      <PageLink  Title="图片分类管理" Link="store/imagetype.aspx"/>
+    </Item>
+    <Item Title="站点管理">
+      <PageLink  Title="站点管理列表" Link="sites/SitesManagement.aspx"/>
+    </Item>
+    <Item Title="默认地址功能">
+      <PageLink  Title="收货地址列表" Link="sites/SetDefaultAddress.aspx"/>
+    </Item>
+    <!--<Item Title="浏览历史记录管理">
+      <PageLink  Title="浏览历史记录列表" Link="product/UserbrowsehistoryManage.aspx"/>
+    </Item>-->
+  </Module>
+
+  <Module Title="页面管理" Link="store/managethemes.aspx">
+    <Item Title="模板管理">
+      <PageLink  Title="模板列表" Link="store/managethemes.aspx"/>
+      <PageLink  Title="可视化编辑" Link="store/editethems.aspx"/>
+      <PageLink  Title="设置页头菜单" Link="store/setheadermenu.aspx"/>
+    </Item>
+    <Item Title="内容管理">
+      <PageLink  Title="商城公告" Link="comment/affichelist.aspx"/>
+      <PageLink  Title="帮助中心" Link="comment/helplist.aspx"/>
+      <PageLink  Title="文章管理" Link="comment/articlelist.aspx"/>
+      <PageLink  Title="友情链接" Link="store/friendlylinks.aspx"/>
+      <PageLink  Title="热门关键字" Link="store/managehotkeywords.aspx"/>
+      <PageLink  Title="投票调查" Link="store/votes.aspx"/>
+    </Item>
+  </Module>
+  
+<Module Title="供应商" Link="sales/suppliermanageorder.aspx">  <!--供应商-->
+    <Item Title="订单管理">
+      <PageLink  Title="订单列表" Link="sales/suppliermanageorder.aspx"/>
+    </Item>
+    <Item Title="商品管理">
+      <PageLink  Title="新增商品" Link="product/SupplierSelectCategory.aspx"/>
+      <PageLink  Title="商品列表" Link="product/SupplierProductOnSales.aspx"/>
+    </Item>
+	
+  </Module>
+
+  <Module Title="商品" Link="product/productonsales.aspx">
+    <Item Title="商品管理">
+      <PageLink  Title="上架新商品" Link="product/selectcategory.aspx" privilege="3040"/>
+      <PageLink  Title="商品列表" Link="product/productonsales.aspx"/>
+      <PageLink  Title="商品扩展分类" Link="product/ProductUnclassified.aspx"/>
+      <PageLink  Title="商品回收站" Link="product/ProductOnDeleted.aspx"/>
+      <PageLink  Title="批量上传商品" privilege="3041" Link="product/importfromtb.aspx"/>
+      <PageLink  Title="批量导出商品" privilege="3021" Link="product/exporttotb.aspx"/>
+      <PageLink  Title="商品标签" Link="product/producttags.aspx"/>
+      <PageLink  Title="移动端专题" Link="product/TopicList.aspx"/>
+      <PageLink  Title="原产地列表" Link="product/ImportSourceType.aspx"/>
+      <PageLink  Title="猜你喜欢商品配置" Link="product/SuggestProducts.aspx"/>
+     <!-- <PageLink  Title="添加原产地" Link="product/AddImportSourceType.aspx"/>-->
+    </Item>
+    <Item Title="商品配置">
+      <PageLink  Title="商品类型" privilege="3005" Link="product/producttypes.aspx"/>
+      <PageLink  Title="商品分类" privilege="3009" Link="product/managecategories.aspx"/>
+      <PageLink  Title="分类模板设置" Link="product/setcategorytemplate.aspx"/>
+      <PageLink  Title="品牌" Link="product/brandcategories.aspx"/>
+	  <PageLink  Title="品牌标签" Link="product/BrandType.aspx"/>
+      <PageLink  Title="税率" Link="product/TaxRate.aspx"/>
+      <PageLink  Title="供货商" Link="product/managesupplier.aspx"/>
+    </Item>
+	<Item Title="库存管理">
+		<PageLink  Title="库存统计" Link="Product/ProductInstock.aspx"/>
+	</Item>
+    
+  </Module>
+
+  <Module Title="订单" Link="sales/manageorder.aspx">
+    <Item Title="订单管理">
+      <PageLink  Title="订单列表" privilege="5001" Link="sales/manageorder.aspx"/>
+      <PageLink  Title="订单设置" Link="sales/setorderoption.aspx"/>
+      <PageLink  Title="订单修复" Link="sales/orderRepair.aspx"/>
+    </Item>
+    <Item Title="退换货(款)">
+      <PageLink  Title="退款申请单" privilege="5011" Link="sales/refundapply.aspx"/>
+      <PageLink  Title="退货申请单" privilege="5012" Link="sales/returnsapply.aspx"/>
+      <PageLink  Title="换货申请单" privilege="5013" Link="sales/replaceapply.aspx"/>
+    </Item>
+    <Item Title="单据管理">
+      <PageLink  Title="收款单" Link="sales/managedebitnote.aspx"/>
+      <PageLink  Title="退款单" Link="sales/managerefundnote.aspx"/>
+      <PageLink  Title="发货单" Link="sales/managesendnote.aspx"/>
+      <PageLink  Title="退货单" Link="sales/managereturnnote.aspx"/>
+    </Item>
+    <Item Title="快递单管理">
+      <PageLink  Title="快递单模板" Link="sales/expresstemplates.aspx"/>
+      <PageLink  Title="新增快递单模板" Link="sales/addexpresstemplate.aspx"/>
+      <PageLink Title="发货人信息管理" Link="sales/shippers.aspx"/>
+      <PageLink Title="添加发货人信息" Link="sales/addshipper.aspx"/>
+    </Item>
+  </Module>
+
+  <Module Title="会员" Link="member/managemembers.aspx">
+    <Item Title="会员管理" privilege="4005" Link="member/managemembers.aspx">
+      <PageLink Title="会员列表" Link="member/managemembers.aspx"/>
+      <PageLink Title="会员等级" Link="member/membergrades.aspx"/>
+      <PageLink Title="添加会员等级" Link="member/addmembergrade.aspx"/>
+    </Item>
+    <Item Title="信任登录" privilege="4018" Link="member/openidservices.aspx">
+      <PageLink Title="信任登录列表" Link="member/openidservices.aspx"/>
+      <PageLink Title="支付宝信任登录" Link="member/openidsettings.aspx?t=ecdev.plugins.openid.alipay.alipayservice"/>
+      <PageLink Title="QQ账号共享登录" Link="member/openidsettings.aspx?t=ecdev.plugins.openid.qq.qqservice"/>
+      <PageLink Title="淘宝账号信任登录" Link="member/openidsettings.aspx?t=ecdev.plugins.openid.taobao.taobaoservice"/>
+      <PageLink Title="新浪微博信任登录" Link="member/openidsettings.aspx?t=ecdev.plugins.openid.sina.sinaservice"/>
+    </Item>
+  </Module>
+
+  <Module Title="CRM管理" Link="member/clientset.aspx">
+    <Item Title="会员深度营销">
+      <PageLink  Title="客户分组" Link="member/clientset.aspx"/>
+      <PageLink  Title="新客户" Link="member/membermarket.aspx?type=new"/>
+      <PageLink  Title="活跃客户" Link="member/membermarket.aspx?type=activy"/>
+      <PageLink  Title="休眠客户" Link="member/membermarket.aspx?type=sleep"/>
+    </Item>
+    <Item Title="邮件短信营销" privilege="2005" Link="distribution/managedistributor.aspx">
+      <PageLink  Title="邮件短信设置" privilege="1022" Link="tools/sendmessagetemplets.aspx"/>
+      <!--<PageLink  Title="短信套餐购买" Link="http://sms.ecdev.cn/SMSPackList.aspx"/>-->
+      <PageLink  Title="手机短信配置" Link="tools/smssettings.aspx"/>
+      <PageLink  Title="邮件服务配置" Link="tools/emailsettings.aspx"/>
+    </Item>
+    <Item Title="客户反馈" privilege="2008" Link="distribution/distributorrequests.aspx">
+      <PageLink Title="商品咨询" Link="comment/productconsultations.aspx"/>
+      <PageLink Title="商品评论" Link="comment/productreviews.aspx"/>
+      <PageLink  Title="站内信" Link="comment/receivedmessages.aspx"/>
+      <PageLink Title="客户留言" Link="comment/manageleavecomments.aspx"/>
+    </Item>
+  </Module>
+
+  <Module Title="推广员" Link="member/referrals.aspx">
+    <Item Title="推广员管理">
+      <PageLink  Title="推广员审核" Link="member/referralrequest.aspx"/>
+      <PageLink  Title="推广员列表" Link="member/referrals.aspx"/>
+      <PageLink  Title="分佣规则设置" Link="member/deductsettings.aspx"/>
+      <PageLink  Title="推广员申请设置" Link="member/referralsettings.aspx"/>
+    </Item>
+    <Item Title="结算管理">
+      <PageLink  Title="结算申请" Link="member/splittindrawrequest.aspx"/>
+      <PageLink  Title="历史结算" Link="member/splittindrawrecord.aspx"/>
+    </Item>
+  </Module>
+
+  <Module Title="营销推广" Link="promotion/productpromotions.aspx">
+    <Item Title="积分商城">
+      <PageLink  Title="礼品列表" Link="promotion/gifts.aspx"/>
+      <PageLink  Title="添加礼品" Link="promotion/addgift.aspx"/>
+      <PageLink  Title="购物积分设置" Link="promotion/setShoppingScore.aspx"/>
+    </Item>
+    <Item Title="商城促销活动" privilege="3005" Link="product/producttypes.aspx">
+      <PageLink Title="商品促销" privilege="6002" Link="promotion/productpromotions.aspx"/>
+      <PageLink Title="订单促销" privilege="6002" Link="promotion/orderpromotions.aspx"/>
+      <PageLink Title="捆绑促销" privilege="6006" Link="promotion/bundlingproducts.aspx"/>
+      <PageLink Title="团购" privilege="6004" Link="promotion/groupbuys.aspx"/>
+      <PageLink Title="限时抢购" privilege="6005" Link="promotion/countdowns.aspx"/>
+    </Item>
+    <Item Title="批发方案">
+      <PageLink  Title="混批规则" Link="promotion/orderpromotions.aspx?isWholesale=true"/>
+      <PageLink  Title="批发规则" Link="promotion/productpromotions.aspx?isWholesale=true"/>
+    </Item>
+    <Item Title="优惠券">
+      <PageLink  Title="优惠券列表" Link="promotion/newcoupons.aspx"/>
+      <PageLink  Title="优惠券活动效果" Link="promotion/usedcoupons.aspx"/>
+    </Item>
+    <Item Title="现金券">
+      <PageLink  Title="现金券列表" Link="promotion/newvouchers.aspx"/>
+      <PageLink  Title="现金券活动效果" Link="promotion/usedvouchers.aspx"/>
+    </Item>
+    <Item  Title="SEO优化" privilege="3022" Link="product/selectcategory.aspx">
+      <PageLink  Title="SEO优化设置" Link="promotion/setseo.aspx"/>
+      <PageLink  Title="sitemap站点地图" Link="tools/sitemap.aspx"/>
+    </Item>
+    <Item Title="通一淘" Link="tools/etaoset.aspx">
+      <PageLink Title="通一淘设置" Link="tools/etaoset.aspx"></PageLink>
+    </Item>
+    
+
+  </Module>
+
+  <Module Title="财务管理" Link="member/accountsummarylist.aspx">
+    <Item Title="预付款管理">
+      <PageLink Title="会员预付款" privilege="4010" Link="member/accountsummarylist.aspx"/>
+    </Item>
+
+    <Item Title="提现申请">
+      <PageLink Title="会员提现申请" privilege="4011" Link="member/balancedrawrequest.aspx"/>
+    </Item>
+
+    <Item Title="预付款报表">
+      <PageLink Title="会员预付款报表"  Link="member/balancestatistics.aspx"/>
+    </Item>
+    <Item Title="提现报表">
+      <PageLink Title="会员提现报表" Link="member/drawrequeststatistics.aspx"/>
+    </Item>
+    <Item Title="供应商销售报表">
+      <PageLink Title="供应商销售统计报表" Link="member/VendorSalesReport.aspx"/>
+    </Item>
+    <Item Title="对账报表">
+      <PageLink Title="对账订单报表"     Link="member/ReconciliationOrders.aspx"/>
+      <PageLink Title="对账订单明细报表" Link="member/ReconciliationOrdersDetailed.aspx"/>
+      <PageLink Title="销售额及应付总汇" Link="member/AggregatePayable.aspx"/>
+      <PageLink Title="快递费用报表"     Link="member/ReconciliationExpressFee.aspx"/>
+    </Item>
+  </Module>
+
+  <Module Title="统计报表" Link="sales/salereport.aspx">
+    <Item Title="网站流量统计">
+      <PageLink  Title="统计功能配置" Link="tools/cnzzstatisticsset.aspx"/>
+      <PageLink  Title="查看统计结果" Link="tools/cnzzstatistictotal.aspx"/>
+    </Item>
+	<Item Title="客服数据统计">
+		<PageLink Title="客服数据统计" Link="customer/CustomServiceStatistics.aspx"/>
+	</Item>
+    <!--<Item Title="商业智能分析" Link="tools/bfdset.aspx">
+      <PageLink  Title="商业智能分析" Link="tools/bfdset.aspx"/>
+    </Item>-->
+    <Item Title="零售业务统计">
+      <PageLink  Title="零售生意报告" Link="sales/salereport.aspx"/>
+      <PageLink  Title="订单统计" Link="sales/orderstatistics.aspx"/>
+      <PageLink  Title="商品销售明细" Link="sales/saledetails.aspx"/>
+      <PageLink  Title="销售指标分析" Link="sales/saletargets.aspx"/>
+      <PageLink  Title="商品销售排行" Link="product/productsaleranking.aspx"/>
+      <PageLink  Title="按品牌汇总商品销售" Link="product/ProductSaleAsBrand.aspx"/>
+      <PageLink  Title="按产地汇总商品销售" Link="product/ProductSaleAsImportSource.aspx"/>
+      <PageLink  Title="商品访问与购买比" Link="product/productsalestatistics.aspx"/>
+      <PageLink  Title="会员消费排行" Link="member/memberranking.aspx"/>
+      <PageLink  Title="会员地区分布" Link="member/userarealdistributionstatistics.aspx"/>
+      <PageLink  Title="会员增长统计" Link="member/userincreasestatistics.aspx"/>
+    </Item>
+  </Module>
+
+  <Module Title="微商城" Link="vshop/VServerConfig.aspx">
+    <Item Title="微信配置" privilege="5001" Link="vshop/VServerConfig.aspx">
+      <PageLink Title="基本配置" Link="vshop/VServerConfig.aspx"/>
+      <PageLink Title="自定义回复" Link="vshop/ReplyOnKey.aspx"/>
+      <PageLink  Title="自定义菜单配置" Link="vshop/ManageMenu.aspx"/>
+      <!--<PageLink Title="微信专题" Link="vshop/TopicList.aspx"/>-->
+    </Item>
+    <Item Title="首页配置">
+      <PageLink  Title="模板选择" Link="vshop/ManageVThemes.aspx"/>
+	  <PageLink  Title="可视化编辑" Link="edit/index.aspx"/>
+      <PageLink  Title="轮播图配置" Link="vshop/ManageBanner.aspx"/>
+      <PageLink  Title="图标配置" Link="vshop/ManageNavigate.aspx"/>
+      <PageLink  Title="商品配置" Link="vshop/HomeProductSetting.aspx"/>
+      <PageLink  Title="专题配置" Link="vshop/HomeTopicSetting.aspx"/>
+	  <PageLink  Title="热卖商品" Link="vshop/ManageVHotProduct.aspx"/>
+	  <PageLink  Title="新上商品" Link="vshop/ManageNewProduct.aspx"/>
+	  <PageLink  Title="特惠专区" Link="vshop/ManageNewProduct.aspx"/>
+      <PageLink  Title="热门关键字" Link="vshop/Vshopmanagehotkeywords.aspx"/>
+    </Item>
+    <Item Title="微信活动">
+      <PageLink  Title="大转盘" Link="vshop/ManageLotteryActivity.aspx?type=1"/>
+      <PageLink  Title="刮刮卡" Link="vshop/ManageLotteryActivity.aspx?type=2"/>
+      <PageLink  Title="砸金蛋" Link="vshop/ManageLotteryActivity.aspx?type=3"/>
+      <PageLink  Title="微报名" Link="vshop/ManageActivity.aspx"/>
+      <PageLink  Title="微抽奖" Link="vshop/ManageLotteryTicket.aspx"/>
+    </Item>
+    <Item Title="支付设置" privilege="5011" Link="vshop/PayConfig.aspx">
+      <PageLink  Title="微信支付设置" Link="vshop/PayConfig.aspx"/>
+      <PageLink  Title="手机支付宝设置" Link="vshop/VshopAliPaySet.aspx"/>
+      <PageLink  Title="盛付通支付设置" Link="vshop/ShengPaySet.aspx"/>
+      <PageLink  Title="线下支付设置" Link="vshop/OffLinePay.aspx"/>
+    </Item>
+  </Module>
+  <Module Title="App" Link="App/ManageAppBanner.aspx">
+    <Item Title="首页配置" privilege="6001" Link="App/ManageAppBanner.aspx">
+      <PageLink Title="广告图配置" Link="App/ManageAppBanner.aspx" />
+      <PageLink  Title="专区配置" Link="App/ManageAppNavigate.aspx"/>
+      <PageLink Title="商品配置" Link="App/AppProductSetting.aspx" />
+      <PageLink  Title="专题配置" Link="App/HomeTopicSetting.aspx"/>
+      <PageLink  Title="商品热卖" Link="App/ManageAppHotProduct.aspx"/>
+      <PageLink  Title="新品推荐" Link="App/ManageAppNewProduct.aspx"/>
+      <PageLink  Title="特惠商品" Link="App/ManageAppCheapProduct.aspx"/>
+      <PageLink  Title="热门关键字" Link="App/Appmanagehotkeywords.aspx"/>
+      <PageLink  Title="App启动图" Link="App/AppRunImg.aspx"/>
+    </Item>
+    <Item Title="版本管理" privilege="6002" Link="App/AndroidUpgrade.aspx">
+      <PageLink Title="Android升级" Link="App/AndroidUpgrade.aspx" />
+      <PageLink Title="ios升级" Link="App/IosUpgrade.aspx" />
+    </Item>
+    <Item Title="支付配置" privilege="6002" Link="App/AppAliPaySet.aspx">
+      <PageLink Title="手机支付宝设置" Link="App/AppAliPaySet.aspx" />
+      <PageLink  Title="盛付通支付设置" Link="App/ShengPaySet.aspx"/>
+      <!--<PageLink  Title="腾付通支付设置" Link="App/TFTPaySet.aspx"/>-->
+      <PageLink Title="线下支付" Link="App/AppOffLinePaySet.aspx" />
+      <PageLink Title="微信支付设置" Link="App/AppWxPaySet.aspx" />
+    </Item>
+  </Module>
+  <!--
+  <Module Title="服务窗" Link="AliOH/AliOHServerConfig.aspx">
+    <Item Title="首页配置">
+      <PageLink  Title="模板选择" Link="AliOH/ManageVThemes.aspx"/>
+      <PageLink  Title="轮播图配置" Link="AliOH/ManageBanner.aspx"/>
+      <PageLink  Title="图标配置" Link="AliOH/ManageNavigate.aspx"/>
+      <PageLink  Title="商品配置" Link="AliOH/HomeProductSetting.aspx"/>
+      <PageLink  Title="专题配置" Link="AliOH/HomeTopicSetting.aspx"/>
+    </Item>
+    <Item Title="服务窗配置">
+      <PageLink  Title="基本配置" Link="AliOH/AliOHServerConfig.aspx"/>
+      <PageLink  Title="自定义菜单" Link="AliOH/ManageMenu.aspx"/>
+    </Item>
+    <Item Title="支付设置" privilege="5011" Link="AliOH/AliOHAliPaySet.aspx">
+      <PageLink Title="手机支付宝设置" Link="AliOH/AliOHAliPaySet.aspx" />
+      <PageLink  Title="盛付通支付设置" Link="AliOH/ShengPaySet.aspx"/>
+      <PageLink  Title="线下支付设置" Link="AliOH/AliOHOffLinePaySet.aspx"/>
+    </Item>
+  </Module>-->
+  <Module Title="触屏版" Link="wap/ManageVThemes.aspx">
+    <Item Title="首页配置">
+      <PageLink  Title="模板选择" Link="WAP/ManageVThemes.aspx"/>
+      <PageLink  Title="轮播图配置" Link="WAP/ManageBanner.aspx"/>
+      <PageLink  Title="图标配置" Link="WAP/ManageNavigate.aspx"/>
+      <PageLink  Title="商品配置" Link="WAP/HomeProductSetting.aspx"/>
+      <PageLink  Title="专题配置" Link="WAP/HomeTopicSetting.aspx"/>
+      <PageLink  Title="热卖商品" Link="WAP/ManageHotProduct.aspx"/>
+      <PageLink  Title="新上商品" Link="WAP/ManageNewProduct.aspx"/>
+      <PageLink  Title="特惠专区" Link="WAP/ManageCheapProduct.aspx"/>
+      <PageLink  Title="热门关键字" Link="WAP/WAPmanagehotkeywords.aspx"/>
+    </Item>
+    <Item Title="支付设置" privilege="5011" Link="WAP/PayConfig.aspx">
+      <PageLink Title="手机支付宝设置" Link="WAP/AliPaySet.aspx" />
+      <!--<PageLink  Title="盛付通支付设置" Link="WAP/ShengPaySet.aspx"/>-->
+      <PageLink  Title="线下支付设置" Link="WAP/OffLinePay.aspx"/>
+    </Item>
+  </Module>
+
+</Menu>

@@ -1,0 +1,38 @@
+﻿/* Copyright © Maxim Saplin 2010, 2011
+   Under LGPL License */
+
+div.dd_chk_select_cust
+{
+    font-size: 13px !important;
+    font-weight:bold !important;
+}
+
+div.dd_chk_select_cust div#caption
+{
+	height: 17px !important;
+	top: 0px !important;
+}
+
+div.dd_chk_drop_cust div#checks
+{
+	border-style: Solid !important;
+	border-width: 1px !important;
+	border-color: Black !important;
+}
+
+div.dd_chk_select_cust:hover
+{
+	background-image: url("/Styles/hoverButton.gif") !important;
+	cursor: pointer;
+}
+
+div.dd_chk_select
+{
+    height: 25px !important;
+}
+
+div.dd_chk_select div#caption
+{
+	height: 25px !important;
+	top: 0px !important;
+}

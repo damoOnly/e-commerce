@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+</head>
+<body>
+
+
+<h1>订单列表查询</h1>
+<form id="form4" method="post" action="OrdersHandler.ashx">
+操作值：<input type="text" name="action" value="tradelist" /><br />
+操作类型<input type="text" name="datatype" value="1" /><br />
+返回格式：<input name="format" value="json" /><br />
+安全校验码：<input type="text" value="1912808E2ED1062C812BA72E1C5E4DD18A4BB17D" /><br />
+加密码:<input type="text" name="sign" value="0ef9ca7358aed0700f055bb3fd765372" /><br />
+订单状态<select id="Status" name="Status">
+<option value="0">---所有订单---</option>
+<option value="1">---未付款订单---</option>
+<option value="2">---买家已付款订单---</option>
+<option value="3">---卖家已发货订单---</option>
+<option value="4">---已关闭订单---</option>
+<option value="5">---已完成订单---</option>
+<option value="6">---已退货订单---</option>
+<option value="99">---历史订单---</option>
+</select><br />
+买家<input type="text" name="BuyerNick" value="" /><br />
+第<input type=text name="PageIndex" value="1" /><br />
+每页<input type=text name="PageSize" value="10" />条<br />
+开始时间<input type="text" name="StartTime" value="2012-01-01" /><br />
+结束时间<input type="text" name="EndTime" value="2013-09-21" />
+
+<input type="submit" id="Submit4" value="查询订单列表" />
+</form>
+
+<!--手机订单列表查询
+<form id="form6" method="post" action="OrdersHandler.ashx?action=orderlist">
+返回格式：<select id="format" name="format"><option value="json">JSON</option><option value="xml">XML</option></select>
+安全校验码：<input type="text" value="F32F77DC25B6084AADA29B94C8F4E0B4726E4ADC" /><br />
+加密码:<input type="text" name="sign" value="be9edd3c1a47204038660532de1c836f" /><br />
+订单状态<select id="Status" name="Status">
+<option value="0">---所有订单---</option>
+<option value="1">---未付款订单---</option>
+<option value="2">---买家已付款订单---</option>
+<option value="3">---卖家已发货订单---</option>
+<option value="4">---已关闭订单---</option>
+<option value="5">---已完成订单---</option>
+<option value="99">---历史订单---</option>
+</select><br />
+用户编号<input type="text" name="uid" value="1102" /><br />
+第<input type=text name="PageIndex"  value="1" /><br />
+每页大小<input type="text" name="PageSize" value="10" /><br />
+sessionId:<input type="text" name="sessionId" value="6d812a99-6369-4a64-8cba-4827e5fd5a6b" />
+<input type="submit" id="Submit6" value="查询订单列表" />
+</form>-->
+
+
+<h1>手机订单详情查询</h1>
+<form id="form5" method="post" action="OrdersHandler.ashx?action=tradedetails">
+返回格式：<select name="format"><option value="json">JSON</option><option value="xml">XML</option></select><br />
+安全校验码：<input type="text" value="F32F77DC25B6084AADA29B94C8F4E0B4726E4ADC" /><br />
+加密码:<input type="text" name="sign" value="3b20e1327dd552fcbb9364ce57785d74" /><br />
+订单编号<textarea id="tid" name="tid" rows="5" cols="45"></textarea>
+<br />
+<input type="submit" id="Submit5" value="查询订单详细信息" />
+</form>
+
+
+<!--<h1>修改订单上门提货标记</h1>
+<form id="form3" method="post" action="OrdersHandler.ashx?action=mentionsend">
+返回格式：<select name="format" id="Select1"><option value="json">Json</option><option value="xml">Xml</option></select><br />
+安全校验码：<input type="text" value="F32F77DC25B6084AADA29B94C8F4E0B4726E4ADC" /><br />
+加密码:<input type="text" name="sign" value="80796e9e182b92f6119e8db1d7c65667" /><br />
+订单编号:<input type="text" name="tid" value="201402177960364"/><br />
+<br />
+<input type="submit" id="Submit3" value="修改订单发货标记" />
+</form>-->
+
+
+<!--<h1>获取支付方式列表</h1>
+<form id="form4" method="post" action="OrdersHandler.ashx?action=paytype">
+返回格式：<select name="format" id="Select2"><option value="json">Json</option><option value="xml">Xml</option></select><br />
+加密码:<input type="text" name="sign" value="3f1e0aa6f2382272e9a829e8d866bd67" /><br />
+<input type="submit" id="Submit4" value="获取支付方式" />
+</form>-->
+
+<!--<h1>支付方式详细信息</h1>
+<form id="form10" method="post" action="OrdersHandler.ashx?action=paymodeldetail">
+返回格式：<select name="format" id="Select6"><option value="json">Json</option><option value="xml">Xml</option></select><br />
+加密码:<input type="text" name="sign" value="f2e38d02d0bbe96762f21d341df74914" /><br />
+支付方式编号:<input type="text" name="payModelId" value="7" /><br />
+<input type="submit" id="Submit10" value="获取支付方式详细信息" />
+</form>-->
+
+<!--<h1>获取配送方式列表</h1>
+<form id="form7" method="post" action="OrdersHandler.ashx?action=shippingmodel">
+返回格式：<select name="format" id="Select3"><option value="json">Json</option><option value="xml">Xml</option></select><br />
+加密码:<input type="text" name="sign" value="854c7c84b98fc834ffbf8e8d5b85af34" /><br />
+<input type="submit" id="Submit7" value="获取配送方式" />
+</form>-->
+
+<!--<h1>获取订单选项列表</h1>
+<form id="form8" method="post" action="OrdersHandler.ashx?action=lookuplist">
+返回格式：<select name="format" id="Select4"><option value="json">Json</option><option value="xml">Xml</option></select><br />
+加密码:<input type="text" name="sign" value="b72c00e2277799a64ed9a75f614034c9" /><br />
+<input type="submit" id="Submit8" value="获取订单选项" />
+</form>-->
+
+<!--<h1>获取订单选项内容列表</h1>
+<form id="form9" method="post" action="OrdersHandler.ashx?action=lookupitemlist">
+返回格式：<select name="format" id="Select5"><option value="json">Json</option><option value="xml">Xml</option></select><br />
+加密码:<input type="text" name="sign" value="8fdd54032ac3fdc2e6264861a22e777c" /><br />
+选项列表编号:<input type="text" name="lookupId" value="2" /><br />
+<input type="submit" id="Submit9" value="获取订单选项内容列表" />
+</form>-->
+
+
+<h1>修改订单发货标记</h1>
+<form id="form1" method="post" action="OrdersHandler.ashx?action=send">
+安全校验码：<input type="text" value="68568A98E9D656A55F893061BB399542708AA6E1" /><br />
+加密码:<input type="text" name="sign" value="8707ae1d0adaac1605492097602e3303" /><br />
+订单编号:<input type="text" name="tid" value="201402177960364"/><br />
+运单号：<input type="text" name="out_sid" value="1000117010454" /><br />
+物流公司编码<input type="text" name="company_code" value="YUNDA" />
+<br />
+<input type="submit" id="Submit1" value="修改订单发货标记" />
+</form>
+
+
+<h1>修改订单备注标记</h1>
+<form id="form2" method="post" action="OrdersHandler.ashx?action=mark">
+安全校验码：<input type="text" value="68568A98E9D656A55F893061BB399542708AA6E1" /><br />
+加密码:<input type="text" name="sign" value="8707ae1d0adaac1605492097602e3303" /><br />
+订单编号:<input type="text" name="tid" value="201208237144036"/><br />
+标记状态：<select name="order_mark">
+<option value="1">Draw</option>
+<option value="2">ExclamationMark</option>
+<option value="3">Red</option>
+<option value="4">Green</option>
+<option value="5">Yellow</option>
+<option value="6">Gray</option>
+</select><br />
+备注：<input type="text" name="seller_memo" value="你好呀" />
+<br />
+<input type="submit" id="Submit2" value="修改订单发货标记" />
+</form>
+
+
+<!--<h1>订单提交</h1>
+<form id="form11" method="post" action="OrdersHandler.ashx?action=submtorder">
+返回格式：<select name="format" id="Select7"><option value="json">Json</option><option value="xml">Xml</option></select><br />
+加密码:<input type="text" name="sign" value="1221c01f3272501027b543e2f45acb97" /><br />
+收获地址编号:<input type="text" name="shippingId" value="6"/>正整数<br />
+用户编号：<input type="text" name="uid" value="1415" />正整数<br />
+sessionId<input type="text" name="sessionId" value="e4fce453-fbf7-4fe1-85bf-31c0ec483bf6" /><br />
+支付方式编号：<input type="text" name="payModelId" value="3" />正整数<br />
+配送方式编号：<input type="text" name="shippingModeId" value="6" />正整数<br />
+订单选项编号：<input type="text" name="lookupId" value="1-3" />（正整数，可以有多个值，中间用'-'分割）<br />
+备注信息：<input type="text" name="remark" value="呵呵" /><br />
+
+<input type="submit" id="Submit11" value="订单提交" />
+</form>-->
+
+<h1>订单支付</h1>
+<form id="form12" method="get" action="OrdersHandler.ashx">
+action:<input type="text" name="action" value="paymoney" /><br />
+加密码:<input type="text" name="sign" value="1221c01f3272501027b543e2f45acb97" /><br />
+订单号:<input type="text" name="tid" value=""/>订单编号<br />
+回调地址：<input type="text" name="returnUrl" value="" /><br />
+<input type="submit" id="Submit12" value="订单提交" />
+</form>
+
+<!--<h1>订单删除</h1>
+<form id="form13" method="post" action="OrdersHandler.ashx?action=removeorder">
+返回格式<select name="format" id="Select8"><option value="json">Json</option><option value="xml">Xml</option></select><br />
+加密码:<input type="text" name="sign" value="1221c01f3272501027b543e2f45acb97" /><br />
+订单号:<input type="text" name="tid" value=""/>订单编号<br />
+<input type="submit" id="Submit13" value="订单提交" />
+</form>-->
+</body>
+</html>

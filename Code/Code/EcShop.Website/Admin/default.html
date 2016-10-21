@@ -1,0 +1,274 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" class="mw">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <!--<script src="../Utility/jquery-1.6.4.min.js"></script>-->
+    <script src="../Utility/jquery.min.js"></script>
+    <script src="../Utility/jquery.cookie.js"></script>
+    <script src="../Utility/jquery.artDialog.js"></script>
+    <script src="../Utility/iframeTools.js"></script>
+    <script src="js/Frame.js"></script>
+    <script src="../Utility/appshoping.helper.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="css/frame.css" />
+    <link rel="stylesheet" type="text/css" href="../Utility/skins/blue.css" />
+    <title>无标题文档</title>
+    <script>
+        $(document).ready(function (e) {
+            $.ajax({
+                url: "/API/AuthValid.ashx",
+                type: 'post', dataType: 'json', timeout: 10000,
+                data: { action: "all" },
+                async: false,
+                success: function (resultData) {
+                    var ServerStatus = resultData.status;
+                    if (ServerStatus != "") {
+                        var OpenTaobao = 0, OpenMobbile = 0, OpenAliho = 0, OpenWap = 0, OpenVstore = 0;
+                        var StatusArr = ServerStatus.split(',');
+
+                        OpenTaobao = parseInt(StatusArr[0]);
+                        if (StatusArr.length >= 2) OpenVstore = parseInt(StatusArr[1]);
+                        if (StatusArr.length >= 3) OpenMobbile = parseInt(StatusArr[2]);;
+                        if (StatusArr.length >= 4) OpenWap = parseInt(StatusArr[3]);
+                        if (StatusArr.length >= 5) OpenAliho = parseInt(StatusArr[4]);
+                        if (OpenVstore == 1) $("#vshoplink").show();
+                        if (OpenMobbile == 1) $("#applink").show();
+                        if (OpenWap == 1) $("#waplink").show();
+                        if (OpenAliho == 1) $("#aliohlink").show();
+                    }
+                }
+            });
+
+            //改变iframe的路径
+            var urlStr = (window.location.href).split('?');
+            if (urlStr[1] != null) {
+                if (urlStr[1] == "product/EditProduct.aspx"||urlStr[1] == "product/SupplierEditProduct.aspx") {
+
+                    window.parent.ShowMenuLeft('商 品', 'product/productonsales.aspx', null);
+
+                    var url = urlStr[1] + "?" + urlStr[2];
+                    var iframe = $("#frammain");
+                    $("#frammain").attr("src", url);
+                } else if (urlStr[1] == "sales/OrderDetails.aspx") {
+
+                    window.parent.ShowMenuLeft('订 单', 'sales/manageorder.aspx', null);
+
+                    var url = urlStr[1] + "?" + urlStr[2];
+                    var iframe = $("#frammain");
+                    $("#frammain").attr("src", url);
+                }
+            }
+
+        });
+        //IFrame弹出
+        function DialogFrame(url, title_tip, w_width, h_height) {
+            var tmpwidth = 900;
+            var tmpheight = 520;
+            if (w_width != null) {
+                tmpwidth = w_width;
+            }
+            if (h_height != null) {
+                tmpheight = h_height;
+            }
+            if (tmpwidth != 0) {
+                if (tmpheight != 0) {
+                    art.dialog.open(url, { title: title_tip, width: tmpwidth, height: tmpheight }, true);
+                } else {
+                    art.dialog.open(url, { title: title_tip, width: tmpwidth }, true);
+                }
+            } else {
+                if (tmpheight != 0) {
+                    art.dialog.open(url, { title: title_tip, height: tmpheight }, true);
+                } else {
+                    art.dialog.open(url, { title: title_tip }, true);
+                }
+            }
+
+        }
+		
+		//数据显示
+		$(function(){
+            var str = '';
+            $.ajax({
+                url: '/API/AuthValid.ashx?action=GetFirstMenu&status=1&menuId=0',
+                type: 'get',
+                dataType: 'text',
+            
+                success:function(data){
+                    var jsonData = eval("("+data+")");
+                    for(var i=0;i<jsonData.length;i++){
+                        str += '<a PrivilegeId=' + jsonData[i].PrivilegeId + '>' + jsonData[i].PrivilegeName + '</a>';
+                    }
+                    $('#ecshop-menu').append(str);
+                },
+                error:function(){
+					//alert('error');
+                }
+            });
+			
+			$('#ecshop-menu').delegate('a','click',function(){
+				$('#tab-title').show();
+				var privilegeid = $(this).attr('privilegeid');
+				show_menu(privilegeid);
+			});
+			function show_menu(privilegeid){
+				var str = '';
+				var url = '/API/AuthValid.ashx?action=GetMenuById&status=1&menuId=' + privilegeid;
+				$.ajax({
+					url: url,
+					type: 'get',
+					dataType: 'text',
+				
+					success:function(data){
+						$("#menu_left").html('');
+						var jsonData = eval("("+data+")");
+						for(var i=0;i<jsonData.length;i++){
+							str += '<div class="ecshop_menutitle"><span onclick="ShowSecond(this)">' + jsonData[i].PrivilegeName + '</span>';
+							for(var j=0;j<jsonData[i].SubMenuItem.length;j++){
+								str += '<a href="'+ jsonData[i].SubMenuItem[j].LinkUrl +'"target="frammain">' + jsonData[i].SubMenuItem[j].PrivilegeName + '</a>';
+							}
+							str += '</div>';
+						}
+						$('#menu_left').append(str);
+						$(".ecshop_menu_scroll").show();
+						$("#menu_arrow").attr("class", "open_arrow").show();
+					},
+					error:function(){
+						//alert('error');
+					}
+				})
+			}
+			
+			//一级菜单点击加背景
+			$('#ecshop-menu').delegate('a','click',function(){
+				$(this).addClass('ecshop_curent').siblings('a').removeClass('ecshop_curent');
+			});
+        })
+		
+        // iframe大小控制
+		function iFrameSize() {
+		    var ifm = document.getElementById("frammain");
+		    var subWeb = document.frames ? document.frames["frammain"].document : ifm.contentDocument;
+		    if (ifm != null && subWeb != null) {
+		        ifm.height = subWeb.body.scrollHeight;
+		        ifm.width = subWeb.body.scrollWidth;
+		    }
+		}
+
+
+		
+    </script>
+</head>
+<body style="overflow:auto;">
+
+    <div class="ecshop_head">
+        <div class="ecshop_logo"><img src="images/haimei_logo.png" class="pngFix" /></div>
+        <div class="ecshop_menu" id="ecshop-menu">        	
+            <!--<a onclick="ShowMenuLeft('商 品',null,null)">商 品</a>
+            <a onclick="ShowMenuLeft('会 员',null,null)">会 员</a>
+            <a onclick="ShowMenuLeft('订 单',null,null)">订 单</a>                    
+            <a onclick="ShowMenuLeft('推广员',null,null)">推广员</a>
+             <a onclick="ShowMenuLeft('供应商',null,null)">供应商</a>
+            <a onclick="ShowMenuLeft('CRM管理',null,null)">CRM管理</a>
+            <a onclick="ShowMenuLeft('营销推广',null,null)">营销推广</a>                    
+            <a onclick="ShowMenuLeft('财务管理',null,null)">财务管理</a>
+            <a onclick="ShowMenuLeft('统计报表',null,null)">统计报表</a>
+            <a onclick="ShowMenuLeft('微商城',null,null)" style="display:none;" id="vshoplink">微商城</a> 
+            <a onclick="ShowMenuLeft('App',null,null)" style="display:none;" id="applink">App</a>
+            <a onclick="ShowMenuLeft('页面管理',null,null)">页面管理</a>
+			<a onclick="ShowMenuLeft('商城配置',null,null)" class="ecshop_curent">商城配置</a>
+            <a onclick="ShowMenuLeft('服务窗',null,null)" style="display:none;" id="aliohlink">服务窗</a>-->
+		
+        </div>
+        <div class="ecshop_banner">
+            <div class="ecshop_con2">
+                <div class="ecshop_banneritem">
+                	<div id="safe-exit" class="safe-wrap"><a>shop</a>  欢迎回来  <a><font color="#FBD711">admin</font></a></div>
+                	<div>                    	
+                        <a href="LoginExit.aspx"><strong>[安全退出]</strong></a>
+                        <span><img src="images/split.jpg" /></span>
+                        <div class="more-box">
+                        	<a id="moreA" class="moreA1" href="javascript:;">更多</a>
+                            <ul id="moreBox" class="more-help" style="display:none;">
+                            	<li style="background-image:url(images/tubiao.png);"><a target="_blank" id="taobao_link">同步淘宝</a></li>
+                                <li style="background-image:url(images/font.png);"><a target="_blank" href="../Default.aspx">浏览前台</a></li>
+                                <li style="background-image:url(images/zm.png);"><a href="Default.aspx">桌面</a></li>
+                                <li style="background-image:url(images/flag.png);"><a href="javascript:DialogFrame('help/index.html','新手向导',750,null)">新手向导</a></li>
+                                <li style="background-image:url(images/about.png);"><a href="javascript:DialogFrame('help/about.html','关于B2C商城',550,345)">关于</a></li>
+                                <li style="border-bottom:none;"><a href="javascript:DialogFrame('store/managersUpdatePWD.aspx','修改密码',550,345)">修改密码</a></li>
+                                <li style="border-bottom:none;"><a target="_blank" href="http://www.ecdev.cn">惠众云商</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--<p>
+                        <img src="images/ren.png" /> <a>shop</a>,欢迎回来　<a><font color="#FBD711">admin</font></a>　<a href="LoginExit.aspx"><strong>[安全退出]</strong></a><span><img src="images/split.jpg" /></span>
+                        <span style="display: none;"><a target="_blank" id="taobao_link"><img src="images/tubiao.png" />同步淘宝</a><span><img src="images/split.jpg" /></span></span>
+                        <a target="_blank" href="../Default.aspx"><img src="images/font.png" />浏览前台</a><span><img src="images/split.jpg" /></span>
+                        <a href="Default.aspx"><img src="images/zm.png" />桌面</a><span><img src="images/split.jpg" /></span>
+                        <a href="javascript:DialogFrame('help/index.html','新手向导',750,null)"><img src="images/flag.png" />新手向导</a><span><img src="images/split.jpg" /></span>
+                        <a href="javascript:DialogFrame('help/about.html','关于B2C商城',550,345)"><img src="images/about.png" />关于</a><span><img src="images/split.jpg" /></span>
+                        <a target="_blank" href="http://www.ecdev.cn">惠众云商</a>
+                    </p>-->
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="ecshop_content">
+        <div class="ecshop_menu_scroll">
+            <div id="menu_left">
+
+            </div>
+        </div>
+        <div id="menu_arrow" class="close_arrow" onclick="javascript:ExpendMenuLeft()" style="display:none"></div>
+        <div class="ecshop_content_r">
+        	<ul id="tab-title">
+            	<li class="firstLi" onclick="javascript:ExpendMenuLeft()"><img src="images/tab_menu.jpg" /></li>
+            </ul>
+            <div class="frame-wrap">
+            	<iframe id="frammain" name="frammain" class="framecontent" runat="server" src="Default.aspx" frameborder="0" border="0" scrolling="auto" marginheight="0" marginwidth="0" onload="iFrameSize()"></iframe>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+$(function(){
+	$('#moreA').click(function(event){
+		$('#moreBox').toggle();
+		$(this).toggleClass('moreA2')
+		event.stopPropagation();
+	});
+	$(document).bind('click',function(){
+		$('#moreBox').hide();
+	});
+	$('.ecshop_menu a').bind('click',function(){
+		$('.ecshop_menutitle span').bind('click',function(){
+			$(this).toggleClass('toggle');
+		});
+	});
+	
+	$('#menu_left').delegate('.ecshop_menutitle span','click',function(){
+		$(this).toggleClass('toggle');
+	});
+	
+	/*if($(window).width()<1600){
+		$('#safe-exit').css('display','none');
+	}
+	else if($(window).width()>1600){
+		$('#safe-exit').css('display','inline-block');
+	}
+	$(window).resize(function(){
+		if($(this).width()<1600){
+			$('#safe-exit').css('display','none');
+		}
+		else if($(this).width()>1600){
+			$('#safe-exit').css('display','inline-block');
+		}
+	});*/
+})
+</script>
+</html>

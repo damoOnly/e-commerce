@@ -1,0 +1,1 @@
+﻿<%@ WebHandler Language="C#" CodeBehind="ProductReviewsHandler.ashx.cs" Class="EcShop.UI.Web.API.ProductReviewsHandler" %>

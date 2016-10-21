@@ -1,0 +1,8 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <SMSLog>
+    <time>2016/1/8 13:35:06</time>
+    <SysSign>0</SysSign>
+    <Sign>13168003960|5197|http://220.231.194.225:8888/communicate/sendSms/sendMessage|2016/1/8 13:35:06|0sendResult|获取信息错误：无法连接到远程服务器</Sign>
+  </SMSLog>
+</DocumentElement>
