@@ -1,0 +1,476 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{6E54443A-7A56-4882-AF38-B438345F06B0}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <AssemblyName>EcShop.UI.SaleSystem.CodeBehind</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>..\EcShop.Website\bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <OutputPath>..\EcShop.Website\bin\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ASPNET.WebControls">
+      <HintPath>..\Libs\ASPNET.WebControls.dll</HintPath>
+    </Reference>
+    <Reference Include="EcShop.Core, Version=2.1.5459.27733, Culture=neutral, PublicKeyToken=d39bceaac35c5a29, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\EcShop.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="ThoughtWorks.QRCode">
+      <HintPath>..\Libs\ThoughtWorks.QRCode.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActiveProduct.cs" />
+    <Compile Include="ActiveProductList.cs" />
+    <Compile Include="ActiveTopicOne.cs" />
+    <Compile Include="ActivityShow.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="CodeBehind\AboutHaiDaoWang.cs" />
+    <Compile Include="CodeBehind\ActiveCountDownProducts.cs" />
+    <Compile Include="CodeBehind\VActivityShowFour.cs" />
+    <Compile Include="CodeBehind\VActivityShowMain.cs" />
+    <Compile Include="CodeBehind\VActivityShowThree.cs" />
+    <Compile Include="CodeBehind\VActivityShowTwo.cs" />
+    <Compile Include="CodeBehind\ContactToUs.cs" />
+    <Compile Include="CodeBehind\DownApp.cs" />
+    <Compile Include="CodeBehind\DownloadApp.cs" />
+    <Compile Include="CodeBehind\MoreNews.cs" />
+    <Compile Include="CodeBehind\NewsDetails.cs" />
+    <Compile Include="CodeBehind\Helpitem.cs" />
+    <Compile Include="CodeBehind\HelpSearch.cs" />
+    <Compile Include="CodeBehind\store.cs" />
+    <Compile Include="CodeBehind\StoreSubCategory.cs" />
+    <Compile Include="CodeBehind\VAboutHaimy.cs" />
+    <Compile Include="CodeBehind\VActivity1.cs" />
+    <Compile Include="CodeBehind\VActivity2.cs" />
+    <Compile Include="CodeBehind\VActivity3.cs" />
+    <Compile Include="CodeBehind\VActivityShowOne.cs" />
+    <Compile Include="CodeBehind\VBindPhoneNumber.cs" />
+    <Compile Include="CodeBehind\VContactHaimy.cs" />
+    <Compile Include="CodeBehind\VHelpItem.cs" />
+    <Compile Include="CodeBehind\VHelpList.cs" />
+    <Compile Include="CodeBehind\VHelps.cs" />
+    <Compile Include="CodeBehind\VHotSupplierList.cs" />
+    <Compile Include="CodeBehind\VMemberVoucher.cs" />
+    <Compile Include="CodeBehind\VMySupFavorites.cs" />
+    <Compile Include="CodeBehind\VMyUserPoints.cs" />
+    <Compile Include="CodeBehind\ActVProductDetails.cs" />
+    <Compile Include="CodeBehind\VSendVoucher.cs" />
+    <Compile Include="CodeBehind\VSupplierDefault.cs" />
+    <Compile Include="CodeBehind\VSupplierList.cs" />
+    <Compile Include="CodeBehind\VSupProductList.cs" />
+    <Compile Include="CodeBehind\VSwitchAccount.cs" />
+    <Compile Include="CodeBehind\VBindAccount.cs" />
+    <Compile Include="CodeBehind\VCustomerService.cs" />
+    <Compile Include="CodeBehind\VMemberRefundApply.cs" />
+    <Compile Include="CodeBehind\VMemberRefundDetails.cs" />
+    <Compile Include="CodeBehind\VMemberReplaceApply.cs" />
+    <Compile Include="CodeBehind\VMemberReplaceDetails.cs" />
+    <Compile Include="CodeBehind\VMemberReturnsApply.cs" />
+    <Compile Include="CodeBehind\VMemberReturnsDetails.cs" />
+    <Compile Include="CodeBehind\IdentityVerifi.cs" />
+    <Compile Include="CodeBehind\WAPCustomerService.cs" />
+    <Compile Include="CodeBehind\WAPApp.cs" />
+    <Compile Include="CodeBehind\WAPDownloadApp.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CodeBehind\WAPFeedback.cs" />
+    <Compile Include="CodeBehind\WAPHelp.cs" />
+    <Compile Include="CodeBehind\WAPHelpItem.cs" />
+    <Compile Include="CodeBehind\WAPHelpList.cs" />
+    <Compile Include="CodeBehind\WAPHotSearch.cs" />
+    <Compile Include="CodeBehind\WAPMemberRefundApply.cs" />
+    <Compile Include="CodeBehind\WAPMemberRefundDetails.cs" />
+    <Compile Include="CodeBehind\WAPMemberReplaceApply.cs" />
+    <Compile Include="CodeBehind\WAPMemberReplaceDetails.cs" />
+    <Compile Include="CodeBehind\WAPMemberReturnsApply.cs" />
+    <Compile Include="CodeBehind\WAPMemberReturnsDetails.cs" />
+    <Compile Include="CodeBehind\WAPMemberVoucher.cs" />
+    <Compile Include="CodeBehind\WAPMessageCenter.cs" />
+    <Compile Include="CodeBehind\WAPMessageDetail.cs" />
+    <Compile Include="CodeBehind\WAPOrderReview.cs" />
+    <Compile Include="CodeBehind\WAPOrderSun.cs" />
+    <Compile Include="CodeBehind\WAPProductShare.cs" />
+    <Compile Include="CodeBehind\WAPTopUpRecords.cs" />
+    <Compile Include="CodeBehind\WAPTopUp.cs" />
+    <Compile Include="Common\PromotionHelper.cs" />
+    <Compile Include="CodeBehind\Affiches.cs" />
+    <Compile Include="CodeBehind\AffichesDetails.cs" />
+    <Compile Include="CodeBehind\AliOHAddShippingAddress.cs" />
+    <Compile Include="CodeBehind\AliOHArticle.cs" />
+    <Compile Include="CodeBehind\AliOHArticleCategory.cs" />
+    <Compile Include="CodeBehind\AliOHArticleDetail.cs" />
+    <Compile Include="CodeBehind\AliOHBrandDetail.cs" />
+    <Compile Include="CodeBehind\AliOHBrandList.cs" />
+    <Compile Include="CodeBehind\AliOHDefault.cs" />
+    <Compile Include="CodeBehind\AliOHDevelopReferrals.cs" />
+    <Compile Include="CodeBehind\AliOHEditShippingAddress.cs" />
+    <Compile Include="CodeBehind\AliOHFinishOrder.cs" />
+    <Compile Include="CodeBehind\AliOHGroupBuyList.cs" />
+    <Compile Include="CodeBehind\AliOHGroupBuyProductDetail.cs" />
+    <Compile Include="CodeBehind\AliOHImageTextDetails.cs" />
+    <Compile Include="CodeBehind\AliOHLogin.cs" />
+    <Compile Include="CodeBehind\AliOHLoginGuide.cs" />
+    <Compile Include="CodeBehind\AliOHLogout.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CodeBehind\AliOHMemberCenter.cs" />
+    <Compile Include="CodeBehind\AliOHMemberCoupons.cs" />
+    <Compile Include="CodeBehind\AliOHMemberOrderDetails.cs" />
+    <Compile Include="CodeBehind\AliOHMemberOrders.cs" />
+    <Compile Include="CodeBehind\AliOHMyConsultations.cs" />
+    <Compile Include="CodeBehind\AliOHMyFavorites.cs" />
+    <Compile Include="CodeBehind\AliOHMyLogistics.cs" />
+    <Compile Include="CodeBehind\AliOHProductConsultations.cs" />
+    <Compile Include="CodeBehind\AliOHProductDetails.cs" />
+    <Compile Include="CodeBehind\AliOHProductList.cs" />
+    <Compile Include="CodeBehind\AliOHProductReview.cs" />
+    <Compile Include="CodeBehind\AliOHProductSearch.cs" />
+    <Compile Include="CodeBehind\AliOHReferral.cs" />
+    <Compile Include="CodeBehind\AliOHReferralRegister.cs" />
+    <Compile Include="CodeBehind\AliOHReferralRegisterAgreement.cs" />
+    <Compile Include="CodeBehind\AliOHReferralRegisterresults.cs" />
+    <Compile Include="CodeBehind\AliOHShippingAddresses.cs" />
+    <Compile Include="CodeBehind\AliOHShoppingCart.cs" />
+    <Compile Include="CodeBehind\AliOHShoppingCartEmpty.cs" />
+    <Compile Include="CodeBehind\AliOHSlideImage.cs" />
+    <Compile Include="CodeBehind\AliOHSplittinDetails.cs" />
+    <Compile Include="CodeBehind\AliOHSplittinDetail_Detail.cs" />
+    <Compile Include="CodeBehind\AliOHSplittinDrawRecords.cs" />
+    <Compile Include="CodeBehind\AliOHSplittinDraws.cs" />
+    <Compile Include="CodeBehind\AliOHSplittinDraw_Detail.cs" />
+    <Compile Include="CodeBehind\AliOHSubMembers.cs" />
+    <Compile Include="CodeBehind\AliOHSubMember_Detail.cs" />
+    <Compile Include="CodeBehind\AliOHSubmmitOrder.cs" />
+    <Compile Include="CodeBehind\AliOHSubReferrals.cs" />
+    <Compile Include="CodeBehind\AliOHSubReferral_Detail.cs" />
+    <Compile Include="CodeBehind\AliOHTopics.cs" />
+    <Compile Include="CodeBehind\AliOHTransactionPwd.cs" />
+    <Compile Include="CodeBehind\AliOHUserInfo.cs" />
+    <Compile Include="CodeBehind\AliPayNotify.cs" />
+    <Compile Include="CodeBehind\AppAddShippingAddress.cs" />
+    <Compile Include="CodeBehind\AppEditShippingAddress.cs" />
+    <Compile Include="CodeBehind\AppFinishOrder.cs" />
+    <Compile Include="CodeBehind\AppMemberCoupons.cs" />
+    <Compile Include="CodeBehind\AppMemberOrderDetails.cs" />
+    <Compile Include="CodeBehind\AppMemberOrders.cs" />
+    <Compile Include="CodeBehind\AppMyConsultations.cs" />
+    <Compile Include="CodeBehind\AppMyFavorites.cs" />
+    <Compile Include="CodeBehind\AppMyLogistics.cs" />
+    <Compile Include="CodeBehind\AppProductConsultations.cs" />
+    <Compile Include="CodeBehind\AppProductDetails.cs" />
+    <Compile Include="CodeBehind\AppProductReview.cs" />
+    <Compile Include="CodeBehind\AppResourceNotFound.cs" />
+    <Compile Include="CodeBehind\AppShippingAddresses.cs" />
+    <Compile Include="CodeBehind\AppShoppingCart.cs" />
+    <Compile Include="CodeBehind\AppSubmmitOrder.cs" />
+    <Compile Include="CodeBehind\AppTransactionPwd.cs" />
+    <Compile Include="CodeBehind\AppUserInfo.cs" />
+    <Compile Include="CodeBehind\ArticleDetails.cs" />
+    <Compile Include="CodeBehind\Articles.cs" />
+    <Compile Include="CodeBehind\Brand.cs" />
+    <Compile Include="CodeBehind\BrandDetails.cs" />
+    <Compile Include="CodeBehind\BundlingProducts.cs" />
+    <Compile Include="CodeBehind\Category.cs" />
+    <Compile Include="CodeBehind\ControlHelper.cs" />
+    <Compile Include="CodeBehind\CountDownProducts.cs" />
+    <Compile Include="CodeBehind\CountDownProductsDetails.cs" />
+    <Compile Include="CodeBehind\Default.cs" />
+    <Compile Include="CodeBehind\Desig_Templete.cs" />
+    <Compile Include="CodeBehind\ExpressData.cs" />
+    <Compile Include="CodeBehind\FavourableDetails.cs" />
+    <Compile Include="CodeBehind\FinishOrder.cs" />
+    <Compile Include="CodeBehind\ForgotPassword.cs" />
+    <Compile Include="CodeBehind\ForgotPasswordSuccess.cs" />
+    <Compile Include="CodeBehind\GiftDetails.cs" />
+    <Compile Include="CodeBehind\GroupBuyProductDetails.cs" />
+    <Compile Include="CodeBehind\GroupBuyProducts.cs" />
+    <Compile Include="CodeBehind\HelpDetails.cs" />
+    <Compile Include="CodeBehind\Helps.cs" />
+    <Compile Include="CodeBehind\InpourNotify.cs" />
+    <Compile Include="CodeBehind\InpourReturn.cs" />
+    <Compile Include="CodeBehind\InpourTemplatedWebControl.cs" />
+    <Compile Include="CodeBehind\LeaveComments.cs" />
+    <Compile Include="CodeBehind\Login.cs" />
+    <Compile Include="CodeBehind\Logout.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CodeBehind\LookLineItems.cs" />
+    <Compile Include="CodeBehind\LookProductReviews.cs" />
+    <Compile Include="CodeBehind\OnlineGifts.cs" />
+    <Compile Include="CodeBehind\OpenIdFunction.cs" />
+    <Compile Include="CodeBehind\OrderNotify.cs" />
+    <Compile Include="CodeBehind\OrderReturn.cs" />
+    <Compile Include="CodeBehind\PaymentTemplatedWebControl.cs" />
+    <Compile Include="CodeBehind\ProductConsultations.cs" />
+    <Compile Include="CodeBehind\ProductConsultationsAndReplay.cs" />
+    <Compile Include="CodeBehind\ProductDetails.cs" />
+    <Compile Include="CodeBehind\ProductIamge.cs" />
+    <Compile Include="CodeBehind\ProductReviews.cs" />
+    <Compile Include="CodeBehind\ProductUnSales.cs" />
+    <Compile Include="CodeBehind\Promotes.cs" />
+    <Compile Include="CodeBehind\Register.cs" />
+    <Compile Include="CodeBehind\RegisterAgreement.cs" />
+    <Compile Include="CodeBehind\RegisterUserSave.cs" />
+    <Compile Include="CodeBehind\SaleSyetemResourceNotFound.cs" />
+    <Compile Include="CodeBehind\ShoppingCart.cs" />
+    <Compile Include="CodeBehind\ShoppingHandler.cs" />
+    <Compile Include="CodeBehind\SlideImage.cs" />
+    <Compile Include="CodeBehind\SubCategory.cs" />
+    <Compile Include="CodeBehind\SubmmitOrder.cs" />
+    <Compile Include="CodeBehind\SubmmitOrderHandler.cs" />
+    <Compile Include="CodeBehind\UnProductDetails.cs" />
+    <Compile Include="CodeBehind\VActivity.cs" />
+    <Compile Include="CodeBehind\VAddShippingAddress.cs" />
+    <Compile Include="CodeBehind\VArticle.cs" />
+    <Compile Include="CodeBehind\VArticleCategory.cs" />
+    <Compile Include="CodeBehind\VArticleDetail.cs" />
+    <Compile Include="CodeBehind\VBigWheel.cs" />
+    <Compile Include="CodeBehind\VBrandDetail.cs" />
+    <Compile Include="CodeBehind\VBrandList.cs" />
+    <Compile Include="CodeBehind\VCountDownProductDetail.cs" />
+    <Compile Include="CodeBehind\VCountDownProductList.cs" />
+    <Compile Include="CodeBehind\VDefault.cs" />
+    <Compile Include="CodeBehind\VDevelopReferrals.cs" />
+    <Compile Include="CodeBehind\VEditShippingAddress.cs" />
+    <Compile Include="CodeBehind\VFinishOrder.cs" />
+    <Compile Include="CodeBehind\VGroupBuyList.cs" />
+    <Compile Include="CodeBehind\VGroupBuyProductDetail.cs" />
+    <Compile Include="CodeBehind\VImageTextDetails.cs" />
+    <Compile Include="CodeBehind\VLogin.cs" />
+    <Compile Include="CodeBehind\VLoginGuide.cs" />
+    <Compile Include="CodeBehind\VLogout.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CodeBehind\VMemberCenter.cs" />
+    <Compile Include="CodeBehind\VMemberCoupons.cs" />
+    <Compile Include="CodeBehind\VMemberOrderDetails.cs" />
+    <Compile Include="CodeBehind\VMemberOrders.cs" />
+    <Compile Include="CodeBehind\VMyConsultations.cs" />
+    <Compile Include="CodeBehind\VMyFavorites.cs" />
+    <Compile Include="CodeBehind\VMyLogistics.cs" />
+    <Compile Include="CodeBehind\VoteResult.cs" />
+    <Compile Include="CodeBehind\VProductConsultations.cs" />
+    <Compile Include="CodeBehind\VProductDetails.cs" />
+    <Compile Include="CodeBehind\VProductList.cs" />
+    <Compile Include="CodeBehind\VProductReview.cs" />
+    <Compile Include="CodeBehind\VProductSearch.cs" />
+    <Compile Include="CodeBehind\VReferral.cs" />
+    <Compile Include="CodeBehind\VReferralRegister.cs" />
+    <Compile Include="CodeBehind\VReferralRegisterAgreement.cs" />
+    <Compile Include="CodeBehind\VReferralRegisterresults.cs" />
+    <Compile Include="CodeBehind\VScratch.cs" />
+    <Compile Include="CodeBehind\VShippingAddresses.cs" />
+    <Compile Include="CodeBehind\VShoppingCart.cs" />
+    <Compile Include="CodeBehind\VShoppingCartEmpty.cs" />
+    <Compile Include="CodeBehind\VSignUp.cs" />
+    <Compile Include="CodeBehind\VSmashEgg.cs" />
+    <Compile Include="CodeBehind\VSplittinDetails.cs" />
+    <Compile Include="CodeBehind\VSplittinDetail_Detail.cs" />
+    <Compile Include="CodeBehind\VSplittinDrawRecords.cs" />
+    <Compile Include="CodeBehind\VSplittinDraws.cs" />
+    <Compile Include="CodeBehind\VSplittinDraw_Detail.cs" />
+    <Compile Include="CodeBehind\VSubMembers.cs" />
+    <Compile Include="CodeBehind\VSubMember_Detail.cs" />
+    <Compile Include="CodeBehind\VSubmmitOrder.cs" />
+    <Compile Include="CodeBehind\VSubReferrals.cs" />
+    <Compile Include="CodeBehind\VSubReferral_Detail.cs" />
+    <Compile Include="CodeBehind\VTicket.cs" />
+    <Compile Include="CodeBehind\VTopics.cs" />
+    <Compile Include="CodeBehind\VTransactionPwd.cs" />
+    <Compile Include="CodeBehind\VUserInfo.cs" />
+    <Compile Include="CodeBehind\VWinningResults.cs" />
+    <Compile Include="CodeBehind\WAPAddShippingAddress.cs" />
+    <Compile Include="CodeBehind\WapArticle.cs" />
+    <Compile Include="CodeBehind\WapArticleCategory.cs" />
+    <Compile Include="CodeBehind\WapArticleDetail.cs" />
+    <Compile Include="CodeBehind\WAPBrandDetail.cs" />
+    <Compile Include="CodeBehind\WAPBrandList.cs" />
+    <Compile Include="CodeBehind\WAPCountDownProductDetail.cs" />
+    <Compile Include="CodeBehind\WapCountDownProductList.cs" />
+    <Compile Include="CodeBehind\WAPDefault.cs" />
+    <Compile Include="CodeBehind\WAPDevelopReferrals.cs" />
+    <Compile Include="CodeBehind\WAPEditShippingAddress.cs" />
+    <Compile Include="CodeBehind\WAPFinishOrder.cs" />
+    <Compile Include="CodeBehind\WAPGroupBuyList.cs" />
+    <Compile Include="CodeBehind\WAPGroupBuyProductDetail.cs" />
+    <Compile Include="CodeBehind\WAPImageTextDetails.cs" />
+    <Compile Include="CodeBehind\WAPLogin.cs" />
+    <Compile Include="CodeBehind\WAPLoginGuide.cs" />
+    <Compile Include="CodeBehind\WAPLogout.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CodeBehind\WAPMemberCenter.cs" />
+    <Compile Include="CodeBehind\WAPMemberCoupons.cs" />
+    <Compile Include="CodeBehind\WAPMemberOrderDetails.cs" />
+    <Compile Include="CodeBehind\WAPMemberOrders.cs" />
+    <Compile Include="CodeBehind\WAPMyConsultations.cs" />
+    <Compile Include="CodeBehind\WAPMyFavorites.cs" />
+    <Compile Include="CodeBehind\WAPMyLogistics.cs" />
+    <Compile Include="CodeBehind\WAPProductConsultations.cs" />
+    <Compile Include="CodeBehind\WAPProductDetails.cs" />
+    <Compile Include="CodeBehind\WAPProductList.cs" />
+    <Compile Include="CodeBehind\WAPProductReview.cs" />
+    <Compile Include="CodeBehind\WAPProductSearch.cs" />
+    <Compile Include="CodeBehind\WAPReferral.cs" />
+    <Compile Include="CodeBehind\WapReferralRegister.cs" />
+    <Compile Include="CodeBehind\WapReferralRegisterAgreement.cs" />
+    <Compile Include="CodeBehind\WapReferralRegisterresults.cs" />
+    <Compile Include="CodeBehind\WAPShareListProducts.cs" />
+    <Compile Include="CodeBehind\WAPShippingAddresses.cs" />
+    <Compile Include="CodeBehind\WAPShoppingCart.cs" />
+    <Compile Include="CodeBehind\WAPShoppingCartEmpty.cs" />
+    <Compile Include="CodeBehind\WAPSlideImage.cs" />
+    <Compile Include="CodeBehind\WapSplittinDetails.cs" />
+    <Compile Include="CodeBehind\WapSplittinDetail_Detail.cs" />
+    <Compile Include="CodeBehind\WAPSplittinDrawRecords.cs" />
+    <Compile Include="CodeBehind\WAPSplittinDraws.cs" />
+    <Compile Include="CodeBehind\WAPSplittinDraw_Detail.cs" />
+    <Compile Include="CodeBehind\WapSubMembers.cs" />
+    <Compile Include="CodeBehind\WAPSubMember_Detail.cs" />
+    <Compile Include="CodeBehind\WAPSubmmitOrder.cs" />
+    <Compile Include="CodeBehind\WapSubReferrals.cs" />
+    <Compile Include="CodeBehind\WapSubReferral_Detail.cs" />
+    <Compile Include="CodeBehind\WAPTopics.cs" />
+    <Compile Include="CodeBehind\WAPTransactionPwd.cs" />
+    <Compile Include="CodeBehind\WAPUserInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ecdev.Components.Validation\Ecdev.Components.Validation.csproj">
+      <Project>{b606bc52-5441-41fd-b9fa-2814dc36e5dc}</Project>
+      <Name>Ecdev.Components.Validation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ecdev.Plugins\Ecdev.Plugins.csproj">
+      <Project>{8f8ea901-b6dc-4747-9e69-53421816cb33}</Project>
+      <Name>Ecdev.Plugins</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ecdev.Weixin.MP\Ecdev.Weixin.MP.csproj">
+      <Project>{f84f5e8a-7014-443b-96a4-d08691349f32}</Project>
+      <Name>Ecdev.Weixin.MP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ecdev.Weixin.Pay\Ecdev.Weixin.Pay.csproj">
+      <Project>{a60f5998-a8f9-47e2-be4a-4296368ebd85}</Project>
+      <Name>Ecdev.Weixin.Pay</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.ControlPanel.Commodities\EcShop.ControlPanel.Commodities.csproj">
+      <Project>{f82c1aa0-e458-43f3-8725-d2f06d250c66}</Project>
+      <Name>EcShop.ControlPanel.Commodities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.ControlPanel.Promotions\EcShop.ControlPanel.Promotions.csproj">
+      <Project>{dd8a8caa-07ca-4e55-ac0e-eb6ce28675e1}</Project>
+      <Name>EcShop.ControlPanel.Promotions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.ControlPanel.Sales\EcShop.ControlPanel.Sales.csproj">
+      <Project>{8de26e24-764a-4ff0-b161-1fbad4296618}</Project>
+      <Name>EcShop.ControlPanel.Sales</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.ControlPanel.Store\EcShop.ControlPanel.Store.csproj">
+      <Project>{033d956e-0d40-474f-9c26-7dd8349468fd}</Project>
+      <Name>EcShop.ControlPanel.Store</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.Entities\EcShop.Entities.csproj">
+      <Project>{88093336-25d2-4358-82ce-bd86449a6c3f}</Project>
+      <Name>EcShop.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.Membership.Context\EcShop.Membership.Context.csproj">
+      <Project>{7cf77a2d-d81d-4dfe-b794-5a791dbc92e7}</Project>
+      <Name>EcShop.Membership.Context</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.Membership.Core\EcShop.Membership.Core.csproj">
+      <Project>{02f39f57-c45f-4fa6-bf11-c2628e50a74e}</Project>
+      <Name>EcShop.Membership.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.Messages\EcShop.Messages.csproj">
+      <Project>{6f8e0d2f-9d0f-4dc1-96a7-d8cd5b0da066}</Project>
+      <Name>EcShop.Messages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.SaleSystem.Catalog\EcShop.SaleSystem.Catalog.csproj">
+      <Project>{d09fb3b2-137e-48b3-bc26-00a0e79d7542}</Project>
+      <Name>EcShop.SaleSystem.Catalog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.SaleSystem.Comments\EcShop.SaleSystem.Comments.csproj">
+      <Project>{c930a4b9-dfd9-4b0e-899a-37e7111e457e}</Project>
+      <Name>EcShop.SaleSystem.Comments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.SaleSystem.Member\EcShop.SaleSystem.Member.csproj">
+      <Project>{922b9e23-b09b-42ec-bc16-0883b97ed78d}</Project>
+      <Name>EcShop.SaleSystem.Member</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.SaleSystem.Shopping\EcShop.SaleSystem.Shopping.csproj">
+      <Project>{8b707eef-0060-4657-97c3-660436683d82}</Project>
+      <Name>EcShop.SaleSystem.Shopping</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.SaleSystem.Vshop\EcShop.SaleSystem.Vshop.csproj">
+      <Project>{8e625414-6f4e-4bcf-858d-40a9ad9b6d10}</Project>
+      <Name>EcShop.SaleSystem.Vshop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.SqlDal\EcShop.SqlDal.csproj">
+      <Project>{4F773182-CD07-4C69-9107-F7F017FA67CF}</Project>
+      <Name>EcShop.SqlDal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.UI.AccountCenter.CodeBehind\EcShop.UI.AccountCenter.CodeBehind.csproj">
+      <Project>{34cc75d5-47d7-4273-a9f1-9ae0f84d898c}</Project>
+      <Name>EcShop.UI.AccountCenter.CodeBehind</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.UI.Common.Controls\EcShop.UI.Common.Controls.csproj">
+      <Project>{cdc9cc04-3b46-4c8a-bc91-69dea56dfe18}</Project>
+      <Name>EcShop.UI.Common.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.UI.SaleSystem.Tags\EcShop.UI.SaleSystem.Tags.csproj">
+      <Project>{e543f37d-12f2-4867-8427-ef4b1c6f580e}</Project>
+      <Name>EcShop.UI.SaleSystem.Tags</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="CryptoKitLib">
+      <Guid>{AC6D66BA-8515-496C-9EC6-7D180F745D83}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

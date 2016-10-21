@@ -1,0 +1,17 @@
+[assembly: System.Reflection.AssemblyVersion("1.0.0.0")]
+[assembly: System.Runtime.InteropServices.ComVisible(false)]
+[assembly: System.Runtime.InteropServices.Guid("f30ba63a-0908-41a5-9f70-24814ae35ac1")]
+[assembly: System.Reflection.AssemblyFileVersion("1.0.0.0")]
+[assembly: System.Reflection.AssemblyCopyright("Copyright \x00a9 2012 - 2015 Ecdev.cn. All Rights Reserved.")]
+[assembly: System.Diagnostics.Debuggable(System.Diagnostics.DebuggableAttribute.DebuggingModes.IgnoreSymbolStoreSequencePoints)]
+[assembly: System.Runtime.CompilerServices.CompilationRelaxations(8)]
+[assembly: System.Runtime.CompilerServices.RuntimeCompatibility(WrapNonExceptionThrows=true)]
+//修改1
+[assembly: System.Reflection.AssemblyTrademark("")]
+//[assembly: System.Runtime.Versioning.TargetFramework(".NETFramework,Version=v4.0", FrameworkDisplayName=".NET Framework 4")]
+[assembly: System.Reflection.AssemblyTitle("CodeBehind")]
+[assembly: System.Reflection.AssemblyDescription("")]
+[assembly: System.Reflection.AssemblyConfiguration("")]
+[assembly: System.Reflection.AssemblyCompany("深圳市惠众云商科技有限公司")]
+[assembly: System.Reflection.AssemblyProduct("CodeBehind")]
+

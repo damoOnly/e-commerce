@@ -1,0 +1,38 @@
+using System;
+using System.Data;
+namespace EcShop.Entities.Orders
+{
+    public class OrdersInfo
+	{
+		public DataTable OrderTbl
+		{
+			get;
+			set;
+		}
+		public int TotalCount
+		{
+			get;
+			set;
+		}
+		public decimal TotalOfPage
+		{
+			get;
+			set;
+		}
+		public decimal ProfitsOfPage
+		{
+			get;
+			set;
+		}
+		public decimal TotalOfSearch
+		{
+			get;
+			set;
+		}
+		public decimal ProfitsOfSearch
+		{
+			get;
+			set;
+		}
+	}
+}

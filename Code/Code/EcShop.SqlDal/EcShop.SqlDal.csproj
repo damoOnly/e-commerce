@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{4F773182-CD07-4C69-9107-F7F017FA67CF}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <AssemblyName>EcShop.SqlDal</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>..\EcShop.Website\bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <OutputPath>..\EcShop.Website\bin\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EcShop.Core, Version=2.1.5459.27733, Culture=neutral, PublicKeyToken=d39bceaac35c5a29, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\EcShop.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=4.1.0.0, Culture=neutral, PublicKeyToken=e44a2bc38ed2c13c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=4.1.0.0, Culture=neutral, PublicKeyToken=7f2f4d7aece0749d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Active\PCActiveDao.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Comments\AfficheDao.cs" />
+    <Compile Include="Comments\ArticleCategoryDao.cs" />
+    <Compile Include="Comments\ArticleDao.cs" />
+    <Compile Include="Comments\HelpCategoryDao.cs" />
+    <Compile Include="Comments\HelpDao.cs" />
+    <Compile Include="Comments\LeaveCommentDao.cs" />
+    <Compile Include="Comments\MessageBoxDao.cs" />
+    <Compile Include="Comments\ProductConsultationDao.cs" />
+    <Compile Include="Comments\ProductReviewDao.cs" />
+    <Compile Include="Commodities\AttributeDao.cs" />
+    <Compile Include="Commodities\AttributeValueDao.cs" />
+    <Compile Include="Commodities\BaseCountryDao.cs" />
+    <Compile Include="Commodities\BaseUnitDao.cs" />
+    <Compile Include="Commodities\BrandCategoryDao.cs" />
+    <Compile Include="Commodities\BrandTagDao.cs" />
+    <Compile Include="Commodities\CategoryDao.cs" />
+    <Compile Include="Commodities\HomeProductDao.cs" />
+    <Compile Include="Commodities\ImportSourceTypeDao.cs" />
+    <Compile Include="Commodities\ProductApiDao.cs" />
+    <Compile Include="Commodities\ProductBatchDao.cs" />
+    <Compile Include="Commodities\ProductBrowseDao.cs" />
+    <Compile Include="Commodities\ProductDao.cs" />
+    <Compile Include="Commodities\ProductTypeDao.cs" />
+    <Compile Include="Commodities\SkuDao.cs" />
+    <Compile Include="Commodities\StoreManagementDao.cs" />
+    <Compile Include="Commodities\SupplierDao.cs" />
+    <Compile Include="Commodities\TaxRateDao.cs" />
+    <Compile Include="Commodities\TagDao.cs" />
+    <Compile Include="Commodities\TaobaoProductDao.cs" />
+    <Compile Include="HS\HSCodeDao.cs" />
+    <Compile Include="Members\RetailBusinessDao.cs" />
+    <Compile Include="Members\ReconciliationOrdersDao.cs" />
+    <Compile Include="Members\BalanceDetailDao.cs" />
+    <Compile Include="Members\FavoriteDao.cs" />
+    <Compile Include="Members\InpourRequestDao.cs" />
+    <Compile Include="Members\MemberDao.cs" />
+    <Compile Include="Members\MemberGradeDao.cs" />
+    <Compile Include="Members\OpenIdSettingDao.cs" />
+    <Compile Include="Members\PointDetailDao.cs" />
+    <Compile Include="Members\ReferralDao.cs" />
+    <Compile Include="Members\TelVerifyDao.cs" />
+    <Compile Include="Members\UserbrowsehistoryDao.cs" />
+    <Compile Include="OAuth\OAuthInfoDao.cs" />
+    <Compile Include="Orders\DebitNoteDao.cs" />
+    <Compile Include="Orders\DeliverDao.cs" />
+    <Compile Include="Orders\LineItemDao.cs" />
+    <Compile Include="Orders\OrderDao.cs" />
+    <Compile Include="Orders\OrderGiftDao.cs" />
+    <Compile Include="Orders\ReplaceDao.cs" />
+    <Compile Include="Orders\ReturnDao.cs" />
+    <Compile Include="Orders\SendNoteDao.cs" />
+    <Compile Include="PCMenu\PcMenuInfoDao.cs" />
+    <Compile Include="PO\PurchaseOrderDao.cs" />
+    <Compile Include="Promotions\BundlingDao.cs" />
+    <Compile Include="Promotions\CountDownDao.cs" />
+    <Compile Include="Promotions\CouponDao.cs" />
+    <Compile Include="Promotions\GiftDao.cs" />
+    <Compile Include="Promotions\GroupBuyDao.cs" />
+    <Compile Include="Promotions\PromotionDao.cs" />
+    <Compile Include="Promotions\TradeDetailsDao.cs" />
+    <Compile Include="Promotions\VoucherDao.cs" />
+    <Compile Include="Sales\BaseEnumDictDao.cs" />
+    <Compile Include="Sales\CookieShoppingDao.cs" />
+    <Compile Include="Sales\DateStatisticDao.cs" />
+    <Compile Include="Sales\ExpressTemplateDao.cs" />
+    <Compile Include="Sales\PaymentModeDao.cs" />
+    <Compile Include="Sales\SaleStatisticDao.cs" />
+    <Compile Include="Sales\ShipperDao.cs" />
+    <Compile Include="Sales\ShippingAddressDao.cs" />
+    <Compile Include="Sales\ShippingModeDao.cs" />
+    <Compile Include="Sales\ShoppingCartDao.cs" />
+    <Compile Include="Sites\SitesManagementDao.cs" />
+    <Compile Include="SqlDal\VshopDesignTemplateDao.cs" />
+    <Compile Include="Store\AppVersionRecordDao.cs" />
+    <Compile Include="Store\SMSQueueDao.cs" />
+    <Compile Include="Store\EmailQueueDao.cs" />
+    <Compile Include="Store\FriendlyLinkDao.cs" />
+    <Compile Include="Store\HotkeywordDao.cs" />
+    <Compile Include="Store\LogDao.cs" />
+    <Compile Include="Store\ManagerDao.cs" />
+    <Compile Include="Store\MessageDao.cs" />
+    <Compile Include="Store\MessageTemplateDao.cs" />
+    <Compile Include="Store\PhotoGalleryDao.cs" />
+    <Compile Include="Store\SearchHistoryDao.cs" />
+    <Compile Include="Store\StoreDao.cs" />
+    <Compile Include="Store\SupplierConfigDao.cs" />
+    <Compile Include="Store\VoteDao.cs" />
+    <Compile Include="Store\WXLogDao.cs" />
+    <Compile Include="Store\WXMsgRecordDao.cs" />
+    <Compile Include="VShop\ActivityDao.cs" />
+    <Compile Include="VShop\ActivitySignUpDao.cs" />
+    <Compile Include="VShop\AlarmDao.cs" />
+    <Compile Include="VShop\ShareDao.cs" />
+    <Compile Include="VShop\BannerDao.cs" />
+    <Compile Include="VShop\FeedBackDao.cs" />
+    <Compile Include="VShop\HomeTopicDao.cs" />
+    <Compile Include="VShop\LotteryActivityDao.cs" />
+    <Compile Include="VShop\MenuDao.cs" />
+    <Compile Include="VShop\PrizeRecordDao.cs" />
+    <Compile Include="VShop\ReplyDao.cs" />
+    <Compile Include="VShop\TopicDao.cs" />
+    <Compile Include="SqlDal\BackupRestoreDao.cs" />
+    <Compile Include="SqlDal\RefundDao.cs" />
+    <Compile Include="WMS\WMSLogDao.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EcShop.Entities\EcShop.Entities.csproj">
+      <Project>{88093336-25d2-4358-82ce-bd86449a6c3f}</Project>
+      <Name>EcShop.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.Membership.Context\EcShop.Membership.Context.csproj">
+      <Project>{7cf77a2d-d81d-4dfe-b794-5a791dbc92e7}</Project>
+      <Name>EcShop.Membership.Context</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.Membership.Core\EcShop.Membership.Core.csproj">
+      <Project>{02f39f57-c45f-4fa6-bf11-c2628e50a74e}</Project>
+      <Name>EcShop.Membership.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

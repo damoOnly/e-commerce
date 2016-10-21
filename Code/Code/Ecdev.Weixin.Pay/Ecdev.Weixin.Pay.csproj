@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{A60F5998-A8F9-47E2-BE4A-4296368EBD85}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Ecdev.Weixin.Pay</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>..\EcShop.Website\bin\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <OutputPath>..\EcShop.Website\bin\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EcShop.Core, Version=2.1.5459.27733, Culture=neutral, PublicKeyToken=d39bceaac35c5a29, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\EcShop.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System" />
+    <Reference Include="System.Web" />
+    <Reference Include="Newtonsoft.Json" />
+    <Reference Include="ThoughtWorks.QRCode, Version=1.0.2774.19990, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\Administrator\Desktop\ThoughtWorks.QRCode.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Domain\DeliverInfo.cs" />
+    <Compile Include="Domain\PackageInfo.cs" />
+    <Compile Include="Domain\PayInfo.cs" />
+    <Compile Include="Domain\PayRequestInfo.cs" />
+    <Compile Include="Domain\VCodePayEntity.cs" />
+    <Compile Include="Domain\VCodePayResponsEntity.cs" />
+    <Compile Include="Notify\AlarmErrorType.cs" />
+    <Compile Include="Notify\AlarmNotify.cs" />
+    <Compile Include="Notify\FeedBackNotify.cs" />
+    <Compile Include="Notify\FeedBackType.cs" />
+    <Compile Include="Notify\NotifyObject.cs" />
+    <Compile Include="Notify\OrderNotify.cs" />
+    <Compile Include="Notify\PayNotify.cs" />
+    <Compile Include="Pay\VCodePayHelper.cs" />
+    <Compile Include="Util\PayDictionary.cs" />
+    <Compile Include="Util\SignHelper.cs" />
+    <Compile Include="Util\UrlHelper.cs" />
+    <Compile Include="Util\Utils.cs" />
+    <Compile Include="Util\WebUtils.cs" />
+    <Compile Include="Pay\NotifyClient.cs" />
+    <Compile Include="Pay\PayAccount.cs" />
+    <Compile Include="Pay\PayClient.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ecdev.Weixin.MP\Ecdev.Weixin.MP.csproj">
+      <Project>{f84f5e8a-7014-443b-96a4-d08691349f32}</Project>
+      <Name>Ecdev.Weixin.MP</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

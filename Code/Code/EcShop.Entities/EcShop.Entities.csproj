@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{88093336-25D2-4358-82CE-BD86449A6C3F}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <AssemblyName>EcShop.Entities</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>..\EcShop.Website\bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <OutputPath>..\EcShop.Website\bin\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EcShop.ControlPanel.Store, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\EcShop.Website\bin\EcShop.ControlPanel.Store.dll</HintPath>
+    </Reference>
+    <Reference Include="EcShop.Core, Version=2.1.5459.27733, Culture=neutral, PublicKeyToken=d39bceaac35c5a29, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\EcShop.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Core" />
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="AliOH\LocationType.cs" />
+    <Compile Include="Comments\AfficheInfo.cs" />
+    <Compile Include="Comments\AfficheQuery.cs" />
+    <Compile Include="Comments\CountDownCoupons.cs" />
+    <Compile Include="Members\MemberRecommendCodeInfo.cs" />
+    <Compile Include="Members\MembersUser.cs" />
+    <Compile Include="PO\PODeclareJSON.cs" />
+    <Compile Include="PO\PODeclareListQuery.cs" />
+    <Compile Include="VShop\CategoryType.cs" />
+    <Compile Include="Comments\TaxRateInfo.cs" />
+    <Compile Include="Comments\ArticleCategoryInfo.cs" />
+    <Compile Include="Comments\ArticleInfo.cs" />
+    <Compile Include="Comments\ArticleQuery.cs" />
+    <Compile Include="Comments\ConsultationReplyType.cs" />
+    <Compile Include="Comments\DesignTempleteInfo.cs" />
+    <Compile Include="Comments\HelpCategoryInfo.cs" />
+    <Compile Include="Comments\HelpInfo.cs" />
+    <Compile Include="Comments\HelpQuery.cs" />
+    <Compile Include="Comments\LeaveCommentInfo.cs" />
+    <Compile Include="Comments\LeaveCommentQuery.cs" />
+    <Compile Include="Comments\LeaveCommentReplyInfo.cs" />
+    <Compile Include="Comments\MessageBoxInfo.cs" />
+    <Compile Include="Comments\MessageBoxQuery.cs" />
+    <Compile Include="Comments\MessageStatus.cs" />
+    <Compile Include="Comments\ProductConsultationAndReplyQuery.cs" />
+    <Compile Include="Comments\ProductConsultationInfo.cs" />
+    <Compile Include="Comments\ProductReviewAndReplyQuery.cs" />
+    <Compile Include="Comments\ProductReviewInfo.cs" />
+    <Compile Include="Comments\ProductReviewQuery.cs" />
+    <Compile Include="Comments\UserProductReviewAndReplyQuery.cs" />
+    <Compile Include="Commodities\AdvancedProductQuery.cs" />
+    <Compile Include="Commodities\ApiErrorCode.cs" />
+    <Compile Include="Commodities\ApprovePriceStatus.cs" />
+    <Compile Include="Commodities\AppSupplierInfo.cs" />
+    <Compile Include="Commodities\AttributeInfo.cs" />
+    <Compile Include="Commodities\AttributeUseageMode.cs" />
+    <Compile Include="Commodities\AttributeValueInfo.cs" />
+    <Compile Include="Commodities\BaseUnitsInfo.cs" />
+    <Compile Include="Commodities\BrandCategoryInfo.cs" />
+    <Compile Include="Commodities\BrandQueue.cs" />
+    <Compile Include="Commodities\BrandTagInfo.cs" />
+    <Compile Include="Commodities\BrandTagQuery.cs" />
+    <Compile Include="Commodities\BrowsedProductQueue.cs" />
+    <Compile Include="Commodities\CategoryActionStatus.cs" />
+    <Compile Include="Commodities\CategoryInfo.cs" />
+    <Compile Include="Commodities\HotLimitProduct.cs" />
+    <Compile Include="Commodities\ImportSourceTypeInfo.cs" />
+    <Compile Include="Commodities\PenetrationStatus.cs" />
+    <Compile Include="Commodities\ProductActionStatus.cs" />
+    <Compile Include="Commodities\ProductBrowseInfo.cs" />
+    <Compile Include="Commodities\ProductBrowseQuery.cs" />
+    <Compile Include="Commodities\ProductFavoriteQuery.cs" />
+    <Compile Include="Commodities\ProductInfo.cs" />
+    <Compile Include="Commodities\ImportSourceTypeQuery.cs" />
+    <Compile Include="Commodities\ProductQuery.cs" />
+    <Compile Include="Commodities\ProductSaleStatus.cs" />
+    <Compile Include="Commodities\ProductTypeInfo.cs" />
+    <Compile Include="Commodities\ProductTypeQuery.cs" />
+    <Compile Include="Commodities\PublishStatus.cs" />
+    <Compile Include="Commodities\ShareProductInfo.cs" />
+    <Compile Include="Commodities\SiteQuery.cs" />
+    <Compile Include="Commodities\SupplierCollectInfo.cs" />
+    <Compile Include="Commodities\SupplierCollectQuery.cs" />
+    <Compile Include="Commodities\UserbrowsehistoryInfo.cs" />
+    <Compile Include="Commodities\StoreManagementInfo.cs" />
+    <Compile Include="Commodities\SKUItem.cs" />
+    <Compile Include="Commodities\SubjectListQuery.cs" />
+    <Compile Include="Commodities\SitesManagementInfo.cs" />
+    <Compile Include="Commodities\SupplierInfo.cs" />
+    <Compile Include="Commodities\StoreQuery.cs" />
+    <Compile Include="Commodities\SupplierQuery.cs" />
+    <Compile Include="Entities\AppRunImgInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Entities\Coordinate.cs" />
+    <Compile Include="Entities\ImageBindType.cs" />
+    <Compile Include="Entities\LocationInfo.cs" />
+    <Compile Include="Commodities\UserbrowsehistoryQuery.cs" />
+    <Compile Include="Entities\PCMenuInfo.cs" />
+    <Compile Include="Entities\ProductsCombination.cs" />
+    <Compile Include="Entities\ReturnsInfo.cs" />
+    <Compile Include="Entities\ReplaceInfo.cs" />
+    <Compile Include="Entities\ReturnsLineItemInfo.cs" />
+    <Compile Include="Entities\SupplierCfgType.cs" />
+    <Compile Include="Entities\TFTSetting.cs" />
+    <Compile Include="Entities\VshopDesignTemplate.cs" />
+    <Compile Include="HOP\PublishToTaobaoProductInfo.cs" />
+    <Compile Include="HOP\TaobaoProductInfo.cs" />
+    <Compile Include="PO\PODeclareInfo.cs" />
+    <Compile Include="PO\PurchaseOrderInfo.cs" />
+    <Compile Include="PO\PurchaseOrderItemInfo.cs" />
+    <Compile Include="PO\PurchaseOrderItemQuery.cs" />
+    <Compile Include="PO\PurchaseOrderQuery.cs" />
+    <Compile Include="Orders\orders.cs" />
+    <Compile Include="YJF\CertNoValidHelper.cs" />
+    <Compile Include="HS\ElmentsInfo.cs" />
+    <Compile Include="HS\HSCodeInfo.cs" />
+    <Compile Include="HS\HSCodeQuery.cs" />
+    <Compile Include="HS\HSDeclareInfo.cs" />
+    <Compile Include="HS\HSDeclareQuery.cs" />
+    <Compile Include="HS\HSDockingInfo.cs" />
+    <Compile Include="HS\HSDockingQuery.cs" />
+    <Compile Include="Members\AccountSummaryInfo.cs" />
+    <Compile Include="Members\BalanceDetailInfo.cs" />
+    <Compile Include="Members\CommoditySalesQuery.cs" />
+    <Compile Include="Members\ReconciliationExpressFeeQuery.cs" />
+    <Compile Include="Members\ReconciliationOrdersQuery.cs" />
+    <Compile Include="Members\LoginLog.cs" />
+    <Compile Include="Members\VendorSalesDetailQuery.cs" />
+    <Compile Include="Members\VendorSalesReportQuery.cs" />
+    <Compile Include="Members\BalanceDetailQuery.cs" />
+    <Compile Include="Members\BalanceDrawRequestInfo.cs" />
+    <Compile Include="Members\BalanceDrawRequestQuery.cs" />
+    <Compile Include="Members\ClientStatus.cs" />
+    <Compile Include="Members\InpourRequestInfo.cs" />
+    <Compile Include="Members\MemberClientSet.cs" />
+    <Compile Include="Members\MemberGradeInfo.cs" />
+    <Compile Include="Members\MemberQuery.cs" />
+    <Compile Include="Members\MemberRankActionStatus.cs" />
+    <Compile Include="Members\OpenIdSettingsInfo.cs" />
+    <Compile Include="Members\PointDetailInfo.cs" />
+    <Compile Include="Members\PointTradeType.cs" />
+    <Compile Include="Members\SplittinDetailInfo.cs" />
+    <Compile Include="Members\SplittinDrawInfo.cs" />
+    <Compile Include="Members\SplittingTypes.cs" />
+    <Compile Include="Members\SubMember.cs" />
+    <Compile Include="Members\SubReferralUser.cs" />
+    <Compile Include="Members\TradeTypes.cs" />
+    <Compile Include="OAuth\OAuthInfo.cs" />
+    <Compile Include="Members\Verify.cs" />
+    <Compile Include="Orders\DebitNoteInfo.cs" />
+    <Compile Include="Orders\DebitNoteQuery.cs" />
+    <Compile Include="Orders\DeliverStatusInfo.cs" />
+    <Compile Include="Orders\EnumExtensions.cs" />
+    <Compile Include="Orders\EnumShowTextAttribute.cs" />
+    <Compile Include="Orders\ErrorDeliverGoods.cs" />
+    <Compile Include="Orders\ErrorDeliverStatusInfo.cs" />
+    <Compile Include="Orders\ErrorSimpleSKUUpdateInfo.cs" />
+    <Compile Include="Orders\OrderExpress.cs" />
+    <Compile Include="Orders\OrderPushQuery.cs" />
+    <Compile Include="Orders\OrdersInfo.cs" />
+    <Compile Include="Orders\SimpleSKUUpdateInfo.cs" />
+    <Compile Include="Orders\UserStatus.cs" />
+    <Compile Include="Orders\ServiceOrderQuery.cs" />
+    <Compile Include="Orders\TradeDetails.cs" />
+    <Compile Include="Orders\LineItemInfo.cs" />
+    <Compile Include="Orders\OrderActions.cs" />
+    <Compile Include="Orders\OrderGiftInfo.cs" />
+    <Compile Include="Orders\OrderGiftQuery.cs" />
+    <Compile Include="Orders\OrderInfo.cs" />
+    <Compile Include="Orders\OrderMark.cs" />
+    <Compile Include="Orders\OrderPriceStatisticsForChartInfo.cs" />
+    <Compile Include="Orders\OrderQuery.cs" />
+    <Compile Include="Orders\OrderSource.cs" />
+    <Compile Include="Orders\OrderStatisticsInfo.cs" />
+    <Compile Include="Orders\OrderStatus.cs" />
+    <Compile Include="Orders\OrderType.cs" />
+    <Compile Include="Orders\RefundApplyQuery.cs" />
+    <Compile Include="Orders\RefundStatus.cs" />
+    <Compile Include="Orders\ReplaceApplyQuery.cs" />
+    <Compile Include="Orders\ReturnsApplyQuery.cs" />
+    <Compile Include="Orders\SendNoteInfo.cs" />
+    <Compile Include="Promotions\BundlingInfo.cs" />
+    <Compile Include="Promotions\BundlingInfoQuery.cs" />
+    <Compile Include="Promotions\BundlingItemInfo.cs" />
+    <Compile Include="Promotions\CountDownCategoriesInfo.cs" />
+    <Compile Include="Promotions\CountDownInfo.cs" />
+    <Compile Include="Promotions\CouponActionStatus.cs" />
+    <Compile Include="Promotions\CouponInfo.cs" />
+    <Compile Include="Promotions\CouponItemInfo.cs" />
+    <Compile Include="Promotions\CouponItemInfoQuery.cs" />
+    <Compile Include="Promotions\CouponsSendTypeItem.cs" />
+    <Compile Include="Promotions\GiftActionStatus.cs" />
+    <Compile Include="Promotions\GiftInfo.cs" />
+    <Compile Include="Promotions\GiftQuery.cs" />
+    <Compile Include="Promotions\GropBuyConditionInfo.cs" />
+    <Compile Include="Promotions\GroupBuyInfo.cs" />
+    <Compile Include="Promotions\GroupBuyQuery.cs" />
+    <Compile Include="Promotions\GroupBuyStatus.cs" />
+    <Compile Include="Promotions\ProductPromotionsQuery.cs" />
+    <Compile Include="Promotions\PromoteType.cs" />
+    <Compile Include="Promotions\OrderPresents.cs" />
+    <Compile Include="Promotions\PromotionInfo.cs" />
+    <Compile Include="Promotions\PromotionProductsPresent.cs" />
+    <Compile Include="Promotions\UserVoucherQuery.cs" />
+    <Compile Include="Promotions\UserCouponQuery.cs" />
+    <Compile Include="Promotions\VoucherActionStatus.cs" />
+    <Compile Include="Promotions\VoucherInfo.cs" />
+    <Compile Include="Promotions\VoucherItemInfo.cs" />
+    <Compile Include="Promotions\VoucherItemInfoQuery.cs" />
+    <Compile Include="Sales\AddCartItemStatus.cs" />
+    <Compile Include="Sales\AdminStatisticsInfo.cs" />
+    <Compile Include="Sales\ExpressCompanyInfo.cs" />
+    <Compile Include="Sales\PayApplicationType.cs" />
+    <Compile Include="Sales\PaymentModeActionStatus.cs" />
+    <Compile Include="Sales\PaymentModeInfo.cs" />
+    <Compile Include="Sales\SaleStatisticsAnalyzeInfo.cs" />
+    <Compile Include="Sales\SaleStatisticsQuery.cs" />
+    <Compile Include="Sales\SaleStatisticsType.cs" />
+    <Compile Include="Sales\ShippersInfo.cs" />
+    <Compile Include="Sales\ShippingAddressInfo.cs" />
+    <Compile Include="Sales\ShippingModeGroupInfo.cs" />
+    <Compile Include="Sales\ShippingModeInfo.cs" />
+    <Compile Include="Sales\ShippingRegionInfo.cs" />
+    <Compile Include="Sales\ShoppingCartGiftInfo.cs" />
+    <Compile Include="Sales\ShoppingCartInfo.cs" />
+    <Compile Include="Sales\ShoppingCartPresentInfo.cs" />
+    <Compile Include="Sales\SkuInfo.cs" />
+    <Compile Include="Sales\ShoppingCartItemInfo.cs" />
+    <Compile Include="Sales\StatisticsInfo.cs" />
+    <Compile Include="Sales\UserStatisticsForDate.cs" />
+    <Compile Include="Sales\UserStatisticsInfo.cs" />
+    <Compile Include="Store\SmsInfo.cs" />
+    <Compile Include="Store\StoreInfo.cs" />
+    <Compile Include="Store\FriendlyLinksInfo.cs" />
+    <Compile Include="Store\ManagerQuery.cs" />
+    <Compile Include="Store\MessageTemplate.cs" />
+    <Compile Include="Store\OperationLogEntry.cs" />
+    <Compile Include="Store\OperationLogQuery.cs" />
+    <Compile Include="Store\Privilege.cs" />
+    <Compile Include="Store\VoteCheckType.cs" />
+    <Compile Include="Store\VoteInfo.cs" />
+    <Compile Include="Store\VoteItemInfo.cs" />
+    <Compile Include="Supplier\SupplierConfigInfo.cs" />
+    <Compile Include="VShop\AbstractResponseMessage.cs" />
+    <Compile Include="VShop\ActivityInfo.cs" />
+    <Compile Include="VShop\ActivitySignUpInfo.cs" />
+    <Compile Include="VShop\AlarmInfo.cs" />
+    <Compile Include="VShop\IconInfo.cs" />
+    <Compile Include="VShop\RecommendInfo.cs" />
+    <Compile Include="VShop\PromotionalInfo.cs" />
+    <Compile Include="VShop\HotSaleInfo.cs" />
+    <Compile Include="VShop\ShareInfo.cs" />
+    <Compile Include="VShop\BannerInfo.cs" />
+    <Compile Include="VShop\BindType.cs" />
+    <Compile Include="VShop\EnumExtensions.cs" />
+    <Compile Include="VShop\EnumShowTextAttribute.cs" />
+    <Compile Include="VShop\FeedBackInfo.cs" />
+    <Compile Include="VShop\LocationType.cs" />
+    <Compile Include="VShop\LotteryActivityInfo.cs" />
+    <Compile Include="VShop\LotteryActivityQuery.cs" />
+    <Compile Include="VShop\LotteryActivityType.cs" />
+    <Compile Include="VShop\LotteryTicketInfo.cs" />
+    <Compile Include="VShop\MatchType.cs" />
+    <Compile Include="VShop\MenuInfo.cs" />
+    <Compile Include="VShop\MessageInfo.cs" />
+    <Compile Include="VShop\MessageType.cs" />
+    <Compile Include="VShop\NavigateInfo.cs" />
+    <Compile Include="VShop\NewsMsgInfo.cs" />
+    <Compile Include="VShop\NewsReplyInfo.cs" />
+    <Compile Include="VShop\PrizeQuery.cs" />
+    <Compile Include="VShop\PrizeRecordInfo.cs" />
+    <Compile Include="VShop\PrizeSetting.cs" />
+    <Compile Include="VShop\RelationType.cs" />
+    <Compile Include="VShop\ReplyInfo.cs" />
+    <Compile Include="VShop\ReplyType.cs" />
+    <Compile Include="VShop\ResponseNews.cs" />
+    <Compile Include="VShop\TextReplyInfo.cs" />
+    <Compile Include="VShop\TopicInfo.cs" />
+    <Compile Include="VShop\TopicQuery.cs" />
+    <Compile Include="VShop\TplCfgInfo.cs" />
+    <Compile Include="Wap\LocationType.cs" />
+    <Compile Include="Entities\AliohTemplateHelper.cs" />
+    <Compile Include="Entities\AppInstallRecordInfo.cs" />
+    <Compile Include="Entities\AppLocationType.cs" />
+    <Compile Include="Entities\AppVersionRecordInfo.cs" />
+    <Compile Include="Entities\ClientType.cs" />
+    <Compile Include="Entities\DataMapper.cs" />
+    <Compile Include="Entities\EmailType.cs" />
+    <Compile Include="Entities\ExpressHelper.cs" />
+    <Compile Include="Entities\ManageThemeInfo.cs" />
+    <Compile Include="Entities\ReaderConvert.cs" />
+    <Compile Include="Entities\RefundInfo.cs" />
+    <Compile Include="Entities\RegionHelper.cs" />
+    <Compile Include="Entities\TagsHelper.cs" />
+    <Compile Include="Entities\VTemplateHelper.cs" />
+    <Compile Include="Entities\WapTemplateHelper.cs" />
+    <Compile Include="WX\WXLog.cs" />
+    <Compile Include="WX\WXMsgPackage.cs" />
+    <Compile Include="WX\WXMsgRecord.cs" />
+    <Compile Include="YJF\YJFRequest.cs" />
+    <Compile Include="YJF\YJFResponse.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ecdev.Components.Validation\Ecdev.Components.Validation.csproj">
+      <Project>{b606bc52-5441-41fd-b9fa-2814dc36e5dc}</Project>
+      <Name>Ecdev.Components.Validation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.Membership.Context\EcShop.Membership.Context.csproj">
+      <Project>{7cf77a2d-d81d-4dfe-b794-5a791dbc92e7}</Project>
+      <Name>EcShop.Membership.Context</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{9CAC2D37-675E-4A0D-82DC-46B851B19C88}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <AssemblyName>EcShop.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>..\Libs\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+    <OutputPath>..\Libs\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>ECShop.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>false</DelaySign>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\Libs\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=4.1.0.0, Culture=neutral, PublicKeyToken=e44a2bc38ed2c13c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=4.1.0.0, Culture=neutral, PublicKeyToken=7f2f4d7aece0749d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Configuration\AppLocation.cs" />
+    <Compile Include="Configuration\HiApplication.cs" />
+    <Compile Include="Configuration\HiConfiguration.cs" />
+    <Compile Include="Configuration\Provider.cs" />
+    <Compile Include="Configuration\RolesConfiguration.cs" />
+    <Compile Include="Core\CopyrightLicenser.cs" />
+    <Compile Include="Core\Cryptographer.cs" />
+    <Compile Include="Core\Setting.cs" />
+    <Compile Include="Core\SettingManager.cs" />
+    <Compile Include="Core\StringExtension.cs" />
+    <Compile Include="Entities\DbQueryResult.cs" />
+    <Compile Include="Entities\Pagination.cs" />
+    <Compile Include="Enums\ApplicationType.cs" />
+    <Compile Include="Enums\DataProviderAction.cs" />
+    <Compile Include="Enums\SortAction.cs" />
+    <Compile Include="Enums\SSLSettings.cs" />
+    <Compile Include="ErrorLog\ErrorLog.cs" />
+    <Compile Include="Jobs\IJob.cs" />
+    <Compile Include="Jobs\Job.cs" />
+    <Compile Include="Jobs\Jobs.cs" />
+    <Compile Include="Urls\ApplicationKeyMapping.cs" />
+    <Compile Include="Urls\HiUrlReWriter.cs" />
+    <Compile Include="Urls\Location.cs" />
+    <Compile Include="Urls\LocationSet.cs" />
+    <Compile Include="Urls\ReWrittenUrl.cs" />
+    <Compile Include="Urls\SiteUrls.cs" />
+    <Compile Include="Urls\SiteUrlsData.cs" />
+    <Compile Include="Urls\UrlReWriteProvider.cs" />
+    <Compile Include="Core\DataHelper.cs" />
+    <Compile Include="Core\DataProviders.cs" />
+    <Compile Include="Core\Express.cs" />
+    <Compile Include="Core\Globals.cs" />
+    <Compile Include="Core\HiCache.cs" />
+    <Compile Include="Core\HiCryptographer.cs" />
+    <Compile Include="Core\HtmlCodingAttribute.cs" />
+    <Compile Include="Core\LicenseHelper.cs" />
+    <Compile Include="Core\ResourcesHelper.cs" />
+    <Compile Include="Core\Serializer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ecdev.pfx" />
+    <None Include="ECShop.pfx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

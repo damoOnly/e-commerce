@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{02F39F57-C45F-4FA6-BF11-C2628E50A74E}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <AssemblyName>EcShop.Membership.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>..\EcShop.Website\bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <OutputPath>..\EcShop.Website\bin\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EcShop.Core, Version=2.1.5459.27733, Culture=neutral, PublicKeyToken=d39bceaac35c5a29, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\EcShop.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Data" />
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Enums\CreateUserStatus.cs" />
+    <Compile Include="Enums\Gender.cs" />
+    <Compile Include="Enums\LoginUserStatus.cs" />
+    <Compile Include="Enums\UserRole.cs" />
+    <Compile Include="Core\AnonymousUser.cs" />
+    <Compile Include="Core\CreateUserException.cs" />
+    <Compile Include="Core\HiMembership.cs" />
+    <Compile Include="Core\HiMembershipUser.cs" />
+    <Compile Include="Core\HiRoles.cs" />
+    <Compile Include="Core\IUser.cs" />
+    <Compile Include="Core\IUserCookie.cs" />
+    <Compile Include="Core\MemberRoleProvider.cs" />
+    <Compile Include="Core\MemberUserProvider.cs" />
+    <Compile Include="Core\RoleHelper.cs" />
+    <Compile Include="Core\RoleInfo.cs" />
+    <Compile Include="Core\UserHelper.cs" />
+    <Compile Include="Enums\UserType.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ecdev.Components.Validation\Ecdev.Components.Validation.csproj">
+      <Project>{b606bc52-5441-41fd-b9fa-2814dc36e5dc}</Project>
+      <Name>Ecdev.Components.Validation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ecdev.Weixin.MP\Ecdev.Weixin.MP.csproj">
+      <Project>{f84f5e8a-7014-443b-96a4-d08691349f32}</Project>
+      <Name>Ecdev.Weixin.MP</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

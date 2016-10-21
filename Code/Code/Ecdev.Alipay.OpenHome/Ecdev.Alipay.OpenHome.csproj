@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{904E4CBF-C21F-4F83-982F-B656DD1A6B8E}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Ecdev.Alipay.OpenHome</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>..\EcShop.Website\bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <OutputPath>..\EcShop.Website\bin\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AopSdk">
+      <HintPath>..\Libs\AopSdk.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="AlipayOHException\AlipayOpenHomeException.cs" />
+    <Compile Include="AlipayOHException\AliResponseException.cs" />
+    <Compile Include="AlipayOHException\RequestException.cs" />
+    <Compile Include="AlipayOHException\ResponseException.cs" />
+    <Compile Include="AlipayOHException\SignatureException.cs" />
+    <Compile Include="Handle\CommonHandle.cs" />
+    <Compile Include="Handle\IHandle.cs" />
+    <Compile Include="Handle\UserFollowHandle.cs" />
+    <Compile Include="Handle\VerifyGateWayHandle.cs" />
+    <Compile Include="Model\AliRequest.cs" />
+    <Compile Include="Model\AliRequstWhenFollow.cs" />
+    <Compile Include="Model\AliResponse.cs" />
+    <Compile Include="Model\AliResponseMessage.cs" />
+    <Compile Include="Model\AliUserTokenInfo.cs" />
+    <Compile Include="Model\Articles.cs" />
+    <Compile Include="Model\BasicResponse.cs" />
+    <Compile Include="Model\Button.cs" />
+    <Compile Include="Model\ErrorResponse.cs" />
+    <Compile Include="Model\IAliResponseStatus.cs" />
+    <Compile Include="Model\Item.cs" />
+    <Compile Include="Model\Menu.cs" />
+    <Compile Include="Model\Message.cs" />
+    <Compile Include="Model\ModelBase.cs" />
+    <Compile Include="Model\ResponseMessage.cs" />
+    <Compile Include="Model\UserInfo.cs" />
+    <Compile Include="Request\AddMenuRequest.cs" />
+    <Compile Include="Request\GetMenuRequest.cs" />
+    <Compile Include="Request\IRequest.cs" />
+    <Compile Include="Request\MessagePushRequest.cs" />
+    <Compile Include="Request\OauthTokenRequest.cs" />
+    <Compile Include="Request\RequestBase.cs" />
+    <Compile Include="Request\UpdateMenuRequest.cs" />
+    <Compile Include="Response\MenuAddResponse.cs" />
+    <Compile Include="Response\MenuUpdateResponse.cs" />
+    <Compile Include="Response\MessagePushResponse.cs" />
+    <Compile Include="Response\OauthTokenResponse.cs" />
+    <Compile Include="Utility\CData.cs" />
+    <Compile Include="Utility\RsaFileHelper.cs" />
+    <Compile Include="Utility\TimeHelper.cs" />
+    <Compile Include="Utility\XmlSerialiseHelper.cs" />
+    <Compile Include="OpenHome\AlipayOHClient.cs" />
+    <Compile Include="OpenHome\OnUserFollow.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

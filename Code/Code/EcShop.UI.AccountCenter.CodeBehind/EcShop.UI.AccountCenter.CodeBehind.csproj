@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{34CC75D5-47D7-4273-A9F1-9AE0F84D898C}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <AssemblyName>EcShop.UI.AccountCenter.CodeBehind</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>..\EcShop.Website\bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <OutputPath>..\EcShop.Website\bin\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ASPNET.WebControls">
+      <HintPath>..\Libs\ASPNET.WebControls.dll</HintPath>
+    </Reference>
+    <Reference Include="EcShop.Core, Version=2.1.5459.27733, Culture=neutral, PublicKeyToken=d39bceaac35c5a29, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\EcShop.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Data" />
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="ThoughtWorks.QRCode">
+      <HintPath>..\Libs\ThoughtWorks.QRCode.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="CodeBehind\Bank.cs" />
+    <Compile Include="CodeBehind\Common_Actitvitys.cs" />
+    <Compile Include="CodeBehind\Common_ActiveProductList.cs" />
+    <Compile Include="CodeBehind\Common_ActiveTopeTwo.cs" />
+    <Compile Include="CodeBehind\Common_ActivityTime.cs" />
+    <Compile Include="CodeBehind\Common_Address_AddressList.cs" />
+    <Compile Include="CodeBehind\Common_Advance_AccountList.cs" />
+    <Compile Include="CodeBehind\Common_BatchBuy_ProductList.cs" />
+    <Compile Include="CodeBehind\Common_BrandList.cs" />
+    <Compile Include="CodeBehind\Common_BrandTagList.cs" />
+    <Compile Include="CodeBehind\common_CartSupplierProducts.cs" />
+    <Compile Include="CodeBehind\Common_CategoriesDropDownList.cs" />
+    <Compile Include="CodeBehind\Common_Coupon_ChangeCouponList.cs" />
+    <Compile Include="CodeBehind\Common_Default_LimitProductList.cs" />
+    <Compile Include="CodeBehind\Common_Default_ProductList.cs" />
+    <Compile Include="CodeBehind\Common_HotBrandList.cs" />
+    <Compile Include="CodeBehind\Common_OrderProducts.cs" />
+    <Compile Include="CodeBehind\Common_PCActiveTopic_One.cs" />
+    <Compile Include="CodeBehind\common_pchotproductlist.cs" />
+    <Compile Include="CodeBehind\common_suppliercouponlist.cs" />
+    <Compile Include="CodeBehind\Common_Voucher_VoucherList.cs" />
+    <Compile Include="CodeBehind\Common_Coupon_CouponList.cs" />
+    <Compile Include="CodeBehind\Common_Favorite_ProductList.cs" />
+    <Compile Include="CodeBehind\Common_Messages_UserReceivedMessageList.cs" />
+    <Compile Include="CodeBehind\Common_Messages_UserSendedMessageList.cs" />
+    <Compile Include="CodeBehind\Common_OrderManage_OrderItems.cs" />
+    <Compile Include="CodeBehind\Common_OrderRecycleBin_OrderList.cs" />
+    <Compile Include="CodeBehind\Common_OrderManage_OrderList.cs" />
+    <Compile Include="CodeBehind\Common_OrderManage_RefundApply.cs" />
+    <Compile Include="CodeBehind\Common_OrderManage_ReplaceApply.cs" />
+    <Compile Include="CodeBehind\Common_OrderManage_ReturnsApply.cs" />
+    <Compile Include="CodeBehind\Common_OrderManage_ReviewsOrderItems.cs" />
+    <Compile Include="CodeBehind\Common_Point_PointList.cs" />
+    <Compile Include="CodeBehind\Common_Referral_MemberList.cs" />
+    <Compile Include="CodeBehind\Common_Referral_Splitin.cs" />
+    <Compile Include="CodeBehind\Common_Referral_SplittinDraw.cs" />
+    <Compile Include="CodeBehind\Common_UserDefault_ProductList.cs" />
+    <Compile Include="CodeBehind\Common_User_Menu.cs" />
+    <Compile Include="CodeBehind\Favorites.cs" />
+    <Compile Include="CodeBehind\IdentityCardVericetion.cs" />
+    <Compile Include="CodeBehind\LogisticsCompanyDropDownList.cs" />
+    <Compile Include="CodeBehind\MemberSafeGradeLiteral.cs" />
+    <Compile Include="CodeBehind\MemberTemplatedWebControl.cs" />
+    <Compile Include="CodeBehind\MyAccount.cs" />
+    <Compile Include="CodeBehind\MyAccountSummary.cs" />
+    <Compile Include="CodeBehind\MyChangeCoupons.cs" />
+    <Compile Include="CodeBehind\MyVouchers.cs" />
+    <Compile Include="CodeBehind\MyCoupons.cs" />
+    <Compile Include="CodeBehind\OpenBalance.cs" />
+    <Compile Include="CodeBehind\OrderReviews.cs" />
+    <Compile Include="CodeBehind\Pay.cs" />
+    <Compile Include="CodeBehind\PaySucceed.cs" />
+    <Compile Include="CodeBehind\PopularizeGift.cs" />
+    <Compile Include="CodeBehind\RechargeConfirm.cs" />
+    <Compile Include="CodeBehind\RechargeRequest.cs" />
+    <Compile Include="CodeBehind\ReferralRegister.cs" />
+    <Compile Include="CodeBehind\ReferralRegisterAgreement.cs" />
+    <Compile Include="CodeBehind\ReferralRegisterresults.cs" />
+    <Compile Include="CodeBehind\ReplyReceivedMessage.cs" />
+    <Compile Include="CodeBehind\RequestBalanceDraw.cs" />
+    <Compile Include="CodeBehind\RequestBalanceDrawConfirm.cs" />
+    <Compile Include="CodeBehind\SplittinDetails.cs" />
+    <Compile Include="CodeBehind\SplittinDraws.cs" />
+    <Compile Include="CodeBehind\SubMembers.cs" />
+    <Compile Include="CodeBehind\SubReferrals.cs" />
+    <Compile Include="CodeBehind\ThirdPartRecharge.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CodeBehind\UpdatePassword.cs" />
+    <Compile Include="CodeBehind\UpdatePasswordProtection.cs" />
+    <Compile Include="CodeBehind\UpdateTranPassword.cs" />
+    <Compile Include="CodeBehind\UserBatchBuy.cs" />
+    <Compile Include="CodeBehind\UserCellPhoneVerification.cs" />
+    <Compile Include="CodeBehind\UserConsultations.cs" />
+    <Compile Include="CodeBehind\UserConsultationsNotReverted.cs" />
+    <Compile Include="CodeBehind\UserDefault.cs" />
+    <Compile Include="CodeBehind\UserEmailVerification.cs" />
+    <Compile Include="CodeBehind\UserOrderDetails.cs" />
+    <Compile Include="CodeBehind\UserOrders.cs" />
+    <Compile Include="CodeBehind\UserPoints.cs" />
+    <Compile Include="CodeBehind\UserProductReviews.cs" />
+    <Compile Include="CodeBehind\UserProfile.cs" />
+    <Compile Include="CodeBehind\UserReceivedMessages.cs" />
+    <Compile Include="CodeBehind\OrderRecycleBin.cs" />
+    <Compile Include="CodeBehind\UserRefundApply.cs" />
+    <Compile Include="CodeBehind\UserRefundApplyDetails.cs" />
+    <Compile Include="CodeBehind\UserReplaceApply.cs" />
+    <Compile Include="CodeBehind\UserReplaceApplyDetails.cs" />
+    <Compile Include="CodeBehind\UserReturnsApply.cs" />
+    <Compile Include="CodeBehind\UserReturnsApplyDetails.cs" />
+    <Compile Include="CodeBehind\UserSendedMessages.cs" />
+    <Compile Include="CodeBehind\UserSendMessage.cs" />
+    <Compile Include="CodeBehind\UserShippingAddresses.cs" />
+    <Compile Include="CodeBehind\VerificationSuccess.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ecdev.Components.Validation\Ecdev.Components.Validation.csproj">
+      <Project>{b606bc52-5441-41fd-b9fa-2814dc36e5dc}</Project>
+      <Name>Ecdev.Components.Validation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ecdev.Plugins\Ecdev.Plugins.csproj">
+      <Project>{8f8ea901-b6dc-4747-9e69-53421816cb33}</Project>
+      <Name>Ecdev.Plugins</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ecdev.Weixin.Pay\Ecdev.Weixin.Pay.csproj">
+      <Project>{a60f5998-a8f9-47e2-be4a-4296368ebd85}</Project>
+      <Name>Ecdev.Weixin.Pay</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.ControlPanel.Comments\EcShop.ControlPanel.Comments.csproj">
+      <Project>{e9db5525-7c1a-4884-a466-f30b6101b737}</Project>
+      <Name>EcShop.ControlPanel.Comments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.ControlPanel.Members\EcShop.ControlPanel.Members.csproj">
+      <Project>{c4a23699-5eba-499b-ad5a-243196bb125f}</Project>
+      <Name>EcShop.ControlPanel.Members</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.ControlPanel.Promotions\EcShop.ControlPanel.Promotions.csproj">
+      <Project>{dd8a8caa-07ca-4e55-ac0e-eb6ce28675e1}</Project>
+      <Name>EcShop.ControlPanel.Promotions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.ControlPanel.Sales\EcShop.ControlPanel.Sales.csproj">
+      <Project>{8de26e24-764a-4ff0-b161-1fbad4296618}</Project>
+      <Name>EcShop.ControlPanel.Sales</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.Entities\EcShop.Entities.csproj">
+      <Project>{88093336-25d2-4358-82ce-bd86449a6c3f}</Project>
+      <Name>EcShop.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.Membership.Context\EcShop.Membership.Context.csproj">
+      <Project>{7cf77a2d-d81d-4dfe-b794-5a791dbc92e7}</Project>
+      <Name>EcShop.Membership.Context</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.Membership.Core\EcShop.Membership.Core.csproj">
+      <Project>{02f39f57-c45f-4fa6-bf11-c2628e50a74e}</Project>
+      <Name>EcShop.Membership.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.Messages\EcShop.Messages.csproj">
+      <Project>{6f8e0d2f-9d0f-4dc1-96a7-d8cd5b0da066}</Project>
+      <Name>EcShop.Messages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.SaleSystem.Catalog\EcShop.SaleSystem.Catalog.csproj">
+      <Project>{d09fb3b2-137e-48b3-bc26-00a0e79d7542}</Project>
+      <Name>EcShop.SaleSystem.Catalog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.SaleSystem.Comments\EcShop.SaleSystem.Comments.csproj">
+      <Project>{c930a4b9-dfd9-4b0e-899a-37e7111e457e}</Project>
+      <Name>EcShop.SaleSystem.Comments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.SaleSystem.Member\EcShop.SaleSystem.Member.csproj">
+      <Project>{922b9e23-b09b-42ec-bc16-0883b97ed78d}</Project>
+      <Name>EcShop.SaleSystem.Member</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.SaleSystem.Shopping\EcShop.SaleSystem.Shopping.csproj">
+      <Project>{8b707eef-0060-4657-97c3-660436683d82}</Project>
+      <Name>EcShop.SaleSystem.Shopping</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.SaleSystem.Vshop\EcShop.SaleSystem.Vshop.csproj">
+      <Project>{8e625414-6f4e-4bcf-858d-40a9ad9b6d10}</Project>
+      <Name>EcShop.SaleSystem.Vshop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.SqlDal\EcShop.SqlDal.csproj">
+      <Project>{4f773182-cd07-4c69-9107-f7f017fa67cf}</Project>
+      <Name>EcShop.SqlDal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.UI.Common.Controls\EcShop.UI.Common.Controls.csproj">
+      <Project>{cdc9cc04-3b46-4c8a-bc91-69dea56dfe18}</Project>
+      <Name>EcShop.UI.Common.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcShop.UI.ControlPanel.Utility\EcShop.UI.ControlPanel.Utility.csproj">
+      <Project>{3a546dcb-78c3-4c95-9a2a-e5e730da2d55}</Project>
+      <Name>EcShop.UI.ControlPanel.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

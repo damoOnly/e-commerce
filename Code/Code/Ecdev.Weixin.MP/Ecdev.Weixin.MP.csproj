@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{F84F5E8A-7014-443B-96A4-D08691349F32}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Ecdev.Weixin.MP</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>..\EcShop.Website\bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <OutputPath>..\EcShop.Website\bin\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EcShop.Core, Version=2.1.5459.27733, Culture=neutral, PublicKeyToken=d39bceaac35c5a29, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\EcShop.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NetDimension.Weibo, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\NetDimension.Weibo.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Api\QrcodeApi.cs" />
+    <Compile Include="Api\TicketApi.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Api\MenuApi.cs" />
+    <Compile Include="Api\TemplateApi.cs" />
+    <Compile Include="Api\TokenApi.cs" />
+    <Compile Include="Domain.Menu\BaseButton.cs" />
+    <Compile Include="Domain.Menu\ButtonGroup.cs" />
+    <Compile Include="Domain.Menu\Menu.cs" />
+    <Compile Include="Domain.Menu\SingleButton.cs" />
+    <Compile Include="Domain.Menu\SingleClickButton.cs" />
+    <Compile Include="Domain.Menu\SingleViewButton.cs" />
+    <Compile Include="Domain.Menu\SubMenu.cs" />
+    <Compile Include="Domain\Qrcode.cs" />
+    <Compile Include="Domain\Article.cs" />
+    <Compile Include="Domain\Image.cs" />
+    <Compile Include="Domain\IMedia.cs" />
+    <Compile Include="Domain\IThumbMedia.cs" />
+    <Compile Include="Domain\Music.cs" />
+    <Compile Include="Domain\TemplateMessage.cs" />
+    <Compile Include="Domain\Ticket.cs" />
+    <Compile Include="Domain\Token.cs" />
+    <Compile Include="Domain\User.cs" />
+    <Compile Include="Domain\Userinfo.cs" />
+    <Compile Include="Domain\Video.cs" />
+    <Compile Include="Domain\Voice.cs" />
+    <Compile Include="Handler\RequestHandler.cs" />
+    <Compile Include="MP\BillType.cs" />
+    <Compile Include="Request.Event\ClickEventRequest.cs" />
+    <Compile Include="Request.Event\LocationEventRequest.cs" />
+    <Compile Include="Request.Event\ScanEventRequest.cs" />
+    <Compile Include="Request.Event\SubscribeEventRequest.cs" />
+    <Compile Include="Request.Event\UnSubscribeEventRequest.cs" />
+    <Compile Include="Request\EventRequest.cs" />
+    <Compile Include="Request\ImageRequest.cs" />
+    <Compile Include="Request\LinkRequest.cs" />
+    <Compile Include="Request\LocationRequest.cs" />
+    <Compile Include="Request\TextRequest.cs" />
+    <Compile Include="Request\VideoRequest.cs" />
+    <Compile Include="Request\VoiceRequest.cs" />
+    <Compile Include="Response\ImageResponse.cs" />
+    <Compile Include="Response\MusicResponse.cs" />
+    <Compile Include="Response\NewsResponse.cs" />
+    <Compile Include="Response\TextResponse.cs" />
+    <Compile Include="Response\VideoResponse.cs" />
+    <Compile Include="Response\VoiceResponse.cs" />
+    <Compile Include="Test\A.cs" />
+    <Compile Include="Test\Tests.cs" />
+    <Compile Include="Test\Utils.cs" />
+    <Compile Include="Util\CheckSignature.cs" />
+    <Compile Include="Util\EntityHelper.cs" />
+    <Compile Include="Util\EventTypeHelper.cs" />
+    <Compile Include="Util\MsgTypeHelper.cs" />
+    <Compile Include="Util\RequestMessageFactory.cs" />
+    <Compile Include="Util\WebUtils.cs" />
+    <Compile Include="MP\AbstractRequest.cs" />
+    <Compile Include="MP\AbstractResponse.cs" />
+    <Compile Include="MP\ButtonType.cs" />
+    <Compile Include="MP\RequestEventType.cs" />
+    <Compile Include="MP\RequestMsgType.cs" />
+    <Compile Include="MP\ResponseMsgType.cs" />
+    <Compile Include="MP\WeixinException.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
