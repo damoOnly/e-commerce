@@ -1,0 +1,2705 @@
+﻿
+<script src="/Scripts/jquery-2.1.4.js"></script>
+<script src="/Scripts/des.js"></script>
+<script>
+    function encrypt(text) {
+        return des("abcdefgh", text, 1, 1, "hgfedcba", 1);
+    }
+
+    // 对Date的扩展，将 Date 转化为指定格式的String
+    // 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符，
+    // 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)
+    // 例子：
+    // (new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423
+    // (new Date()).Format("yyyy-M-d h:m:s.S")      ==> 2006-7-2 8:9:4.18
+    Date.prototype.Format = function (fmt) { //author: meizz
+        var o = {
+            "M+": this.getMonth() + 1, //月份
+            "d+": this.getDate(), //日
+            "h+": this.getHours(), //小时
+            "m+": this.getMinutes(), //分
+            "s+": this.getSeconds(), //秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+            "S": this.getMilliseconds() //毫秒
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    }
+    function sendTips() {
+        $.post("http://220.231.194.225:8888/communicate/sendMessage",
+                {
+                    mobile: "13751366980", content: "测试短信发送", sign: 3
+                },
+                function (data) {
+                    alert(data);
+                }
+            );
+    }
+
+
+    //var token = { DisplayName: "Tom", AuthenTicket: "062FD61D7D5CA9239723B63A65DB0759", AuthenUserId: "f0892595da5248f09aab1ad9e26c9fc9", Timestamp: 0 };
+
+    var token = "";
+
+    var userid;
+
+    $(document).ready(function () {
+        // Product
+        $("#test").click(function () {
+            $.ajax({
+                url: "api/Product/Test",
+                type: "get",
+                data: "id=123409&name=abcd",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+
+            $('#send').click(function () {
+                $.ajax({
+                    type: "Post",
+                    url: "http://220.231.194.225:8888/communicate/sendMessage",
+                    data: { mobile: "13751366980", content: "测试短信发送",sign:3 },
+                    dataType: "jsonp",
+                    success: function (data) {
+                        alert(data);
+                    }
+                });
+            });
+
+        
+
+        $("#search").click(function () {
+            $.ajax({
+                url: "api/Product/Search",
+                type: "get",
+                data: "siteId=-1&userId=&categoryId=0&keyword=奶粉&sortType=1&sortDirection=asc&pageSize=20&pageIndex=1&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#getByCategory").click(function () {
+            $.ajax({
+                url: "api/Product/GetProductsByCategory",
+                type: "get",
+                data: "siteId=-1&userId=&categoryId=8000050&brandId=0&originPlaceId=0&sortType=1&sortDirection=asc&pageSize=20&pageIndex=1&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        //$("#productList").click(function () {
+        //    $.ajax({
+        //        url: "api/Product/List",
+        //        type: "get",
+        //        data: "siteId=-1&userId=&categoryId=0&brandId=112&originPlaceId=0&isFreeShip=false&keyword=&sortType=1&sortDirection=asc&pageSize=20&pageIndex=1&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+        //        success: function (data) {
+        //            console.log(data);
+        //            alert("Ok");
+        //        }
+        //    });
+        //});
+
+        $("#productList").click(function () {
+            var jsonData = JSON.stringify(
+              {
+                  "siteid": -1,
+                  "UserId": userid,
+                  "accessToken": token,
+                  "channel": 1,
+                  "platform": 2,
+                  "ver": "0.01",
+                  "pageIndex": 1,
+                  "pageSize": 8,
+                  "keyword": "",
+                  "sortType": 1,
+                  "sortDirection": "",
+                  "TopicId":8000226,
+                  "CategoryIds": 0,
+                  "BrandIds": "",
+                  "ImportsourceIds": "",
+                  "SupplierId":0
+
+              });
+            $.ajax({
+                url: "api/Product/List",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#AllList").click(function () {
+            var jsonData = JSON.stringify(
+              {
+                  "siteid": -1,
+                  "UserId": userid,
+                  "accessToken": token,
+                  "channel": 1,
+                  "platform": 2,
+                  "ver": "0.01",
+                  "pageIndex": 1,
+                  "pageSize": 50,
+                  "sortType": 1,
+                  "sortDirection": "",
+                  "CategoryIds": 8000225,
+
+              });
+            $.ajax({
+                url: "api/Product/AllList",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+        $("#SecondItemList").click(function () {
+            var jsonData = JSON.stringify(
+              {
+                  "siteid": -1,
+                  "UserId": userid,
+                  "accessToken": token,
+                  "channel": 1,
+                  "platform": 2,
+                  "ver": "0.01",
+                  "sortType": 1,
+                  "sortDirection": "",
+                  "CategoryIds": 8000238,
+
+              });
+            $.ajax({
+                url: "api/Product/SecondItemList",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#category").click(function () {
+            $.ajax({
+                url: "api/Product/Category",
+                type: "get",
+                data: "siteId=-1&categoryId=0&pageSize=20&pageIndex=1&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#allCategories").click(function () {
+            $.ajax({
+                url: "api/Product/AllCategories",
+                type: "get",
+                data: "siteId=-1&accessToken=" + token + "&channel=1&platform=3&ver=1.11",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        }); 
+
+
+        $("#categoriesandPlace").click(function () {
+            $.ajax({
+                url: "api/Product/CategoriesandPlace",
+                type: "get",
+                data: "siteId=-1&accessToken=" + token + "&channel=1&platform=2&ver=0.01&categoryId=8000225",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+        $("#getCategoriesBySupplierId").click(function () {
+            $.ajax({
+                url: "api/Product/GetCategoriesBySupplierId",
+                type: "get",
+                data: "supplierId=60&siteId=-1&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#brand").click(function () {
+            $.ajax({
+                url: "api/Product/Brand",
+                type: "get",
+                data: "siteId=-1&categoryId=0&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#originalPlace").click(function () {
+            $.ajax({
+                url: "api/Product/OriginalPlace",
+                type: "get",
+                data: "siteId=-1&categoryId=0&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#suggest").click(function () {
+            $.ajax({
+                url: "api/Product/Suggest",
+                type: "get",
+                data: "siteId=-1&userId=5bb2a10195614a919fc73be0c311e71d&count=9&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#history").click(function () {
+            $.ajax({
+                url: "api/Product/History",
+                type: "get",
+                data: "siteId=-1&userId=5bb2a10195614a919fc73be0c311e71d&pageIndex=1&pageSize=9&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#getProduct").click(function () {
+            var id = $("#prodctId1").val();
+            $.ajax({
+                url: "api/Product/Get",
+                type: "get",
+                data: "userId=&productId=" + id + "&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#getProductDescription").click(function () {
+            var id = $("#prodctId1").val();
+            $.ajax({
+                url: "api/Product/GetDescription",
+                type: "get",
+                data: "productId=" + id + "&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+ 
+        $("#comments").click(function () {
+            $.ajax({
+                url: "api/Product/Comments",
+                type: "get",
+                //data: "productId=960&pageSize=20&pageIndex=1&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                data: "platform=3&accessToken=Ad5e2gqtgcFHuVi-rt3d5ZvoblWuRoEH74ddkZtFCSwdSdvZQ775G3z6CmSfIEThYoEQEcymg-quQOrVBKZHueo=&channel=1&ver=0.01&productId=1476&pageSize=20&pageIndex=1",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#comment").click(function () {
+            var jsonData = JSON.stringify(
+                {
+                    "UserId": "765c3824286a480a9854c3273c0906a0",
+                    "OrderId": "20151231641694021",
+                    "ProductId": 10084,
+                    "SkuId": "10084_0",
+                    "Content": "很好的商品，愉快的一次购物",
+                    "Score": 5.0,
+                    "IsAnonymous": 0.0,
+                    "accessToken": token, "channel": 1, "platform": 2, "ver": "0.01"
+                }
+                );
+
+            $.ajax({
+                url: "api/Product/Comment",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#comment1").click(function () {
+            var jsonData = JSON.stringify(
+                {
+                    "UserId": "5bb2a10195614a919fc73be0c311e71d",
+                    "OrderId": "201508073439092",
+                    "ProductId": 863,
+                    "SkuId": "863_0",
+                    "Content": "很好的商品，愉快的一次购物",
+                    "Score": 5,
+                    "accessToken": token, "channel": 1, "platform": 2, "ver": "0.01"
+                });
+
+            $.ajax({
+                url: "api/Product/Comment",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#question").click(function () {
+            $.ajax({
+                url: "api/Product/Questions",
+                type: "get",
+                data: "productId=960&pageSize=20&pageIndex=1&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#countdownlist").click(function () {
+            $.ajax({
+                url: "api/Product/CountDownList",
+                type: "get",
+                data: "startTime=20160125120000&endTime=20160125160000&pageSize=20&pageIndex=1&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#countdownCategory").click(function () {
+            $.ajax({
+                url: "api/Product/CountDownCategory",
+                type: "get",
+                data: "accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#CountDownProduct").click(function () {
+            $.ajax({
+                url: "api/Product/CountDownProduct",
+                type: "get",
+                data: "accessToken=" + token + "&id=50&channel=1&platform=2&ver=0.01&userid=" + userid,
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        
+
+        $("#ask").click(function () {
+            var jsonData = JSON.stringify(
+                {
+                    "UserId": "5bb2a10195614a919fc73be0c311e71d",
+                    "ProductId": 960,
+                    "Content": "问点什么好呢？",
+                    "accessToken": token, "channel": 1, "platform": 2, "ver": "0.01"
+                });
+
+            $.ajax({
+                url: "api/Product/Ask",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#addToFavorite").click(function () {
+            var jsonData = JSON.stringify(
+                {
+                    "UserId": userid,
+                    "ProductId": 2622,
+                    "Tag": "",
+                    "Remark": "",
+                    "accessToken": token, "channel": 1, "platform": 2, "ver": "0.01"
+                });
+
+            $.ajax({
+                url: "api/Product/AddToFavorite",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#removeFavorite").click(function () {
+            var jsonData = JSON.stringify(
+                /*{
+                    "UserId": "5bb2a10195614a919fc73be0c311e71d",
+                    "ProductIds": "1476",
+                    "accessToken": token, "channel": 1, "platform": 2, "ver": "0.01"
+                }*/
+                { "platform": "3", "ver": "0.01", "UserId": "0509093ca65a4d8fa63b263c6c2ca52f", "accessToken": "ATkZqdmZibUSk7cC4Z4QAaRPrFtkiehj3wUDoaPahtD9abgedA8-A8Itv8NSfzoXqF60Fz6hO9wutqw7g7nZumQ\u003d", "channel": "1", "ProductId": "1476" }
+                );
+
+            $.ajax({
+                url: "api/Product/removeFavorite",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+        $("#keywords").click(function () {
+            $.ajax({
+                url: "api/Product/Keywords",
+                type: "get",
+                data: "siteId=-1&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#myKeywords").click(function () {
+            $.ajax({
+                url: "api/Product/MyKeywords",
+                type: "get",
+                data: "siteId=-1&userId="+userid+"&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        // OAuth
+        $("#appId").click(function () {
+            $.ajax({
+                url: "api/OAuth/GetApp",
+                type: "get",
+                data: "deviceId=321234098546345634534526&deviceType=1&channel=1&ver=1.0",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#accessToken").click(function () {
+            $.ajax({
+                url: "api/OAuth/AccessToken",
+                type: "get",
+                //data: "appId=hd9af75c2f00f7b700&randstr=123321&timestamp=1234556432&signature=899b3b71a008db76a6ce82a2c40e924a",
+                data: "randstr=abc123&signature=84137585c262fa7cc0fedfa9647ea79a&timestamp=1437807682&appId=hd84d25138a199ac90",
+                success: function (data) {
+                    console.log(data);
+                    token = data.data.AccessToken;
+                    alert("Ok");
+                    alert(token);
+                }
+            });
+        });
+
+        // Account
+        $("#sms").click(function () {
+            var action = $('input:radio[name="action"]:checked').val();
+
+            var username = $("#username").val();
+
+            var jsonData = JSON.stringify({ "Mobile": username, "CType": action, "accessToken": token, "channel": 1, "platform": 2, "ver": "0.01" });
+
+            $.ajax({
+                url: "api/Account/SendSMSCode",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#register").click(function () {
+            var username = $("#username").val();
+            var password = $("#password").val();
+            var code = $("#code").val();
+            username = "18520899039";
+            password = "123456";
+            code = "8852";
+            var recemmendCode = "";
+            var jsonData = JSON.stringify({ "username": username, "password": password, "accountType": 2, "code": code, "accessToken": token, "channel": 1, "platform": 2, "ver": "0.01", "recemmendCode": recemmendCode });
+
+            $.ajax({
+                url: "api/Account/Register",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#login").click(function () {
+            var username = $("#username").val();
+            var password = $("#password").val();
+
+            var jsonData = JSON.stringify({ "username": username, "password": password, "accessToken": token, "channel": 1, "platform": 2, "ver": "0.01" });
+
+            $.ajax({
+                url: "api/Account/Login",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    userid = data.data.AuthenUserId;
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#changePassword").click(function () {
+            var jsonData = JSON.stringify(
+                {
+                    "UserId": userid,
+                    "Password": "123456",
+                    "NewPassword": "lindy123",
+                    "accessToken": token, "channel": 1, "platform": 2, "ver": "0.01"
+                });
+
+            $.ajax({
+                url: "api/Account/ChangePassword",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#resetPassword").click(function () {
+            var username = $("#username").val();
+            var password = $("#password").val();
+            var code = $("#code").val();
+            var jsonData = JSON.stringify(
+                {
+                    "Mobile": username,
+                    "Password": password,
+                    "Code": code,
+                    "accessToken": token, "channel": 1, "platform": 2, "ver": "0.01"
+                });
+
+            $.ajax({
+                url: "api/Account/ResetPassword",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#logout").click(function () {
+            var jsonData = JSON.stringify(
+                {
+                    "UserId": "5bb2a10195614a919fc73be0c311e71d",
+                    "accessToken": token, "channel": 1, "platform": 2, "ver": "0.01"
+                });
+
+            $.ajax({
+                url: "api/Account/Logout",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#ticketRefresh").click(function () {
+            var jsonData = JSON.stringify(
+                {
+                    "Signature": "a18410222cb4ee1fc1c5f9a67e5d9574",
+                    "Timestamp": "20150729100234",
+                    "Ticket": "aeebd255325260bb24e4d497e84aa46e",
+                    "UserId": "5bb2a10195614a919fc73be0c311e71d",
+                    "accessToken": token, "channel": 1, "platform": 2, "ver": "0.01"
+                });
+
+            $.ajax({
+                url: "api/Account/TicketRefresh",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        // Member
+        $("#getMessages").click(function () {
+            $.ajax({
+                url: "api/Member/Messages",
+                type: "get",
+                data: "userId="+userid+"&pageIndex=1&pageSize=9&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#getMessage").click(function () {
+            $.ajax({
+                url: "api/Member/Message",
+                type: "get",
+                data: "userId="+userid+"&messageId=37693&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#getUnreadMessage").click(function () {
+            $.ajax({
+                url: "api/Member/UnreadMessageCount",
+                type: "get",
+                data: "userId="+userid+"&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+
+        $("#summary").click(function () {
+            $.ajax({
+                url: "api/Member/Summary",
+                type: "get",
+                data: "userId="+userid+"&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#getMember").click(function () {
+            $.ajax({
+                url: "api/Member/Get",
+                type: "get",
+                //data: "userId=5bb2a10195614a919fc73be0c311e71d&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                data: "platform=3&ver=0.01&UserId="+userid+"&accessToken="+token+"&channel=1",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#update").click(function () {
+            var jsonData = JSON.stringify(
+                /*{
+                    "UserId": "5bb2a10195614a919fc73be0c311e71d",
+                    "RealName": "老谢",
+                    "QQ": "1111",
+                    "Mobile": "18503060017",
+                    "Email": "paul.xie@email.com",
+                    "accessToken": token,
+                    "channel": 1,
+                    "platform": 2,
+                    "ver": "0.01"
+                }*/
+                { "platform": "3", "accessToken": token, "Email": "", "QQ": "290529158", "Mobile": "", "ver": "0.01", "UserId": 
+                    userid, "RealName": "林单", "channel": "1", "Gender":2 ,"IdNo":"441522199103280658"}
+                );
+
+            $.ajax({
+                url: "api/Member/Update",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#newAddress").click(function () {
+            var jsonData = JSON.stringify(
+                {
+                    "UserId": userid,
+                    "RegionId": 1973,
+                    "Receiver": "老谢",
+                    "Address": "太平洋商贸中心B座1703",
+                    "Zipcode": "518001",
+                    "Telephone": "0755-888888888",
+                    "Cellphone": "13800138000",
+                    "IsDefault": false,
+                    "IdNo": "123456789987654321",
+                    "accessToken": token,
+                    "channel": 1,
+                    "platform": 2,
+                    "ver": "0.01"
+                });
+
+            $.ajax({
+                url: "api/Member/NewAddress",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#updateAddress").click(function () {
+            var jsonData = JSON.stringify(
+                {
+                    "UserId": userid,
+                    "Id": 45439,
+                    "RegionId": 1973,
+                    "Receiver": "林丹炀",
+                    "Address": "罗湖区嘉宾路太平洋商贸中心B座1703",
+                    "Zipcode": "518001",
+                    "Telephone": "",
+                    "Cellphone": "18718575389",
+                    "IsDefault": false,
+                    "IdNo": "441522199103280658",
+                    "accessToken": token,
+                    "channel": 1,
+                    "platform": 2,
+                    "ver": "0.01"
+                });
+
+            $.ajax({
+                url: "api/Member/UpdateAddress",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#deleteAddress").click(function () {
+            var jsonData = JSON.stringify(
+                {
+                    "UserId": "5bb2a10195614a919fc73be0c311e71d",
+                    "Id": 7143,
+                    "accessToken": token,
+                    "channel": 1,
+                    "platform": 2,
+                    "ver": "0.01"
+                });
+
+            $.ajax({
+                url: "api/Member/DeleteAddress",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#addresses").click(function () {
+            $.ajax({
+                url: "api/Member/Addresses",
+                type: "get",
+                data: "userId="+userid+"&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        var avatar = "";
+
+        $('#uploadAvatar').on('click', function () {
+            var data = new FormData();
+            var files = $("#fileUpload").get(0).files;
+            if (files.length > 0) {
+                data.append("UploadedImage", files[0]);
+            }
+
+            var ajaxRequest = $.ajax({
+                type: "POST",
+                url: "api/Member/UploadAvatar",
+                contentType: false,
+                processData: false,
+                data: data
+            });
+            ajaxRequest.done(function (xhr, textStatus) {
+                // Do other operation
+                avatar = xhr.data;
+                console.log(xhr);
+                alert("Uploaded");
+            });
+        });
+
+        $("#updateUserAvatar").click(function () {
+            alert(avatar);
+
+            var jsonData = JSON.stringify(
+                {
+                    "UserId": userid,
+                    "Avatar": "/Storage/master/avatar/201512/aaa.png",
+                    "accessToken": token,
+                    "channel": 1,
+                    "platform": 2,
+                    "ver": "0.01"
+                });
+
+            $.ajax({
+                url: "api/Member/UpdateAvatar",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#myCoupon").click(function () {
+            $.ajax({
+                url: "api/Member/MyCoupons",
+                type: "get",
+                data: "siteId=-1&userId="+userid+"&useType=0&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#myFavorite").click(function () {
+            $.ajax({
+                url: "api/Member/MyFavorites",
+                type: "get",
+                data: "siteId=-1&userId="+userid+"&accessToken=" + token + "&channel=1&platform=2&ver=0.01&pagesize=10&pageindex=1",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#myPoint").click(function () {
+            $.ajax({
+                url: "api/Member/MyPoints",
+                type: "get",
+                data: "siteId=-1&userId="+userid+"&pageIndex=1&pageSize=10&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#myOrders").click(function () {
+            $.ajax({
+                url: "api/Member/MyOrders",
+                type: "get",
+                data: "siteId=-1&userId="+userid+"&orderStatus=2&pageIndex=1&pageSize=8&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#myServiceOrders").click(function () {
+            $.ajax({
+                url: "api/Member/MyServiceOrders",
+                type: "get",
+                data: "siteId=-1&userId=53718ced359c4073ac8fe5ccb0ae8ad0&orderStatus=6,7,8,9,10&pageIndex=1&pageSize=8&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#cancelOrder").click(function () {
+            var jsonData = JSON.stringify(
+                {
+                    "UserId": "5bb2a10195614a919fc73be0c311e71d",
+                    "OrderId": "201508145099362",
+                    "accessToken": token, "channel": 1, "platform": 2, "ver": "0.01"
+                });
+
+            $.ajax({
+                url: "api/Order/CancelOrder",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#finishOrder").click(function () {
+            var jsonData = JSON.stringify(
+                {
+                    "UserId": "5bb2a10195614a919fc73be0c311e71d",
+                    "OrderId": "201509288455352",
+                    "accessToken": token, "channel": 1, "platform": 2, "ver": "0.01"
+                });
+
+            $.ajax({
+                url: "api/Order/FinishOrder",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#deleteOrder").click(function () {
+            var jsonData = JSON.stringify(
+                {
+                    "UserId": "5bb2a10195614a919fc73be0c311e71d",
+                    "OrderId": "201508145099362",
+                    "accessToken": token, "channel": 1, "platform": 2, "ver": "0.01"
+                });
+
+            $.ajax({
+                url: "api/Order/DeleteOrder",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#applyRefund").click(function () {
+            var jsonData = JSON.stringify(
+                {
+                    "UserId": "5bb2a10195614a919fc73be0c311e71d",
+                    "OrderId": "201508073439092",
+                    "RefundType": 2,
+                    "Amount": 1206.00,
+                    "Remark": "不中意",
+                    "accessToken": token, "channel": 1, "platform": 2, "ver": "0.01"
+                });
+
+            $.ajax({
+                url: "api/Order/ApplyRefund",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#applyReturn").click(function () {
+            var jsonData = JSON.stringify(
+                {
+                    "UserId": "139903b0bbe44f3781d85b105bdcb8e9",
+                    "OrderId": "201508254816323",
+                    "ReturnType": 2,
+                    "Remark": "不中意",
+                    "ExpressCompany": "顺丰快递",
+                    "TrackingNumber": "123456789876",
+                    "Skus": [
+                        {
+                            "SkuId": "1476_0",
+                            "Quantity": 1
+                        }],
+                    "accessToken": token, "channel": 1, "platform": 2, "ver": "0.01"
+                }
+                );
+
+            $.ajax({
+                url: "api/Order/ApplyReturn",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#applyReplacement").click(function () {
+            var jsonData = JSON.stringify(
+                {
+                    "UserId": "5bb2a10195614a919fc73be0c311e71d",
+                    "OrderId": "201508073439092",
+                    "Remark": "不中意",
+                    "Skus": [
+                        {
+                            "SkuId": "863_0",
+                            "Quantity": 1
+                        }],
+                    "accessToken": token, "channel": 1, "platform": 2, "ver": "0.01"
+                });
+
+            $.ajax({
+                url: "api/Order/ApplyReplacement",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#rechargeRequest").click(function () {
+            var jsonData = JSON.stringify(
+                {
+                    "UserId": "5bb2a10195614a919fc73be0c311e71d",
+                    "PaymentTypeId": 8,
+                    "Amount": 199,
+                    "accessToken": token, "channel": 1, "platform": 2, "ver": "0.01"
+                });
+
+            $.ajax({
+                url: "api/Member/RechargeRequest",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#recharge").click(function () {
+            var jsonData = JSON.stringify(
+                {
+                    "UserId": "5bb2a10195614a919fc73be0c311e71d",
+                    "OrderId": "201508261050915",
+                    "Amount": 199,
+                    "accessToken": token, "channel": 1, "platform": 2, "ver": "0.01"
+                });
+
+            $.ajax({
+                url: "api/Member/Recharge",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#rechargeList").click(function () {
+            $.ajax({
+                url: "api/Member/MyRecharge",
+                type: "get",
+                data: "siteId=-1&userId=5bb2a10195614a919fc73be0c311e71d&tradeType=1&pageIndex=1&pageSize=8&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#withdrawRequest").click(function () {
+            var jsonData = JSON.stringify(
+                {
+                    "UserId": "5bb2a10195614a919fc73be0c311e71d",
+                    "BankName": "招商银行",
+                    "AccountName": "VIP客户",
+                    "Account": "888807551234567890",
+                    "Amount": 49,
+                    "Remark": "取点钱花，只要49",
+                    "accessToken": token, "channel": 1, "platform": 2, "ver": "0.01"
+                });
+
+            $.ajax({
+                url: "api/Member/WithdrawRequest",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+
+        // Site
+        $("#sites").click(function () {
+            $.ajax({
+                url: "api/Site/List",
+                type: "get",
+                data: "accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#allinone").click(function () {
+            $.ajax({
+                url: "api/Site/AllInOne",
+                type: "get",
+                data: "siteId=-1&userId="+userid+"&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#banner").click(function () {
+            $.ajax({
+                url: "api/Site/Banner",
+                type: "get",
+                data: "siteId=-1&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#registerannerbanner").click(function () {
+            $.ajax({
+                url: "api/Site/GetRegisterBanner",
+                type: "get",
+                data: "siteId=-1&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#navigation").click(function () {
+            $.ajax({
+                url: "api/Site/Navigation",
+                type: "get",
+                data: "siteId=-1&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#topic").click(function () {
+            $.ajax({
+                url: "api/Site/Topic",
+                type: "get",
+                data: "siteId=-1&pageIndex=1&pageSize=8&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#topicProductList").click(function () {
+            $.ajax({
+                url: "api/Product/TopicProducts",
+                type: "get",
+                data: "siteId=-1&userId=&topicId=7&sortType=1&sortDirection=asc&pageSize=20&pageIndex=1&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#hotsale").click(function () {
+            $.ajax({
+                url: "api/Site/HotSale",
+                type: "get",
+                data: "siteId=-1&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#recommend").click(function () {
+            $.ajax({
+                url: "api/Site/Recommend",
+                type: "get",
+                data: "siteId=-1&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#promotional").click(function () {
+            $.ajax({
+                url: "api/Site/Promotional",
+                type: "get",
+                data: "siteId=-1&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#appBanner").click(function () {
+            $.ajax({
+                url: "api/Site/AppBanner",
+                type: "get",
+                data: "siteId=-1&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        // Order
+        $("#addToCart").click(function () {
+            var jsonData = JSON.stringify({ "UserId": userid, "SkuId": "10136_0", "ProductId": 10201, "Quantity": 1, "accessToken": token, "channel": 1, "platform": 2, "ver": "0.01" });
+
+            alert(jsonData);
+
+            $.ajax({
+                url: "api/Order/AddToCart",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#addMutilSkuToCart").click(function () {
+            var jsonData = JSON.stringify(
+                {
+                    "UserId": "5bb2a10195614a919fc73be0c311e71d",
+                    "Items": [
+                      {
+                          "SkuId": "1404_0",
+                          "ProductId": 1404,
+                          "Quantity": 1
+                      },
+                      {
+                          "SkuId": "3307_0",
+                          "ProductId": 3307,
+                          "Quantity": 1
+                      }
+                    ],
+                    "accessToken": token,
+                    "channel": 1,
+                    "platform": 2,
+                    "ver": "0.01"
+                }
+                );
+
+            $.ajax({
+                url: "api/Order/AddMultiSkuToCart",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#updateCartItem").click(function () {
+            var jsonData = JSON.stringify({ "UserId": "5bb2a10195614a919fc73be0c311e71d", "SkuId": "863_0", "ProductId": 863, "Quantity": 2, "accessToken": token, "channel": 1, "platform": 2, "ver": "0.01" });
+            alert(jsonData);
+
+            $.ajax({
+                url: "api/Order/UpdateCartItem",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#removeCartItem").click(function () {
+            var jsonData = JSON.stringify({ "UserId": "5bb2a10195614a919fc73be0c311e71d", "SkuId": "863_0", "ProductId": 863, "Quantity": 2, "accessToken": token, "channel": 1, "platform": 2, "ver": "0.01" });
+            alert(jsonData);
+
+            $.ajax({
+                url: "api/Order/RemoveCartItem",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#removeCartItems").click(function () {
+            var jsonData = JSON.stringify(
+                {
+                    "UserId": "5bb2a10195614a919fc73be0c311e71d",
+                    "Items": [
+                      {
+                          "SkuId": "1404_0"
+                      },
+                      {
+                          "SkuId": "3307_0"
+                      }
+                    ],
+                    "accessToken": token,
+                    "channel": 1,
+                    "platform": 2,
+                    "ver": "0.01"
+                }
+                );
+
+            $.ajax({
+                url: "api/Order/RemoveCartItems",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#removeAllCartItem").click(function () {
+            var jsonData = JSON.stringify({ "UserId": "5bb2a10195614a919fc73be0c311e71d", "accessToken": token, "channel": 1, "platform": 2, "ver": "0.01" });
+            alert(jsonData);
+
+            $.ajax({
+                url: "api/Order/RemoveAllCartItem",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#shopingCart").click(function () {
+            $.ajax({
+                url: "api/Order/ShopingCart",
+                type: "get",
+                data: "userId="+userid+"&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#shippingDateMode").click(function () {
+            $.ajax({
+                url: "api/Order/ShippingDateMode",
+                type: "get",
+                data: "accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#shippingMode").click(function () {
+            $.ajax({
+                url: "api/Order/ShippingMode",
+                type: "get",
+                data: "accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#paymentMode").click(function () {
+            $.ajax({
+                url: "api/Order/PaymentMode",
+                type: "get",
+                data: "accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#useCoupon").click(function () {
+            $.ajax({
+                url: "api/Order/UserCoupons",
+                type: "get",
+                data: "userId="+userid+"&amount=1000000&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#useInvoice").click(function () {
+            $.ajax({
+                url: "api/Member/MyInvoices",
+                type: "get",
+                data: "userId=5bb2a10195614a919fc73be0c311e71d&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        //Buy
+        $("#quickBuy").click(function () {
+            var order = JSON.stringify(
+                    {
+                        "IsUnpackOrder":0,
+                        "UsedCouponCode": "",
+                        "BuyType": "countdown",
+                        "IdNo": "441522199103280658",
+                        "SkuId": "10151_0",
+                        "ShippingDate": "不限(周一至周日)",
+                        "ShippingAddress": {
+                            "Address": "app", "Cellphone": "13902240544", "City": "天津市", "District": "塘沽区", "Zipcode": "", "IdNo": "431025198911195648", "Town": "", "Province": "天津", "Receiver": "周小明", "RegionId": 671, "IsLatest": false, "IsDefault": true, "Id": 45516, "ver": "1.0", "UserId": userid, "accessToken": "Af7Y3kRTzhw0pekjyCI6zmNqQktM/YjIyuTAVcmb6yX9xbeBbyimB7No4EDp-6er4aDakRTRtSKC8-AdyT0VVBk\u003d", "channel": 1, "platform": 3, "SiteId": -1
+                        }, "Remark": "", "RealName": "周小明", "Quantity": 2, "ProductId": 1572, "PaymentTypeId": 7, "ShippingModeId": 0, "IsNeedInvoice": false, "StoreId": 0, "BuyActivityId": 0, "ver": "1.0", "UserId": "c59ea3566cf142158a18c03c143ee505", "accessToken": "Af7Y3kRTzhw0pekjyCI6zmNqQktM/YjIyuTAVcmb6yX9xbeBbyimB7No4EDp-6er4aDakRTRtSKC8-AdyT0VVBk\u003d", "channel": 1, "platform": 3, "SiteId": -1
+                    }
+
+                );
+
+            $.ajax({
+                url: "api/Order/QuickBuy",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: order,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+
+        //$("#quickBuy").click(function () {
+        //    var order = JSON.stringify(
+        //            {
+        //                "UserId": "5bb2a10195614a919fc73be0c311e71d",
+        //                "SiteId": 0,
+        //                "StoreId": 0,
+        //                "ShippingAddress": { "Address": "太平洋商贸中心B座1703", "Cellphone": "13800138000", "City": "", "District": "", "Id": 7079, "IdNo": "", "IsDefault": true, "IsLatest": false, "Province": "", "Receiver": "老谢", "RegionId": 1973, "Telephone": "0755-888888888", "Town": "", "Zipcode": "518001" },
+        //                "ShipToDate": "工作日(周一至周五)",
+        //                "ShippingModeId": 3,
+        //                "PaymentTypeId": 15,
+        //                "UsedCouponCode": "",
+        //                "IsNeedInvoice": true,
+        //                "InvoiceTitle": "XX公司",
+        //                "Remark": "发正货哦",
+        //                "RealName": "老谢",
+        //                "IdNo": "123456789987654321",
+        //                "SkuId": "960_297_289",
+        //                "ProductId": 960,
+        //                "Quantity": 3,
+        //                "accessToken": token,
+        //                "channel": 1,
+        //                "platform": 2,
+        //                "ver": "0.01"
+        //            }
+        //        );
+
+        //    $.ajax({
+        //        url: "api/Order/QuickBuy",
+        //        type: "post",
+        //        dataType: "json",
+        //        contentType: "application/json",
+        //        data: order,
+        //        success: function (data) {
+        //            console.log(data);
+        //            alert("OK");
+        //        }
+        //    });
+        //});
+
+
+
+        $("#buy").click(function () {
+            var order = JSON.stringify(
+                    {
+                        "IsUnpackOrder": 0,
+                        "UserId": userid,
+                        "SiteId":0,
+                        "StoreId":0,
+                        "ShippingAddress": { "Address": "太平洋商贸中心B座1703", "Cellphone": "13800138000", "City": "", "District": "", "Id": 2673, "IdNo": "441522199103280658", "IsDefault": true, "IsLatest": false, "Province": "", "Receiver": "老谢", "RegionId": 1973, "Telephone": "0755-888888888", "Town": "", "Zipcode": "518001" },
+                        "ShipToDate": "工作日(周一至周五)",
+                        "ShippingModeId":3,
+                        "PaymentTypeId":6,
+                        "UsedCouponCode": "",
+                        "IsNeedInvoice": true,
+                        "InvoiceTitle": "XX公司",
+                        "Remark": "发正货哦",
+                        "RealName": "老谢",
+                        "IdNo": "44",
+                        "SkuIds": [
+                            { "SkuId": "10154_0" }],
+                        "accessToken": token,
+                        "channel": 1,
+                        "platform": 3,
+                        "ver": "1.1"
+                    }
+                );
+            
+
+            //var order = JSON.stringify(
+            //        {
+            //            "platform": "1",
+            //            "accessToken": "",
+            //            "ver": "0.01",
+            //            "UserId": "5bb2a10195614a919fc73be0c311e71d",
+            //            "IsNeedInvoice": false,
+            //            "InvoiceTitle": "",
+            //            "UsedCouponCode": "",
+            //            "RealName": "老谢",
+            //            "SkuIds": [
+            //              {
+            //                  "SkuId": "116_224"
+            //              },
+            //              {
+            //                  "SkuId": "864_0"
+            //              }
+            //            ],
+            //            "StoreId": "0",
+            //            "ShippingAddress": {
+            //                "Address": "太平洋商贸中心B座1703",
+            //                "Cellphone": "13800138000",
+            //                "City": "",
+            //                "District": "",
+            //                "IdNo": "123456789987654321",
+            //                "Zipcode": "518001",
+            //                "Town": "",
+            //                "Province": "",
+            //                "Receiver": "老谢",
+            //                "Telephone": "0755-888888888",
+            //                "RegionId": 1973,
+            //                "IsLatest": false,
+            //                "IsDefault": false,
+            //                "hasVisible": false,
+            //                "Id": 7142
+            //            },
+            //            "IdNo": "123456789987654321",
+            //            "ShippingModeId": -1,
+            //            "PaymentTypeId": 15,
+            //            "Remark": "",
+            //            "channel": "1",
+            //            "SiteId": "0"
+            //        }
+            //    );
+            $.ajax({
+                url: "api/Order/Buy",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: order,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        //Pay
+        $("#pay").click(function () {
+            var orderId = $('#orderId').val();
+
+            var order = JSON.stringify(
+                    {
+                        "UserId": "5bb2a10195614a919fc73be0c311e71d",
+                        "OrderId": orderId,
+                        "TradeTime": "2015-07-25 16:48:56",
+                        "TradeNo": "201501011234567134134134123412341",
+                        "TradeAmount": 1770.00,
+                        "PaymentTypeId": 1,
+                        "PaymentTypeName": "微信支付",
+                        "accessToken": token,
+                        "channel": 1,
+                        "platform": 2,
+                        "ver": "0.01"
+                    }
+                );
+            $.ajax({
+                url: "api/Order/Pay",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: order,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        //$("#prepay").click(function () {
+        //    var orderId = $('#orderId').val();
+
+        //    var order = JSON.stringify(
+        //            {
+        //                "UserId": "5bb2a10195614a919fc73be0c311e71d",
+        //                "OrderId": '201509154547066',
+        //                "TradeNo": "201509154547066",
+        //                "TradeAmount": 17.00,
+        //                "PaymentTypeId": 7,
+        //                "PaymentTypeName": "微信支付",
+        //                "accessToken": token,
+        //                "channel": 1,
+        //                "platform": 2,
+        //                "ver": "0.01"
+        //            }
+        //        );
+        //    $.ajax({
+        //        url: "api/Order/Prepay",
+        //        type: "post",
+        //        dataType: "json",
+        //        contentType: "application/json",
+        //        data: order,
+        //        success: function (data) {
+        //            console.log(data);
+        //            alert("OK");
+        //        }
+        //    });
+        //});
+
+
+        $("#prepay").click(function () {
+            var orderId = $('#orderId').val();
+
+            var order = JSON.stringify(
+                    { "OrderId": "201512078269222", "TradeNo": "201512078269222", "PaymentTypeName": "微信支付", "PaymentTypeId": 7, "TradeAmount": 35.0, "UserId": "c59ea3566cf142158a18c03c143ee505", "accessToken": "AWgtyOkpTBsASL7a7lb3wU3uyNKXpM8SGgAtC-wAGUUQKPA3NLktn8JWu824FUhMSDiflcc6Zgelc60lxj-ydu8\u003d", "ver": "1.0", "platform": 3, "channel": 1 }
+                );
+            $.ajax({
+                url: "api/Order/Prepay",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: order,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#changePaymentType").click(function () {
+            var orderId = $('#orderId').val();
+
+            var order = JSON.stringify(
+                    {
+                        "UserId": "5bb2a10195614a919fc73be0c311e71d",
+                        "OrderId": orderId,
+                        "PaymentTypeId": 6,
+                        "PaymentTypeName": "支付宝",
+                        "accessToken": token,
+                        "channel": 1,
+                        "platform": 2,
+                        "ver": "0.01"
+                    }
+                );
+            $.ajax({
+                url: "api/Order/ChangePaymentType",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: order,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        //Details
+        $("#details").click(function () {
+            var orderId = $('#orderId').val();
+
+            $.ajax({
+                url: "api/Order/Details",
+                type: "get",
+                data: "userId="+userid+"&orderId=" + orderId + "&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#orderReviews").click(function () {
+            var orderId = $('#orderId').val();
+
+            $.ajax({
+                url: "api/Order/Reviews",
+                type: "get",
+                data: "userId=139903b0bbe44f3781d85b105bdcb8e9&orderId=" + orderId + "&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#subOrders").click(function () {
+            $.ajax({
+                url: "api/Order/SubOrders",
+                type: "get",
+                data: "userId=b0bee0d84d71492585c3671b14011a16&orderId=201508174396289&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#orderTracking").click(function () {
+            var orderId = $('#orderId').val();
+
+            $.ajax({
+                url: "api/Order/LogisticsTracking",
+                type: "get",
+                data: "userId="+userid+"&orderId=" + orderId + "&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        // Common
+        $("#feedback").click(function () {
+            var orderId = $('#orderId').val();
+
+            var jsonData = JSON.stringify(
+                    {
+                        "UserId": userid,
+                        "FeedbackType": 1,
+                        "ContactWay": "paulshieh@126.com",
+                        "Content": "支付宝不好用啊",
+                        "accessToken": token,
+                        "channel": 1,
+                        "platform": 2,
+                        "ver": "0.01",
+                        "Images": [{ "Image": "BBB" }, { "Image": "AAA" } ]
+                    }
+                );
+            $.ajax({
+                url: "api/Common/Feedback",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#dictionary").click(function () {
+            var dictType = $('#dictType').val();
+
+            $.ajax({
+                url: "api/Common/Dictionary",
+                type: "get",
+                data: "dictType=" + dictType + "&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#helpCategory").click(function () {
+            $.ajax({
+                url: "api/Common/HelpCategory",
+                type: "get",
+                data: "accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#helpByCategory").click(function () {
+            $.ajax({
+                url: "api/Common/HelpByCategory",
+                type: "get",
+                data: "categoryId=1&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#help").click(function () {
+            $.ajax({
+                url: "api/Common/Help",
+                type: "get",
+                data: "id=7&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#upgradeInfo").click(function () {
+            $.ajax({
+                url: "api/Common/Upgrade",
+                type: "get",
+                data: "&accessToken=" + token + "&channel=1&platform=3&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        //申请推广员
+        $("#referralRequest").click(function () {
+            var jsonData = JSON.stringify(
+                    {
+                        "UserId": userid,
+                        "RealName": "黄小小",
+                        "Email": "paulshieh@126.com",
+                        "Mobile": "13215223748",
+                        "ReferralReason": "就要申请",
+                        "accessToken": token,
+                        "channel": 1,
+                        "platform": 2,
+                        "ver": "0.01"
+                    }
+                );
+            $.ajax({
+                url: "/api/Member/ReferralRequest",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+
+        //Supplier
+
+        $("#CollectSupplier").click(function () {
+            var SupplierId = $('#SupplierId').val();
+
+            var jsonData = JSON.stringify(
+                    {
+                        "UserId": userid,
+                        "accessToken": token,
+                        "channel": 1,
+                        "platform": 2,
+                        "ver": "0.01",
+                        "SupplierId":SupplierId
+                    }
+                );
+            $.ajax({
+                url: "api/Supplier/CollectSupplier",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+
+        $("#MySupplierCollect").click(function () {
+            $.ajax({
+                url: "api/Supplier/MySupplierCollect",
+                type: "get",
+                data: "userId="+userid+"&pageSize=20&pageIndex=1&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#DelCollectSupplier").click(function () {
+            var SupplierId = $('#SupplierId').val();
+
+            var jsonData = JSON.stringify(
+                    {
+                        "UserId": userid,
+                        "accessToken": token,
+                        "channel": 1,
+                        "platform": 2,
+                        "ver": "0.01",
+                        "SupplierId": SupplierId
+                    }
+                );
+            $.ajax({
+                url: "api/Supplier/DelCollectSupplier",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#GetHotSupplier").click(function () {
+            $.ajax({
+                url: "api/Supplier/GetHotSupplier",
+                type: "get",
+                data: "userId=" + userid + "&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+
+        $("#GetRecommendSupplier").click(function () {
+            $.ajax({
+                url: "api/Supplier/GetRecommendSupplier",
+                type: "get",
+                data: "userId=" + userid + "&accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+
+        $("#GetSupplierList").click(function () {
+
+            $.ajax({
+                url: "api/Supplier/GetSupplierList",
+                type: "get",
+                data: "userId=" + userid + "&pageSize=2&pageIndex=1&accessToken=" + token + "&channel=1&platform=2&ver=0.01&supplierName=",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#SupplierDefault").click(function () {
+            var SupplierId = $('#SupplierId').val();
+            $.ajax({
+                url: "api/Supplier/SupplierDefault",
+                type: "get",
+                data: "userId=" + userid + "&accessToken=" + token + "&channel=1&platform=2&ver=0.01&supplierId=" + SupplierId,
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#sendmessage").click(function () {
+            var title = $("#messagetitle").val();
+            var content = $("#messagecontent").val();
+            var jsonData = JSON.stringify(
+                {
+                    "UserId": userid,
+                    "accessToken": token,
+                    "channel": 1,
+                    "platform": 2,
+                    "ver": "0.01",
+                    "Title": title,
+                    "Content": content
+
+                }
+                );
+
+            $.ajax({
+                url: "api/Common/SendMessage",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#ProductFilter").click(function () {
+            var SupplierId = $('#SupplierId').val();
+            $.ajax({
+                url: "api/Product/ProductFilter",
+                type: "get",
+                data: "accessToken=" + token + "&channel=1&platform=2&ver=0.01&categoryId=8000225",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#SupplierListDefault").click(function () {
+            $.ajax({
+                url: "api/Supplier/SupplierListDefault",
+                type: "get",
+                data: "accessToken=" + token + "&channel=1&platform=2&ver=0.01&userId=",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#ThirdPartyBind").click(function () {
+
+            var jsonData = JSON.stringify(
+                {
+                    "OpenIdType": "QQ",
+                    "OpenId": "95914FE0BA142380F60E2BAAFF156D68",
+                    "Nickname": "\U4f1a\U957f\U5927\U7684\U5e78\U798f",
+                    "Gender": "",
+                    "Avatar": "",
+                    "Country": "",
+                    "Province": "",
+                    "City": "",
+                    "accessToken": token, "channel": 1, "platform": 2, "ver": "1.1.1"
+
+
+                }
+                );
+
+            $.ajax({
+                url: "api/Account/ThirdPartyBind",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#ThirdAccountBindOperate").click(function () {
+
+            var jsonData = JSON.stringify(
+                {
+                    "OpenIdType": "QQ",
+                    "OpenId": "95914FE0BA142380F60E2BAAFF156D68",
+                    "CellPhone": "13168003960",
+                    "Code": "AGDG",
+                    "Password": "123456",
+                    "RecemmendCode": "1GTH",
+                    "accessToken": token, "channel": 1, "platform": 2, "ver": "1.1.1"
+
+
+                }
+                );
+
+            $.ajax({
+                url: "api/Account/ThirdAccountBindOperate",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+       
+
+        $("#GetPayInfo").click(function () {
+            $.ajax({
+                url: "api/Common/GetPayInfo",
+                type: "get",
+                data: "accessToken=" + token + "&channel=1&platform=2&ver=0.01&type=1",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+
+        $("#SubmitApply").click(function () {
+            var jsonData = JSON.stringify(
+                {
+                    "UserId": userid,
+                    "accessToken": token,
+                    "channel": 1,
+                    "platform": 2,
+                    "ver": "0.01",
+                    "RealName": "林单1",
+                    "CellPhone": "18718575389",
+                    "Email": "ldybyz1@163.com",
+                    "ReferralReason": "aaaaaa"
+
+                }
+                );
+
+            $.ajax({
+                url: "api/Referral/SubmitApply",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+        
+        $("#GetCommissionList").click(function () {
+            $.ajax({
+                url: "api/Referral/GetCommissionList",
+                type: "get",
+                data: "accessToken=" + token + "&channel=1&platform=2&ver=0.01&type=1&pageindex=1&pagesize=20&userid="+userid,
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+
+        $("#GetSubMember").click(function () {
+            $.ajax({
+                url: "api/Referral/GetSubMember",
+                type: "get",
+                data: "accessToken=" + token + "&channel=1&platform=2&ver=0.01&type=1&pageindex=1&pagesize=10&userid=" + userid+"&keyword=",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#GetSubReferral").click(function () {
+            $.ajax({
+                url: "api/Referral/GetSubReferral",
+                type: "get",
+                data: "accessToken=" + token + "&channel=1&platform=2&ver=0.01&type=1&pageindex=1&pagesize=10&userid=" + userid + "&keyword=",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+
+        $("#ApplyWithdraw").click(function () {
+            var jsonData = JSON.stringify(
+                {
+                    "UserId": userid,
+                    "accessToken": token,
+                    "channel": 1,
+                    "platform": 2,
+                    "ver": "0.01",
+                    "Amount": "1",
+                    "Account": "0123459731321348",
+                    "TradePassword": "123456"
+
+                }
+                );
+
+            $.ajax({
+                url: "api/Referral/ApplyWithdraw",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+
+        $("#GetWithdrawRecord").click(function () {
+            $.ajax({
+                url: "api/Referral/GetWithdrawRecord",
+                type: "get",
+                data: "accessToken=" + token + "&channel=1&platform=2&ver=0.01&type=1&pageindex=1&pagesize=10&userid=" + userid,
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+
+        $("#GetExtensionQRCode").click(function () {
+            $.ajax({
+                url: "api/Referral/GetExtensionQRCode",
+                type: "get",
+                data: "accessToken=" + token + "&channel=1&platform=2&ver=0.01&type=1&userid=" + userid,
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#GetApplyWithdrawData").click(function () {
+            $.ajax({
+                url: "api/Referral/GetApplyWithdrawData",
+                type: "get",
+                data: "accessToken=" + token + "&channel=1&platform=2&ver=0.01&type=1&userid=" + userid,
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+
+        $("#SetTradePassword").click(function () {
+
+            var TradePassword = $("#TradePassword").val();
+            var jsonData = JSON.stringify(
+                {
+                    "UserId": userid,
+                    "accessToken": token,
+                    "channel": 1,
+                    "platform": 2,
+                    "ver": "0.01",
+                    "TradePassword": TradePassword
+   
+                }
+                );
+
+            $.ajax({
+                url: "api/Referral/SetTradePassword",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+
+
+        $("#EditTradePassword").click(function () {
+
+            var OldTradePassword = $("#OldTradePassword").val();
+
+            var NewTradePassword = $("#NewTradePassword").val();
+            var jsonData = JSON.stringify(
+                {
+                    "UserId": userid,
+                    "accessToken": token,
+                    "channel": 1,
+                    "platform": 2,
+                    "ver": "0.01",
+                    "OldTradePassword": OldTradePassword,
+                    "NewTradePassword": NewTradePassword
+                }
+                );
+
+            $.ajax({
+                url: "api/Referral/EditTradePassword",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (data) {
+                    console.log(data);
+                    alert("OK");
+                }
+            });
+        });
+
+        $("#GetReferralSummary").click(function () {
+            $.ajax({
+                url: "api/Referral/GetReferralSummary",
+                type: "get",
+                data: "accessToken=" + token + "&channel=1&platform=2&ver=0.01&type=1&userid=" + userid,
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+        $("#UpgradeIos").click(function () {
+            $.ajax({
+                url: "api/Common/UpgradeIos",
+                type: "get",
+                data: "accessToken=" + token + "&channel=1&platform=2&ver=0.01",
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+
+
+        
+        $("#GetShoppingcartQuantity").click(function () {
+            $.ajax({
+                url: "api/Site/GetShoppingcartQuantity",
+                type: "get",
+                data: "accessToken=" + token + "&channel=1&platform=2&ver=0.01&userid=" + userid,
+                success: function (data) {
+                    console.log(data);
+                    alert("Ok");
+                }
+            });
+        });
+        
+        
+        
+        
+        
+        
+        
+
+
+        
+
+        
+    })
+</script>
+
+<br />
+<div>
+    <h2>OAuth</h2>
+    <button id="appId">8.1.1 申请AppId和AppSerect</button><br /><br />
+    <button id="accessToken">8.1.2 获取访问令牌</button><br /><br />
+
+    <h2>Account</h2>
+    <input type="radio" id="action" name="action" value="1" checked />注册&nbsp;<input type="radio" id="action" name="action" value="2" />重设密码<br />
+    <span>U: </span><input id="username" placeholder="用户名" value="18503068918" /><br />
+    <span>P: </span><input id="password" placeholder="密码" value="123456" /><br />
+    <span>C: </span><input id="code" placeholder="验证码" value="" /><button id="sms">8.2.8 获取验证码</button><br /><br />
+    <button id="register">8.2.1 注册</button><br /><br />
+    <button id="login">8.2.2 登录</button><br /><br />
+    <button id="changePassword">8.2.3 修改密码</button><br /><br />
+    <button id="logout">8.2.5 退出</button><br /><br />
+    <button id="ticketRefresh">8.2.6 刷新登录票</button><br /><br />
+    <button id="resetPassword">8.2.7 重设密码</button><br /><br />
+
+    <h2>Member</h2>
+    <button id="summary">8.6.1 会员汇总信息</button><br /><br />
+    <button id="getMember">8.2.6 获取会员信息</button><br /><br />
+    <button id="update">8.2.18 更新会员信息</button><br /><br />
+    <button id="addresses">8.6.19 获取会员收货地址列表</button><br /><br />
+    <button id="newAddress">8.6.20 新增收货地址</button><br /><br />
+    <button id="updateAddress">8.6.21 修改收货地址</button><br /><br />
+    <button id="deleteAddress">8.6.22 删除收货地址</button><br /><br />
+    <div>
+        <label for="fileUpload">Select File: </label>选择头像
+        <input id="fileUpload" type="file" />
+        <input id="uploadAvatar" type="button" value="上传头像" />
+    </div>
+    <br /><br />
+    <button id="updateUserAvatar">更新用户头像</button><br /><br />
+    <button id="myOrders">8.6.4 获取会员订单列表(带分页)</button><br /><br />
+    <button id="myServiceOrders">8.6.4 获取会员售后订单列表(带分页)</button><br /><br />
+    <button id="myCoupon">8.6.15 获取会员优惠券列表</button><br /><br />
+    <button id="myFavorite">8.6.16 获取会员收藏列表</button><br /><br />
+    <button id="myPoint">8.6.17 获取会员积分记录列表</button><br /><br />
+    <button id="finishOrder">8.6.7 会员确认收货</button><br /><br />
+    <button id="cancelOrder">8.6.8 会员取消订单</button><br /><br />
+    <button id="deleteOrder">8.6.42	会员删除订单</button><br /><br />
+    <button id="applyRefund">8.6.9 会员申请订单退款</button><br /><br />
+    <button id="applyReturn">8.6.11 会员申请订单退货</button><br /><br />
+    <button id="applyReplacement">8.6.13 会员申请订单换货</button><br /><br />
+
+    <button id="getMessages">8.3.12	获取消息列表(带分页)</button><br /><br />
+    <button id="getMessage">8.3.14	获取消息详情</button><br /><br />
+    <button id="getUnreadMessage">8.3.13	获取未读消息数量</button><br /><br />
+    
+    <button id="rechargeRequest">8.6.29 会员充值下单</button><br /><br />
+    <button id="recharge">8.6.29 会员充值</button><br /><br />
+    <button id="rechargeList">8.6.28 会员充值列表(开发中)</button><br /><br />
+    <button id="withdrawRequest">8.6.30 提取现金</button><br /><br />
+    <button id="withdrawList">8.6.30 提取现金列表(开发中)</button><br /><br />
+
+    <h2>Site</h2>
+    <button id="sites">8.3.1 获取分站列表</button><br /><br />
+    <button id="allinone">All in one</button><br /><br />
+    <button id="banner">8.3.3 获取广告列表</button><br /><br />
+    <button id="registerannerbanner">8.3.4 获取注册广告Banner</button><br /><br />
+    <button id="navigation">8.3.15 获取专区配置(Navigation)</button><br /><br />
+    <button id="topic">8.3.7 获取主题列表(带分页)</button><br /><br />
+    <button id="hotsale">8.3.8 获取热卖商品列表</button><br /><br />
+    <button id="recommend">8.3.9 获取新品/推荐商品列表</button><br /><br />
+    <button id="promotional">8.3.17 获取特惠商品列表</button><br /><br />
+    <button id="appBanner">8.3.19	获取App启动图列表</button><br /><br />
+
+    <h2>Product</h2>
+    <button id="test">Test</button><br /><br />
+    <button id="search">8.3.2 搜索商品</button><br /><br />
+    <button id="getByCategory">8.3.10 获取分类商品列表，支持原产地、品牌筛选(带分页)</button><br /><br />
+    <button id="productList">8.3.10 获取商品列表，支持原产地、品牌、搜索筛选(带分页)</button><br /><br />
+    <button id="AllList">8.3.11获取分类商品列表</button><br /><br />
+    <button id="SecondItemList">8.3.12 获取二级分类下的商品列表</button><br /><br />
+    <button id="topicProductList">8.3.13 获取主题商品列表(带分页)</button><br /><br />
+    <button id="category">8.3.4	获取分类列表(带分页)</button><br /><br />
+    <button id="brand">8.3.5 获取品牌列表(带分页)</button><br /><br />
+    <button id="originalPlace">8.3.6 获取原产地列表(带分页)</button><br /><br />
+    <button id="allCategories">8.3.24 获取分类列表</button><br /><br />
+    <button id="categoriesandPlace">8.3.25 获取分类和国家列表</button><br /><br />
+    <button id="getCategoriesBySupplierId">8.3.26 店铺获取分类列表</button><br /><br />
+    <button id="suggest">8.3.16 获取猜你喜欢商品列表</button><br /><br />
+    <button id="history">8.3.18 足迹</button><br /><br />
+
+    <input id="prodctId1" type="text" value="301" /><br />
+    <button id="getProduct">8.4.1 获取商品基本信息</button><br /><br />
+    <button id="getProductDescription">8.4.2 获取商品详情</button><br /><br />
+    <button id="comments">8.4.3 获取评论列表(带分页)</button><br /><br />
+    <button id="comment">8.4.4 添加商品评论</button><br /><br />
+    <button id="question">8.4.5 获取咨询列表(带分页)</button><br /><br />
+    <button id="ask">8.4.6 添加商品咨询</button><br /><br />
+    <button id="addToFavorite">8.4.7 收藏商品</button><br /><br />
+    <button id="removeFavorite">8.4.8 取消收藏</button><br /><br />
+    <button id="keywords">8.5.3 获取热门搜索词列表</button><br /><br />
+    <button id="myKeywords">8.5.4 获取会员搜索历史列表</button><br /><br />
+
+    <button id="ProductFilter">8.4.9 获取商品筛选列表</button><br /><br />
+    <button id="countdownlist">获取限时抢购商品列表</button><br /><br />
+    <button id="countdownCategory">获取限时抢购分类列表</button><br /><br />
+    <button id="CountDownProduct">8.4.10 获取限时抢购商品基本信息</button><br /><br />
+
+    <h2>Order</h2>
+    <button id="addToCart">8.5.1 商品加入购物车</button><br /><br />
+    <button id="addMutilSkuToCart">8.5.18 商品批量加入购物车</button><br /><br />
+    <button id="updateCartItem">8.5.15 更新购物车商品</button><br /><br />
+    <button id="removeCartItem">8.5.16 删除购物车商品</button><br /><br />
+    <button id="removeAllCartItem">8.5.17 清空购物车</button><br /><br />
+    <button id="removeCartItems">8.5.22	批量删除购物车商品</button><br /><br />
+    <button id="shopingCart">8.5.2 获取购物车商品列表</button><br /><br />
+    <button id="shippingDateMode">8.5.13 获取配送时间列表</button><br /><br />
+    <button id="shippingMode">8.5.7 获取配送方式列表</button><br /><br />
+    <button id="paymentMode">8.5.8 获取支付方式列表</button><br /><br />
+    <button id="quickBuy">8.5.14 立即购买</button><br /><br />
+
+    <button id="buy">8.5.11 提交订单</button><br /><br />
+    <input id="orderId" type="text" value="201507256760342" /><br />
+    <button id="details">8.6.5 获取订单详情</button><br /><br />
+    <button id="comment2">8.6.6 发表评论（同8.4.4）</button><br /><br />
+    <button id="pay">8.5.12 提交订单支付信息</button><br /><br />
+    <button id="prepay">8.5.21 提交订单预支付信息</button><br /><br />
+    <button id="changePaymentType">8.5.20 修改订单支付方式</button><br /><br />
+    <button id="useCoupon">8.5.9 获取会员可用优惠券列表</button><br /><br />
+    <button id="useInvoice">8.5.6 获取会员发票信息列表</button><br /><br />
+    <button id="subOrders">8.5.10 获取子订单列表</button><br /><br />
+    <button id="orderTracking">8.5.19 获取订单物流信息</button><br /><br />
+    <button id="orderReviews">8.6.39 获取订单评论</button><br /><br />
+    <button id="referralRequest">8.6.45 申请推广员</button><br /><br />
+    <h2>Common</h2>
+    <button id="feedback">8.6.37 反馈</button><br /><br />
+    <input id="dictType" type="text" value="REGION" /><br />
+    <button id="dictionary">8.7.1 数据字典</button><br /><br />
+    <button id="helpCategory">8.6.35 帮助分类列表</button><br /><br />
+    <button id="helpByCategory">8.6.38 帮助列表</button><br /><br />
+    <button id="help">8.6.36 帮助内容</button><br /><br />
+    <button id="upgradeInfo">升级</button><br /><br />
+    <button id="UpgradeIos">8.7.5 Ios升级</button><br /><br />
+
+    <input id="messagetitle" type="text" />标题<br />
+    <input id="messagecontent" type="text" />内容<br />
+    <button id="sendmessage">8.7.4 发送信息</button><br /><br />
+
+    <h2>店铺</h2>
+    <input id="SupplierId" type="text" value="店铺id" /><br />
+    <button id="CollectSupplier">8.8.1 收藏店铺</button><br /><br />
+    <button id="DelCollectSupplier">8.8.2 取消收藏店铺</button><br /><br />
+    <button id="MySupplierCollect">8.8.3 获取店铺收藏列表</button><br /><br />
+    <button id="GetHotSupplier">8.8.4 热门商家列表</button><br /><br />
+    <button id="GetRecommendSupplier">8.8.5 推荐商家列表</button><br /><br />
+    <button id="GetSupplierList">8.8.6 商家列表</button><br /><br />
+    <button id="SupplierDefault">8.8.7 商家首页</button><br /><br />
+    <button id="SupplierListDefault">8.8.8 商家列表默认页面</button><br /><br />
+    <button id="ThirdPartyBind">8.6.34	第三方账号绑定</button><br /><br />
+    <button id="GetPayInfo">8.6.34	获取支付信息</button><br /><br />
+
+    <button id="ThirdAccountBindOperate">	第三方账号绑定手机</button><br /><br />
+    
+
+    <h2>推广员</h2>
+    <button id="SubmitApply">8.9.1	提交推广员申请单</button><br /><br />
+    <button id="GetCommissionList">8.9.2	佣金列表</button><br /><br />
+    <button id="GetSubMember">8.9.3	下级会员</button><br /><br />
+    <button id="GetSubReferral">8.9.4	下级推广员</button><br /><br />
+    <button id="ApplyWithdraw">8.9.5	申请提现</button><br /><br />
+    <button id="GetWithdrawRecord">8.9.6	提现记录</button><br /><br />
+    <button id="GetExtensionQRCode">8.9.7	获取推广二维码</button><br /><br />
+    <button id="GetApplyWithdrawData">8.9.8	获取提现申请页面数据</button><br /><br />
+
+    <input id="TradePassword" placeholder="密码" value="123456" /><br />
+    <button id="SetTradePassword">8.9.9	设置交易密码</button><br /><br />
+
+
+    <input id="OldTradePassword" placeholder="原密码" value="123456" /><br />
+    <input id="NewTradePassword" placeholder="密码" value="123456" /><br />
+    <button id="EditTradePassword">8.9.10	修改交易密码</button><br /><br />
+
+    <button id="GetReferralSummary">8.9.11	获取推广员汇总信息</button><br /><br />
+
+
+    <button id="GetShoppingcartQuantity">8.4.11	获取购物车数量</button><br /><br />
+
+
+
+    
+
+    
+</div>

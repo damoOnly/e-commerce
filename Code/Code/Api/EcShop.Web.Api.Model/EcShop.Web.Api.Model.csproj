@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7CE6EDA4-5D03-4FF7-BC69-8AF3BF50120F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EcShop.Web.Api.Model</RootNamespace>
+    <AssemblyName>EcShop.Web.Api.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Enums.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\BaseQueryOptions.cs" />
+    <Compile Include="RequestJsonParams\ParamAddress.cs" />
+    <Compile Include="RequestJsonParams\ParamApplyWithdraw.cs" />
+    <Compile Include="RequestJsonParams\ParamAsk.cs" />
+    <Compile Include="RequestJsonParams\ParamAvatar.cs" />
+    <Compile Include="RequestJsonParams\ParamBase.cs" />
+    <Compile Include="RequestJsonParams\ParamBuy.cs" />
+    <Compile Include="RequestJsonParams\ParamChangePassword.cs" />
+    <Compile Include="RequestJsonParams\ParamCollectSupplier.cs" />
+    <Compile Include="RequestJsonParams\ParamComment.cs" />
+    <Compile Include="RequestJsonParams\ParamDelivery.cs" />
+    <Compile Include="RequestJsonParams\ParamDelMessage.cs" />
+    <Compile Include="RequestJsonParams\ParamFeedback.cs" />
+    <Compile Include="RequestJsonParams\ParamFinishOrder.cs" />
+    <Compile Include="RequestJsonParams\ParamFreight.cs" />
+    <Compile Include="RequestJsonParams\ParamChangePaymentType.cs" />
+    <Compile Include="RequestJsonParams\ParamProductList.cs" />
+    <Compile Include="RequestJsonParams\ParamRecharge.cs" />
+    <Compile Include="RequestJsonParams\ParamRechargeRequest.cs" />
+    <Compile Include="RequestJsonParams\ParamLogin.cs" />
+    <Compile Include="RequestJsonParams\ParamMember.cs" />
+    <Compile Include="RequestJsonParams\ParamOrder.cs" />
+    <Compile Include="RequestJsonParams\ParamPay.cs" />
+    <Compile Include="RequestJsonParams\ParamReferralApply.cs" />
+    <Compile Include="RequestJsonParams\ParamSendMessage.cs" />
+    <Compile Include="RequestJsonParams\ParamSendSMSCode.cs" />
+    <Compile Include="RequestJsonParams\ParamReplacement.cs" />
+    <Compile Include="RequestJsonParams\ParamReturn.cs" />
+    <Compile Include="RequestJsonParams\ParamRefund.cs" />
+    <Compile Include="RequestJsonParams\ParamRegister.cs" />
+    <Compile Include="RequestJsonParams\ParamThirdPartyBind.cs" />
+    <Compile Include="RequestJsonParams\ParamThirdPartyLogin.cs" />
+    <Compile Include="RequestJsonParams\ParamTicketRefresh.cs" />
+    <Compile Include="RequestJsonParams\ParamTradePassword.cs" />
+    <Compile Include="RequestJsonParams\ParamUserBase.cs" />
+    <Compile Include="RequestJsonParams\ParamWithdrawRequest.cs" />
+    <Compile Include="Result\AddressItem.cs" />
+    <Compile Include="Result\AliPayInfo.cs" />
+    <Compile Include="Result\AllInOneResult.cs" />
+    <Compile Include="Result\AppBannerListItem.cs" />
+    <Compile Include="Result\ApplyWithdrawPageData.cs" />
+    <Compile Include="Result\AppVersionResult.cs" />
+    <Compile Include="Result\NextCategoryItem.cs" />
+    <Compile Include="Result\CommissionInfo.cs" />
+    <Compile Include="Result\CommissionResult.cs" />
+    <Compile Include="Result\CouponListItem.cs" />
+    <Compile Include="Result\DictionaryListItem.cs" />
+    <Compile Include="Result\ExpressListItem.cs" />
+    <Compile Include="Result\ExtendOrderResult.cs" />
+    <Compile Include="Result\FavoriteListItem.cs" />
+    <Compile Include="Result\HelpCategoryListItem.cs" />
+    <Compile Include="Result\HelpListItem.cs" />
+    <Compile Include="Result\IconListItem.cs" />
+    <Compile Include="Result\InvoiceListItem.cs" />
+    <Compile Include="Result\IosVersionResult.cs" />
+    <Compile Include="Result\KeywordListItem.cs" />
+    <Compile Include="Result\Kuaidi100ExpressJson.cs" />
+    <Compile Include="Result\LogisticsTrackingListItem.cs" />
+    <Compile Include="Result\MemberSummaryResult.cs" />
+    <Compile Include="Result\MessageListItem.cs" />
+    <Compile Include="Result\MyOrderResult.cs" />
+    <Compile Include="Result\NavigationListItem.cs" />
+    <Compile Include="Result\BannerListItem.cs" />
+    <Compile Include="Result\BrandListItem.cs" />
+    <Compile Include="Result\BuyResult.cs" />
+    <Compile Include="Result\CartItem.cs" />
+    <Compile Include="Result\CartResult.cs" />
+    <Compile Include="Result\CategoryListItem.cs" />
+    <Compile Include="Result\GiftItem.cs" />
+    <Compile Include="Result\MemberResult.cs" />
+    <Compile Include="Result\PrepayResult.cs" />
+    <Compile Include="Result\ProductCollectResult.cs" />
+    <Compile Include="Result\ProductFilterResult.cs" />
+    <Compile Include="Result\CountDownCategoryListItem.cs" />
+    <Compile Include="Result\QRCodeResult.cs" />
+    <Compile Include="Result\ReferralInfoResult.cs" />
+    <Compile Include="Result\ReferralSubUserInfo.cs" />
+    <Compile Include="Result\ReferralSummaryResult.cs" />
+    <Compile Include="Result\ServiceOrderItemResult.cs" />
+    <Compile Include="Result\OrderItemResult.cs" />
+    <Compile Include="Result\OrderResult.cs" />
+    <Compile Include="Result\OrderReviewListItem.cs" />
+    <Compile Include="Result\OriginPlaceListItem.cs" />
+    <Compile Include="RequestJsonParams\ParamFavorite.cs" />
+    <Compile Include="RequestJsonParams\ParamDeleteAddress.cs" />
+    <Compile Include="Result\PaymentModeListItem.cs" />
+    <Compile Include="Result\PointListItem.cs" />
+    <Compile Include="Result\ProductConsultationListItem.cs" />
+    <Compile Include="Result\ProductDescriptionItem.cs" />
+    <Compile Include="Result\ProductItem.cs" />
+    <Compile Include="Result\ProductListItem.cs" />
+    <Compile Include="Result\AppResult.cs" />
+    <Compile Include="Result\AccessTokenResult.cs" />
+    <Compile Include="Result\FaultResult.cs" />
+    <Compile Include="Result\LoginedResult.cs" />
+    <Compile Include="Result\PlateListItem.cs" />
+    <Compile Include="Result\ProductCommentListItem.cs" />
+    <Compile Include="Result\RechargeListItem.cs" />
+    <Compile Include="Result\RegionListResult.cs" />
+    <Compile Include="Result\RegisterOrLoginResult.cs" />
+    <Compile Include="Result\ShippingDateModeListItem.cs" />
+    <Compile Include="Result\ShippingModeListItem.cs" />
+    <Compile Include="Result\SiteListResult.cs" />
+    <Compile Include="Result\StandardResult.cs" />
+    <Compile Include="Result\ListResult.cs" />
+    <Compile Include="Result\StockoutListItem.cs" />
+    <Compile Include="Result\SubMemberInfo.cs" />
+    <Compile Include="Result\SubMemberItem.cs" />
+    <Compile Include="Result\SubReferralItem.cs" />
+    <Compile Include="Result\SupplierCartItem.cs" />
+    <Compile Include="Result\SupplierCollectItem.cs" />
+    <Compile Include="Result\SupplierConfigItem.cs" />
+    <Compile Include="Result\SupplierDefaultListResult.cs" />
+    <Compile Include="Result\SupplierDefaultResult.cs" />
+    <Compile Include="Result\SupplierListItem.cs" />
+    <Compile Include="Result\TopicListItem.cs" />
+    <Compile Include="Result\WithdrawRecordResult.cs" />
+    <Compile Include="Result\WxPayInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\EcShop.Entities\EcShop.Entities.csproj">
+      <Project>{88093336-25d2-4358-82ce-bd86449a6c3f}</Project>
+      <Name>EcShop.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
