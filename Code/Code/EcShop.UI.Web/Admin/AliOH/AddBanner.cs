@@ -1,0 +1,59 @@
+using EcShop.ControlPanel.Store;
+using EcShop.Entities.AliOH;
+using EcShop.Entities.Store;
+using EcShop.Entities.VShop;
+using EcShop.UI.ControlPanel.Utility;
+using System;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+namespace EcShop.UI.Web.Admin.AliOH
+{
+	[PrivilegeCheck(Privilege.AliohBannerAdd)]
+	public class AddBanner : AdminPage
+	{
+		protected System.Web.UI.WebControls.TextBox txtBannerDesc;
+		protected System.Web.UI.HtmlControls.HtmlGenericControl liParent;
+		protected System.Web.UI.WebControls.DropDownList ddlType;
+		protected System.Web.UI.WebControls.DropDownList ddlSubType;
+		protected System.Web.UI.WebControls.DropDownList ddlThridType;
+		protected System.Web.UI.WebControls.TextBox Tburl;
+		protected System.Web.UI.HtmlControls.HtmlGenericControl navigateDesc;
+		protected System.Web.UI.WebControls.Button btnAddBanner;
+		protected System.Web.UI.HtmlControls.HtmlInputHidden fmSrc;
+		protected System.Web.UI.HtmlControls.HtmlInputHidden locationUrl;
+		protected void Page_Load(object sender, System.EventArgs e)
+		{
+			if (!this.Page.IsPostBack)
+			{
+                this.ddlType.BindEnum<EcShop.Entities.AliOH.LocationType>("");//修改1
+			}
+		}
+		protected void btnAddBanner_Click(object sender, System.EventArgs e)
+		{
+			TplCfgInfo tplCfgInfo = new BannerInfo();
+			tplCfgInfo.IsDisable = false;
+			tplCfgInfo.ImageUrl = this.fmSrc.Value;
+			tplCfgInfo.ShortDesc = this.txtBannerDesc.Text;
+			tplCfgInfo.LocationType = (EcShop.Entities.VShop.LocationType)System.Enum.Parse(typeof(EcShop.Entities.VShop.LocationType), this.ddlType.SelectedValue);
+			tplCfgInfo.Client = 4;
+			if (string.IsNullOrWhiteSpace(tplCfgInfo.ImageUrl))
+			{
+				this.ShowMsg("请上传轮播图！", false);
+				return;
+			}
+			tplCfgInfo.Url = this.locationUrl.Value;
+			if (VShopHelper.SaveTplCfg(tplCfgInfo))
+			{
+				this.CloseWindow();
+				return;
+			}
+			this.ShowMsg("添加错误！", false);
+		}
+		private void Reset()
+		{
+			this.txtBannerDesc.Text = string.Empty;
+			this.Tburl.Text = string.Empty;
+			this.ddlType.SelectedValue = EcShop.Entities.VShop.LocationType.Link.ToString();
+		}
+	}
+}
